@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "julia-intro.html",
+    "href": "julia-intro.html",
+    "title": "Introduction to Julia",
+    "section": "",
+    "text": "We start with a brief introduction to the Julia programming language, Pluto notebooks, and the JuliaHub cloud computing platform."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this website"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This is the website for the second half of the course BINF301 Genome-scale Algorithms. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.\nMachine learning plays an important role in computational biology. See the Machine Learning in Computational and Systems Biology community or the Machine Learning in Computational Biology conference series.\nThe lectures are divided in modules, each focusing on a specific class of methods:\n\nClustering\nRegularized regression\nDimensionality reduction\nCausal inference\nGraphical models\nSpatio-Temporal models\n\nEach module follows the same structure:\n\nA classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.\nThe method used in the paper is studied in detail, along with additional methods to solve the same type of problem.\nThe methods are put in practice using, where possible, original data from the papers studied in the first part.\n\nThe computational demonstrations for the course were developed in Julia, and the course starts with an introduction to Julia. For the assignments, you can use any programming language.\nAn appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.\nThe theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:\n\nTrevor Hastie, Robert Tibshirani, and Jerome Friedman. The Elements of Statistical Learning (second edition) (2009).\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. An Introduction to Statistical Learning (2023).\nChristopher Bishop. Pattern Recognition and Machine Learning (2006).\nMarc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. Mathematics for Machine Learning (2020).\n\nThe use of classic papers is motivated by Back to the future: education for systems-level biologists. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  }
+]
