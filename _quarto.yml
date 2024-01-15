@@ -1,0 +1,33 @@
+project:
+  type: website
+
+website:
+  title: "BINF301 Genome-scale Algorithms"
+  navbar:
+    search: true
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - href: index.qmd
+        text: Home
+      - julia-intro.qmd
+      - section: "Clustering"
+      - section: "Regularized regression"
+      - section: "Dimensionality reduction"
+      - section: "Causal inference"
+      - section: "Graphical models"
+      - section: "Spatio-Temporal models"
+      - section: "Appendix"
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+execute: 
+  freeze: auto
+
+
+
+

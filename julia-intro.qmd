@@ -1,0 +1,11 @@
+---
+title: "Introduction to Julia"
+format: html
+---
+
+We start with a brief introduction to the [Julia][1] programming language, [Pluto notebooks][2], and the [JuliaHub][3] cloud computing platform.
+
+
+[1]: https://julialang.org/
+[2]: https://plutojl.org/
+[3]: https://juliahub.com/
