@@ -11,6 +11,7 @@ _site/
 .ipynb_checkpoints/
 .vscode/
 /.quarto/
+/_site/
 
 
 
