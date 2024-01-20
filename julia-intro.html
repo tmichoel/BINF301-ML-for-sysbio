@@ -118,8 +118,27 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Clustering</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Cluster analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cancer subtypes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Combinatorial clustering</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -151,7 +170,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-julia" id="toc-why-julia" class="nav-link active" data-scroll-target="#why-julia">Why Julia?</a></li>
+  <li><a href="#software-installation" id="toc-software-installation" class="nav-link" data-scroll-target="#software-installation">Software installation</a></li>
+  <li><a href="#do-i-have-to-use-julia" id="toc-do-i-have-to-use-julia" class="nav-link" data-scroll-target="#do-i-have-to-use-julia">Do I <em>have</em> to use Julia?</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -173,9 +200,29 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>We start with a brief introduction to the <a href="https://julialang.org/">Julia</a> programming language, <a href="https://plutojl.org/">Pluto notebooks</a>, and the <a href="https://juliahub.com/">JuliaHub</a> cloud computing platform.</p>
+<section id="why-julia" class="level2">
+<h2 class="anchored" data-anchor-id="why-julia">Why Julia?</h2>
+<p><a href="https://julialang.org/">Julia</a> is an open-source programming language that combines the interactivity of <a href="https://www.python.org/">Python</a>, <a href="https://www.r-project.org/">R</a> and <a href="https://mathworks.com">Matlab</a>, with the speed of <a href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>. Read more about its design principles and why it is good for scienticific applications, including computational biology here:</p>
+<ul>
+<li><a href="https://julialang.org/blog/2012/02/why-we-created-julia/">Why we created Julia</a></li>
+<li><a href="https://www.nature.com/articles/d41586-019-02310-3">Julia: come for the syntax, stay for the speed</a></li>
+<li><a href="https://www.nature.com/articles/s41592-023-01832-z">Julia for biologists</a></li>
+</ul>
+<p>Interestingly, despite not (yet!) being as popular as Python, <a href="https://www.stochasticlifestyle.com/chatgpt-performs-better-on-julia-than-python-and-r-for-large-language-model-llm-code-generation-why/">ChatGPT performs better on Julia than Python (and R) for Large Language Model (LLM) code generation</a>. Using <a href="https://help.juliahub.com/juliahub/stable/tutorials/askAI/">AskAI</a>, an interface to ChatGPT tailored specifically for Julia-related questions, should make Julia code generation even better.</p>
+</section>
+<section id="software-installation" class="level2">
+<h2 class="anchored" data-anchor-id="software-installation">Software installation</h2>
+<p>Follow the instructions on the <a href="https://computationalthinking.mit.edu/Fall23/installation/">MIT Introduction to Computational Thinking course</a> to install <a href="https://julialang.org/">Julia</a> and <a href="https://juliahub.com/">Pluto</a>.</p>
+<p>Create an account on <a href="https://juliahub.com/">JuliaHub</a>.</p>
+</section>
+<section id="do-i-have-to-use-julia" class="level2">
+<h2 class="anchored" data-anchor-id="do-i-have-to-use-julia">Do I <em>have</em> to use Julia?</h2>
+<p><strong>No</strong>.</p>
+<p>Assignments can be submitted in <em>any</em> programming language.</p>
+<p>The example notebooks are all in <a href="https://julialang.org/">Julia</a>, but their combination of text and code should (hopefully) make it easy to translate them to <a href="https://jupyter.org/">Jupyter</a>, <a href="https://rmarkdown.rstudio.com/">R markdown</a>, or any other notebook/language combination of your choice. Likewise, it should not be too hard to replace <a href="https://juliahub.com/">JuliaHub</a> by another cloud computing platform. If you do decide to reproduce the course notebooks in another language and/or on another platform, please share your results!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

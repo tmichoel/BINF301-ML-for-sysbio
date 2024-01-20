@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Genome-scale Algorithms - Welcome</title>
+<title>BINF301 Genome-scale Algorithms - Combinatorial clustering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -60,8 +60,10 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -71,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BINF301 Genome-scale Algorithms</span>
     </a>
   </div>
@@ -85,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cluster analysis</a></li><li class="breadcrumb-item"><a href="../cluster-analysis/combinatorial-clustering.html">Combinatorial clustering</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -107,13 +109,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../julia-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Julia</span></a>
   </div>
 </li>
@@ -128,13 +130,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cancer subtypes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Combinatorial clustering</span></a>
   </div>
 </li>
@@ -169,15 +171,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#questions-and-problems-for-discussion" id="toc-questions-and-problems-for-discussion" class="nav-link" data-scroll-target="#questions-and-problems-for-discussion">Questions and problems for discussion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Combinatorial clustering</h1>
 </div>
 
 
@@ -192,35 +201,132 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This is the website for the second half of the course <a href="https://www4.uib.no/en/courses/BINF301">BINF301 Genome-scale Algorithms</a>. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.</p>
-<p>Machine learning plays an important role in computational biology. See the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a> or the <a href="http://mlcb.org">Machine Learning in Computational Biology conference series</a>.</p>
-<p>The lectures are divided in modules, each focusing on a specific class of methods:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Book sections
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Clustering</li>
-<li>Regularized regression</li>
-<li>Dimensionality reduction</li>
-<li>Causal inference</li>
-<li>Graphical models</li>
-<li>Spatio-Temporal models</li>
+<li><a href="https://hastie.su.domains/ElemStatLearn/"><em>Elements of Statistical Learning</em></a>: <strong>Section 14.2</strong></li>
+<li><a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a>: <strong>Section 12.4</strong></li>
 </ul>
-<p>Each module follows the same structure:</p>
-<ul>
-<li>A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.</li>
-<li>The method used in the paper is studied in detail, along with additional methods to solve the same type of problem.</li>
-<li>The methods are put in practice using, where possible, original data from the papers studied in the first part.</li>
-</ul>
-<p>The computational demonstrations for the course were developed in <a href="https://julialang.org/">Julia</a>, and the course starts with an <a href="./julia-intro.html">introduction to Julia</a>. For the assignments, you can use any programming language.</p>
-<p>An appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.</p>
-<p>The theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:</p>
-<ul>
-<li>Trevor Hastie, Robert Tibshirani, and Jerome Friedman. <a href="https://hastie.su.domains/ElemStatLearn/"><em>The Elements of Statistical Learning (second edition)</em></a> (2009).</li>
-<li>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. <a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a> (2023).</li>
-<li>Christopher Bishop. <a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a> (2006).</li>
-<li>Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. <a href="https://mml-book.github.io/"><em>Mathematics for Machine Learning</em></a> (2020).</li>
-</ul>
-<p>The use of classic papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+</div>
+</div>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>The goal of cluster analysis is to group or segment a collection of objects into subsets or “clusters”, such that objects within a cluster are more closely related than objects in different clusters.</p>
+<p>Many datasets exhibit a hierarchical structure, with no clear demarcation of clusters, and clusters can themselves be grouped successively such that clusters within one group are more similar than those in different groups. Deciding where to make the “cut” is usually done by setting parameters of a clustering algorithm, and almost always involves an arbitrary choice by the user.</p>
+<p>Central to all clustering methods is the notion of the degree of similarity (or dissimilarity) between the objects being clustered. Sometimes data are presented directly in terms of proximity/similarity between objects. More often we have measurements (e.g.&nbsp;gene expression) on objects (e.g.&nbsp;genes or samples) that we want to cluster, and a (dis)similariy matrix must be constructed first.</p>
+</section>
+<section id="questions-and-problems-for-discussion" class="level3">
+<h3 class="anchored" data-anchor-id="questions-and-problems-for-discussion">Questions and problems for discussion</h3>
+<section id="dissimilarity-measures" class="level4">
+<h4 class="anchored" data-anchor-id="dissimilarity-measures">Dissimilarity measures</h4>
+<p>Assume we have measurements <span class="math inline">\(x_{ij}\)</span> for objects <span class="math inline">\(i=1,2,\dots,N\)</span> on variables (or attributes) <span class="math inline">\(j=1,2,\dots,p\)</span>. Usually, we first define a dissimilarity function <span class="math inline">\(d_j(x_{ij},x_{i'j})\)</span> between values of the <span class="math inline">\(j\)</span>th attribute. How is the dissimilarity between objects defined and how can we vary the relative influence of a given attribute in the overall dissimilarity between objects?</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To give all attributes equal influence in the object dissimilarity, we must set their relative weights to <span class="math inline">\(w_j\sim 1/\overline{d_j}\)</span>, with</p>
+<p><span class="math display">\[
+\overline{d_j}=\frac{1}{N^2} \sum_{i=1}^N  \sum_{i'=1}^N d_j(x_{ij},x_{i'j})
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Setting <span class="math inline">\(w_j=1\)</span> for all <span class="math inline">\(j\)</span> does <strong>not</strong> necessarily give all attributes equal influence! To see this, compute the average object dissimilarity over all pairs of objects. It should be a sum over attributes, and attributes have equal influence in the object dissimilarity if their contribution to this sum is one. Show that this results in the equation above.</p>
+</div>
+</div>
+<p>The most common choice of dissimilarity function is squared-error distance:</p>
+<p><span class="math display">\[
+d_j(x_{ij},x_{i'j}) = (x_{ij}-x_{i'j})^2
+\]</span></p>
+<p>Define the mean and variance of each attribute over all objects as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mu_j &amp;= \frac1N \sum_{i=1}^N x_{ij}\\\\
+\sigma_j^2 &amp;= \frac1N \sum_{i=1}^N (x_{ij}-\mu_j)^2
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Show that with squared-error distance, the average object dissimilarity on the <span class="math inline">\(j\)</span>th attribute is proportional to its variance.</p>
+</div>
+</div>
+<p>It is often recommended to standardize data before clustering:</p>
+<p><span class="math display">\[
+x_{ij} \to y_{ij}=\frac{x_{ij}-\mu_j}{\sigma_j}
+\]</span></p>
+<p>With squared-error loss, this is equivalent to setting weights <span class="math inline">\(w_j \sim 1/\sigma_j^2 \sim 1/\bar{d}_j\)</span>, that is, to give all attributes equal influence on the average object dissimilarity.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sometimes some attributes exhibit more grouping tendency than others, which may be obscured by standardizing. Find and understand the figure in the book sections above that illustrates this. The solution is to filter attributes by their variance before standardizing, and only use attributes with high variance for clustering. Why?</p>
+</div>
+</div>
+</section>
+<section id="combinatorial-clustering" class="level4">
+<h4 class="anchored" data-anchor-id="combinatorial-clustering">Combinatorial clustering</h4>
+<p>Combinatorial clustering algorithms assign each object to a cluster without regard to a probability model describing the data. Understanding combinatorial clustering is a necessary basis for understanding probabilistic methods.</p>
+<p>In combinatorial clustering, a prespecified number of clusters <span class="math inline">\(K&lt;N\)</span> is postulated (<span class="math inline">\(N\)</span> the number of objects). An assignment of objects <span class="math inline">\(i\in\{1,\dots,N\}\)</span> to clusters <span class="math inline">\(k\in\{1,\dots,K\}\)</span> is charcterized by a many-to-one mapping or encoder <span class="math inline">\(k=C(i)\)</span>.</p>
+<p><span class="math inline">\(C\)</span> is obtained by minimizing the “within cluster” point scatter <span class="math inline">\(W(C)\)</span>, which characterizes the extent to which objects assigned to the same cluster tend to be close to one another. How is <span class="math inline">\(W(C)\)</span> defined?</p>
+<p>We can also define the “between cluster” point scatter <span class="math inline">\(B(C)\)</span>, which characterizes the extent to which objects assigned to different clusters tend to be far apart. How is <span class="math inline">\(B(C)\)</span> defined?</p>
+<p>Does it matter whether we find an optimal clustering by minimizing <span class="math inline">\(W(C)\)</span> or by maximizing <span class="math inline">\(B(C)\)</span>? <em>Hint:</em> compute <span class="math inline">\(W(C)+B(C)\)</span>.</p>
+</section>
+<section id="k-means-clustering" class="level4">
+<h4 class="anchored" data-anchor-id="k-means-clustering">K-means clustering</h4>
+<p>The <span class="math inline">\(K\)</span>-means algorithm uses the squared Euclidean distance <span class="math display">\[
+d(x_i,x_{i'}) = \sum_{j=1}^p (x_{ij}-x_{i'j})^2 = \\| x_i - x_{i'}\\|^2
+\]</span> and an iterative greedy descent algorithm to minimize <span class="math inline">\(W(C)\)</span>.</p>
+<p>Using the Euclidean distance expression, find an expression for <span class="math inline">\(W(C)\)</span> in terms of the number of objects assigned to cluster <span class="math inline">\(k\)</span> and the mean vector associated to cluster <span class="math inline">\(k\)</span>.</p>
+<p>Show that <span class="math inline">\(W(C)\)</span> is minimized if within each cluster, the average dissimilarity of the objects from the cluster mean, as defined by the points in that cluster, is minimized.</p>
+<p>Note that for any set of objects <span class="math inline">\(S\)</span>, <span class="math display">\[
+\overline{x_S} = \frac{1}{|S|} \sum_{i\in S} x_i = \text{argmin}_m \sum_{i\in S}\\|x_i-m\\|^2
+\]</span></p>
+<p>Find out how this result is used in a greedy descent algorithm where alternatingly the mean vectors are updated for the current cluster assignments, and object assignments are updated by assigning objects to the nearest current mean vector.</p>
+</section>
+<section id="how-do-we-choose-the-number-of-clusters-k" class="level4">
+<h4 class="anchored" data-anchor-id="how-do-we-choose-the-number-of-clusters-k">How do we choose the number of clusters K?</h4>
+<p>Find the recommended method in the book sections above.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
