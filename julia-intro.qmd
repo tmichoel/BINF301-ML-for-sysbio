@@ -2,10 +2,31 @@
 title: "Introduction to Julia"
 format: html
 ---
+## Why Julia?
 
-We start with a brief introduction to the [Julia][1] programming language, [Pluto notebooks][2], and the [JuliaHub][3] cloud computing platform.
+[Julia][1] is an open-source programming language that combines the interactivity of [Python](https://www.python.org/), [R](https://www.r-project.org/) and [Matlab](https://mathworks.com), with the speed of [C](https://en.wikipedia.org/wiki/C_(programming_language)). Read more about its design principles and why it is good for scienticific applications, including computational biology here:
 
+- [Why we created Julia](https://julialang.org/blog/2012/02/why-we-created-julia/)
+- [Julia: come for the syntax, stay for the speed](https://www.nature.com/articles/d41586-019-02310-3)
+- [Julia for biologists](https://www.nature.com/articles/s41592-023-01832-z)
+
+Interestingly, despite not (yet!) being as popular as Python, [ChatGPT performs better on Julia than Python (and R) for Large Language Model (LLM) code generation](https://www.stochasticlifestyle.com/chatgpt-performs-better-on-julia-than-python-and-r-for-large-language-model-llm-code-generation-why/). Using [AskAI](https://help.juliahub.com/juliahub/stable/tutorials/askAI/), an interface to ChatGPT tailored specifically for Julia-related questions, should make Julia code generation even better.
+
+
+## Software installation
+
+Follow the instructions on the [MIT Introduction to Computational Thinking course](https://computationalthinking.mit.edu/Fall23/installation/) to install [Julia][1] and [Pluto][3].
+
+Create an account on [JuliaHub][3].
 
 [1]: https://julialang.org/
 [2]: https://plutojl.org/
 [3]: https://juliahub.com/
+
+## Do I *have* to use Julia?
+
+**No**. 
+
+Assignments can be submitted in *any* programming language. 
+
+The example notebooks are all in [Julia][1], but their combination of text and code should (hopefully) make it easy to translate them to [Jupyter](https://jupyter.org/), [R markdown](https://rmarkdown.rstudio.com/), or any other notebook/language combination of your choice. Likewise, it should not be too hard to replace [JuliaHub][3] by another cloud computing platform. If you do decide to reproduce the course notebooks in another language and/or on another platform, please share your results!

@@ -1,0 +1,66 @@
+---
+title: "Cancer subtypes"
+page-layout: full
+title-block-banner: false
+---
+
+## Gene expression profiling predicts clinical outcome of breast cancer
+
+::: {.callout-tip}
+## Classic paper
+
+van 't Veer L et al. [*Gene expression profiling predicts clinical outcome of breast cancer*](https://doi.org/10.1038/415530a) . Nature 415:530 (2002).  See also the comment: [*The molecular outlook*](https://www.nature.com/articles/415484a)
+:::
+
+
+### Introduction
+
+The [study by van 't Veer et al](https://doi.org/10.1038/415530a) was one of the first to use to [microarrays](https://en.wikipedia.org/wiki/DNA_microarray), a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al. [*Molecular portraits of human breast tumours*](https://www.nature.com/articles/35021093). The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.'s [*Cluster analysis and display of genome-wide expression patterns*](https://doi.org/10.1073/pnas.95.25.14863).
+
+Using [cluster analysis](https://en.wikipedia.org/wiki/Cluster_analysis) to detect meaningful patterns in genome-scale data has stood the test of time and is often one of the first steps to take when exploring a new dataset.
+
+### Questions for discussion
+
+How many tumour samples were analyzed by Van 't Veer et al? How many genes were used for the cluster analysis and how were these genes selected
+
+The most striking finding is in Figure 1. What does this figure show?
+
+Clinical features to annotate and understand the observed separation of gene expression profiles in distinct clusters. What does each of the features measure and how do the authors characterize the overall classification of tumours? Starting points to read more about the clinical features:
+
+- [BRCA1 germline mutation](https://www.cancer.gov/about-cancer/causes-prevention/genetics/brca-fact-sheet): harmful variants in the *BRCA1* or *BRCA2* genes that markedly increase risk for developing breast cancer.
+- [Estrogen receptor (ER) status](https://www.cancer.org/cancer/breast-cancer/understanding-a-breast-cancer-diagnosis/breast-cancer-hormone-receptor-status.html): breast tumour cells that express ER on their surface need [estrogen](https://en.wikipedia.org/wiki/Estrogen) to grow, and are therefore more susceptible to hormone therapy.
+- [Tumour grade](https://www.cancer.gov/about-cancer/diagnosis-staging/diagnosis/tumor-grade): a measure of degree of abnormality of cancer cells.
+- [Lymphocyte infiltration](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/node-negative): an indication whether the cancer has spread to the lymph nodes.
+- [Angionvasion](https://librepathology.org/wiki/Angioinvasion): an indication whether the cancer has spread to the blood vessels.
+- [Metastatic status](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/metastasis): an indication whether the cancer has spread to othre organs. 
+
+
+The authors identified a minimal prognostic signature from their data using a supervised approach. How does this approach work and how many marker genes were in the final, optimal set? For those with machine learning background, can you think of other (better?) supervised approaches to achieve the same goal?
+
+### Further reading
+
+Having identified a strong gene expression signature to predict clinical outcome of breast cancer, the race to bring it to the clinic is on. That this is far from trivial can be seen by tracing the follow-up studies and clinical trials:
+
+- Van De Vijver MJ et al. [*A gene-expression signature as a predictor of survival in breast cancer*](https://doi.org/10.1056/NEJMoa021967). NEJM 347:1999 (2002).
+- Buyse M et al. [*Validation and clinical utility of a 70-gene prognostic signature for women with node-negative breast cancer*](https://doi.org/10.1093/jnci/djj329). J Ntnl Canc Inst 98:1183 (2006).
+- Mook S et al. [*Individualization of therapy using MammaPrint: From development to the MINDACT Trial*](https://cgp.iiarjournals.org/content/4/3/147). Canc Genomics & Proteomics 4:147 (2007).
+- Cardoso F et al. [*70-gene signature as an aid to treatment decisions in early-stage breast cancer*](https://doi.org/10.1056/NEJMoa1602253). NEJM 375:717 (2016).
+- Brandão M, Pondé N, Piccart-Gebhart M. [*Mammaprint: a comprehensive review*](https://doi.org/10.2217/fon-2018-0221). Fut Onc 15:207 (2019).
+
+They got there eventually, and the gene expression signature is now commercially available under the name of [Mammaprint](https://agendia.com/mammaprint/).
+
+
+
+## The Cancer Genome Atlas
+
+Although the results by Van 't Veer et al. were obtained from a small (by current standards!) sample size, they have been reproduced consistenly in larger studies and arguably spawned a search for similar signatures in other cancer types through large-scale projects, such as [The Cancer Genome Atlas (TCGA) Program](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga).
+
+The amount of [data](https://gdc.cancer.gov/) and number of [publications](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications) produced by TCGA is too enormous to survey here in detail.
+
+It is sometimes said that we humans overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To see how far the field progressed in the decade after [van 't Veer et al](https://doi.org/10.1038/415530a), read the [2012 TCGA paper on breast tumours](https://doi.org/10.1038/nature11412).
+
+### Questions for discussion
+
+What are the main differences between [van 't Veer et al](https://doi.org/10.1038/415530a) and the [TCGA paper](https://doi.org/10.1038/nature11412)?
+
+How is cluster analysis used in the [TCGA paper](https://doi.org/10.1038/nature11412)?

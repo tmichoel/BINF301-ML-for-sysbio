@@ -1,0 +1,118 @@
+---
+title: "Combinatorial clustering"
+page-layout: full
+title-block-banner: false
+---
+
+
+::: {.callout-tip}
+## Book sections
+
+- [*Elements of Statistical Learning*](https://hastie.su.domains/ElemStatLearn/): **Section 14.2**
+- [*An Introduction to Statistical Learning*](https://www.statlearning.com/): **Section 12.4**
+:::
+
+### Introduction
+
+The goal of cluster analysis is to group or segment a collection of objects into subsets or "clusters", such that objects within a cluster are more closely related than objects in different clusters.
+
+Many datasets exhibit a hierarchical structure, with no clear demarcation of clusters, and clusters can themselves be grouped successively such that clusters within one group are more similar than those in different groups. Deciding where to make the "cut" is usually done by setting parameters of a clustering algorithm, and almost always involves an arbitrary choice by the user.
+
+Central to all clustering methods is the notion of the degree of similarity (or dissimilarity) between the objects being clustered. Sometimes data are presented directly in terms of proximity/similarity between objects. More often we have measurements (e.g. gene expression) on objects (e.g. genes or samples) that we want to cluster, and a (dis)similariy matrix must be constructed first.
+
+### Questions and problems for discussion
+
+
+#### Dissimilarity measures
+
+Assume we have measurements $x_{ij}$ for objects $i=1,2,\dots,N$ on variables (or attributes) $j=1,2,\dots,p$. Usually, we first define a dissimilarity function $d_j(x_{ij},x_{i'j})$ between values of the $j$th attribute. How is the dissimilarity between objects defined and how can we vary the relative influence of a given attribute in the overall dissimilarity between objects?
+
+::: {.callout-important}
+To give all attributes equal influence in the object dissimilarity, we must set their relative weights to $w_j\sim 1/\overline{d_j}$, with
+
+$$
+\overline{d_j}=\frac{1}{N^2} \sum_{i=1}^N  \sum_{i'=1}^N d_j(x_{ij},x_{i'j})
+$$ 
+:::
+
+
+::: {.callout-warning}
+## Exercise
+Setting $w_j=1$ for all $j$ does **not** necessarily give all attributes equal influence! To see this, compute the average object dissimilarity over all pairs of objects. It should be a sum over attributes, and attributes have equal influence in the object dissimilarity if their contribution to this sum is one. Show that this results in the equation above.
+:::
+
+The most common choice of dissimilarity function is squared-error distance: 
+
+$$
+d_j(x_{ij},x_{i'j}) = (x_{ij}-x_{i'j})^2
+$$
+
+Define the mean and variance of each attribute over all objects as
+
+
+$$
+\begin{aligned}
+\mu_j &= \frac1N \sum_{i=1}^N x_{ij}\\\\
+\sigma_j^2 &= \frac1N \sum_{i=1}^N (x_{ij}-\mu_j)^2
+\end{aligned}
+$$
+
+::: {.callout-warning}
+## Exercise
+
+Show that with squared-error distance, the average object dissimilarity on the $j$th attribute is proportional to its variance.
+:::
+
+It is often recommended to standardize data before clustering:
+
+$$
+x_{ij} \to y_{ij}=\frac{x_{ij}-\mu_j}{\sigma_j}
+$$
+
+With squared-error loss, this is equivalent to setting weights $w_j \sim 1/\sigma_j^2 \sim 1/\bar{d}_j$, that is, to give all attributes equal influence on the average object dissimilarity.
+
+
+
+
+::: {.callout-important}
+Sometimes some attributes exhibit more grouping tendency than others, which may be obscured by standardizing. Find and understand the figure in the book sections above that illustrates this. The solution is to filter attributes by their variance before standardizing, and only use attributes with high variance for clustering. Why?
+:::
+
+
+
+#### Combinatorial clustering
+
+Combinatorial clustering algorithms assign each object to a cluster without regard to a probability model describing the data. Understanding combinatorial clustering is a necessary basis for understanding probabilistic methods.
+
+In combinatorial clustering, a prespecified number of clusters $K<N$ is postulated ($N$ the   number of objects). An assignment of objects $i\in\{1,\dots,N\}$ to clusters $k\in\{1,\dots,K\}$ is charcterized by a many-to-one mapping or encoder $k=C(i)$.
+
+$C$ is obtained by minimizing the "within cluster" point scatter $W(C)$, which characterizes the extent to which objects assigned to the  same cluster tend to be close to one another. How is $W(C)$ defined?
+
+We can also define the "between cluster" point scatter $B(C)$, which characterizes the extent to which objects assigned to different clusters tend to be far apart. How is $B(C)$ defined? 
+
+Does it matter whether we find an optimal clustering by minimizing $W(C)$ or by maximizing $B(C)$? *Hint:* compute $W(C)+B(C)$.
+
+
+#### K-means clustering
+
+The $K$-means algorithm uses the squared Euclidean distance
+$$
+d(x_i,x_{i'}) = \sum_{j=1}^p (x_{ij}-x_{i'j})^2 = \\| x_i - x_{i'}\\|^2
+$$ 
+and an iterative greedy descent algorithm to minimize $W(C)$.
+
+
+Using the Euclidean distance expression, find an expression for $W(C)$ in terms of the number of objects assigned to cluster $k$ and the mean vector associated to cluster $k$.
+
+Show that $W(C)$ is minimized if within each cluster, the average dissimilarity of the objects from the cluster mean, as defined by the points in that cluster, is minimized.
+
+Note that for any set of objects $S$,
+$$
+\overline{x_S} = \frac{1}{|S|} \sum_{i\in S} x_i = \text{argmin}_m \sum_{i\in S}\\|x_i-m\\|^2
+$$
+
+Find out how this result is used in a greedy descent algorithm where alternatingly the mean vectors are updated for the current cluster assignments, and object assignments are updated by assigning objects to the nearest current mean vector.
+
+#### How do we choose the number of clusters K?
+
+Find the recommended method in the book sections above.

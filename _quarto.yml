@@ -12,7 +12,10 @@ website:
       - href: index.qmd
         text: Home
       - julia-intro.qmd
-      - section: "Clustering"
+      - section: "Cluster analysis"
+        contents:
+          - cluster-analysis/cancer-subtypes.qmd
+          - cluster-analysis/combinatorial-clustering.qmd
       - section: "Regularized regression"
       - section: "Dimensionality reduction"
       - section: "Causal inference"
