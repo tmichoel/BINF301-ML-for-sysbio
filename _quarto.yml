@@ -16,6 +16,8 @@ website:
         contents:
           - cluster-analysis/cancer-subtypes.qmd
           - cluster-analysis/combinatorial-clustering.qmd
+          - cluster-analysis/mixture-distributions.qmd
+      - section: "Statistical significance"
       - section: "Regularized regression"
       - section: "Dimensionality reduction"
       - section: "Causal inference"

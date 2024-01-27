@@ -8,7 +8,7 @@ title-block-banner: false
 ::: {.callout-tip}
 ## Book sections
 
-- [*Elements of Statistical Learning*](https://hastie.su.domains/ElemStatLearn/): **Section 14.2**
+- [*Elements of Statistical Learning*](https://hastie.su.domains/ElemStatLearn/): **Section 14.3**
 - [*An Introduction to Statistical Learning*](https://www.statlearning.com/): **Section 12.4**
 :::
 
@@ -97,7 +97,7 @@ Does it matter whether we find an optimal clustering by minimizing $W(C)$ or by 
 
 The $K$-means algorithm uses the squared Euclidean distance
 $$
-d(x_i,x_{i'}) = \sum_{j=1}^p (x_{ij}-x_{i'j})^2 = \\| x_i - x_{i'}\\|^2
+d(x_i,x_{i'}) = \sum_{j=1}^p (x_{ij}-x_{i'j})^2 = \\\| x_i - x_{i'}\\\|^2
 $$ 
 and an iterative greedy descent algorithm to minimize $W(C)$.
 
@@ -108,7 +108,7 @@ Show that $W(C)$ is minimized if within each cluster, the average dissimilarity 
 
 Note that for any set of objects $S$,
 $$
-\overline{x_S} = \frac{1}{|S|} \sum_{i\in S} x_i = \text{argmin}_m \sum_{i\in S}\\|x_i-m\\|^2
+\overline{x_S} = \frac{1}{|S|} \sum_{i\in S} x_i = \text{argmin}_m \sum_{i\in S}\\\|x_i-m\\\|^2
 $$
 
 Find out how this result is used in a greedy descent algorithm where alternatingly the mean vectors are updated for the current cluster assignments, and object assignments are updated by assigning objects to the nearest current mean vector.
