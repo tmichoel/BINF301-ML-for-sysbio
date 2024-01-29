@@ -1,5 +1,6 @@
 ---
-title: "Statistical significance for genome-wide studies"
+title: "Genome-wide studies"
+description: "Statistical significance for genome-wide studies"
 page-layout: full
 title-block-banner: false
 ---

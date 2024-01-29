@@ -1,5 +1,6 @@
 ---
-title: "Variance component models and Gaussian processes"
+title: "Gaussian processes"
+description: "Variance component models and Gaussian processes"
 page-layout: full
 title-block-banner: false
 ---

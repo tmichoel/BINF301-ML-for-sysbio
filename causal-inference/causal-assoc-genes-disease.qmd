@@ -1,5 +1,6 @@
 ---
-title: "Causal associations between gene expression and disease"
+title: "Causal gene-disease associations"
+description: "Causal associations between gene expression and disease"
 page-layout: full
 title-block-banner: false
 ---

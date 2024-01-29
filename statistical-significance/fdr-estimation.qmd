@@ -1,5 +1,6 @@
 ---
-title: "False discovery rate estimation"
+title: "FDR estimation"
+description: "False discovery rate estimation"
 page-layout: full
 title-block-banner: false
 ---
