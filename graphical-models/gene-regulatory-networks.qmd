@@ -4,10 +4,10 @@ page-layout: full
 title-block-banner: false
 ---
 
-## Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks
+## Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks
 
 ::: {.callout-tip}
-## Classic paper
+## Path-breaking paper
 
 Zhu J et al. [*Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks*](https://www.nature.com/articles/ng.167). Nature Genetics 40:854 (2008).
 :::
@@ -15,12 +15,22 @@ Zhu J et al. [*Integrating large-scale functional genomic data to dissect the co
 
 ### Questions for discussion 
 
-## Further reading
+## Test of time
+
+::: {.callout-tip}
+## Test of time paper
 
 Zhang B, et al. . [*Integrated systems approach identifies genetic nodes and networks in late-onset Alzheimer's disease*](https://doi.org/10.1016/j.cell.2013.03.030). Cell 153:707–720 (2013)
+:::
 
+::: {.callout-tip}
+## Test of time paper
 
 Talukdar HA, et al. [*Cross-tissue regulatory gene networks in coronary artery disease*](https://doi.org/10.1016/j.cels.2016.02.002). Cell Systems 2:196 (2016)
+:::
 
+::: {.callout-tip}
+## Test of time paper
 
 Beckmann ND., et al. [*Multiscale causal networks identify VGF as a key regulator of Alzheimer's disease*](https://doi.org/10.1038/s41467-020-17405-z). Nature communications 11:3942 (2020).
+:::

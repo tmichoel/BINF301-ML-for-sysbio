@@ -13,15 +13,15 @@ website:
       - href: index.qmd
         text: Home
       - julia-intro.qmd
+      - section: "Statistical significance"
+        contents:
+          - statistical-significance/statistical-significance-gws.qmd
+          - statistical-significance/fdr-estimation.qmd
       - section: "Cluster analysis"
         contents:
           - cluster-analysis/cancer-subtypes.qmd
           - cluster-analysis/combinatorial-clustering.qmd
           - cluster-analysis/mixture-distributions.qmd
-      - section: "Statistical significance"
-        contents:
-          - statistical-significance/statistical-significance-gws.qmd
-          - statistical-significance/fdr-estimation.qmd
       - section: "Regularized regression"
         contents:
           - regularized-regression/drug-sensitivity.qmd
@@ -43,6 +43,8 @@ website:
         contents:
           - spatio-temporal-models/spatial-gene-expression.qmd
           - spatio-temporal-models/gaussian-processes.qmd
+      - section: "Neural networks"
+        contents:
       - section: "Appendix"
 format:
   html:

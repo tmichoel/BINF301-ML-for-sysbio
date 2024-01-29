@@ -4,11 +4,18 @@ description: "Causal associations between gene expression and disease"
 page-layout: full
 title-block-banner: false
 ---
-## An integrative genomics approach to infer causal associations between gene expression and disease
+## Path-breaking: An integrative genomics approach to infer causal associations between gene expression and disease
 
 ::: {.callout-tip}
-## Classic paper
+## Path-breaking paper
 
 Schadt, E., Lamb, J., Yang, X. et al. [*An integrative genomics approach to infer causal associations between gene expression and disease*](https://doi.org/10.1038/ng1589). Nat Genet 37, 710–717 (2005).
+:::
+
+## Test of time
+
+::: {.callout-tip}
+## Test of time paper
+
 :::
 

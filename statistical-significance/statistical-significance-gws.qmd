@@ -6,20 +6,20 @@ title-block-banner: false
 ---
 
 
-## Statistical significance for genomewide studies
+## Path-breaking paper: Statistical significance for genomewide studies
 
 
 ::: {.callout-tip}
-## Classic paper
+## Path-breaking  paper
 
 Storey, John D., and Robert Tibshirani. ["Statistical significance for genomewide studies."](https://www.pnas.org/doi/10.1073/pnas.1530509100) Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.
 :::
 
-## Introduction
+### Introduction
 
 
 
-## Questions for discussion
+### Questions for discussion
 
 We cover the following parts:
 
@@ -33,3 +33,25 @@ We cover the following parts:
 - FDR estimation
 - Figure 2
 - What is a q-value?
+
+## Test of time
+
+Q-values and FDR estimation have changed the entire field of statistics, passing the test of time doesn't get any better than for this paper.
+
+To illustrate how the number of tests in genome-wide studies has exploded after 2003, see the GTEx paper, which uses q-values to control for multiple testing:
+
+::: {.callout-tip}
+## Test of time  paper
+
+The GTEx Consortium. [*The GTEx Consortium atlas of genetic regulatory effects across human tissues*](https://doi.org/10.1126/science.aaz1776). Science **369**, 1318--1330 (2020).
+
+See also the [GTEx portal](https://www.gtexportal.org/)
+:::
+
+To illustrate how Storey & Tibshirani's pape still inspires further method development for genomewide studies, see this paper:
+
+::: {.callout-tip}
+## Test of time  paper
+
+Chen X, Robinson DG, Storey JD, [*The functional false discovery rate with applications to genomics*](https://doi.org/10.1093/biostatistics/kxz010), Biostatistics, Volume 22, Issue 1, January 2021, Pages 68–81, 
+:::

@@ -4,12 +4,12 @@ page-layout: full
 title-block-banner: false
 ---
 
-## The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity
+## Path-breaking paper: The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity
 
 ::: {.callout-tip}
-## Classic paper
+## Path-breaking paper
 
-Barretina J et al. [*The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity*](https://www.nature.com/articles/nature1100). Nature 483:603 (2012).
+Barretina J et al. [*The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity*](https://doi.org/10.1038/nature11003). Nature 483:603 (2012).
 :::
 
 
@@ -31,9 +31,15 @@ What are pharmacological profiles, how is drug sensitivity measured?
 What is predictive modelling, how were robust models derived, what is shown in Figure 2?
 
 
-### Further reading
+## Test of time
 
+::: {.callout-tip}
+## Test of time paper
 
-Ghandi, M., Huang, F.W., Jané-Valbuena, J. et al. [*Next-generation characterization of the Cancer Cell Line Encyclopedia*](https://doi.org/10.1038/s41586-019-1186-). Nature 569, 503–508 (2019). 
+Ghandi, M., Huang, F.W., Jané-Valbuena, J. et al. [*Next-generation characterization of the Cancer Cell Line Encyclopedia*](https://doi.org/10.1038/s41586-019-1186-3). Nature 569, 503–508 (2019). 
+:::
 
-
+::: {.callout-tip}
+## Test of time paper
+Dixit A, et al. [*Perturb-Seq: Dissecting Molecular Circuits with Scalable Single-Cell RNA Profiling of Pooled Genetic Screens*](https://doi.org/10.1016/j.cell.2016.11.038). Cell 167(7):1853-66 (2016).
+:::

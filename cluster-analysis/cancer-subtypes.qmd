@@ -4,10 +4,9 @@ page-layout: full
 title-block-banner: false
 ---
 
-## Gene expression profiling predicts clinical outcome of breast cancer
+## Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer
 
 ::: {.callout-tip}
-## Classic paper
 
 van 't Veer L et al. [*Gene expression profiling predicts clinical outcome of breast cancer*](https://doi.org/10.1038/415530a) . Nature 415:530 (2002).  See also the comment: [*The molecular outlook*](https://www.nature.com/articles/415484a)
 :::
@@ -37,7 +36,7 @@ Clinical features to annotate and understand the observed separation of gene exp
 
 The authors identified a minimal prognostic signature from their data using a supervised approach. How does this approach work and how many marker genes were in the final, optimal set? For those with machine learning background, can you think of other (better?) supervised approaches to achieve the same goal?
 
-### Further reading
+### Translation to the clinic
 
 Having identified a strong gene expression signature to predict clinical outcome of breast cancer, the race to bring it to the clinic is on. That this is far from trivial can be seen by tracing the follow-up studies and clinical trials:
 
@@ -51,13 +50,13 @@ They got there eventually, and the gene expression signature is now commercially
 
 
 
-## The Cancer Genome Atlas
+## Test of time: The Cancer Genome Atlas
 
 Although the results by Van 't Veer et al. were obtained from a small (by current standards!) sample size, they have been reproduced consistenly in larger studies and arguably spawned a search for similar signatures in other cancer types through large-scale projects, such as [The Cancer Genome Atlas (TCGA) Program](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga).
 
 The amount of [data](https://gdc.cancer.gov/) and number of [publications](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications) produced by TCGA is too enormous to survey here in detail.
 
-It is sometimes said that we humans overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To see how far the field progressed in the decade after [van 't Veer et al](https://doi.org/10.1038/415530a), read the [2012 TCGA paper on breast tumours](https://doi.org/10.1038/nature11412).
+To see how far the field progressed in the decade after [van 't Veer et al](https://doi.org/10.1038/415530a), read the [2012 TCGA paper on breast tumours](https://doi.org/10.1038/nature11412).
 
 ### Questions for discussion
 

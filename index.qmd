@@ -5,20 +5,22 @@ title-block-banner: false
 ---
 This is the website for the second half of the course [BINF301 Genome-scale Algorithms][1]. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.
 
-Machine learning plays an important role in computational biology. See the [Machine Learning in Computational and Systems Biology community](http://cosi.iscb.org/wiki/MLCSB:Home) or the [Machine Learning in Computational Biology conference series](http://mlcb.org).
+
 
 The lectures are divided in modules, each focusing on a specific class of methods:
 
+- Statistical significance
 - Clustering
 - Regularized regression
 - Dimensionality reduction
 - Causal inference
 - Graphical models
 - Spatio-Temporal models
+- Neural networks
 
 Each module follows the same structure:
 
-- A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.
+- A classic or path-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was first used.
 - The method used in the paper is studied in detail, along with additional methods to solve the same type of problem. 
 - The methods are put in practice using, where possible, original data from the papers studied in the first part. 
 
@@ -33,9 +35,11 @@ The theoretical sections contain the basic information to understand a method, p
 - Christopher Bishop. [*Pattern Recognition and Machine Learning*](https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/) (2006).
 - Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. [*Mathematics for Machine Learning*](https://mml-book.github.io/) (2020).
 
-The use of classic papers is motivated by [*Back to the future: education for systems-level biologists*](https://pubmed.ncbi.nlm.nih.gov/16990789/). Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.
+The use of path-breaking papers is motivated by [*Back to the future: education for systems-level biologists*](https://pubmed.ncbi.nlm.nih.gov/16990789/). Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.
 
+It is sometimes said that we humans overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To show the evolution in the field, each path-breaking paper is accompanied by one or more *"test of time"* papers, illustrating more recent applications of similar algorithms as the original one. Often we will see thath the major change is in the size and types of genome-scale data that can be generated nowadays, while the algorithms have mostly stood the test of time.
 
+If you want to stay up-to-date on what is happening in the field now, consider joining the [Machine Learning in Computational and Systems Biology community](http://cosi.iscb.org/wiki/MLCSB:Home).
 
 [1]: https://www4.uib.no/en/courses/BINF301
 [2]: https://julialang.org/
