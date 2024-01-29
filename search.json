@@ -185,34 +185,34 @@
   {
     "objectID": "statistical-significance/fdr-estimation.html",
     "href": "statistical-significance/fdr-estimation.html",
-    "title": "False discovery rate estimation",
+    "title": "FDR estimation",
     "section": "",
     "text": "Book sections\n\n\n\n\nElements of Statistical Learning: Section 18.7\nAn Introduction to Statistical Learning: Section 13.4",
     "crumbs": [
       "Statistical significance",
-      "False discovery rate estimation"
+      "FDR estimation"
     ]
   },
   {
     "objectID": "statistical-significance/fdr-estimation.html#statistical-significance",
     "href": "statistical-significance/fdr-estimation.html#statistical-significance",
-    "title": "False discovery rate estimation",
+    "title": "FDR estimation",
     "section": "Statistical significance",
     "text": "Statistical significance\nWhen we analyze genome-wide data, we are usually interested in identifying statistically significant features or patterns, that is, patterns we would not expect to see purely by chance. For example:\n\nGenes differentially expressed between healthy and disease samples, treated and untreated samples, etc.\nGenes coexpressed across tumour samples\n…\n\nWe will use differential expression between two conditions, treated and untreated, as a running example. Of course this applies equally to other types of comparisons, e.g. ER positive vs ER negative breast tumours.\nStatistical significance is expressed in terms of comparing a null hypothesis \\(H_0\\) to an alternative hypothesis \\(H_1\\). For instance\n\\[\n\\begin{aligned}\n  H_0 &= \\text{treatment has no effect on gene expression}\\\\\\\\\n  H_1 &= \\text{treatment does have an effect on gene expression}\n\\end{aligned}\n\\]\nTo compare gene expression between the two groups, we can for instance do a two-sample \\(t\\)-test: compute for each gene\n\\[\nt = \\frac{\\overline{x_1} - \\overline{x_2}}{\\text{se}}\n\\]\nwhere \\(\\overline{x_1}\\) and \\(\\overline{x_2}\\) are the average expression levels of the gene in each group, and \\(\\text{se}\\) is the pooled within-group standard error:\n\\[\n\\text{se} = \\sqrt{\\frac{s_1^2}{n_1}+\\frac{s_2^2}{n_2}}\n\\]\nwhere \\(s_i^2\\) and \\(n_i\\) are the variance and number of samples in group \\(i\\), respectively\n\\[\n\\begin{aligned}\n  \\overline{x_i} &= \\frac{1}{n_i}\\sum_{j\\in G_i} x_{j} \\\\\\\\\n  s_i^2 &= \\frac{1}{(n_i-1)}\\sum_{j\\in G_i} (x_i - \\overline{x_i})^2\n\\end{aligned}\n\\]\nThe \\(t\\)-statistic measures the difference in average expression between the two groups, relative to the natural variation within each group. The greater \\(|t|\\), the more likely there is a true difference between the groups. Nevertheless, even if there is no true difference, some variation between the groups will be observed in a finite number of samples due to random sampling noise. The distribution of \\(t\\)-values observed between two groups when in fact there is no true difference between them is called the null distribution. Statistical significance is usually expressed by the \\(p\\)-value, which, for a given value of \\(t\\), expresses the probability to observe a \\(t\\)-statistic greater than \\(t\\) (in absolute value) under the null hypothesis:\n\\[\n\\begin{aligned}\n  p = \\text{Pr}(|T|\\geq |t| \\mid H_0)\n\\end{aligned}\n\\]\nFor some test statistics, the true null distribution to compute the \\(p\\)-value is known. Otherwise random permutations can be used: randomly permute the group labels of the samples a large number of times, compute the test statistic for each permutation, and use these values to construct an empirical null distribution.\nAn important property of \\(p\\)-values is the following: under the null hypothesis, \\(p\\)-values are uniformly distributed between 0 and 1:\n\\[\n\\text{Pr}(P\\leq p \\mid H_0) = p\n\\]\nConventionally, a \\(p\\)-value threshold of 0.05 is often used. This means that the probability that we declare a gene as being affected by the treatment, even though in reality it is not affected, is less than 5%.\nIn genome-wide studies, we typically measure around 20,000 genes (in humans). From the uniformity of the \\(p\\)-value distribution under the null hypothesis, it follows that even if none of the genes are affected by treatment, we would still expect 5% or 1,000 genes to have a \\(p\\)-value less than 0.05. Clearly it would be wrong to call any of these genes differentially expressed!",
     "crumbs": [
       "Statistical significance",
-      "False discovery rate estimation"
+      "FDR estimation"
     ]
   },
   {
     "objectID": "statistical-significance/fdr-estimation.html#false-discovery-rate",
     "href": "statistical-significance/fdr-estimation.html#false-discovery-rate",
-    "title": "False discovery rate estimation",
+    "title": "FDR estimation",
     "section": "False discovery rate",
     "text": "False discovery rate\nThe \\(p\\)-value is often wrongly interpreted as saying that the probability that our gene is truly affected by treatment is greater than 95% if \\(p&lt;0.05\\). The latter is the probability that the alternative hypothesis is true given that the \\(p\\)-value is below a certain threshold, or \\(\\text{Pr}(H_1 \\mid P\\leq p)\\). More commonly, we express this through the false discrovery rate (FDR), that is, the probability that the null hypothesis is true given that the \\(p\\)-value is below a certain threshold, \\(\\text{Pr}(H_0 \\mid P\\leq p)=1-\\text{Pr}(H_1 \\mid P\\leq p)\\).\nTo get a feel for what such probabilities mean, consider the following table:\n\n\n\n\nSignificant\nNot Significant\nTotal\n\n\n\n\n\\(H_0\\) true\n\\(F\\)\n\\(M_0-F\\)\n\\(M_0\\)\n\n\n\\(H_1\\) true\n\\(T\\)\n\\(M_1-T\\)\n\\(M_1\\)\n\n\nTotal\n\\(S\\)\n\\(M-S\\)\n\\(M\\)\n\n\n\nHere “F” stands for “false positive” (not affected by treatment, but still called significant), “T” for “true positive”. The second column contains respectively the “true negative” and “false negative” results.\nThen the false discovery rate is\n\\[\n\\text{FDR} = \\mathbb{E}\\left(\\frac{F}{S}\\right)\n\\]\nObviously, we never know the true value of the numbers in the table, and hence FDR must be estimated. There exist several approaches for doing this. We consider two popular ones: the plug-in estimator and a Bayesian approach.\n\nPlug-in estimator of the FDR\nConsider again the differential expression problem. Compute \\(t\\)-statistics for each gene and consider a range of thresholds \\(C\\), either on the absolute \\(t\\)-values or on the corresponding \\(p\\)-values. For each value of \\(C\\), we know \\(S_{obs}(C)\\), the observed number of significant genes at threshold \\(C\\).\nNow generate \\(K\\) random permutations of the group labels, and compute for each permutation \\(k\\), \\(F_{obs}(C,k)\\), the number of significant genes at threshold \\(C\\) in permutation \\(k\\), which by virtue of the randomization, must all correspond to cases where \\(H_0\\) is true. Compute the average over all permutations:\n\\[\nF_{obs}(C) = \\frac{1}{K}\\sum_{k=1}^K F_{obs}(C,k)\n\\]\nThe plug-in estimate of the FDR at threshold \\(C\\) is then defined as\n\\[\n\\widehat{\\text{FDR}}(C) = \\frac{F_{obs}(C)}{S_{obs}(C)}\n\\]\nWe can now vary \\(C\\) until we reached a desired FDR value, e.g. 10%, such that we expect no more than 10% of the genes we call differentially expressed to be false positives.\nNote that in practice, the number of permutations \\(K\\) need not be very large to reach a stable value for the average. This is because in each permutation, we obtain random \\(p\\)-values for a large number of features (genes).\n\n\nBayesian estimate of the FDR\nWhen we perform a genome-wide test for differential expression, we obtain on the order of \\(10^4\\) test statistic values, with corresponding \\(p\\)-values under the null hypothesis. If all is well, the distribution of these \\(p\\)-values, visualized using a histogram, typically looks like the anti-conservative p-values on this page:\nHow to interpret a \\(p\\)-value histogram\nWe know that under the null hypothesis, \\(p\\)-values are uniformly distributed. We recognize the uniform distribution in the flat profile of the histogram for unsignificant (\\(p\\to 1\\)) \\(p\\)-values, which with very high probability come from genes unaffected by the treatment. At very small \\(p\\)-values, we see a deviation from the uniform distribution, which indicates the presence of truly affected genes, which obsviously don’t follow the null distribution.\nHence it seems like we can model the observed \\(p\\)-value distribution as a mixture distribution with one component corresponding to the null distribution and one component corresponding to the alternative distribution:\n\\[\nf(p) = \\pi_0 f_0(p) + (1-\\pi_0) f_1(p)\n\\]\nwhere \\(f(p)\\) is the probability density function (p.d.f.) of the observed \\(p\\)-value distribution, \\(f_0\\) and \\(f_1\\) are the p.d.f. of the \\(p\\)-value distribution under the null and alternative distribution, respectively, and \\(\\pi_0 = \\text{Pr}(H_0)\\), the prior probability of a gene being unaffected by treatment (prior as in, before observing any data), .\nAs before, we can imagine that our \\(p\\)-values are generated by a process that first samples a hidden variable \\(Z=0\\) with probability \\(\\pi_0\\) and \\(Z=1\\) with probability \\(1-\\pi_0\\), and then samples a \\(p\\)-value (or \\(t\\)-statistic) from the null or alternative distribution depending on the value of \\(Z\\). We know the null distribution is the uniform distribution. If we knew a parametric form for the alternative distribution, we could apply EM to estimate \\(\\pi_0\\) and the parameters of the alternative distribution, and then compute for each gene the recognition distribution or local false discovery rate (lfdr)\n\\[\n\\begin{aligned}\n  \\text{lfdr}(p)  &= \\text{Pr}(H_0 \\mid p)\n  = \\text{Pr}(Z=0 \\mid p)\n  = \\frac{\\pi_0 f_0(p)}{f(p)}\n\\end{aligned}\n\\]\nThe word “local” refers to the fact that the above expression gives the expected rate of false positives among all genes with \\(p\\)-value equal to \\(p\\), as opposed to the “tail” FDR estimated in the previous section giving the he expected rate of false positive among all genes with \\(p\\)-value less than or equal to \\(p\\).\nIn reality, EM is rarely used in this context, because we rarely have a good enough idea about a parametric form for the alternative distribution. Instead a non-parametric approach is used that exploits the knowledge that:\n\n\\(p\\)-values are uniformly distributed under the null hypothesis, that is\n\\[\nf_0(p) = 1\n\\]\n\\(p\\)-values close to 1 almost surely come from the null distribution, that is,\n\\[\n  \\begin{aligned}\n\\lim_{p\\to 1} f_1(p) &= 0 \\\\\\\\\n\\lim_{p\\to 1} f(p) &= \\pi_0 \\lim_{p\\to 1} f_0(p) = \\pi_0\n  \\end{aligned}\n  \\]\n\nHence in the observed \\(p\\)-value histogram, \\(\\pi_0\\) can be estimated from the height of the “flat” region near \\(p\\approx 1\\).\nWe obtain\n\\[\n\\text{lfdr}(p) = \\frac{\\hat{\\pi}_0}{f(p)}\n\\]\nIt remains to estimate the p.d.f. of the real \\(p\\)-value distribution \\(f(p)\\). In the popular q-value package, this is done by kernel density estimation followed by some smoothing.\nThe local false discovery rate provide a useful measure for the importance of a feature with \\(p\\)-value \\(p\\). However, \\(p\\)-values themselves represent tail probabilities, \\(p=\\text{Pr}(P\\leq p \\mid H_0)\\), see above. Similarly, we can compute the FDR among all features with \\(p\\)-value less than some threshold \\(p\\):\n\\[\n\\text{FDR}(p) = \\text{Pr}(H_0\\mid P\\leq p).\n\\]\nThis tells us the estimated false discovery rate among all features that are equally or more significant than a feature with \\(p\\)-value \\(p\\).\nWriting \\(F(p)\\), \\(F_0(p)\\) and \\(F_1(p)\\) for the cumulative probability functions of the observed, null, and alternative \\(p\\)-value distributions, the reasoning above can be repeated to obtain\n\\[\nF(p)=\\pi_0 F_0(p) + (1-\\pi_0) F_1(p) = \\pi_0 p + (1-\\pi_0) F_1(p)\n\\]\nwhere we used \\(F_0(p)=p\\). It follows that\n\\[\n\\text{FDR}(p) = \\text{Pr}(H_0\\mid P\\leq p) = \\text{Pr}(Z=0\\mid P\\leq p) =\\frac{\\pi_0 p}{F(p)}\n\\]\n\n\n\\(Q\\)-values\nThe \\(q\\)-value of a feature with \\(p\\)-value \\(p\\) is defined as the minimum FDR that can be attained when calling that feature significant, that is, by choosing a \\(p\\)-value threshold \\(r\\geq p\\). Hence\n\\[\nq(p) = \\min_{r\\geq p} \\text{FDR}(r)\n\\]",
     "crumbs": [
       "Statistical significance",
-      "False discovery rate estimation"
+      "FDR estimation"
     ]
   },
   {
@@ -323,12 +323,12 @@
   {
     "objectID": "spatio-temporal-models/gaussian-processes.html",
     "href": "spatio-temporal-models/gaussian-processes.html",
-    "title": "Variance component models and Gaussian processes",
+    "title": "Gaussian processes",
     "section": "",
     "text": "Book sections\n\n\n\nPattern Recognition and Machine Learning: Chapter 6\n\n\n\nLinear regression, from fixed to random coefficients\nIn a standard linear regression model for an outcome \\(Y\\) on one or more predictors \\(X_1,\\dots,X_p\\)\n\\[\nY = \\sum_i\\beta_i X_i + \\epsilon = X^T\\beta + \\epsilon, \\qquad\n  \\epsilon \\sim \\mathcal{N}(0,\\sigma_e^2)\n\\]\nthe effects \\(\\beta_i\\) are treated as fixed, such that the distribution of \\(Y\\) is:\n\\[\np(Y\\mid X) = \\mathcal{N}(X^T\\beta,\\sigma_e^2),\n\\]\nthat is, in a fixed effect model, the predictors affect the average or expected value of \\(Y\\). In a fixed effect model, we always assume that the data to fit the parameters are obtained from independent samples of an underlying model.\nIf our data consists of non-independent samples (e.g. due to temporal, spatial or familial relations among the observations), we can use a random effect model to explain these correlations as a function of covariates \\(X\\). As before, we collect the data for the inputs and ouptput in a \\(N\\times p\\) matrix \\(\\mathbf{X}\\) and \\(N\\)-vector \\(\\mathbf{y}\\), respectively, \\[\\begin{aligned}\n    \\mathbf{X}= (x_1,x_2,\\dots,x_p) = \\begin{pmatrix}\n      x_{11} & x_{12} & \\dots & x_{1p}\\\\\n      x_{21} & x_{22} & \\dots & x_{2p}\\\\\n      \\vdots & \\vdots & & \\vdots\\\\\n      x_{N1} & x_{N2} & \\dots & x_{Np}\n    \\end{pmatrix} &&\n    \\mathbf{y}= \\begin{pmatrix}\n      y_1\\\\\n      y_2\\\\\n      \\vdots\\\\\n      y_N\n    \\end{pmatrix}\n  \\end{aligned}\\]\nWe model the data as\n\\[\n\\begin{aligned}\n  \\mathbf{y} &= \\mathbf{X} \\alpha + \\epsilon\\\n\\end{aligned}\n\\]\nwhere \\(\\alpha = (\\alpha_1,\\dots,\\alpha_p)^T\\) are random effects with multi-variate normal distribution\n\\[\n\\alpha \\sim \\mathcal{N}(0,\\sigma_a^2 I_p)\n\\]\nand \\(\\epsilon = (\\epsilon_1,\\dots,\\epsilon_N)\\) are independent error terms\n\\[\n\\epsilon \\sim \\mathcal{N}(0,\\sigma_e^2 I_N).\n\\]\nThe random effects are assumed to be independent or the errors. We assumed the random effects are mutually independent, but this can easily be generalized.\nUsing properties of the multivariate normal distribution, the distribution of \\(\\mathbf{y}\\) can be seen to be:\n\\[\np(\\mathbf{y}\\mid \\mathbf{X}) = \\mathcal{N}(0, \\sigma_a^2 \\mathbf{X}\\mathbf{X}^T + \\sigma_e^2 I_N)\n\\]\nand we see that \\(\\mathbf{X}\\), or more precisely the covariance matrix \\(\\mathbf{X}\\mathbf{X}^T\\) indeed models correlations among the samples in \\(\\mathbf{y}\\).\nNaturally, fixed and random effects can be combined into a so-called mixed model.\nModels of this kind are often used in genetics, where the random effect covariates \\(\\mathbf{X}\\) are genetic markers and their covariance matrix \\(\\mathbf{X}\\mathbf{X}^T\\) expresses the genetic similarity between individuals in the study.\nSo far we assumed that all random effects had the same variance \\(\\sigma_a^2\\). If we assume that each \\(\\alpha_j\\) has a different variance \\(\\sigma_j^2\\), we would obtain\n\\[\np(\\mathbf{y}\\mid \\mathbf{X}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nwhere\n\\[\n\\mathbf{K} = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{x}_j \\mathbf{x}_j^T  + \\sigma_e^2 I_N\n\\]\nthat is, \\(\\sigma_j^2\\) measures the contribution of covariate \\(X_j\\) to the correlations among samples of \\(Y\\).\nTo estimate the variance parameters, maximum-likelihood is employed, that is, we find the values of the \\(\\sigma_j^2\\) and \\(\\sigma_e^2\\) which maximize\n\\[\n\\log p(\\mathbf{y}) = -\\frac12 \\log \\det (\\mathbf{K} ) - \\frac12 \\mathbf{y}^T \\mathbf{K}^{-1} \\mathbf{y} - \\frac{N}2 \\log(2\\pi)\n\\]\nThis is a difficult, non-convex optimization problem which requires the use of numerical, gradient-based optimizers.\nNote that the covariance matrix satisfies\n\\[\n\\begin{aligned}\n  \\mathbb{E}(y_i y_j) = K_{ij}\n\\end{aligned}\n\\] and hence the total variance of \\(\\mathbf{y}\\) can be written as\n\\[\n\\begin{aligned}\n  \\mathbb{E}(\\mathbf{y}^T\\mathbf{y}) = \\sum_i \\mathbb{E}(y_i^2) = \\sum_i K_{ii} = \\mathrm{tr}(K)\n\\end{aligned}\n\\]\nFrom the definition of \\(\\mathbf{K}\\), its trace can be written as\n\\[\n\\mathrm{tr}(K) = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{x}_j^T \\mathbf{x}_j   + N \\sigma_e^2.\n\\]\nTherefore we say that\n\\[\n\\frac{\\sigma_j^2 \\mathbf{x}_j^T \\mathbf{x}_j}{\\mathrm{tr}(K) }\n\\]\nis the variance in \\(\\mathbf{y}\\) explained by variance component \\(\\mathbf{x}_i\\).\n\n\nKernel-based variance component models\nSince the posterior distribution \\(p(\\mathbf{y}\\mid \\mathbf{X})\\) only depends on the matrix \\(\\mathbf{K}\\), an immediate generalization is to define variance component models directly in terms of kernel matrices instead of starting from a linear, random effect model, namely define\n\\[\np(\\mathbf{y}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nFor instance, if the elements (samples) \\(y_i\\) of \\(\\mathbf{y}\\) are obtained at specific locations (e.g. pixels in an image) \\(\\mathbf{x_i}\\in \\mathbb{R}^2\\) (or \\(\\mathbb{R}^p\\) more generally), we can define\n\\[\nK_{ij} = k(\\mathbf{x}_i,\\mathbf{x}_j)\n\\]\nwhere the kernel function \\(k\\) is a function that measures the similarity or closeness between samples.\nGeneralizing from before, the kernel matrix \\(\\mathbf{K}\\) can consist of multiple components,\n\\[\n\\mathbf{K} = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{K}_j  + \\sigma_e^2 I_N\n\\]\nand the variance explained by the \\(j^{\\text{th}}\\) component is\n\\[\n\\frac{\\sigma_j^2\\mathrm{tr}(\\mathbf{K}_j)}{\\mathrm{tr}(\\mathbf{K})}\n\\]\n\n\nGaussian processes\nIn many applications, the “positions” \\(\\mathbf{x}_i\\) where samples are obtained are not fixed, but a finite subset of a possibly infinite, continuous range. For instance, when studying a dynamic process, we typically obtain noisy measurements \\(y_i\\) at a finite number of time points \\(t_i\\), and are interested in the entire underlying process \\(y(t)\\) for all times \\(t\\) in some time interval. Similarly, we may have measurements \\(y_i\\) at a finite number of locations \\(\\mathbf{x}_i\\), and are interested in the entire function \\(y(\\mathbf{x})\\) for all positions \\(\\mathbf{x}\\) in some spatial region.\nA Gaussian process is a stochastic process, to be understood as a probability distribution over functions \\(y(\\mathbf{x})\\) over some continuous domain \\(D\\), such that the set of values of \\(y(\\mathbf{x})\\) evaluated at a finite set of points \\(\\mathbf{x}_1,\\dots,\\mathbf{x}_N\\in D\\) are jointly normally distributed. A Gaussian process is specified by a kernel function \\(k(\\mathbf{x},\\mathbf{x}')\\), for \\(\\mathbf{x},\\mathbf{x}' \\in D\\). Writing \\(\\mathbf{y} = (y(\\mathbf{x}_1), \\dots, y(\\mathbf{x}_N))\\), the kernel defines the probability distribution\n\\[\np(\\mathbf{y}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nwhere\n\\[\nK_{ij} = k(\\mathbf{x}_i,\\mathbf{x}_j)\n\\]\nHence, for the purposes of parameter estimation, the Gaussian process and variance component viewpoints are identical, which is why the term are often used interchangeably. The main difference lies in the interpretation, where Gaussian process see the data as a finite set of samples from a continuous space. Hence in the Gaussian process viewpoint, we would be particularly interested in interpolation, predicting expected values of the function \\(y(\\mathbf{x})\\) at locations \\(\\mathbf{x}\\) that were not part of the initial (training) data.\nKeeping the notation \\(\\mathbf{y}\\) for the function values at the training positions \\(\\mathbf{x}_i\\), we know that the joint distribution of \\(\\mathbf{y}\\) and the value of \\(y(\\mathbf{x})\\) at a new position \\(\\mathbf{x}\\) is given by\n\\[\np\\left(\n\\begin{bmatrix}\n  \\mathbf{y}\\\\\n  y(\\mathbf{x})\n\\end{bmatrix}\n\\right) =  \\mathcal{N}(0, \\mathbf{K}')\n\\]\nwhere \\(\\mathbf{K}'\\) is the \\((N+1)\\times (N+1)\\) matrix\n\\[\n\\mathbf{K}' =\n\\begin{bmatrix}\n  \\mathbf{K} & \\mathbf{k}\\\\\n  \\mathbf{k}^T & c\n\\end{bmatrix}\n\\]\nwhere\n\\[\n\\begin{aligned}\n  \\mathbf{K} &= \\left[ k(\\mathbf{x}_i,\\mathbf{x}_j) \\right] \\in \\mathbb{R}^{N\\times N}\\\\\n  \\mathbf{k} &= k(\\mathbf{x}_i,\\mathbf{x}) \\in \\mathbb{R}^{N} \\\\\n  c &= k(\\mathbf{x},\\mathbf{x})\\in \\mathbb{R}\n\\end{aligned}\n\\]\nUsing properties of the multivariate normal distribution, the conditional distribution of the unseen value given the training data is:\n\\[\n\\begin{aligned}\n  p\\left( y(\\mathbf{x}) \\mid \\mathbf{y} \\right) &= \\mathcal{N}(\\mu,\\sigma^2)\\\\\n  \\mu &= \\mathbf{k}^T \\mathbf{K}^{-1}\\mathbf{y}\\\\\n  \\sigma^2 &= c - \\mathbf{k}^T \\mathbf{K}^{-1} \\mathbf{k}\n\\end{aligned}\n\\]\nGeneralization to interpolation to multiple points is immediate.",
     "crumbs": [
       "Spatio-Temporal models",
-      "Variance component models and Gaussian processes"
+      "Gaussian processes"
     ]
   },
   {
@@ -521,67 +521,67 @@
   {
     "objectID": "causal-inference/causal-assoc-genes-disease.html",
     "href": "causal-inference/causal-assoc-genes-disease.html",
-    "title": "Causal associations between gene expression and disease",
+    "title": "Causal gene-disease associations",
     "section": "",
     "text": "Classic paper\n\n\n\nSchadt, E., Lamb, J., Yang, X. et al. An integrative genomics approach to infer causal associations between gene expression and disease. Nat Genet 37, 710–717 (2005).",
     "crumbs": [
       "Causal inference",
-      "Causal associations between gene expression and disease"
+      "Causal gene-disease associations"
     ]
   },
   {
     "objectID": "causal-inference/causal-assoc-genes-disease.html#an-integrative-genomics-approach-to-infer-causal-associations-between-gene-expression-and-disease",
     "href": "causal-inference/causal-assoc-genes-disease.html#an-integrative-genomics-approach-to-infer-causal-associations-between-gene-expression-and-disease",
-    "title": "Causal associations between gene expression and disease",
+    "title": "Causal gene-disease associations",
     "section": "",
     "text": "Classic paper\n\n\n\nSchadt, E., Lamb, J., Yang, X. et al. An integrative genomics approach to infer causal associations between gene expression and disease. Nat Genet 37, 710–717 (2005).",
     "crumbs": [
       "Causal inference",
-      "Causal associations between gene expression and disease"
+      "Causal gene-disease associations"
     ]
   },
   {
     "objectID": "statistical-significance/statistical-significance-gws.html",
     "href": "statistical-significance/statistical-significance-gws.html",
-    "title": "Statistical significance for genome-wide studies",
+    "title": "Genome-wide studies",
     "section": "",
     "text": "Classic paper\n\n\n\nStorey, John D., and Robert Tibshirani. “Statistical significance for genomewide studies.” Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.",
     "crumbs": [
       "Statistical significance",
-      "Statistical significance for genome-wide studies"
+      "Genome-wide studies"
     ]
   },
   {
     "objectID": "statistical-significance/statistical-significance-gws.html#statistical-significance-for-genomewide-studies",
     "href": "statistical-significance/statistical-significance-gws.html#statistical-significance-for-genomewide-studies",
-    "title": "Statistical significance for genome-wide studies",
+    "title": "Genome-wide studies",
     "section": "",
     "text": "Classic paper\n\n\n\nStorey, John D., and Robert Tibshirani. “Statistical significance for genomewide studies.” Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.",
     "crumbs": [
       "Statistical significance",
-      "Statistical significance for genome-wide studies"
+      "Genome-wide studies"
     ]
   },
   {
     "objectID": "statistical-significance/statistical-significance-gws.html#introduction",
     "href": "statistical-significance/statistical-significance-gws.html#introduction",
-    "title": "Statistical significance for genome-wide studies",
+    "title": "Genome-wide studies",
     "section": "Introduction",
     "text": "Introduction",
     "crumbs": [
       "Statistical significance",
-      "Statistical significance for genome-wide studies"
+      "Genome-wide studies"
     ]
   },
   {
     "objectID": "statistical-significance/statistical-significance-gws.html#questions-for-discussion",
     "href": "statistical-significance/statistical-significance-gws.html#questions-for-discussion",
-    "title": "Statistical significance for genome-wide studies",
+    "title": "Genome-wide studies",
     "section": "Questions for discussion",
     "text": "Questions for discussion\nWe cover the following parts:\n\nAbstract\nExample 1, differentially expressed genes\nTable 1\nWhat is a p-value?\nWhat is the FDR?\nDerivation that p-values are uniformly distributed under the null hypothesis\nFigure 1\nFDR estimation\nFigure 2\nWhat is a q-value?",
     "crumbs": [
       "Statistical significance",
-      "Statistical significance for genome-wide studies"
+      "Genome-wide studies"
     ]
   },
   {
