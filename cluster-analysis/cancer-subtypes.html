@@ -126,13 +126,36 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Cluster analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Statistical significance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Genome-wide studies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FDR estimation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Cluster analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link active">
@@ -149,29 +172,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Statistical significance</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Genome-wide studies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FDR estimation</span></a>
   </div>
 </li>
       </ul>
@@ -299,6 +299,10 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Neural networks</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Appendix</span></span>
   </li>
     </ul>
@@ -311,13 +315,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" id="toc-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" class="nav-link active" data-scroll-target="#gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer">Gene expression profiling predicts clinical outcome of breast cancer</a>
+  <li><a href="#path-breaking-paper-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" id="toc-path-breaking-paper-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" class="nav-link active" data-scroll-target="#path-breaking-paper-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer">Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer</a>
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  <li><a href="#translation-to-the-clinic" id="toc-translation-to-the-clinic" class="nav-link" data-scroll-target="#translation-to-the-clinic">Translation to the clinic</a></li>
   </ul></li>
-  <li><a href="#the-cancer-genome-atlas" id="toc-the-cancer-genome-atlas" class="nav-link" data-scroll-target="#the-cancer-genome-atlas">The Cancer Genome Atlas</a>
+  <li><a href="#test-of-time-the-cancer-genome-atlas" id="toc-test-of-time-the-cancer-genome-atlas" class="nav-link" data-scroll-target="#test-of-time-the-cancer-genome-atlas">Test of time: The Cancer Genome Atlas</a>
   <ul class="collapse">
   <li><a href="#questions-for-discussion-1" id="toc-questions-for-discussion-1" class="nav-link" data-scroll-target="#questions-for-discussion-1">Questions for discussion</a></li>
   </ul></li>
@@ -346,15 +350,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" class="level2">
-<h2 class="anchored" data-anchor-id="gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer">Gene expression profiling predicts clinical outcome of breast cancer</h2>
+<section id="path-breaking-paper-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" class="level2">
+<h2 class="anchored" data-anchor-id="path-breaking-paper-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer">Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Classic paper
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -381,8 +385,8 @@ Classic paper
 </ul>
 <p>The authors identified a minimal prognostic signature from their data using a supervised approach. How does this approach work and how many marker genes were in the final, optimal set? For those with machine learning background, can you think of other (better?) supervised approaches to achieve the same goal?</p>
 </section>
-<section id="further-reading" class="level3">
-<h3 class="anchored" data-anchor-id="further-reading">Further reading</h3>
+<section id="translation-to-the-clinic" class="level3">
+<h3 class="anchored" data-anchor-id="translation-to-the-clinic">Translation to the clinic</h3>
 <p>Having identified a strong gene expression signature to predict clinical outcome of breast cancer, the race to bring it to the clinic is on. That this is far from trivial can be seen by tracing the follow-up studies and clinical trials:</p>
 <ul>
 <li>Van De Vijver MJ et al.&nbsp;<a href="https://doi.org/10.1056/NEJMoa021967"><em>A gene-expression signature as a predictor of survival in breast cancer</em></a>. NEJM 347:1999 (2002).</li>
@@ -394,11 +398,11 @@ Classic paper
 <p>They got there eventually, and the gene expression signature is now commercially available under the name of <a href="https://agendia.com/mammaprint/">Mammaprint</a>.</p>
 </section>
 </section>
-<section id="the-cancer-genome-atlas" class="level2">
-<h2 class="anchored" data-anchor-id="the-cancer-genome-atlas">The Cancer Genome Atlas</h2>
+<section id="test-of-time-the-cancer-genome-atlas" class="level2">
+<h2 class="anchored" data-anchor-id="test-of-time-the-cancer-genome-atlas">Test of time: The Cancer Genome Atlas</h2>
 <p>Although the results by Van ’t Veer et al.&nbsp;were obtained from a small (by current standards!) sample size, they have been reproduced consistenly in larger studies and arguably spawned a search for similar signatures in other cancer types through large-scale projects, such as <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga">The Cancer Genome Atlas (TCGA) Program</a>.</p>
 <p>The amount of <a href="https://gdc.cancer.gov/">data</a> and number of <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications">publications</a> produced by TCGA is too enormous to survey here in detail.</p>
-<p>It is sometimes said that we humans overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To see how far the field progressed in the decade after <a href="https://doi.org/10.1038/415530a">van ’t Veer et al</a>, read the <a href="https://doi.org/10.1038/nature11412">2012 TCGA paper on breast tumours</a>.</p>
+<p>To see how far the field progressed in the decade after <a href="https://doi.org/10.1038/415530a">van ’t Veer et al</a>, read the <a href="https://doi.org/10.1038/nature11412">2012 TCGA paper on breast tumours</a>.</p>
 <section id="questions-for-discussion-1" class="level3">
 <h3 class="anchored" data-anchor-id="questions-for-discussion-1">Questions for discussion</h3>
 <p>What are the main differences between <a href="https://doi.org/10.1038/415530a">van ’t Veer et al</a> and the <a href="https://doi.org/10.1038/nature11412">TCGA paper</a>?</p>

@@ -127,13 +127,36 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Cluster analysis</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Statistical significance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Genome-wide studies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FDR estimation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Cluster analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
@@ -150,29 +173,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Statistical significance</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Genome-wide studies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FDR estimation</span></a>
   </div>
 </li>
       </ul>
@@ -300,6 +300,10 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Neural networks</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Appendix</span></span>
   </li>
     </ul>
@@ -312,9 +316,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#statistical-significance-for-genomewide-studies" id="toc-statistical-significance-for-genomewide-studies" class="nav-link active" data-scroll-target="#statistical-significance-for-genomewide-studies">Statistical significance for genomewide studies</a></li>
+  <li><a href="#path-breaking-paper-statistical-significance-for-genomewide-studies" id="toc-path-breaking-paper-statistical-significance-for-genomewide-studies" class="nav-link active" data-scroll-target="#path-breaking-paper-statistical-significance-for-genomewide-studies">Path-breaking paper: Statistical significance for genomewide studies</a>
+  <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
+  </ul></li>
+  <li><a href="#test-of-time" id="toc-test-of-time" class="nav-link" data-scroll-target="#test-of-time">Test of time</a></li>
   </ul>
 </nav>
     </div>
@@ -345,27 +352,26 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="statistical-significance-for-genomewide-studies" class="level2">
-<h2 class="anchored" data-anchor-id="statistical-significance-for-genomewide-studies">Statistical significance for genomewide studies</h2>
+<section id="path-breaking-paper-statistical-significance-for-genomewide-studies" class="level2">
+<h2 class="anchored" data-anchor-id="path-breaking-paper-statistical-significance-for-genomewide-studies">Path-breaking paper: Statistical significance for genomewide studies</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Classic paper
+Path-breaking paper
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Storey, John D., and Robert Tibshirani. <a href="https://www.pnas.org/doi/10.1073/pnas.1530509100">“Statistical significance for genomewide studies.”</a> Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.</p>
 </div>
 </div>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
 </section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-</section>
-<section id="questions-for-discussion" class="level2">
-<h2 class="anchored" data-anchor-id="questions-for-discussion">Questions for discussion</h2>
+<section id="questions-for-discussion" class="level3">
+<h3 class="anchored" data-anchor-id="questions-for-discussion">Questions for discussion</h3>
 <p>We cover the following parts:</p>
 <ul>
 <li>Abstract</li>
@@ -379,6 +385,40 @@ Classic paper
 <li>Figure 2</li>
 <li>What is a q-value?</li>
 </ul>
+</section>
+</section>
+<section id="test-of-time" class="level2">
+<h2 class="anchored" data-anchor-id="test-of-time">Test of time</h2>
+<p>Q-values and FDR estimation have changed the entire field of statistics, passing the test of time doesn’t get any better than for this paper.</p>
+<p>To illustrate how the number of tests in genome-wide studies has exploded after 2003, see the GTEx paper, which uses q-values to control for multiple testing:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test of time paper
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The GTEx Consortium. <a href="https://doi.org/10.1126/science.aaz1776"><em>The GTEx Consortium atlas of genetic regulatory effects across human tissues</em></a>. Science <strong>369</strong>, 1318–1330 (2020).</p>
+<p>See also the <a href="https://www.gtexportal.org/">GTEx portal</a></p>
+</div>
+</div>
+<p>To illustrate how Storey &amp; Tibshirani’s pape still inspires further method development for genomewide studies, see this paper:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test of time paper
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Chen X, Robinson DG, Storey JD, <a href="https://doi.org/10.1093/biostatistics/kxz010"><em>The functional false discovery rate with applications to genomics</em></a>, Biostatistics, Volume 22, Issue 1, January 2021, Pages 68–81,</p>
+</div>
+</div>
 
 
 </section>

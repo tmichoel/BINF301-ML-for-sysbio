@@ -127,12 +127,35 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Cluster analysis</span></a>
+ <span class="menu-text">Statistical significance</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Genome-wide studies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FDR estimation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Cluster analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
@@ -149,29 +172,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Statistical significance</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Genome-wide studies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FDR estimation</span></a>
   </div>
 </li>
       </ul>
@@ -299,6 +299,10 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Neural networks</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Appendix</span></span>
   </li>
     </ul>
@@ -311,11 +315,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" id="toc-integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" class="nav-link active" data-scroll-target="#integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks">Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks</a>
+  <li><a href="#path-breaking-paper-integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" id="toc-path-breaking-paper-integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" class="nav-link active" data-scroll-target="#path-breaking-paper-integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks">Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks</a>
   <ul class="collapse">
   <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
   </ul></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  <li><a href="#test-of-time" id="toc-test-of-time" class="nav-link" data-scroll-target="#test-of-time">Test of time</a></li>
   </ul>
 </nav>
     </div>
@@ -341,15 +345,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" class="level2">
-<h2 class="anchored" data-anchor-id="integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks">Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks</h2>
+<section id="path-breaking-paper-integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" class="level2">
+<h2 class="anchored" data-anchor-id="path-breaking-paper-integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks">Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Classic paper
+Path-breaking paper
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -360,11 +364,47 @@ Classic paper
 <h3 class="anchored" data-anchor-id="questions-for-discussion">Questions for discussion</h3>
 </section>
 </section>
-<section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<section id="test-of-time" class="level2">
+<h2 class="anchored" data-anchor-id="test-of-time">Test of time</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test of time paper
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Zhang B, et al.&nbsp;. <a href="https://doi.org/10.1016/j.cell.2013.03.030"><em>Integrated systems approach identifies genetic nodes and networks in late-onset Alzheimer’s disease</em></a>. Cell 153:707–720 (2013)</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test of time paper
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Talukdar HA, et al.&nbsp;<a href="https://doi.org/10.1016/j.cels.2016.02.002"><em>Cross-tissue regulatory gene networks in coronary artery disease</em></a>. Cell Systems 2:196 (2016)</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test of time paper
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Beckmann ND., et al.&nbsp;<a href="https://doi.org/10.1038/s41467-020-17405-z"><em>Multiscale causal networks identify VGF as a key regulator of Alzheimer’s disease</em></a>. Nature communications 11:3942 (2020).</p>
+</div>
+</div>
 
 
 </section>

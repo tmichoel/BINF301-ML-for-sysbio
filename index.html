@@ -127,12 +127,35 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Cluster analysis</span></a>
+ <span class="menu-text">Statistical significance</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Genome-wide studies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FDR estimation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Cluster analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
@@ -149,29 +172,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Statistical significance</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Genome-wide studies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FDR estimation</span></a>
   </div>
 </li>
       </ul>
@@ -299,6 +299,10 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Neural networks</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Appendix</span></span>
   </li>
     </ul>
@@ -332,19 +336,20 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>This is the website for the second half of the course <a href="https://www4.uib.no/en/courses/BINF301">BINF301 Genome-scale Algorithms</a>. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.</p>
-<p>Machine learning plays an important role in computational biology. See the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a> or the <a href="http://mlcb.org">Machine Learning in Computational Biology conference series</a>.</p>
 <p>The lectures are divided in modules, each focusing on a specific class of methods:</p>
 <ul>
+<li>Statistical significance</li>
 <li>Clustering</li>
 <li>Regularized regression</li>
 <li>Dimensionality reduction</li>
 <li>Causal inference</li>
 <li>Graphical models</li>
 <li>Spatio-Temporal models</li>
+<li>Neural networks</li>
 </ul>
 <p>Each module follows the same structure:</p>
 <ul>
-<li>A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.</li>
+<li>A classic or path-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was first used.</li>
 <li>The method used in the paper is studied in detail, along with additional methods to solve the same type of problem.</li>
 <li>The methods are put in practice using, where possible, original data from the papers studied in the first part.</li>
 </ul>
@@ -357,7 +362,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Christopher Bishop. <a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a> (2006).</li>
 <li>Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. <a href="https://mml-book.github.io/"><em>Mathematics for Machine Learning</em></a> (2020).</li>
 </ul>
-<p>The use of classic papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+<p>The use of path-breaking papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+<p>It is sometimes said that we humans overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To show the evolution in the field, each path-breaking paper is accompanied by one or more <em>“test of time”</em> papers, illustrating more recent applications of similar algorithms as the original one. Often we will see thath the major change is in the size and types of genome-scale data that can be generated nowadays, while the algorithms have mostly stood the test of time.</p>
+<p>If you want to stay up-to-date on what is happening in the field now, consider joining the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a>.</p>
 
 
 
