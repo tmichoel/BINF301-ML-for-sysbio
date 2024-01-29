@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Genome-scale Algorithms - Welcome</title>
+<title>BINF301 Genome-scale Algorithms - Bayesian networks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BINF301 Genome-scale Algorithms</span>
     </a>
   </div>
@@ -92,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../graphical-models/gene-regulatory-networks.html">Graphical models</a></li><li class="breadcrumb-item"><a href="../graphical-models/bayesian-networks.html">Bayesian networks</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -114,13 +143,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../julia-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Julia</span></a>
   </div>
 </li>
@@ -135,19 +164,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cancer subtypes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combinatorial clustering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
   </div>
 </li>
@@ -164,13 +193,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical significance for genome-wide studies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">False discovery rate estimation</span></a>
   </div>
 </li>
@@ -187,13 +216,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Drug sensitivity prediction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
   </div>
 </li>
@@ -210,13 +239,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PCA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">t-SNE, UMAP</span></a>
   </div>
 </li>
@@ -233,19 +262,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal associations between gene expression and disease</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mediation and instrumental variable analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal model selection</span></a>
   </div>
 </li>
@@ -262,13 +291,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gene regulatory networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Bayesian networks</span></a>
   </div>
 </li>
@@ -285,13 +314,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial gene experssion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance component models and Gaussian processes</span></a>
   </div>
 </li>
@@ -306,20 +335,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-crash-course-in-bayesian-networks" id="toc-a-crash-course-in-bayesian-networks" class="nav-link active" data-scroll-target="#a-crash-course-in-bayesian-networks">A crash course in Bayesian networks</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../graphical-models/gene-regulatory-networks.html">Graphical models</a></li><li class="breadcrumb-item"><a href="../graphical-models/bayesian-networks.html">Bayesian networks</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Bayesian networks</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -331,35 +366,60 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is the website for the second half of the course <a href="https://www4.uib.no/en/courses/BINF301">BINF301 Genome-scale Algorithms</a>. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.</p>
-<p>Machine learning plays an important role in computational biology. See the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a> or the <a href="http://mlcb.org">Machine Learning in Computational Biology conference series</a>.</p>
-<p>The lectures are divided in modules, each focusing on a specific class of methods:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Book sections
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a>: <strong>Chapter 8</strong></p>
+</div>
+</div>
+<section id="a-crash-course-in-bayesian-networks" class="level2">
+<h2 class="anchored" data-anchor-id="a-crash-course-in-bayesian-networks">A crash course in Bayesian networks</h2>
+<p>In Bayesian networks, the joint distribution over a set <span class="math inline">\(\{X_1,\dots, X_p\}\)</span> of random variables is represented by:</p>
 <ul>
-<li>Clustering</li>
-<li>Regularized regression</li>
-<li>Dimensionality reduction</li>
-<li>Causal inference</li>
-<li>Graphical models</li>
-<li>Spatio-Temporal models</li>
+<li>a directed acyclic graph (DAG) <span class="math inline">\(\cal G\)</span> with the variables as vertices,</li>
+<li>a set of conditional probability distributions, <span class="math display">\[\begin{aligned}
+  P\bigl(X_i \mid \{X_j \mid j\in \mathrm{Pa}_i\}\bigr),
+\end{aligned}\]</span> where <span class="math inline">\(\mathrm{Pa}_i\)</span> is the set of parents of vertex <span class="math inline">\(i\)</span> in <span class="math inline">\(\mathcal{G}\)</span>,</li>
 </ul>
-<p>Each module follows the same structure:</p>
+<p>such that <span class="math display">\[\begin{aligned}
+  P(X_1,\dots,X_p) = \prod_{i=1}^p P\bigl(X_i \mid \{X_j \mid j\in \mathrm{Pa}_i\}\bigr)
+\end{aligned}\]</span></p>
+<p>In GRN reconstruction:</p>
 <ul>
-<li>A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.</li>
-<li>The method used in the paper is studied in detail, along with additional methods to solve the same type of problem.</li>
-<li>The methods are put in practice using, where possible, original data from the papers studied in the first part.</li>
+<li><span class="math inline">\(X_i\)</span> represents the expression level of gene <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(P(X_1,\dots,X_p)\)</span> represents the joint distribution from which (independent) experimental samples are drawn,</li>
+<li><span class="math inline">\(\mathcal{G}\)</span> represents the unknown GRN.</li>
 </ul>
-<p>The computational demonstrations for the course were developed in <a href="https://julialang.org/">Julia</a>, and the course starts with an <a href="./julia-intro.html">introduction to Julia</a>. For the assignments, you can use any programming language.</p>
-<p>An appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.</p>
-<p>The theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:</p>
+<p>Assume we have a set of <span class="math inline">\(N\)</span> observations <span class="math inline">\(x_1,\dots,x_N\in \mathbb{R}^p\)</span> of <span class="math inline">\(p\)</span> variables, collected in the <span class="math inline">\(N\times p\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span>.</p>
+<p>Assume we know <span class="math inline">\(\mathcal{G}\)</span> and the conditional distributions. Then the likelihood of observing the data is:</p>
+<p><span class="math display">\[\begin{aligned}
+  P(\mathbf{X}\mid \mathcal{G}) &amp;= \prod_{k=1}^N P(X_{k1},\dots,X_{kp}\mid \mathcal{G})\\\\
+  &amp;= \prod_{i=1}^p \prod_{k=1}^N  P\bigl(X_{ki} \mid \{X_{kj} \mid j\in \mathrm{Pa}_i\}\bigr)
+\end{aligned}\]</span></p>
+<p>We can now use an iterative algorithm to optimize <span class="math inline">\(\mathcal{G}\)</span> and the conditional distributions:</p>
 <ul>
-<li>Trevor Hastie, Robert Tibshirani, and Jerome Friedman. <a href="https://hastie.su.domains/ElemStatLearn/"><em>The Elements of Statistical Learning (second edition)</em></a> (2009).</li>
-<li>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. <a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a> (2023).</li>
-<li>Christopher Bishop. <a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a> (2006).</li>
-<li>Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. <a href="https://mml-book.github.io/"><em>Mathematics for Machine Learning</em></a> (2020).</li>
+<li>Start with a random graph <span class="math inline">\(\mathcal{G}\)</span>.</li>
+<li>Given <span class="math inline">\(\mathcal{G}\)</span>, the likelihood decomposes in a product of independent likelihoods, one for each gene, and the conditional distributions can be optimized by standard regression analysis.</li>
+<li>In the next iterations, randomly add, delete, or reverse edges in <span class="math inline">\(\mathcal{G}\)</span>, as long as the likelihood improves.</li>
 </ul>
-<p>The use of classic papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+<p>A more formal approach to optimizing <span class="math inline">\(\mathcal{G}\)</span> uses Bayes’ theorem: <span class="math display">\[\begin{aligned}
+  P(\mathcal{G}\mid \mathbf{X}) = \frac{P(\mathbf{X}\mid \mathcal{G}) P(\mathcal{G})}{P(\mathbf{X})}
+\end{aligned}\]</span></p>
+<ul>
+<li><span class="math inline">\(P(\mathcal{G})\)</span> represents the prior distribution: even without seeing any data, not all graphs need to be equally likely <em>a priori</em>.</li>
+<li><span class="math inline">\(P(\mathbf{X})\)</span> represents the marginal distribution: <span class="math inline">\(P(\mathbf{X}) = \sum_{\mathcal{G}'} P(\mathbf{X}\mid \mathcal{G}') P(\mathcal{G}')\)</span>. It is independent of <span class="math inline">\(\mathcal{G}\)</span> and can be ignored.</li>
+</ul>
+<p>We can use <span class="math inline">\(P(\mathcal{G})\)</span> to encode evidence for causal interactions from integrating genomics and transcriptomics data. This is the main idea from <a href="https://doi.org/10.1159/000078209">Zhu et al.&nbsp;(2004)</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

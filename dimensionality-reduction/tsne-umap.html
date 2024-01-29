@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Genome-scale Algorithms - Welcome</title>
+<title>BINF301 Genome-scale Algorithms - t-SNE, UMAP</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BINF301 Genome-scale Algorithms</span>
     </a>
   </div>
@@ -92,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dimensionality-reduction/pca.html">Dimensionality reduction</a></li><li class="breadcrumb-item"><a href="../dimensionality-reduction/tsne-umap.html">t-SNE, UMAP</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -114,13 +143,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../julia-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Julia</span></a>
   </div>
 </li>
@@ -135,19 +164,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cancer subtypes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combinatorial clustering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
   </div>
 </li>
@@ -164,13 +193,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical significance for genome-wide studies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">False discovery rate estimation</span></a>
   </div>
 </li>
@@ -187,13 +216,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Drug sensitivity prediction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
   </div>
 </li>
@@ -210,13 +239,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PCA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">t-SNE, UMAP</span></a>
   </div>
 </li>
@@ -233,19 +262,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal associations between gene expression and disease</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mediation and instrumental variable analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal model selection</span></a>
   </div>
 </li>
@@ -262,13 +291,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gene regulatory networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bayesian networks</span></a>
   </div>
 </li>
@@ -285,13 +314,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial gene experssion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance component models and Gaussian processes</span></a>
   </div>
 </li>
@@ -306,20 +335,38 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#t-stochastic-neighbor-embedding-t-sne" id="toc-t-stochastic-neighbor-embedding-t-sne" class="nav-link active" data-scroll-target="#t-stochastic-neighbor-embedding-t-sne">t-Stochastic Neighbor Embedding (t-SNE)</a>
+  <ul class="collapse">
+  <li><a href="#symmetric-stochastic-neighbor-embedding-sne" id="toc-symmetric-stochastic-neighbor-embedding-sne" class="nav-link" data-scroll-target="#symmetric-stochastic-neighbor-embedding-sne">(Symmetric) Stochastic Neighbor Embedding (SNE)</a></li>
+  <li><a href="#sne-suffers-from-a-crowding-problem" id="toc-sne-suffers-from-a-crowding-problem" class="nav-link" data-scroll-target="#sne-suffers-from-a-crowding-problem">SNE suffers from a “crowding problem”</a></li>
+  <li><a href="#heavy-tails-in-the-low-dimensional-space-resolve-the-crowding-problem" id="toc-heavy-tails-in-the-low-dimensional-space-resolve-the-crowding-problem" class="nav-link" data-scroll-target="#heavy-tails-in-the-low-dimensional-space-resolve-the-crowding-problem">Heavy-tails in the low-dimensional space resolve the crowding problem</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#uniform-manifold-approximation-and-projection-umap" id="toc-uniform-manifold-approximation-and-projection-umap" class="nav-link" data-scroll-target="#uniform-manifold-approximation-and-projection-umap">Uniform Manifold Approximation and Projection (UMAP)</a>
+  <ul class="collapse">
+  <li><a href="#a-computational-view-of-umap" id="toc-a-computational-view-of-umap" class="nav-link" data-scroll-target="#a-computational-view-of-umap">A computational view of UMAP</a></li>
+  </ul></li>
+  <li><a href="#a-comparison-of-dimension-reduction-algorithms" id="toc-a-comparison-of-dimension-reduction-algorithms" class="nav-link" data-scroll-target="#a-comparison-of-dimension-reduction-algorithms">A comparison of dimension reduction algorithms</a></li>
+  <li><a href="#practical-recommendations" id="toc-practical-recommendations" class="nav-link" data-scroll-target="#practical-recommendations">Practical recommendations</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dimensionality-reduction/pca.html">Dimensionality reduction</a></li><li class="breadcrumb-item"><a href="../dimensionality-reduction/tsne-umap.html">t-SNE, UMAP</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">t-SNE, UMAP</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -331,35 +378,172 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is the website for the second half of the course <a href="https://www4.uib.no/en/courses/BINF301">BINF301 Genome-scale Algorithms</a>. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.</p>
-<p>Machine learning plays an important role in computational biology. See the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a> or the <a href="http://mlcb.org">Machine Learning in Computational Biology conference series</a>.</p>
-<p>The lectures are divided in modules, each focusing on a specific class of methods:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+References
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Clustering</li>
-<li>Regularized regression</li>
-<li>Dimensionality reduction</li>
-<li>Causal inference</li>
-<li>Graphical models</li>
-<li>Spatio-Temporal models</li>
+<li>L.J.P. van der Maaten and G.E. Hinton. <a href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf"><em>Visualizing Data Using t-SNE</em></a>. Journal of Machine Learning Research 9(Nov):2579-2605, 2008.</li>
+<li>McInnes, L, Healy, J, <a href="https://arxiv.org/abs/1802.03426"><em>UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction</em></a>, ArXiv e-prints 1802.03426, 2018</li>
 </ul>
-<p>Each module follows the same structure:</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Software
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.</li>
-<li>The method used in the paper is studied in detail, along with additional methods to solve the same type of problem.</li>
-<li>The methods are put in practice using, where possible, original data from the papers studied in the first part.</li>
+<li><a href="https://lvdmaaten.github.io/tsne/">lvdmaaten.github.io/tsne/</a></li>
+<li><a href="https://github.com/lmcinnes/umap">github.com/lmcinnes/umap</a></li>
 </ul>
-<p>The computational demonstrations for the course were developed in <a href="https://julialang.org/">Julia</a>, and the course starts with an <a href="./julia-intro.html">introduction to Julia</a>. For the assignments, you can use any programming language.</p>
-<p>An appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.</p>
-<p>The theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:</p>
+</div>
+</div>
+<section id="t-stochastic-neighbor-embedding-t-sne" class="level2">
+<h2 class="anchored" data-anchor-id="t-stochastic-neighbor-embedding-t-sne">t-Stochastic Neighbor Embedding (t-SNE)</h2>
+<p>Linear dimensionality reduction methods (like PCA) may not able to retain both the local and global structure of the data in a single map.</p>
+<p>t-SNE is a non-linear method that aims to overcome this limitation.</p>
+<p>t-SNE is particularly successful at visualizing high-dimensional data (reducing it to two dimensions).</p>
+<p>Care must be taken when applying t-SNE due to random initialization of the algorithm, which may lead to solutions that do not represent the global structure of the data well.</p>
+<section id="symmetric-stochastic-neighbor-embedding-sne" class="level3">
+<h3 class="anchored" data-anchor-id="symmetric-stochastic-neighbor-embedding-sne">(Symmetric) Stochastic Neighbor Embedding (SNE)</h3>
+<p>As before, assume we have a set of <span class="math inline">\(N\)</span> observations <span class="math inline">\(x_1,\dots,x_N\in \mathbb{R}^p\)</span> of <span class="math inline">\(p\)</span> variables, collected in the <span class="math inline">\(N\times p\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span>.</p>
+<p>SNE introduces a directional similarity of <span class="math inline">\(x_j\)</span> to <span class="math inline">\(x_i\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+    p_{j\mid i} = \frac{\exp\bigl(-\frac{1}{2\sigma_i^2}\|x_i-x_j\|^2\bigr)}{\sum_{k\neq i}\exp\bigl(-\frac{1}{2\sigma_i^2}\|x_i-x_k\|^2\bigr)}
+\end{aligned}
+\]</span></p>
+<p>The variances <span class="math inline">\(\sigma_i\)</span> are chosen such that the perplexities</p>
+<p><span class="math display">\[
+\begin{aligned}
+    \mathcal{P_i} = \exp\Bigl(-\sum_{j\neq i} p_{j\mid i}\log p_{j\mid i}\Bigr)
+\end{aligned}
+\]</span></p>
+<p>take some prespecified value.</p>
+<p>Symmetric, undirectional similarities are defined as</p>
+<p><span class="math display">\[
+\begin{aligned}
+    p_{ij} = \frac{p_{j\mid i}+p_{i\mid j}}{2n}
+\end{aligned}
+\]</span></p>
+<p>such that <span class="math inline">\(\sum_{ij}p_{ij}=1\)</span></p>
+<p>A map is a two or three-dimensional representation <span class="math inline">\({\cal Y}=\{y_1,\dots,y_N\}\)</span> of the high-dimensional data <span class="math inline">\({\cal X}=\{x_1,\dots,x_N\}\)</span>.</p>
+<p>In the low-dimensional representation, we define the probability of picking <span class="math inline">\(y_i\)</span> and <span class="math inline">\(y_j\)</span> as neighbors by</p>
+<p><span class="math display">\[
+\begin{aligned}
+    q_{ij} = \frac{\exp\bigl(-\|y_i-y_j\|^2\bigr)}{\sum_{k\neq l}\exp\bigl(-\|y_k-y_l\|^2\bigr)}
+\end{aligned}
+\]</span></p>
+<p>(Symmetric) Stochastic Neighbor Embedding (SNE) finds the map <span class="math inline">\({\cal Y}\)</span> that minimizes the mismatch between <span class="math inline">\(p_{ij}\)</span> and <span class="math inline">\(q_{ij}\)</span>, across all pairs <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
+<p>The mismatch cost function is given by the Kullback-Leibler divergence:</p>
+<p><span class="math display">\[
+\begin{aligned}
+    C = \sum_i \sum_j p_{ij} \log \frac{p_{ij}}{q_{ij}}\geq 0
+\end{aligned}
+\]</span></p>
+<p>with <span class="math inline">\(C=0\)</span> if, and only if, <span class="math inline">\(q_{ij}=p_{ij}\)</span> for all <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
+</section>
+<section id="sne-suffers-from-a-crowding-problem" class="level3">
+<h3 class="anchored" data-anchor-id="sne-suffers-from-a-crowding-problem">SNE suffers from a “crowding problem”</h3>
+<p>The volume of a sphere with radius <span class="math inline">\(r\)</span> in <span class="math inline">\(p\)</span> dimensions scales as <span class="math inline">\(r^p\)</span>.</p>
+<p>Consider a cluster of datapoints that are approximately uniformly distributed in a sphere of radius <span class="math inline">\(r\)</span>.</p>
+<p>If <span class="math inline">\(p\gg 2\)</span>, then the available 2-dimensional area to model the distances in this cluster accurately will be too small compared to the total area available, forcing clusters of nearby points to crush together.</p>
+</section>
+<section id="heavy-tails-in-the-low-dimensional-space-resolve-the-crowding-problem" class="level3">
+<h3 class="anchored" data-anchor-id="heavy-tails-in-the-low-dimensional-space-resolve-the-crowding-problem">Heavy-tails in the low-dimensional space resolve the crowding problem</h3>
+<p>A heavy-tail distribution in the low-dimensional space allows a moderate distance in the high-dimensional space to be faithfully modelled by a much larger distance in the map.</p>
+<p>In t-SNE a Student t-distribution with 1 d.o.f. (a Cauchy distribution) is used as the heavy-tailed distribution in the low-dimensional map:</p>
+<p><span class="math display">\[
+\begin{aligned}
+    q_{ij} = \frac{\left(1+\|y_i-y_j\|^2\right)^{-1}}{\sum_{k\neq l}\left(1+\|y_k-y_l\|^2\right)^{-1}}
+\end{aligned}
+\]</span></p>
+<p>The Cauchy distribution offers additional advantages in the numerical optimization of the cost function.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tSNE-gauss-cauchy.png" class="img-fluid figure-img"></p>
+<figcaption>Gaussian (<span class="math inline">\(\sigma=1/\sqrt{2}\)</span>) vs Cauchy p.d.f. for <span class="math inline">\(r\geq 0\)</span>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>t-SNE:</p>
 <ul>
-<li>Trevor Hastie, Robert Tibshirani, and Jerome Friedman. <a href="https://hastie.su.domains/ElemStatLearn/"><em>The Elements of Statistical Learning (second edition)</em></a> (2009).</li>
-<li>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. <a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a> (2023).</li>
-<li>Christopher Bishop. <a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a> (2006).</li>
-<li>Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. <a href="https://mml-book.github.io/"><em>Mathematics for Machine Learning</em></a> (2020).</li>
+<li>puts emphasis on modelling dissimilar datapoints by means of large pairwise distances, and similar datapoints by small pairwise distances,</li>
+<li>offers dramatic improvement in finding and preserving local structure in the data, compared to, for instance, PCA.</li>
 </ul>
-<p>The use of classic papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+<p>Optimization of the t-SNE cost function is easier than optimizing earlier SNE versions, but:</p>
+<ul>
+<li>the cost function is non-convex,</li>
+<li>several optimization parameters need to be chosen,</li>
+<li>the constructed solutions depend on these choices and may be different each time t-SNE is run from an initial random configuration.</li>
+</ul>
+<p>Formal theory supporting t-SNE is lacking:</p>
+<ul>
+<li>similarity measures and cost function are based on heuristics, appealing to “intuitive” justifications,</li>
+<li>there is no formal generative model connecting high- and low-dimensional representations,</li>
+<li>the probability semantics used to describe t-SNE is descriptive, rather than foundational.</li>
+</ul>
+</section>
+</section>
+<section id="uniform-manifold-approximation-and-projection-umap" class="level2">
+<h2 class="anchored" data-anchor-id="uniform-manifold-approximation-and-projection-umap">Uniform Manifold Approximation and Projection (UMAP)</h2>
+<p>In the words of the authors:</p>
+<ul>
+<li>UMAPs design decisions were all grounded in a solid theoretic foundation and not derived through experimentation with any particular task focused objective function.</li>
+<li>The theoretical foundations for UMAP are largely based in manifold theory and topological data analysis.</li>
+<li>A purely computational view [of UMAP] fails to shed any light upon the reasoning that underlies the algorithmic decisions made in UMAP.</li>
+</ul>
+<section id="a-computational-view-of-umap" class="level3">
+<h3 class="anchored" data-anchor-id="a-computational-view-of-umap">A computational view of UMAP</h3>
+<p>From a practical computational perspective, UMAP can be described in terms of, construction of, and operations on, weighted graphs:</p>
+<ul>
+<li>Graph construction:
+<ol type="1">
+<li>Construct a weighted k-neighbour graph</li>
+<li>Apply some transform on the edges to represent local distance.</li>
+<li>Deal with the inherent asymmetry of the k-neighbour graph.<br>
+</li>
+</ol></li>
+<li>Graph layout:
+<ol type="1">
+<li>Define a cost function that preserves desired characteristics of this k-neighbour graph.</li>
+<li>Find a low dimensional representation which optimizes this cost function.</li>
+</ol></li>
+</ul>
+<p>t-SNE and UMAP can both be cast in this form, but with some (subtle) differences in the edge weighting (dissimilarity measure) and graph layout (cost function).</p>
+</section>
+</section>
+<section id="a-comparison-of-dimension-reduction-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="a-comparison-of-dimension-reduction-algorithms">A comparison of dimension reduction algorithms</h2>
+<p>See figure from the <a href="https://arxiv.org/abs/1802.03426">UMAP paper</a>.</p>
+</section>
+<section id="practical-recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="practical-recommendations">Practical recommendations</h2>
+<ul>
+<li><p>Claims of UMAP or t-SNE (or related methods) being superior are usually overrated.</p></li>
+<li><p>Both algorithms suffer from a need for careful parameter tuning and initialization choices.</p></li>
+<li><p>Using and understanding one algorithm well is more important flipping between algorithms and never changing default parameters.</p></li>
+</ul>
+<p>An excellent reference for using t-SNE for single-cell data:</p>
+<p>Kobak &amp; Berens. <a href="https://doi.org/10.1038/s41467-019-13056-x"><em>The art of using t-SNE for single-cell transcriptomics</em>.</a> Nat. Comm. <strong>10</strong>:5416 (2019)</p>
+<p>See also: <a href="https://github.com/berenslab/rna-seq-tsne">github.com/berenslab/rna-seq-tsne</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

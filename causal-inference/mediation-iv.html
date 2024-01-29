@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Genome-scale Algorithms - Welcome</title>
+<title>BINF301 Genome-scale Algorithms - Mediation and instrumental variable analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BINF301 Genome-scale Algorithms</span>
     </a>
   </div>
@@ -92,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../causal-inference/causal-assoc-genes-disease.html">Causal inference</a></li><li class="breadcrumb-item"><a href="../causal-inference/mediation-iv.html">Mediation and instrumental variable analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -114,13 +143,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../julia-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Julia</span></a>
   </div>
 </li>
@@ -135,19 +164,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cancer subtypes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combinatorial clustering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
   </div>
 </li>
@@ -164,13 +193,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical significance for genome-wide studies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">False discovery rate estimation</span></a>
   </div>
 </li>
@@ -187,13 +216,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Drug sensitivity prediction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
   </div>
 </li>
@@ -210,13 +239,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PCA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">t-SNE, UMAP</span></a>
   </div>
 </li>
@@ -233,19 +262,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal associations between gene expression and disease</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Mediation and instrumental variable analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal model selection</span></a>
   </div>
 </li>
@@ -262,13 +291,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gene regulatory networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bayesian networks</span></a>
   </div>
 </li>
@@ -285,13 +314,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial gene experssion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance component models and Gaussian processes</span></a>
   </div>
 </li>
@@ -306,20 +335,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mediation-analysis" id="toc-mediation-analysis" class="nav-link active" data-scroll-target="#mediation-analysis">Mediation analysis</a></li>
+  <li><a href="#instrumental-variable-analysis-mendelian-randomization" id="toc-instrumental-variable-analysis-mendelian-randomization" class="nav-link" data-scroll-target="#instrumental-variable-analysis-mendelian-randomization">Instrumental variable analysis / Mendelian randomization</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../causal-inference/causal-assoc-genes-disease.html">Causal inference</a></li><li class="breadcrumb-item"><a href="../causal-inference/mediation-iv.html">Mediation and instrumental variable analysis</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Mediation and instrumental variable analysis</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -331,35 +367,59 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is the website for the second half of the course <a href="https://www4.uib.no/en/courses/BINF301">BINF301 Genome-scale Algorithms</a>. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.</p>
-<p>Machine learning plays an important role in computational biology. See the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a> or the <a href="http://mlcb.org">Machine Learning in Computational Biology conference series</a>.</p>
-<p>The lectures are divided in modules, each focusing on a specific class of methods:</p>
-<ul>
-<li>Clustering</li>
-<li>Regularized regression</li>
-<li>Dimensionality reduction</li>
-<li>Causal inference</li>
-<li>Graphical models</li>
-<li>Spatio-Temporal models</li>
-</ul>
-<p>Each module follows the same structure:</p>
-<ul>
-<li>A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.</li>
-<li>The method used in the paper is studied in detail, along with additional methods to solve the same type of problem.</li>
-<li>The methods are put in practice using, where possible, original data from the papers studied in the first part.</li>
-</ul>
-<p>The computational demonstrations for the course were developed in <a href="https://julialang.org/">Julia</a>, and the course starts with an <a href="./julia-intro.html">introduction to Julia</a>. For the assignments, you can use any programming language.</p>
-<p>An appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.</p>
-<p>The theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:</p>
-<ul>
-<li>Trevor Hastie, Robert Tibshirani, and Jerome Friedman. <a href="https://hastie.su.domains/ElemStatLearn/"><em>The Elements of Statistical Learning (second edition)</em></a> (2009).</li>
-<li>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. <a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a> (2023).</li>
-<li>Christopher Bishop. <a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a> (2006).</li>
-<li>Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. <a href="https://mml-book.github.io/"><em>Mathematics for Machine Learning</em></a> (2020).</li>
-</ul>
-<p>The use of classic papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+<section id="mediation-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="mediation-analysis">Mediation analysis</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cis-trans-eqtl.png" class="img-fluid figure-img"></p>
+<figcaption>Cis-trans eQTLs</figcaption>
+</figure>
+</div>
+<p>Figure by Sean Bankier from <a href="https://doi.org/10.3389/fendo.2022.949061">this review</a>.</p>
+<p>The <a href="../genetics-gene-expression/">GTEx study</a> identified trans-eQTLs that are also cis-eQTLs and asked if the cis-eGene could be the <em>cause</em> of the trans-eQTL association (see fig above), that is, if the following model is supported by the data:</p>
+<pre class="mermaid"><code>flowchart LR
+  Z --&gt; X --&gt; Y</code></pre>
+<p>where <span class="math inline">\(Z\)</span> is a SNP that is a cis-eQTL for gene <span class="math inline">\(X\)</span> and trans-eQTL for gene <span class="math inline">\(Y\)</span>. This model implies that <span class="math inline">\(X\)</span> blocks the path between <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span>, and hence that <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are independent conditional on <span class="math inline">\(X\)</span>, in mathematical notation</p>
+<p><span class="math display">\[
+Z \perp Y \mid X
+\]</span></p>
+<p>The principle for testing whether the model <span class="math inline">\(Z\to X \to Y\)</span> is true using the conditional independence criterion is illustrated in the figure below. Assuming linear relations between all variables, three conditions must be met:</p>
+<ol type="1">
+<li>The expression levels of <span class="math inline">\(X\)</span> differ significantly between the genotype groups of <span class="math inline">\(Z\)</span> (to confirm the <span class="math inline">\(Z\to X\)</span> association).</li>
+<li>The expression levels of <span class="math inline">\(Y\)</span> differ significantly between the genotype groups of <span class="math inline">\(Z\)</span> (to confirm the <span class="math inline">\(Z\to Y\)</span> association).</li>
+<li>The residuals of <span class="math inline">\(Y\)</span> after regression on <span class="math inline">\(X\)</span> do <em>not</em> differ differ significantly between the genotype groups of <span class="math inline">\(Z\)</span> (to confirm that the <span class="math inline">\(Z\to Y\)</span> association is mediated by <span class="math inline">\(X\)</span>, and hence that <span class="math inline">\(Z\to X \to Y\)</span> is true).</li>
+</ol>
+</section>
+<section id="instrumental-variable-analysis-mendelian-randomization" class="level2">
+<h2 class="anchored" data-anchor-id="instrumental-variable-analysis-mendelian-randomization">Instrumental variable analysis / Mendelian randomization</h2>
+<p>The mediation method fails if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are affected by common cause <span class="math inline">\(U\)</span> (which may be an unknown or hidden variable):</p>
+<pre class="mermaid"><code>flowchart LR
+  Z --&gt; X --&gt; Y
+  U --&gt; X &amp; Y</code></pre>
+<p>In this case, conditioning on <span class="math inline">\(X\)</span> opens the <a href="https://en.wikipedia.org/wiki/Collider_(statistics)">collider</a> <span class="math inline">\(Z \to X \leftarrow U\)</span>, creating a path <span class="math inline">\(Z\\; --- \\; U \to Y\)</span>, such that the residuals of <span class="math inline">\(Y\)</span> will still show a difference between the genotype groups of <span class="math inline">\(Z\)</span>, and the mediation method concludes (wrongly!) that the <span class="math inline">\(Z\to Y\)</span> association must be due to another factor than <span class="math inline">\(X\)</span> (no causal <span class="math inline">\(X\to Y\)</span> relation).</p>
+<p>Instrumental variable, known as <a href="https://en.wikipedia.org/wiki/Mendelian_randomization">Mendelian randomization (MR)</a>, is an alternative causal inference approach that is not affected by hidden confounders <span class="math inline">\(U\)</span>, but with subtly different underlying assumptions.</p>
+<p>Specifically, in MR we assume that the <span class="math inline">\(Z\to Y\)</span> association <strong>must</strong> be due to <span class="math inline">\(X\)</span> (for instance because <span class="math inline">\(X\)</span> is the only cis-eGene of <span class="math inline">\(Z\)</span>, and trans-eQTL associations must be mediated by some initial cis effects), and we seek to estimate the magnitude of the causal effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>.</p>
+<p>The diagram above can be written as a <a href="https://en.wikipedia.org/wiki/Structural_equation_modeling">structural equation model</a></p>
+<p><span class="math display">\[
+\begin{aligned}
+  X &amp;= a Z + c_X U + E_X\\
+  Y &amp;= b X + c_Y U + E_Y
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(E_X\)</span> and <span class="math inline">\(E_Y\)</span> are error terms, mutually independent and independent of <span class="math inline">\(Z\)</span> and <span class="math inline">\(U\)</span>. Since <span class="math inline">\(Z\)</span> and <span class="math inline">\(U\)</span> are assumed to be independent (no arrows in the diagram), it follows that</p>
+<p><span class="math display">\[
+\begin{aligned}
+  \mathrm{cov}(Y,Z) &amp;= b\\
+  \mathrm{cov}(X,Z) &amp;= ab
+\end{aligned}
+\]</span></p>
+<p>and hence the causal effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is estimated by the ratio of covariances:</p>
+<p><span class="math display">\[
+b = \frac{\mathrm{cov}(Y,Z)}{\mathrm{cov}(X,Z)}
+\]</span></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

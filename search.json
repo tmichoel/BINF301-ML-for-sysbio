@@ -51,11 +51,242 @@
     "text": "This is a post with executable code."
   },
   {
+    "objectID": "dimensionality-reduction/pca.html",
+    "href": "dimensionality-reduction/pca.html",
+    "title": "PCA",
+    "section": "",
+    "text": "Book sections\n\n\n\n\nPattern Recognition and Machine Learning: Chapter 12\nElements of Statistical Learning: Section 14.5.1\nAn Introduction to Statistical Learning: Section 6.3.1",
+    "crumbs": [
+      "Dimensionality reduction",
+      "PCA"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/pca.html#dimensionality-reduction",
+    "href": "dimensionality-reduction/pca.html#dimensionality-reduction",
+    "title": "PCA",
+    "section": "Dimensionality reduction",
+    "text": "Dimensionality reduction\nAssume we have a set of \\(N\\) observations (e.g. cells) of \\(p\\) variables (e.g. genes).\nDimensionality reduction consists of representing the observations in a lower-dimensional space with dimension \\(q\\ll p\\) while preserving some characteristics (e.g. relative distance) of the original \\(p\\)-dimensional representation.\nFor visualizing relationships among observations, we typically use \\(q=2\\).",
+    "crumbs": [
+      "Dimensionality reduction",
+      "PCA"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/pca.html#principal-component-analysis-pca",
+    "href": "dimensionality-reduction/pca.html#principal-component-analysis-pca",
+    "title": "PCA",
+    "section": "Principal component analysis (PCA)",
+    "text": "Principal component analysis (PCA)\nAssume we have a set of \\(N\\) observations \\(x_1,\\dots,x_N\\in \\mathbb{R}^p\\) of \\(p\\) variables, collected in the \\(N\\times p\\) matrix \\(\\mathbf{X}\\).\nThe principal components of \\(\\mathbf{X}\\) provide a sequence of best linear approximations to \\(\\mathbf{X}\\), representing \\(\\mathbf{X}\\) by a line (\\(q=1\\)), plane (\\(q=2\\)), etc. in \\(p\\)-dimensional space.\nA rank-\\(q\\) linear model in \\(p\\)-dimensional space takes the form\n\\[\nf(y) = \\mu + y_1 v_1 + \\dots + y_q v_q = \\mu + \\mathbf{V}_q z,\n\\]\nwhere \\(\\mu\\in\\mathbb{R}^p\\) is a location vector, \\(z\\in\\mathbb{R}^q\\) is a (low-dimensional) vector, and \\(\\mathbf{V}_q=(v_1,\\dots,v_q)\\) is a \\(p\\times q\\) matrix of \\(q\\) orthogonal unit vectors,\n\\[\n\\begin{aligned}\n    v_k v_{k'}^T = \\sum_{j=1}^p v_{kj}v_{k'j}= \\delta_{kk'}\n\\end{aligned}\n\\]\nFitting this model to the data using least squares amounts to minimizing the reconstruction error:\n\\[\n\\min_{\\mu,\\{y_{i}\\},\\mathbf{V}\\_q} \\sum_{i=1}^N \\Bigl\\| x_i - \\mu - \\mathbf{V}_q z_i \\Bigr\\|^2\n\\]\nPartial optimization for \\(\\mu\\) and the \\(y_i\\) gives\n\\[\n\\begin{aligned}\n    \\hat{\\mu} &= \\bar x = \\frac1{N}\\sum_{i=1}^N x_i\\\\\n    \\hat{z}_i &= \\mathbf{V}_q^T(x_i-\\bar{x})\n\\end{aligned}\n\\]\nPlugging this into () leaves us to find the orthogonal matrix \\(\\mathbf{V}_q\\):\n\\[\n\\begin{aligned}\n    \\min_{\\mathbf{V}\\_q} \\sum_{i=1}^{N} \\Bigl\\| (x_i - \\bar{x}) - \\mathbf{V}_q\\mathbf{V}_q^T(x_i-\\bar{x}) \\Bigr\\|^2\n\\end{aligned}\n\\]\nIt can be shown that the optimal solution is found when \\(\\mathbf{V}_q=(v_1,\\dots,v_q)\\) contains the \\(q\\) eigenvectors with largest eigenvalues of the \\(p\\times p\\) matrix \\(\\mathbf{X}^T\\mathbf{X}\\) (if the data is centred such that \\(\\bar x=0\\)).\nThe solution can be expressed using the singular value decomposition of the obsered data matrix \\(\\mathbf{X}\\):\n\\[\n\\mathbf{X} = \\mathbf{U} \\Lambda \\mathbf{V}^T\n\\]\nwhere \\(\\mathbf{U}\\) is an \\(N\\times p\\) orthogonal matrix (\\(\\mathbf{U}^T\\mathbf{U}=\\mathbf{I}_p\\)) whose columns are called the left singular vectors, \\(\\mathbf{V}\\) is a \\(p\\times p\\) orthogonal matrix (\\(\\mathbf{V}^T\\mathbf{V}=\\mathbf{I}_p\\)) whose columns are called the right singular vectors, and \\(\\Lambda\\) is a \\(p\\times p\\) diagonal matrix with diagonal elements \\(\\lambda_1\\geq \\lambda_2 \\geq \\dots \\geq \\lambda_p\\geq 0\\) called the singular values.\nThe solution \\(\\mathbf{V}_q\\) above consists of the first \\(q\\) columns of \\(\\mathbf{V}\\).\nThe columns of \\(\\mathbf{U}\\Lambda\\) are called the principal components of \\(\\mathbf{X}\\). The first \\(q\\) principal components are \\(\\mathbf{U}_q\\Lambda_q\\). Each principal component is a vector in \\(\\R^N\\), that is, it takes a value for each observation. The solution \\(\\hat{z}_i\\) above consists of the rows of \\(\\mathbf{U}_q\\Lambda_q\\), that is, for each observation \\(i\\), \\(\\hat{z}_i\\) consists of the values of the first \\(q\\) principal components for observation \\(i\\).",
+    "crumbs": [
+      "Dimensionality reduction",
+      "PCA"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/pca.html#probabilistic-pca",
+    "href": "dimensionality-reduction/pca.html#probabilistic-pca",
+    "title": "PCA",
+    "section": "Probabilistic PCA",
+    "text": "Probabilistic PCA\nProbabilistic PCA is a continuous generalization of the Gaussian mixture model where we again assume that an observation \\(X=(x_1,\\dots,x_p)\\) of \\(p\\) variables is generated by a latent variable \\(Z\\):\nflowchart LR\n  Z --&gt; X\nIn the Gaussian mixture model, \\(Z\\) is assumed to take discrete values leading to clustered observations. Here we assume that \\(Z=(z_1,\\dots,z_q)\\) is a \\(q\\)-dimensional continous variable with distribution\n\\[\nZ\\sim \\mathcal{N}(0,\\mathbf{I})\n\\]\nthat is, we assume each \\(z_i\\) is drawn from an independent normal distribution with mean zero and standard deviation 1. The conditional distribution of \\(X\\) given \\(Z\\) is just like in the discrete mixture distribution assumed to be a multivariate normal with mean dependent on the value of \\(Z\\); the covariance matrix is assumed to be a multiple of the identity matrix, meaning that conditional on the latent factors \\(Z\\), the \\(p\\) observed features \\(X\\) are independent and have equal error distribution:\n\\[\np(x \\mid z) = \\mathcal{N}(\\mathbf{\\mu} + \\mathbf{V}z, \\sigma^2 \\mathbf{I})\n\\]\nwhere \\(\\mu\\in\\R^p\\) is a mean offset vector, \\(\\mathbf{V}\\in\\R^{p\\times q}\\) is a linear maps, and \\(\\sigma^2&gt;0\\) a common variance parameter for all \\(p\\) dimensions. Note the similarity between this model and the model above.\nFollowing the Gaussian mixture model example, we want to maximize the likelihood of the observed data, which follows the marginal distribution\n\\[\np(x) = \\int dz\\; p(x\\mid z) p(z)\n\\]\nwhich can be interpreted as a “continuous” Gaussian mixture distribution. Unlike in the finite mixture model, this integral can in fact be solved using properties of the multivariate normal distribution:\n\\[\np(x) = \\mathcal{N}(\\mu,\\mathbf{C})\n\\]\nwith covariance matrix \\(\\mathbf{C}=\\mathbf{V}\\mathbf{V}^T+\\sigma^2\\mathbf{I}\\). The corresponding log-likelihood for \\(N\\) observations \\(x_1.\\dots,x_N\\in\\R^p\\) is\n\\[\n\\mathcal{L} = -\\frac{N}{2}\\Bigl\\{p \\ln(2\\pi) + \\ln(\\det(\\mathbf{C})) + \\mathrm{tr}(\\mathbf{C}^{-1}\\mathbf{S}) \\Bigr\\}\n\\]\nwhere\n\\[\n\\mathbf{S}= \\frac{1}{N}\\sum_{i=1}^N (x_i-\\mu)(x_i-\\mu)\n\\]\nThe maximum-likelihood for \\(\\mu\\) is the sample mean, \\(\\hat{\\mu}=\\overline{x}=\\frac{1}{N}\\sum_{i=1}^N x_i\\), such that \\(\\mathbf{S}\\) is the sample covariance matrix. The log-likelihood function measures how much \\(\\mathbf{C}\\) differs from the sample covariance and is maximized by making \\(\\mathbf{C}\\) as “similar” as possible to it. The solution turns out to be the standard PCA solution where the columns of \\(\\mathbf{V}\\) are the \\(q\\) eigenvectors with largest eigenvalues of \\(\\mathbf{S}\\). This conclusion is valid only if we assume the independent error model, where features are independent given latent factors, that is, the latent factors explain all the covariance between the features. In summary:\n\n\n\n\n\n\nProbabilistic PCA interpretation\n\n\n\nIf we assume that our high-dimensional observations are generated by a linear combination of low-dimensional latent (=hidden) factors, and the observed features are independent given the latent factors, then the maximum-likelihood solution for the map between latent and observed space is PCA.\n\n\nNote the important benefit of the probabilistic approach. In standard PCA, we simply fit a linear function to a set of observation, without giving any thought to the deviations (errors) between the (noisy) observations and the fitted model. In probabilistic PCA, as in all generative models, we must be explicit about our assumptions, and standard PCA is only recovered if we assume that features are independent given the latent factors.",
+    "crumbs": [
+      "Dimensionality reduction",
+      "PCA"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/ridge-lasso-elnet.html",
+    "href": "regularized-regression/ridge-lasso-elnet.html",
+    "title": "Ridge, lasso and elastic net regression",
+    "section": "",
+    "text": "Book sections\n\n\n\n\nElements of Statistical Learning: Section 2.3, 3.1, 3.2, 3.4, 4.4\nAn Introduction to Statistical Learning: Section 3.1, 6.2",
+    "crumbs": [
+      "Regularized regression",
+      "Ridge, lasso and elastic net regression"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/ridge-lasso-elnet.html#linear-models-and-least-squares",
+    "href": "regularized-regression/ridge-lasso-elnet.html#linear-models-and-least-squares",
+    "title": "Ridge, lasso and elastic net regression",
+    "section": "Linear models and least squares",
+    "text": "Linear models and least squares\nIn a linear model, a (continuous) output \\(Y\\) is predicted from a vector of inputs \\(X^T=(X_1,X_2,\\dots,X_p)\\) via \\[\\begin{aligned}\n    \\hat Y = \\hat\\beta_0 + \\sum_{j=1}^p \\hat{\\beta}_j X_j\n\\end{aligned}\\]\n\n\\(\\hat Y\\) is the predicted value of \\(Y\\),\n\\(\\hat\\beta_0\\) is the intercept (in statistics) or bias (in machinelearning),\n\\((\\hat\\beta_1,\\hat\\beta_2,\\dots,\\hat\\beta_p)^T\\) is the vector of (regression) coefficients,\n\nFor convenience, we often include a constant variable 1 in \\(X\\), include \\(\\hat \\beta_0\\) in the vector of coefficients, and write the linear model in vector form: \\[\\begin{aligned}\n  \\hat Y = X^T\\hat\\beta\n\\end{aligned}\\]\nLeast squares is the most popular method to fit the linear model to a set of training data \\((x_1,y_1)\\) \\(\\dots\\) \\((x_N,y_N)\\): we pick the coefficients \\(\\beta\\) to minimize the residual sum of squares\n\\[\\begin{aligned}\n    RSS(\\beta) &= \\sum_{i=1}^N (y_i - \\hat y_i)^2\n    = \\sum_{i=1}^N \\left(y_i - x_i^T\\beta\\right)^2\n    = \\sum_{i=1}^N \\Bigl(y_i - \\sum_{j=1}^p x_{ij}\\beta_j\\Bigr)^2\n\\end{aligned}\\]\nCollecting the data for the inputs and ouptput in a \\(N\\times p\\) matrix \\(\\mathbf{X}\\) and \\(N\\)-vector \\(\\mathbf{y}\\), respectively, \\[\\begin{aligned}\n    \\mathbf{X}= (x_1,x_2,\\dots,x_p) = \\begin{pmatrix}\n      x_{11} & x_{12} & \\dots & x_{1p}\\\\\n      x_{21} & x_{22} & \\dots & x_{2p}\\\\\n      \\vdots & \\vdots & & \\vdots\\\\\n      x_{N1} & x_{N2} & \\dots & x_{Np}\n    \\end{pmatrix} &&\n    \\mathbf{y}= \\begin{pmatrix}\n      y_1\\\\\n      y_2\\\\\n      \\vdots\\\\\n      y_N\n    \\end{pmatrix}\n  \\end{aligned}\\] we can write \\[\\begin{aligned}\n  RSS(\\beta) &= (\\mathbf{y}-\\mathbf{X}\\beta)^T(\\mathbf{y}-\\mathbf{X}\\beta)\n\\end{aligned}\\] If the \\(p\\times p\\) matrix \\(\\mathbf{X}^T\\mathbf{X}\\) is non-singular, then the unique minimizer of \\(RSS(\\beta)\\) is given by \\[\\tag{1}\n    \\hat\\beta = (\\mathbf{X}^T\\mathbf{X})^{-1} \\mathbf{X}^T\\mathbf{y}\\]\n\n\n\n\n\n\nExercise\n\n\n\nProve eq. (1) by differentiating \\(RSS(\\beta)\\) w.r.t. \\(\\beta_i\\).\n\n\nThe fitted value at the \\(i\\)th input \\(x_i\\) is \\(\\hat y_i=x_i^T\\hat\\beta\\). In matrix-vector notation, we can write \\[\\begin{aligned}\n\\hat{\\mathbf{y}} = \\mathbf{X}\\hat\\beta = \\mathbf{X}(\\mathbf{X}^T\\mathbf{X})^{-1}\\mathbf{X}^T\\mathbf{y}\n  \\end{aligned}\\] Write \\[\\begin{aligned}\n    \\mathbf{H}= \\mathbf{X}(\\mathbf{X}^T\\mathbf{X})^{-1}\\mathbf{X}^T\n  \\end{aligned}\\]\n\n\n\n\n\n\nExercise\n\n\n\nShow that \\(\\mathbf{H}\\) is a projection matrix, \\(\\mathbf{H}^2=\\mathbf{H}\\). \\(\\mathbf{H}\\) projects on the linear subspace of \\(\\mathbb{R}^N\\) spanned by the columns of \\(\\mathbf{X}\\).",
+    "crumbs": [
+      "Regularized regression",
+      "Ridge, lasso and elastic net regression"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/ridge-lasso-elnet.html#limitations-of-least-squares-linear-regression",
+    "href": "regularized-regression/ridge-lasso-elnet.html#limitations-of-least-squares-linear-regression",
+    "title": "Ridge, lasso and elastic net regression",
+    "section": "Limitations of least-squares linear regression",
+    "text": "Limitations of least-squares linear regression\nLeast-squares linear regression involves the matrix inverse \\((\\mathbf{X}^T\\mathbf{X})^{-1}\\):\n\nIf the columns of \\(\\mathbf{X}\\) are not linearly independent (\\(\\mathbf{X}\\) is not full rank), then \\(\\mathbf{X}^T\\mathbf{X}\\) is singular and \\(\\hat\\beta\\) are not uniquely defined, although the fitted values \\(\\hat{\\mathbf{y}}=\\mathbf{X}\\hat\\beta\\) are still the projection of \\(\\mathbf{y}\\) on the column space of \\(\\mathbf{X}\\). This is usually resolved automatically by stats software packages.\nIf \\(\\mathbf{X}\\) is full rank, but some predictors are highly correlated, \\(\\det(\\mathbf{X})\\) will be close to 0. This leads to numerical instability and high variance in \\(\\hat\\beta\\) (small changes in the training data lead to large changes in \\(\\hat\\beta\\)).\nIf \\(p&gt;N\\) (but \\(rnk(\\mathbf{X})=N\\)), then the columns of \\(\\mathbf{X}\\) span the entire space \\(\\mathbb{R}^N\\), that is, \\(\\mathbf{H}=\\mathbb{1}\\) and \\(\\hat{\\mathbf{y}}=\\mathbf{y}\\): overfitting the training data.\n\nHigh variance and overfitting result in poor prediction accuracy (generalization to unseen data).\nPrediction accuracy can be improved by shrinking regression coefficients towards zero (imposing a penalty on their size).",
+    "crumbs": [
+      "Regularized regression",
+      "Ridge, lasso and elastic net regression"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/ridge-lasso-elnet.html#ridge-regression",
+    "href": "regularized-regression/ridge-lasso-elnet.html#ridge-regression",
+    "title": "Ridge, lasso and elastic net regression",
+    "section": "Ridge regression",
+    "text": "Ridge regression\nRegularization by shrinkage: Ridge regression\nThe ridge regression coefficients minimize a penalized residual sum of of squares: \\[\\tag{2}\n\\beta^{\\text{ridge}} = \\text{argmin}_\\beta \\left\\{ \\sum_{i=1}^N \\Bigl(y_i - \\beta_0 - \\sum_{j=1}^p x_{ij}\\beta_j\\Bigr)^2 + \\textcolor{red}{\\lambda\\sum_{j=1}^p\\beta_j^2}  \\right\\}\n\\]\n\n\\(\\lambda\\geq 0\\) is a hyperparameter that controls the amount of shrinkage.\nThe inputs \\(X_j\\) (columns of \\(\\mathbf{X}\\)) are normally standardized before solving eq. (2).\nThe intercept \\(\\beta_0\\) is not penalized.\nWith centered inputs, \\(\\hat\\beta_0=\\bar y=\\frac1N\\sum_i y_i\\), and remaining \\(\\beta_j\\) can be estimated by a ridge regression without intercept.\n\nThe criterion in eq. (2) can be written in matrix form: \\[\\begin{aligned}\n    RSS(\\beta,\\lambda) = (\\mathbf{y}-\\mathbf{X}\\beta)^T(\\mathbf{y}-\\mathbf{X}\\beta) + \\lambda \\beta^T\\beta\n  \\end{aligned}\\] with unique minimizer \\[\\tag{3}\n    \\beta^{\\text{ridge}}= (\\mathbf{X}^T\\mathbf{X}+\\lambda\\mathbb{1})^{-1}\\mathbf{X}^T\\mathbf{y}\\]\nNote that \\(\\mathbf{X}^T\\mathbf{X}+\\lambda\\mathbb{1}\\) is always non-singular.\n\n\n\n\n\n\nExercise\n\n\n\nProve eq. (3) by differentiating \\(RSS(\\beta)\\) w.r.t. \\(\\beta_i\\)",
+    "crumbs": [
+      "Regularized regression",
+      "Ridge, lasso and elastic net regression"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/ridge-lasso-elnet.html#lasso-regression",
+    "href": "regularized-regression/ridge-lasso-elnet.html#lasso-regression",
+    "title": "Ridge, lasso and elastic net regression",
+    "section": "Lasso regression",
+    "text": "Lasso regression\nLasso regression: regularization by shrinkage and subset selection\nThe lasso regression coefficients minimize a penalized residual sum of squares: \\[\\tag{4}\n    \\beta^{\\text{lasso}}=  = \\text{argmin}_\\beta \\left\\{ \\sum_{i=1}^N \\Bigl(y_i - \\beta_0 - \\sum_{j=1}^p x_{ij}\\beta_j\\Bigr)^2 + \\textcolor{red}{\\lambda\\sum_{j=1}^p|\\beta_j|}  \\right\\}\\]\n\nLasso regression has no closed form solution, the solutions are non-linear in the \\(y_i\\),\nIf \\(\\lambda\\) is large enough, some coefficients will be exactly zero.\n\n\n\n\n\n\n\nExercise\n\n\n\nConsider the case with one predictor (\\(p=1\\)) and training data \\[\\begin{aligned}\n      \\mathbf{x}= \\begin{pmatrix}\n      x_1\\\\\n      x_2\\\\\n      \\vdots\\\\\n      x_N\n    \\end{pmatrix} &&\n      \\mathbf{y}= \\begin{pmatrix}\n      y_1\\\\\n      y_2\\\\\n      \\vdots\\\\\n      y_N\n    \\end{pmatrix}\n    \\end{aligned}\\] Assume that the data are standardized (mean zero and standard deviation one), and that \\(\\mathbf{x}^T\\mathbf{y}&gt;0\\) (positive correlation between input and output).\n\nWrite down the loss functions and find analytic solutions for the ordinary least squares, ridge regression, and lasso regression coefficient.\nDraw schematically how \\(\\beta^{\\text{ridge}}\\) and \\(\\beta^{\\text{lasso}}\\) vary as a function of \\(\\beta^{\\text{OLS}}\\).\nExplain what shrinkage and variable selection mean in this simple example.\n\nHow can the exact lasso solution with one predictor be used to construct an algorithm to solve the general case?",
+    "crumbs": [
+      "Regularized regression",
+      "Ridge, lasso and elastic net regression"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/ridge-lasso-elnet.html#elastic-net-regression",
+    "href": "regularized-regression/ridge-lasso-elnet.html#elastic-net-regression",
+    "title": "Ridge, lasso and elastic net regression",
+    "section": "Elastic net regression",
+    "text": "Elastic net regression\nElastic net regression combines ridge and lasso regularization.\n\nIn genomic applications, there are often strong correlations among predictor variables (genes operate in molecular pathways).\nThe lasso penalty is somewhat indifferent to the choice among a set of strong but correlated variables.\nThe ridge penalty tends to shrink the coefficients of correlated variables towards each other.\nThe elastic net penalty is a compromise, and has the form \\[\\begin{aligned}\n        \\lambda\\sum_{j=1}^p \\Bigl(\\alpha|\\beta_j|+\\tfrac12(1-\\alpha)\\beta_j^2\\Bigr).\n      \\end{aligned}\\] The second term encourages highly correlated features to be averaged, while the first term encourages a sparse solution in the coefficients of these averaged features.",
+    "crumbs": [
+      "Regularized regression",
+      "Ridge, lasso and elastic net regression"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/ridge-lasso-elnet.html#generalized-linear-models",
+    "href": "regularized-regression/ridge-lasso-elnet.html#generalized-linear-models",
+    "title": "Ridge, lasso and elastic net regression",
+    "section": "Generalized linear models",
+    "text": "Generalized linear models\n\nRidge, lasso, and elastic net regression can also be used to fit generalized linear models when the number of predictors is high.\nThe most commonly used model is logistic regression, where a binary output \\(Y\\) is predicted from a vector of inputs \\(X^T=(X_1,\\dots,X_p)\\) via \\[\\begin{aligned}\n  \\log\\frac{P(Y=1\\mid X)}{P(Y=0\\mid X)}  &= \\beta_0 + \\sum_{j=1}^p \\beta_j X_j\\\\\n  P(Y=1\\mid X) = 1 - P(Y=0\\mid X) &= \\frac1{1+e^{-\\beta_0 - \\sum_{j=1}^p \\beta_j X_j}}\n\\end{aligned}\\]\nWith training data \\((\\mathbf{X},\\mathbf{y})\\), the parameters are estimated by maximizing the penalized log-likelihood: \\[\\begin{aligned}\n      \\mathcal{L}(\\beta) &= \\log \\prod_{i=1}^N P(y_i\\mid x_{i1},\\dots,x_{ip}) - \\sum_{j=1}^p \\left(\\alpha|\\beta_j|+\\tfrac12(1-\\alpha)\\beta_j^2\\right)\\\\\n      &= \\sum_{i=1}^N \\log P(y_i\\mid x_{i1},\\dots,x_{ip}) - \\lambda \\sum_{j=1}^p \\left(\\alpha|\\beta_j|+\\tfrac12(1-\\alpha)\\beta_j^2\\right)\n    \\end{aligned}\\]\nGeneralized linear models can be fitted using a iterative least squares approximation: a quadratic approximation to the log-likelihood around the current estimates for \\(\\beta\\), and this quadratic approximation is used to find the next estimates using the standard linear elastic net solution.\n\n\n\n\n\n\n\nExercise\n\n\n\nFind an expression for \\(\\mathcal{L}(\\beta)\\) in the case of logistic regression.",
+    "crumbs": [
+      "Regularized regression",
+      "Ridge, lasso and elastic net regression"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/ridge-lasso-elnet.html#selecting-the-hyperparameters",
+    "href": "regularized-regression/ridge-lasso-elnet.html#selecting-the-hyperparameters",
+    "title": "Ridge, lasso and elastic net regression",
+    "section": "Selecting the hyperparameters",
+    "text": "Selecting the hyperparameters\nCross-validation is used to select value for the hyperparameters \\(\\lambda\\) and \\(\\alpha\\). See An Introduction to Statistical Learning (Section 6.2.3)",
+    "crumbs": [
+      "Regularized regression",
+      "Ridge, lasso and elastic net regression"
+    ]
+  },
+  {
+    "objectID": "statistical-significance/fdr-estimation.html",
+    "href": "statistical-significance/fdr-estimation.html",
+    "title": "False discovery rate estimation",
+    "section": "",
+    "text": "Book sections\n\n\n\n\nElements of Statistical Learning: Section 18.7\nAn Introduction to Statistical Learning: Section 13.4",
+    "crumbs": [
+      "Statistical significance",
+      "False discovery rate estimation"
+    ]
+  },
+  {
+    "objectID": "statistical-significance/fdr-estimation.html#statistical-significance",
+    "href": "statistical-significance/fdr-estimation.html#statistical-significance",
+    "title": "False discovery rate estimation",
+    "section": "Statistical significance",
+    "text": "Statistical significance\nWhen we analyze genome-wide data, we are usually interested in identifying statistically significant features or patterns, that is, patterns we would not expect to see purely by chance. For example:\n\nGenes differentially expressed between healthy and disease samples, treated and untreated samples, etc.\nGenes coexpressed across tumour samples\n…\n\nWe will use differential expression between two conditions, treated and untreated, as a running example. Of course this applies equally to other types of comparisons, e.g. ER positive vs ER negative breast tumours.\nStatistical significance is expressed in terms of comparing a null hypothesis \\(H_0\\) to an alternative hypothesis \\(H_1\\). For instance\n\\[\n\\begin{aligned}\n  H_0 &= \\text{treatment has no effect on gene expression}\\\\\\\\\n  H_1 &= \\text{treatment does have an effect on gene expression}\n\\end{aligned}\n\\]\nTo compare gene expression between the two groups, we can for instance do a two-sample \\(t\\)-test: compute for each gene\n\\[\nt = \\frac{\\overline{x_1} - \\overline{x_2}}{\\text{se}}\n\\]\nwhere \\(\\overline{x_1}\\) and \\(\\overline{x_2}\\) are the average expression levels of the gene in each group, and \\(\\text{se}\\) is the pooled within-group standard error:\n\\[\n\\text{se} = \\sqrt{\\frac{s_1^2}{n_1}+\\frac{s_2^2}{n_2}}\n\\]\nwhere \\(s_i^2\\) and \\(n_i\\) are the variance and number of samples in group \\(i\\), respectively\n\\[\n\\begin{aligned}\n  \\overline{x_i} &= \\frac{1}{n_i}\\sum_{j\\in G_i} x_{j} \\\\\\\\\n  s_i^2 &= \\frac{1}{(n_i-1)}\\sum_{j\\in G_i} (x_i - \\overline{x_i})^2\n\\end{aligned}\n\\]\nThe \\(t\\)-statistic measures the difference in average expression between the two groups, relative to the natural variation within each group. The greater \\(|t|\\), the more likely there is a true difference between the groups. Nevertheless, even if there is no true difference, some variation between the groups will be observed in a finite number of samples due to random sampling noise. The distribution of \\(t\\)-values observed between two groups when in fact there is no true difference between them is called the null distribution. Statistical significance is usually expressed by the \\(p\\)-value, which, for a given value of \\(t\\), expresses the probability to observe a \\(t\\)-statistic greater than \\(t\\) (in absolute value) under the null hypothesis:\n\\[\n\\begin{aligned}\n  p = \\text{Pr}(|T|\\geq |t| \\mid H_0)\n\\end{aligned}\n\\]\nFor some test statistics, the true null distribution to compute the \\(p\\)-value is known. Otherwise random permutations can be used: randomly permute the group labels of the samples a large number of times, compute the test statistic for each permutation, and use these values to construct an empirical null distribution.\nAn important property of \\(p\\)-values is the following: under the null hypothesis, \\(p\\)-values are uniformly distributed between 0 and 1:\n\\[\n\\text{Pr}(P\\leq p \\mid H_0) = p\n\\]\nConventionally, a \\(p\\)-value threshold of 0.05 is often used. This means that the probability that we declare a gene as being affected by the treatment, even though in reality it is not affected, is less than 5%.\nIn genome-wide studies, we typically measure around 20,000 genes (in humans). From the uniformity of the \\(p\\)-value distribution under the null hypothesis, it follows that even if none of the genes are affected by treatment, we would still expect 5% or 1,000 genes to have a \\(p\\)-value less than 0.05. Clearly it would be wrong to call any of these genes differentially expressed!",
+    "crumbs": [
+      "Statistical significance",
+      "False discovery rate estimation"
+    ]
+  },
+  {
+    "objectID": "statistical-significance/fdr-estimation.html#false-discovery-rate",
+    "href": "statistical-significance/fdr-estimation.html#false-discovery-rate",
+    "title": "False discovery rate estimation",
+    "section": "False discovery rate",
+    "text": "False discovery rate\nThe \\(p\\)-value is often wrongly interpreted as saying that the probability that our gene is truly affected by treatment is greater than 95% if \\(p&lt;0.05\\). The latter is the probability that the alternative hypothesis is true given that the \\(p\\)-value is below a certain threshold, or \\(\\text{Pr}(H_1 \\mid P\\leq p)\\). More commonly, we express this through the false discrovery rate (FDR), that is, the probability that the null hypothesis is true given that the \\(p\\)-value is below a certain threshold, \\(\\text{Pr}(H_0 \\mid P\\leq p)=1-\\text{Pr}(H_1 \\mid P\\leq p)\\).\nTo get a feel for what such probabilities mean, consider the following table:\n\n\n\n\nSignificant\nNot Significant\nTotal\n\n\n\n\n\\(H_0\\) true\n\\(F\\)\n\\(M_0-F\\)\n\\(M_0\\)\n\n\n\\(H_1\\) true\n\\(T\\)\n\\(M_1-T\\)\n\\(M_1\\)\n\n\nTotal\n\\(S\\)\n\\(M-S\\)\n\\(M\\)\n\n\n\nHere “F” stands for “false positive” (not affected by treatment, but still called significant), “T” for “true positive”. The second column contains respectively the “true negative” and “false negative” results.\nThen the false discovery rate is\n\\[\n\\text{FDR} = \\mathbb{E}\\left(\\frac{F}{S}\\right)\n\\]\nObviously, we never know the true value of the numbers in the table, and hence FDR must be estimated. There exist several approaches for doing this. We consider two popular ones: the plug-in estimator and a Bayesian approach.\n\nPlug-in estimator of the FDR\nConsider again the differential expression problem. Compute \\(t\\)-statistics for each gene and consider a range of thresholds \\(C\\), either on the absolute \\(t\\)-values or on the corresponding \\(p\\)-values. For each value of \\(C\\), we know \\(S_{obs}(C)\\), the observed number of significant genes at threshold \\(C\\).\nNow generate \\(K\\) random permutations of the group labels, and compute for each permutation \\(k\\), \\(F_{obs}(C,k)\\), the number of significant genes at threshold \\(C\\) in permutation \\(k\\), which by virtue of the randomization, must all correspond to cases where \\(H_0\\) is true. Compute the average over all permutations:\n\\[\nF_{obs}(C) = \\frac{1}{K}\\sum_{k=1}^K F_{obs}(C,k)\n\\]\nThe plug-in estimate of the FDR at threshold \\(C\\) is then defined as\n\\[\n\\widehat{\\text{FDR}}(C) = \\frac{F_{obs}(C)}{S_{obs}(C)}\n\\]\nWe can now vary \\(C\\) until we reached a desired FDR value, e.g. 10%, such that we expect no more than 10% of the genes we call differentially expressed to be false positives.\nNote that in practice, the number of permutations \\(K\\) need not be very large to reach a stable value for the average. This is because in each permutation, we obtain random \\(p\\)-values for a large number of features (genes).\n\n\nBayesian estimate of the FDR\nWhen we perform a genome-wide test for differential expression, we obtain on the order of \\(10^4\\) test statistic values, with corresponding \\(p\\)-values under the null hypothesis. If all is well, the distribution of these \\(p\\)-values, visualized using a histogram, typically looks like the anti-conservative p-values on this page:\nHow to interpret a \\(p\\)-value histogram\nWe know that under the null hypothesis, \\(p\\)-values are uniformly distributed. We recognize the uniform distribution in the flat profile of the histogram for unsignificant (\\(p\\to 1\\)) \\(p\\)-values, which with very high probability come from genes unaffected by the treatment. At very small \\(p\\)-values, we see a deviation from the uniform distribution, which indicates the presence of truly affected genes, which obsviously don’t follow the null distribution.\nHence it seems like we can model the observed \\(p\\)-value distribution as a mixture distribution with one component corresponding to the null distribution and one component corresponding to the alternative distribution:\n\\[\nf(p) = \\pi_0 f_0(p) + (1-\\pi_0) f_1(p)\n\\]\nwhere \\(f(p)\\) is the probability density function (p.d.f.) of the observed \\(p\\)-value distribution, \\(f_0\\) and \\(f_1\\) are the p.d.f. of the \\(p\\)-value distribution under the null and alternative distribution, respectively, and \\(\\pi_0 = \\text{Pr}(H_0)\\), the prior probability of a gene being unaffected by treatment (prior as in, before observing any data), .\nAs before, we can imagine that our \\(p\\)-values are generated by a process that first samples a hidden variable \\(Z=0\\) with probability \\(\\pi_0\\) and \\(Z=1\\) with probability \\(1-\\pi_0\\), and then samples a \\(p\\)-value (or \\(t\\)-statistic) from the null or alternative distribution depending on the value of \\(Z\\). We know the null distribution is the uniform distribution. If we knew a parametric form for the alternative distribution, we could apply EM to estimate \\(\\pi_0\\) and the parameters of the alternative distribution, and then compute for each gene the recognition distribution or local false discovery rate (lfdr)\n\\[\n\\begin{aligned}\n  \\text{lfdr}(p)  &= \\text{Pr}(H_0 \\mid p)\n  = \\text{Pr}(Z=0 \\mid p)\n  = \\frac{\\pi_0 f_0(p)}{f(p)}\n\\end{aligned}\n\\]\nThe word “local” refers to the fact that the above expression gives the expected rate of false positives among all genes with \\(p\\)-value equal to \\(p\\), as opposed to the “tail” FDR estimated in the previous section giving the he expected rate of false positive among all genes with \\(p\\)-value less than or equal to \\(p\\).\nIn reality, EM is rarely used in this context, because we rarely have a good enough idea about a parametric form for the alternative distribution. Instead a non-parametric approach is used that exploits the knowledge that:\n\n\\(p\\)-values are uniformly distributed under the null hypothesis, that is\n\\[\nf_0(p) = 1\n\\]\n\\(p\\)-values close to 1 almost surely come from the null distribution, that is,\n\\[\n  \\begin{aligned}\n\\lim_{p\\to 1} f_1(p) &= 0 \\\\\\\\\n\\lim_{p\\to 1} f(p) &= \\pi_0 \\lim_{p\\to 1} f_0(p) = \\pi_0\n  \\end{aligned}\n  \\]\n\nHence in the observed \\(p\\)-value histogram, \\(\\pi_0\\) can be estimated from the height of the “flat” region near \\(p\\approx 1\\).\nWe obtain\n\\[\n\\text{lfdr}(p) = \\frac{\\hat{\\pi}_0}{f(p)}\n\\]\nIt remains to estimate the p.d.f. of the real \\(p\\)-value distribution \\(f(p)\\). In the popular q-value package, this is done by kernel density estimation followed by some smoothing.\nThe local false discovery rate provide a useful measure for the importance of a feature with \\(p\\)-value \\(p\\). However, \\(p\\)-values themselves represent tail probabilities, \\(p=\\text{Pr}(P\\leq p \\mid H_0)\\), see above. Similarly, we can compute the FDR among all features with \\(p\\)-value less than some threshold \\(p\\):\n\\[\n\\text{FDR}(p) = \\text{Pr}(H_0\\mid P\\leq p).\n\\]\nThis tells us the estimated false discovery rate among all features that are equally or more significant than a feature with \\(p\\)-value \\(p\\).\nWriting \\(F(p)\\), \\(F_0(p)\\) and \\(F_1(p)\\) for the cumulative probability functions of the observed, null, and alternative \\(p\\)-value distributions, the reasoning above can be repeated to obtain\n\\[\nF(p)=\\pi_0 F_0(p) + (1-\\pi_0) F_1(p) = \\pi_0 p + (1-\\pi_0) F_1(p)\n\\]\nwhere we used \\(F_0(p)=p\\). It follows that\n\\[\n\\text{FDR}(p) = \\text{Pr}(H_0\\mid P\\leq p) = \\text{Pr}(Z=0\\mid P\\leq p) =\\frac{\\pi_0 p}{F(p)}\n\\]\n\n\n\\(Q\\)-values\nThe \\(q\\)-value of a feature with \\(p\\)-value \\(p\\) is defined as the minimum FDR that can be attained when calling that feature significant, that is, by choosing a \\(p\\)-value threshold \\(r\\geq p\\). Hence\n\\[\nq(p) = \\min_{r\\geq p} \\text{FDR}(r)\n\\]",
+    "crumbs": [
+      "Statistical significance",
+      "False discovery rate estimation"
+    ]
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "About this website"
+  },
+  {
+    "objectID": "causal-inference/mediation-iv.html",
+    "href": "causal-inference/mediation-iv.html",
+    "title": "Mediation and instrumental variable analysis",
+    "section": "",
+    "text": "Cis-trans eQTLs\n\n\nFigure by Sean Bankier from this review.\nThe GTEx study identified trans-eQTLs that are also cis-eQTLs and asked if the cis-eGene could be the cause of the trans-eQTL association (see fig above), that is, if the following model is supported by the data:\nflowchart LR\n  Z --&gt; X --&gt; Y\nwhere \\(Z\\) is a SNP that is a cis-eQTL for gene \\(X\\) and trans-eQTL for gene \\(Y\\). This model implies that \\(X\\) blocks the path between \\(Z\\) and \\(Y\\), and hence that \\(Z\\) and \\(Y\\) are independent conditional on \\(X\\), in mathematical notation\n\\[\nZ \\perp Y \\mid X\n\\]\nThe principle for testing whether the model \\(Z\\to X \\to Y\\) is true using the conditional independence criterion is illustrated in the figure below. Assuming linear relations between all variables, three conditions must be met:\n\nThe expression levels of \\(X\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to X\\) association).\nThe expression levels of \\(Y\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to Y\\) association).\nThe residuals of \\(Y\\) after regression on \\(X\\) do not differ differ significantly between the genotype groups of \\(Z\\) (to confirm that the \\(Z\\to Y\\) association is mediated by \\(X\\), and hence that \\(Z\\to X \\to Y\\) is true).",
+    "crumbs": [
+      "Causal inference",
+      "Mediation and instrumental variable analysis"
+    ]
+  },
+  {
+    "objectID": "causal-inference/mediation-iv.html#mediation-analysis",
+    "href": "causal-inference/mediation-iv.html#mediation-analysis",
+    "title": "Mediation and instrumental variable analysis",
+    "section": "",
+    "text": "Cis-trans eQTLs\n\n\nFigure by Sean Bankier from this review.\nThe GTEx study identified trans-eQTLs that are also cis-eQTLs and asked if the cis-eGene could be the cause of the trans-eQTL association (see fig above), that is, if the following model is supported by the data:\nflowchart LR\n  Z --&gt; X --&gt; Y\nwhere \\(Z\\) is a SNP that is a cis-eQTL for gene \\(X\\) and trans-eQTL for gene \\(Y\\). This model implies that \\(X\\) blocks the path between \\(Z\\) and \\(Y\\), and hence that \\(Z\\) and \\(Y\\) are independent conditional on \\(X\\), in mathematical notation\n\\[\nZ \\perp Y \\mid X\n\\]\nThe principle for testing whether the model \\(Z\\to X \\to Y\\) is true using the conditional independence criterion is illustrated in the figure below. Assuming linear relations between all variables, three conditions must be met:\n\nThe expression levels of \\(X\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to X\\) association).\nThe expression levels of \\(Y\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to Y\\) association).\nThe residuals of \\(Y\\) after regression on \\(X\\) do not differ differ significantly between the genotype groups of \\(Z\\) (to confirm that the \\(Z\\to Y\\) association is mediated by \\(X\\), and hence that \\(Z\\to X \\to Y\\) is true).",
+    "crumbs": [
+      "Causal inference",
+      "Mediation and instrumental variable analysis"
+    ]
+  },
+  {
+    "objectID": "causal-inference/mediation-iv.html#instrumental-variable-analysis-mendelian-randomization",
+    "href": "causal-inference/mediation-iv.html#instrumental-variable-analysis-mendelian-randomization",
+    "title": "Mediation and instrumental variable analysis",
+    "section": "Instrumental variable analysis / Mendelian randomization",
+    "text": "Instrumental variable analysis / Mendelian randomization\nThe mediation method fails if \\(X\\) and \\(Y\\) are affected by common cause \\(U\\) (which may be an unknown or hidden variable):\nflowchart LR\n  Z --&gt; X --&gt; Y\n  U --&gt; X & Y\nIn this case, conditioning on \\(X\\) opens the collider \\(Z \\to X \\leftarrow U\\), creating a path \\(Z\\\\; --- \\\\; U \\to Y\\), such that the residuals of \\(Y\\) will still show a difference between the genotype groups of \\(Z\\), and the mediation method concludes (wrongly!) that the \\(Z\\to Y\\) association must be due to another factor than \\(X\\) (no causal \\(X\\to Y\\) relation).\nInstrumental variable, known as Mendelian randomization (MR), is an alternative causal inference approach that is not affected by hidden confounders \\(U\\), but with subtly different underlying assumptions.\nSpecifically, in MR we assume that the \\(Z\\to Y\\) association must be due to \\(X\\) (for instance because \\(X\\) is the only cis-eGene of \\(Z\\), and trans-eQTL associations must be mediated by some initial cis effects), and we seek to estimate the magnitude of the causal effect of \\(X\\) on \\(Y\\).\nThe diagram above can be written as a structural equation model\n\\[\n\\begin{aligned}\n  X &= a Z + c_X U + E_X\\\\\n  Y &= b X + c_Y U + E_Y\n\\end{aligned}\n\\]\nwhere \\(E_X\\) and \\(E_Y\\) are error terms, mutually independent and independent of \\(Z\\) and \\(U\\). Since \\(Z\\) and \\(U\\) are assumed to be independent (no arrows in the diagram), it follows that\n\\[\n\\begin{aligned}\n  \\mathrm{cov}(Y,Z) &= b\\\\\n  \\mathrm{cov}(X,Z) &= ab\n\\end{aligned}\n\\]\nand hence the causal effect of \\(X\\) on \\(Y\\) is estimated by the ratio of covariances:\n\\[\nb = \\frac{\\mathrm{cov}(Y,Z)}{\\mathrm{cov}(X,Z)}\n\\]",
+    "crumbs": [
+      "Causal inference",
+      "Mediation and instrumental variable analysis"
+    ]
+  },
+  {
+    "objectID": "graphical-models/gene-regulatory-networks.html",
+    "href": "graphical-models/gene-regulatory-networks.html",
+    "title": "Gene regulatory networks",
+    "section": "",
+    "text": "Classic paper\n\n\n\nZhu J et al. Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks. Nature Genetics 40:854 (2008).",
+    "crumbs": [
+      "Graphical models",
+      "Gene regulatory networks"
+    ]
+  },
+  {
+    "objectID": "graphical-models/gene-regulatory-networks.html#integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks",
+    "href": "graphical-models/gene-regulatory-networks.html#integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks",
+    "title": "Gene regulatory networks",
+    "section": "",
+    "text": "Classic paper\n\n\n\nZhu J et al. Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks. Nature Genetics 40:854 (2008).",
+    "crumbs": [
+      "Graphical models",
+      "Gene regulatory networks"
+    ]
+  },
+  {
+    "objectID": "graphical-models/gene-regulatory-networks.html#further-reading",
+    "href": "graphical-models/gene-regulatory-networks.html#further-reading",
+    "title": "Gene regulatory networks",
+    "section": "Further reading",
+    "text": "Further reading\nZhang B, et al. . Integrated systems approach identifies genetic nodes and networks in late-onset Alzheimer’s disease. Cell 153:707–720 (2013)\nTalukdar HA, et al. Cross-tissue regulatory gene networks in coronary artery disease. Cell Systems 2:196 (2016)\nBeckmann ND., et al. Multiscale causal networks identify VGF as a key regulator of Alzheimer’s disease. Nature communications 11:3942 (2020).",
+    "crumbs": [
+      "Graphical models",
+      "Gene regulatory networks"
+    ]
   },
   {
     "objectID": "index.html",
@@ -65,6 +296,292 @@
     "text": "This is the website for the second half of the course BINF301 Genome-scale Algorithms. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.\nMachine learning plays an important role in computational biology. See the Machine Learning in Computational and Systems Biology community or the Machine Learning in Computational Biology conference series.\nThe lectures are divided in modules, each focusing on a specific class of methods:\n\nClustering\nRegularized regression\nDimensionality reduction\nCausal inference\nGraphical models\nSpatio-Temporal models\n\nEach module follows the same structure:\n\nA classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.\nThe method used in the paper is studied in detail, along with additional methods to solve the same type of problem.\nThe methods are put in practice using, where possible, original data from the papers studied in the first part.\n\nThe computational demonstrations for the course were developed in Julia, and the course starts with an introduction to Julia. For the assignments, you can use any programming language.\nAn appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.\nThe theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:\n\nTrevor Hastie, Robert Tibshirani, and Jerome Friedman. The Elements of Statistical Learning (second edition) (2009).\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. An Introduction to Statistical Learning (2023).\nChristopher Bishop. Pattern Recognition and Machine Learning (2006).\nMarc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. Mathematics for Machine Learning (2020).\n\nThe use of classic papers is motivated by Back to the future: education for systems-level biologists. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.",
     "crumbs": [
       "Home"
+    ]
+  },
+  {
+    "objectID": "spatio-temporal-models/spatial-gene-expression.html",
+    "href": "spatio-temporal-models/spatial-gene-expression.html",
+    "title": "Spatial gene experssion",
+    "section": "",
+    "text": "Classic paper\n\n\n\nChen, Kok Hao, et al. Spatially resolved, highly multiplexed RNA profiling in single cells. Science 348.6233 (2015): aaa6090.\nArnol, et al. Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis. Cell Reports 29:202 (2019)\nSee also this review\n\n\n\n\nMERFISH = multiplexed error-robust FISH (fluorescence in situ hybridization), a single-molecule imaging approach that allows the copy numbers and spatial localizations of thousands of RNA species to be determined in single cells.\nEach RNA labelled with set of encoding probes, which contain:\n\ntargeting sequences that bind the RNA\nreadout sequences that bind fluorescently labeled readout probes\n\nEach RNA assigned a binary word in a modified, error-robust Hamming code:\n\nSequences have \\(N\\) bits, \\(N\\) number of fluorescent labels\nSequences have exactly four 1’s. Same number of ones guarantees same overall error rate in situation where \\(1\\to 0\\) and \\(0\\to 1\\) error rates are different.\nSequences have a mutual Hamming distance of at least 4.\n\nHamming codes can do 1-bit error correction, see example on wikipedia. Higher calling rate and lower misidentification rate at the cost of encoding fewer RNA species with a given number of bits.",
+    "crumbs": [
+      "Spatio-Temporal models",
+      "Spatial gene experssion"
+    ]
+  },
+  {
+    "objectID": "spatio-temporal-models/spatial-gene-expression.html#spatially-resolved-highly-multiplexed-rna-profiling-in-single-cells",
+    "href": "spatio-temporal-models/spatial-gene-expression.html#spatially-resolved-highly-multiplexed-rna-profiling-in-single-cells",
+    "title": "Spatial gene experssion",
+    "section": "",
+    "text": "Classic paper\n\n\n\nChen, Kok Hao, et al. Spatially resolved, highly multiplexed RNA profiling in single cells. Science 348.6233 (2015): aaa6090.\nArnol, et al. Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis. Cell Reports 29:202 (2019)\nSee also this review\n\n\n\n\nMERFISH = multiplexed error-robust FISH (fluorescence in situ hybridization), a single-molecule imaging approach that allows the copy numbers and spatial localizations of thousands of RNA species to be determined in single cells.\nEach RNA labelled with set of encoding probes, which contain:\n\ntargeting sequences that bind the RNA\nreadout sequences that bind fluorescently labeled readout probes\n\nEach RNA assigned a binary word in a modified, error-robust Hamming code:\n\nSequences have \\(N\\) bits, \\(N\\) number of fluorescent labels\nSequences have exactly four 1’s. Same number of ones guarantees same overall error rate in situation where \\(1\\to 0\\) and \\(0\\to 1\\) error rates are different.\nSequences have a mutual Hamming distance of at least 4.\n\nHamming codes can do 1-bit error correction, see example on wikipedia. Higher calling rate and lower misidentification rate at the cost of encoding fewer RNA species with a given number of bits.",
+    "crumbs": [
+      "Spatio-Temporal models",
+      "Spatial gene experssion"
+    ]
+  },
+  {
+    "objectID": "spatio-temporal-models/gaussian-processes.html",
+    "href": "spatio-temporal-models/gaussian-processes.html",
+    "title": "Variance component models and Gaussian processes",
+    "section": "",
+    "text": "Book sections\n\n\n\nPattern Recognition and Machine Learning: Chapter 6\n\n\n\nLinear regression, from fixed to random coefficients\nIn a standard linear regression model for an outcome \\(Y\\) on one or more predictors \\(X_1,\\dots,X_p\\)\n\\[\nY = \\sum_i\\beta_i X_i + \\epsilon = X^T\\beta + \\epsilon, \\qquad\n  \\epsilon \\sim \\mathcal{N}(0,\\sigma_e^2)\n\\]\nthe effects \\(\\beta_i\\) are treated as fixed, such that the distribution of \\(Y\\) is:\n\\[\np(Y\\mid X) = \\mathcal{N}(X^T\\beta,\\sigma_e^2),\n\\]\nthat is, in a fixed effect model, the predictors affect the average or expected value of \\(Y\\). In a fixed effect model, we always assume that the data to fit the parameters are obtained from independent samples of an underlying model.\nIf our data consists of non-independent samples (e.g. due to temporal, spatial or familial relations among the observations), we can use a random effect model to explain these correlations as a function of covariates \\(X\\). As before, we collect the data for the inputs and ouptput in a \\(N\\times p\\) matrix \\(\\mathbf{X}\\) and \\(N\\)-vector \\(\\mathbf{y}\\), respectively, \\[\\begin{aligned}\n    \\mathbf{X}= (x_1,x_2,\\dots,x_p) = \\begin{pmatrix}\n      x_{11} & x_{12} & \\dots & x_{1p}\\\\\n      x_{21} & x_{22} & \\dots & x_{2p}\\\\\n      \\vdots & \\vdots & & \\vdots\\\\\n      x_{N1} & x_{N2} & \\dots & x_{Np}\n    \\end{pmatrix} &&\n    \\mathbf{y}= \\begin{pmatrix}\n      y_1\\\\\n      y_2\\\\\n      \\vdots\\\\\n      y_N\n    \\end{pmatrix}\n  \\end{aligned}\\]\nWe model the data as\n\\[\n\\begin{aligned}\n  \\mathbf{y} &= \\mathbf{X} \\alpha + \\epsilon\\\n\\end{aligned}\n\\]\nwhere \\(\\alpha = (\\alpha_1,\\dots,\\alpha_p)^T\\) are random effects with multi-variate normal distribution\n\\[\n\\alpha \\sim \\mathcal{N}(0,\\sigma_a^2 I_p)\n\\]\nand \\(\\epsilon = (\\epsilon_1,\\dots,\\epsilon_N)\\) are independent error terms\n\\[\n\\epsilon \\sim \\mathcal{N}(0,\\sigma_e^2 I_N).\n\\]\nThe random effects are assumed to be independent or the errors. We assumed the random effects are mutually independent, but this can easily be generalized.\nUsing properties of the multivariate normal distribution, the distribution of \\(\\mathbf{y}\\) can be seen to be:\n\\[\np(\\mathbf{y}\\mid \\mathbf{X}) = \\mathcal{N}(0, \\sigma_a^2 \\mathbf{X}\\mathbf{X}^T + \\sigma_e^2 I_N)\n\\]\nand we see that \\(\\mathbf{X}\\), or more precisely the covariance matrix \\(\\mathbf{X}\\mathbf{X}^T\\) indeed models correlations among the samples in \\(\\mathbf{y}\\).\nNaturally, fixed and random effects can be combined into a so-called mixed model.\nModels of this kind are often used in genetics, where the random effect covariates \\(\\mathbf{X}\\) are genetic markers and their covariance matrix \\(\\mathbf{X}\\mathbf{X}^T\\) expresses the genetic similarity between individuals in the study.\nSo far we assumed that all random effects had the same variance \\(\\sigma_a^2\\). If we assume that each \\(\\alpha_j\\) has a different variance \\(\\sigma_j^2\\), we would obtain\n\\[\np(\\mathbf{y}\\mid \\mathbf{X}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nwhere\n\\[\n\\mathbf{K} = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{x}_j \\mathbf{x}_j^T  + \\sigma_e^2 I_N\n\\]\nthat is, \\(\\sigma_j^2\\) measures the contribution of covariate \\(X_j\\) to the correlations among samples of \\(Y\\).\nTo estimate the variance parameters, maximum-likelihood is employed, that is, we find the values of the \\(\\sigma_j^2\\) and \\(\\sigma_e^2\\) which maximize\n\\[\n\\log p(\\mathbf{y}) = -\\frac12 \\log \\det (\\mathbf{K} ) - \\frac12 \\mathbf{y}^T \\mathbf{K}^{-1} \\mathbf{y} - \\frac{N}2 \\log(2\\pi)\n\\]\nThis is a difficult, non-convex optimization problem which requires the use of numerical, gradient-based optimizers.\nNote that the covariance matrix satisfies\n\\[\n\\begin{aligned}\n  \\mathbb{E}(y_i y_j) = K_{ij}\n\\end{aligned}\n\\] and hence the total variance of \\(\\mathbf{y}\\) can be written as\n\\[\n\\begin{aligned}\n  \\mathbb{E}(\\mathbf{y}^T\\mathbf{y}) = \\sum_i \\mathbb{E}(y_i^2) = \\sum_i K_{ii} = \\mathrm{tr}(K)\n\\end{aligned}\n\\]\nFrom the definition of \\(\\mathbf{K}\\), its trace can be written as\n\\[\n\\mathrm{tr}(K) = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{x}_j^T \\mathbf{x}_j   + N \\sigma_e^2.\n\\]\nTherefore we say that\n\\[\n\\frac{\\sigma_j^2 \\mathbf{x}_j^T \\mathbf{x}_j}{\\mathrm{tr}(K) }\n\\]\nis the variance in \\(\\mathbf{y}\\) explained by variance component \\(\\mathbf{x}_i\\).\n\n\nKernel-based variance component models\nSince the posterior distribution \\(p(\\mathbf{y}\\mid \\mathbf{X})\\) only depends on the matrix \\(\\mathbf{K}\\), an immediate generalization is to define variance component models directly in terms of kernel matrices instead of starting from a linear, random effect model, namely define\n\\[\np(\\mathbf{y}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nFor instance, if the elements (samples) \\(y_i\\) of \\(\\mathbf{y}\\) are obtained at specific locations (e.g. pixels in an image) \\(\\mathbf{x_i}\\in \\mathbb{R}^2\\) (or \\(\\mathbb{R}^p\\) more generally), we can define\n\\[\nK_{ij} = k(\\mathbf{x}_i,\\mathbf{x}_j)\n\\]\nwhere the kernel function \\(k\\) is a function that measures the similarity or closeness between samples.\nGeneralizing from before, the kernel matrix \\(\\mathbf{K}\\) can consist of multiple components,\n\\[\n\\mathbf{K} = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{K}_j  + \\sigma_e^2 I_N\n\\]\nand the variance explained by the \\(j^{\\text{th}}\\) component is\n\\[\n\\frac{\\sigma_j^2\\mathrm{tr}(\\mathbf{K}_j)}{\\mathrm{tr}(\\mathbf{K})}\n\\]\n\n\nGaussian processes\nIn many applications, the “positions” \\(\\mathbf{x}_i\\) where samples are obtained are not fixed, but a finite subset of a possibly infinite, continuous range. For instance, when studying a dynamic process, we typically obtain noisy measurements \\(y_i\\) at a finite number of time points \\(t_i\\), and are interested in the entire underlying process \\(y(t)\\) for all times \\(t\\) in some time interval. Similarly, we may have measurements \\(y_i\\) at a finite number of locations \\(\\mathbf{x}_i\\), and are interested in the entire function \\(y(\\mathbf{x})\\) for all positions \\(\\mathbf{x}\\) in some spatial region.\nA Gaussian process is a stochastic process, to be understood as a probability distribution over functions \\(y(\\mathbf{x})\\) over some continuous domain \\(D\\), such that the set of values of \\(y(\\mathbf{x})\\) evaluated at a finite set of points \\(\\mathbf{x}_1,\\dots,\\mathbf{x}_N\\in D\\) are jointly normally distributed. A Gaussian process is specified by a kernel function \\(k(\\mathbf{x},\\mathbf{x}')\\), for \\(\\mathbf{x},\\mathbf{x}' \\in D\\). Writing \\(\\mathbf{y} = (y(\\mathbf{x}_1), \\dots, y(\\mathbf{x}_N))\\), the kernel defines the probability distribution\n\\[\np(\\mathbf{y}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nwhere\n\\[\nK_{ij} = k(\\mathbf{x}_i,\\mathbf{x}_j)\n\\]\nHence, for the purposes of parameter estimation, the Gaussian process and variance component viewpoints are identical, which is why the term are often used interchangeably. The main difference lies in the interpretation, where Gaussian process see the data as a finite set of samples from a continuous space. Hence in the Gaussian process viewpoint, we would be particularly interested in interpolation, predicting expected values of the function \\(y(\\mathbf{x})\\) at locations \\(\\mathbf{x}\\) that were not part of the initial (training) data.\nKeeping the notation \\(\\mathbf{y}\\) for the function values at the training positions \\(\\mathbf{x}_i\\), we know that the joint distribution of \\(\\mathbf{y}\\) and the value of \\(y(\\mathbf{x})\\) at a new position \\(\\mathbf{x}\\) is given by\n\\[\np\\left(\n\\begin{bmatrix}\n  \\mathbf{y}\\\\\n  y(\\mathbf{x})\n\\end{bmatrix}\n\\right) =  \\mathcal{N}(0, \\mathbf{K}')\n\\]\nwhere \\(\\mathbf{K}'\\) is the \\((N+1)\\times (N+1)\\) matrix\n\\[\n\\mathbf{K}' =\n\\begin{bmatrix}\n  \\mathbf{K} & \\mathbf{k}\\\\\n  \\mathbf{k}^T & c\n\\end{bmatrix}\n\\]\nwhere\n\\[\n\\begin{aligned}\n  \\mathbf{K} &= \\left[ k(\\mathbf{x}_i,\\mathbf{x}_j) \\right] \\in \\mathbb{R}^{N\\times N}\\\\\n  \\mathbf{k} &= k(\\mathbf{x}_i,\\mathbf{x}) \\in \\mathbb{R}^{N} \\\\\n  c &= k(\\mathbf{x},\\mathbf{x})\\in \\mathbb{R}\n\\end{aligned}\n\\]\nUsing properties of the multivariate normal distribution, the conditional distribution of the unseen value given the training data is:\n\\[\n\\begin{aligned}\n  p\\left( y(\\mathbf{x}) \\mid \\mathbf{y} \\right) &= \\mathcal{N}(\\mu,\\sigma^2)\\\\\n  \\mu &= \\mathbf{k}^T \\mathbf{K}^{-1}\\mathbf{y}\\\\\n  \\sigma^2 &= c - \\mathbf{k}^T \\mathbf{K}^{-1} \\mathbf{k}\n\\end{aligned}\n\\]\nGeneralization to interpolation to multiple points is immediate.",
+    "crumbs": [
+      "Spatio-Temporal models",
+      "Variance component models and Gaussian processes"
+    ]
+  },
+  {
+    "objectID": "graphical-models/bayesian-networks.html",
+    "href": "graphical-models/bayesian-networks.html",
+    "title": "Bayesian networks",
+    "section": "",
+    "text": "Book sections\n\n\n\nPattern Recognition and Machine Learning: Chapter 8",
+    "crumbs": [
+      "Graphical models",
+      "Bayesian networks"
+    ]
+  },
+  {
+    "objectID": "graphical-models/bayesian-networks.html#a-crash-course-in-bayesian-networks",
+    "href": "graphical-models/bayesian-networks.html#a-crash-course-in-bayesian-networks",
+    "title": "Bayesian networks",
+    "section": "A crash course in Bayesian networks",
+    "text": "A crash course in Bayesian networks\nIn Bayesian networks, the joint distribution over a set \\(\\{X_1,\\dots, X_p\\}\\) of random variables is represented by:\n\na directed acyclic graph (DAG) \\(\\cal G\\) with the variables as vertices,\na set of conditional probability distributions, \\[\\begin{aligned}\n  P\\bigl(X_i \\mid \\{X_j \\mid j\\in \\mathrm{Pa}_i\\}\\bigr),\n\\end{aligned}\\] where \\(\\mathrm{Pa}_i\\) is the set of parents of vertex \\(i\\) in \\(\\mathcal{G}\\),\n\nsuch that \\[\\begin{aligned}\n  P(X_1,\\dots,X_p) = \\prod_{i=1}^p P\\bigl(X_i \\mid \\{X_j \\mid j\\in \\mathrm{Pa}_i\\}\\bigr)\n\\end{aligned}\\]\nIn GRN reconstruction:\n\n\\(X_i\\) represents the expression level of gene \\(i\\),\n\\(P(X_1,\\dots,X_p)\\) represents the joint distribution from which (independent) experimental samples are drawn,\n\\(\\mathcal{G}\\) represents the unknown GRN.\n\nAssume we have a set of \\(N\\) observations \\(x_1,\\dots,x_N\\in \\mathbb{R}^p\\) of \\(p\\) variables, collected in the \\(N\\times p\\) matrix \\(\\mathbf{X}\\).\nAssume we know \\(\\mathcal{G}\\) and the conditional distributions. Then the likelihood of observing the data is:\n\\[\\begin{aligned}\n  P(\\mathbf{X}\\mid \\mathcal{G}) &= \\prod_{k=1}^N P(X_{k1},\\dots,X_{kp}\\mid \\mathcal{G})\\\\\\\\\n  &= \\prod_{i=1}^p \\prod_{k=1}^N  P\\bigl(X_{ki} \\mid \\{X_{kj} \\mid j\\in \\mathrm{Pa}_i\\}\\bigr)\n\\end{aligned}\\]\nWe can now use an iterative algorithm to optimize \\(\\mathcal{G}\\) and the conditional distributions:\n\nStart with a random graph \\(\\mathcal{G}\\).\nGiven \\(\\mathcal{G}\\), the likelihood decomposes in a product of independent likelihoods, one for each gene, and the conditional distributions can be optimized by standard regression analysis.\nIn the next iterations, randomly add, delete, or reverse edges in \\(\\mathcal{G}\\), as long as the likelihood improves.\n\nA more formal approach to optimizing \\(\\mathcal{G}\\) uses Bayes’ theorem: \\[\\begin{aligned}\n  P(\\mathcal{G}\\mid \\mathbf{X}) = \\frac{P(\\mathbf{X}\\mid \\mathcal{G}) P(\\mathcal{G})}{P(\\mathbf{X})}\n\\end{aligned}\\]\n\n\\(P(\\mathcal{G})\\) represents the prior distribution: even without seeing any data, not all graphs need to be equally likely a priori.\n\\(P(\\mathbf{X})\\) represents the marginal distribution: \\(P(\\mathbf{X}) = \\sum_{\\mathcal{G}'} P(\\mathbf{X}\\mid \\mathcal{G}') P(\\mathcal{G}')\\). It is independent of \\(\\mathcal{G}\\) and can be ignored.\n\nWe can use \\(P(\\mathcal{G})\\) to encode evidence for causal interactions from integrating genomics and transcriptomics data. This is the main idea from Zhu et al. (2004).",
+    "crumbs": [
+      "Graphical models",
+      "Bayesian networks"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html",
+    "href": "causal-inference/causal-model-selection.html",
+    "title": "Causal model selection",
+    "section": "",
+    "text": "In this tutorial we consider two continuous and correlated variables, \\(X\\) and \\(Y\\), representing the expression levels of two genes. We also consider a discrete variable \\(Z\\) representing a genotype for gene \\(X\\). Typically, \\(Z\\) will have been obtained by eQTL mapping for gene \\(X\\). We wish to determine if variation in \\(X\\) causes variation in \\(Y\\).\nThe aim of causal model selection is: given observational data for \\(Z\\), \\(X\\), and \\(Y\\) in a set of independent samples, which causal model (represented by a directed acyclic graph) explains the data best.\nTo restrict the space of possible models that need to be considered, a number of assumptions reflecting biological knowledge can be made:\n\nGenetic variation influences variation in gene expression (and phenotypes more generally), but changing the value of an individual’s phenotype does not change their genome. Hence, in our models there can be no incoming arrows into \\(Z\\).\nWe assume that the statistical association between \\(Z\\) and \\(X\\) is due to a direct effect, that is, all causal models we consider must contain the directed edge \\(Z\\to X\\). This assumption is justified if \\(Z\\) is located within or near to \\(X\\) (on the genome) and in a known regulatory region for \\(X\\).\nFor \\(X\\) and \\(Y\\) to be correlated (non-independent), there must be a path in the graph between them, more precisely \\(X\\) and \\(Y\\) must not be d-separated.\nBy the laws of Mendelian inheritance (particularly the random segregation of alleles), we may assume that \\(Z\\) is independent of any unobserved confounding factors \\(U\\) that cause \\(X\\) and \\(Y\\) to be correlated, and therefore there are no edges between \\(Z\\) and any unobserved \\(U\\).\n\nIf we assume that there are no unobserved factors, there are 5 possible models satisfying assumptions 1-4 (see figure below). If we allow for the presence of unobserved factors, we have the same 5 models with an additional unobserved \\(U\\) having a causal effect on \\(X\\) and \\(Y\\), plus one more model without an edge between \\(X\\) and \\(Y\\) where all of their correlation is explained by \\(U\\) (see figure).\nBelow each model in the figure, some of the key conditional independences implied by the model are shown, using the mathematical notation \\(⫫\\) for “is independent of”, \\(∣\\) for “conditional on”, \\(∧\\) for “and”, and \\(¬\\) for “it is not the case that”.\n\n\n\nCausal models\n\n\nFrom this figure it is immediately clear that our aim of deciding whether \\(X\\) causes \\(Y\\) is unachievable. Even without any unobserved factors, models 4a and 5a are Markov equivalent: they entail the same conditional independences and are indistinguishable using observational data. In other words, there exists no condition that is both necessary and sufficient for \\(X\\) to cause \\(Y\\) given the above 4 assumptions.\nThere are two possible paths forward (apart from giving up): to use a sufficient condition or a necessary condition for causality. If the joint probability distribution of \\(Z\\), \\(X\\), and \\(Y\\) passes a sufficient condition, then it is guaranteed to have been generated by a model where \\(X\\) causes \\(Y\\), but there may be distributions with \\(X\\to Y\\) that don’t pass the test (false negatives). Conversely, all joint distributions generated by models with \\(X\\to Y\\) will pass a necessary condition, but there may be distributions generated by models where \\(X\\) does not cause \\(Y\\) that also pass the test (false positives).\nBecause estimating the joint distribution of \\(Z\\), \\(X\\), and \\(Y\\) and its conditional independences from a finite number of samples is itself an imperfect process that can only ever approximate the true distribution, having additional errors from using an imperfect causality test is not necessarily catastrophic, provided those errors are small enough.",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#background",
+    "href": "causal-inference/causal-model-selection.html#background",
+    "title": "Causal model selection",
+    "section": "",
+    "text": "In this tutorial we consider two continuous and correlated variables, \\(X\\) and \\(Y\\), representing the expression levels of two genes. We also consider a discrete variable \\(Z\\) representing a genotype for gene \\(X\\). Typically, \\(Z\\) will have been obtained by eQTL mapping for gene \\(X\\). We wish to determine if variation in \\(X\\) causes variation in \\(Y\\).\nThe aim of causal model selection is: given observational data for \\(Z\\), \\(X\\), and \\(Y\\) in a set of independent samples, which causal model (represented by a directed acyclic graph) explains the data best.\nTo restrict the space of possible models that need to be considered, a number of assumptions reflecting biological knowledge can be made:\n\nGenetic variation influences variation in gene expression (and phenotypes more generally), but changing the value of an individual’s phenotype does not change their genome. Hence, in our models there can be no incoming arrows into \\(Z\\).\nWe assume that the statistical association between \\(Z\\) and \\(X\\) is due to a direct effect, that is, all causal models we consider must contain the directed edge \\(Z\\to X\\). This assumption is justified if \\(Z\\) is located within or near to \\(X\\) (on the genome) and in a known regulatory region for \\(X\\).\nFor \\(X\\) and \\(Y\\) to be correlated (non-independent), there must be a path in the graph between them, more precisely \\(X\\) and \\(Y\\) must not be d-separated.\nBy the laws of Mendelian inheritance (particularly the random segregation of alleles), we may assume that \\(Z\\) is independent of any unobserved confounding factors \\(U\\) that cause \\(X\\) and \\(Y\\) to be correlated, and therefore there are no edges between \\(Z\\) and any unobserved \\(U\\).\n\nIf we assume that there are no unobserved factors, there are 5 possible models satisfying assumptions 1-4 (see figure below). If we allow for the presence of unobserved factors, we have the same 5 models with an additional unobserved \\(U\\) having a causal effect on \\(X\\) and \\(Y\\), plus one more model without an edge between \\(X\\) and \\(Y\\) where all of their correlation is explained by \\(U\\) (see figure).\nBelow each model in the figure, some of the key conditional independences implied by the model are shown, using the mathematical notation \\(⫫\\) for “is independent of”, \\(∣\\) for “conditional on”, \\(∧\\) for “and”, and \\(¬\\) for “it is not the case that”.\n\n\n\nCausal models\n\n\nFrom this figure it is immediately clear that our aim of deciding whether \\(X\\) causes \\(Y\\) is unachievable. Even without any unobserved factors, models 4a and 5a are Markov equivalent: they entail the same conditional independences and are indistinguishable using observational data. In other words, there exists no condition that is both necessary and sufficient for \\(X\\) to cause \\(Y\\) given the above 4 assumptions.\nThere are two possible paths forward (apart from giving up): to use a sufficient condition or a necessary condition for causality. If the joint probability distribution of \\(Z\\), \\(X\\), and \\(Y\\) passes a sufficient condition, then it is guaranteed to have been generated by a model where \\(X\\) causes \\(Y\\), but there may be distributions with \\(X\\to Y\\) that don’t pass the test (false negatives). Conversely, all joint distributions generated by models with \\(X\\to Y\\) will pass a necessary condition, but there may be distributions generated by models where \\(X\\) does not cause \\(Y\\) that also pass the test (false positives).\nBecause estimating the joint distribution of \\(Z\\), \\(X\\), and \\(Y\\) and its conditional independences from a finite number of samples is itself an imperfect process that can only ever approximate the true distribution, having additional errors from using an imperfect causality test is not necessarily catastrophic, provided those errors are small enough.",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#a-sufficient-condition-for-xto-y",
+    "href": "causal-inference/causal-model-selection.html#a-sufficient-condition-for-xto-y",
+    "title": "Causal model selection",
+    "section": "A sufficient condition for \\(X\\to Y\\)",
+    "text": "A sufficient condition for \\(X\\to Y\\)\nOur sufficient condition for \\(X\\to Y\\) is based on model 1a. This model implies that \\(Z\\) and \\(Y\\) are not independent, but \\(Z\\) is independent of \\(Y\\) conditioned on \\(X\\) (\\(X\\) is a mediator for the causal path from \\(Z\\) to \\(Y\\)). No other model satisfies those two relations:\n\nIn models 2a, 2b, and 6b, \\(Z\\) and \\(Y\\) are independent.\nIn all other models \\(Z\\) is not independent of \\(Y\\) conditioned on \\(X\\), either because there is a direct path from \\(Z\\) to \\(Y\\) not passing through \\(X\\), or because conditioning on \\(X\\) opens a path from \\(Z\\) to \\(Y\\) via the confounder \\(U\\) (due to the v-structure or collider at \\(X\\)).\n\nHence any joint distribution in which \\(Z\\) and \\(Y\\) are not independent, but \\(Z\\) is independent of \\(Y\\) conditioned on \\(X\\), must have been generated by model 1a, that is, by a model where \\(X\\to Y\\). In mathematical notation:\n\\[\n¬(Z⫫Y) ∧ (Z⫫Y∣X) ⇒ (X→Y)\n\\]",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#a-necessary-condition-for-xto-y",
+    "href": "causal-inference/causal-model-selection.html#a-necessary-condition-for-xto-y",
+    "title": "Causal model selection",
+    "section": "A necessary condition for \\(X\\to Y\\)",
+    "text": "A necessary condition for \\(X\\to Y\\)\nBecause all models contain the edge \\(G→X\\), it follows that if \\(X→Y\\), then \\(Z\\) and \\(Y\\) cannot be independent, providing a simple necessary condition for \\(X→Y\\). However, \\(Z\\) and \\(Y\\) are also not independent in models 3a-b and 5a-b, in which \\(Y→X\\), because of the direct edge \\(G→Y\\). Of these, only 3a can be excluded, because in 3a, \\(X⫫Y∣Z\\), a condition not satisfied in any model where \\(X→Y\\). Combining these two results, we obtain\n\\[\n(X→Y) ⇒ ¬(Z⫫Y) ∧ ¬(X⫫Y∣Z)\n\\]",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#import-packages",
+    "href": "causal-inference/causal-model-selection.html#import-packages",
+    "title": "Causal model selection",
+    "section": "Import packages",
+    "text": "Import packages\nIn this tutorial, we will first set up some code to generate and visualize simulated data for \\(Z\\), \\(X\\), and \\(Y\\) given one of the models in the figure above. Then we will implement the sufficient and necessary conditions for \\(X→Y\\) and assess how well they perform in a number of scenarios. The code is written in julia. It should be fairly straightforward to translate into other languages.\nWe start by importing some necessary packages:\nusing Random\nusing Distributions\nusing StatsBase\nusing DataFrames\nusing GLM\nusing LinearAlgebra\nusing CairoMakie\nusing LaTeXStrings",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#data-simulation",
+    "href": "causal-inference/causal-model-selection.html#data-simulation",
+    "title": "Causal model selection",
+    "section": "Data simulation",
+    "text": "Data simulation\nFirst we set a random seed and fix the number of samples:\nRandom.seed!(123)\nN = 200;\nIn our simulations, as in real biology, a genotype value is sampled first. Then expression values for the two genes are sampled conditional on the genotype value.\n\nGenotype data simulation\nWe simulate the genotype of a bi-allelic (2 values), diploid (2 copies) polymorphism. We encode the major and minor alleles by the values 0 and 1, respectively. The genotype is sampled by defining the minor allele frequency (MAF) as a parameter of the simulation. Two haploids are sampled using a Bernoulli distribution and summed to give the genotype, that is, the genotype is the number of copies of the minor allele in an individual.\nBecause the mean of a Bernoulli distribution with probability of success \\(p\\) is \\(p\\), the mean of \\(Z\\) is 2 times the minor allele frequency, and we therefore subtract this value from the sampled genotypes to obtain samples from a random variable \\(Z\\) with mean zero. Note that we cannot center the actual sampled values at this point, because we still need to generate the expression data conditional on \\(Z\\), and the expression levels of an individual cannot depend on the sample mean of the genotypes in a population!\nmaf = 0.3\nH1 = rand(Bernoulli(maf),N)\nH2 = rand(Bernoulli(maf),N)\nZ0 = H1 .+ H2 \nZ = Z0 .- 2*maf;\n\n\nExpression data simulation\nTo simulate data for \\(X\\) and \\(Y\\), we must first set up the structural equations for the causal model we want to simulate. We will assume linear models with additive Gaussian noise throughout.\nLet’s start by models 1a, 1b, and 6b. Their structural equations can be written as\n\\[\n\\begin{align}\nX &= a Z + U_X\\\\\\\\\nY &= b X + U_Y\n\\end{align}\n\\]\nwhere \\(U_X\\) and \\(U_Y\\) are normally distributed errors with joint distribution\n\\[\n(U_X, U_Y)^T \\sim {\\cal N}(0,Σ_{U})\n\\]\nwith covariance matrix\n\\[\nΣ_{U} =\n\\begin{pmatrix}\n1 & ρ\\\\\\\\\nρ & 1\n\\end{pmatrix}\n\\]\nIn model 1a, the errors are uncorrelated, \\(\\rho=0\\), and we arbitrarily set the errors to have unit variance. In model 1b, the unobserved confounder \\(U\\) has the effect of correlating the errors, that is \\(0&lt;\\rho&lt;1\\). In model 6b, the errors are also correlated, \\(0&lt;\\rho&lt;1\\), but there is no direct effect of \\(X\\) on \\(Y\\), that is \\(b=0\\).\nThe parameters \\(a\\) and \\(b\\) are the causal effect sizes, and their magnitudes should be interpreted relative to the unit standard deviation of the random errors. In other words, each additional alternative allele shifts the mean of \\(X\\) by \\(a\\) standard deviations of the random errors.\nGiven a value \\(Z=z\\), eqs. (1)–(2) can be rewritten in matrix-vector notation as\n\\[\n\\begin{pmatrix}\nX\\\\\\\\\nY\n\\end{pmatrix}\n=\n\\begin{pmatrix}\naz \\\\\\\\\nabz\n\\end{pmatrix} +\n\\begin{pmatrix}\n1 & 0\\\\\\\\\nb  & 1\n\\end{pmatrix}\n\\begin{pmatrix}\nU_X\\\\\\\\\nU_Y\n\\end{pmatrix}\n\\]\nUsing properties of the multivariate normal distribution, it follows that\n\\[\n\\begin{equation}\n\\begin{pmatrix}\nX\\\\\\\\\nY\n\\end{pmatrix} \\mid Z=z\n∼ {\\cal N} \\left( \\mu_z, Σ_{XY} \\right)\n\\end{equation}\n\\]\nwith\n\\[\n\\begin{align*}\n\\mu_z &= \\begin{pmatrix}\naz \\\\\\\\\nabz\n\\end{pmatrix} \\\\\\\\\nΣ_{XY} &=\n\\begin{pmatrix}\n1 & 0\\\\\\\\\nb  & 1\n\\end{pmatrix}\n\\begin{pmatrix}\n1 & ρ\\\\\\\\\nρ  & 1\n\\end{pmatrix}\n\\begin{pmatrix}\n1 & b \\\\\\\\\n0  & 1\n\\end{pmatrix}\n= \\begin{pmatrix}\n1 & b+ρ\\\\\\\\\nb+ρ  & b^2 + 2b\\rho + 1\n\\end{pmatrix}\n\\end{align*}\n\\]\nHence given a sampled genotype value \\(Z\\), we can sample values for \\(X\\) and \\(Y\\) by sampling from the multivariate normal distribution (3). In fact, julia knows how to do calculus with distributions, and we only need to specify the distribution of the random errors and the affine matrix-vector transformation:\nfunction sample_XcauseY(Z,a=1.0,b=0.8,rho=0.0)\n    # number of samples\n    N = length(Z)\n    # Covariance matrix for the unmodelled factors\n    covU = [1.0 rho\n            rho 1.0]\n    # distribution of the unmodelled factors\n    distU = MvNormal(covU)\n    # the covariance between X and Y due to direct and unmodelled effects\n    B = [1. 0.\n         b  1.]\n    distXY = B * distU\n    # sample XY expression levels from model 1a, 1b, or 6b, depending on the values of rho and b\n    XY = [a*Z a*b*Z] + rand(distXY,N)'\n    return XY\nend;\nYour turn: Can you derive and implement the structural equations for the other models?\nThe function to sample from models 3a or 3b is as follows:\nfunction sample_GcauseXY(Z,a=1.0,b=0.8,rho=0.0)\n    # number of samples\n    N = length(Z)\n    # Covariance matrix for the unmodelled factors\n    covU = [1.0 rho\n            rho 1.0]\n    # distribution of unmodelled factors\n    distU = MvNormal(covU)\n    # sample XY expression levels from model 3a or 3b, depending on the value of rho\n    XY = [a*Z b*Z] + rand(distU,N)'\n    return XY\nend;\nNow sample some data:\nXY1a = sample_XcauseY(Z,1.,0.8,0.) # sample from model 1a\nXY1b = sample_XcauseY(Z,1.,0.8,0.4) # sample from model 1b\nXY6b = sample_XcauseY(Z,1.,0.,0.4); # sample from model 6b\nXY3a = sample_GcauseXY(Z,1.,0.8,0.) # sample from model 3a\nXY3b = sample_GcauseXY(Z,1.,0.8,0.4); # sample from model 3b\nLet’s collect all our data in a dataframe:\ndata = DataFrame(Z0=Z0, Z=Z, \n            X1a=XY1a[:,1], Y1a=XY1a[:,2],\n            X1b=XY1b[:,1], Y1b=XY1b[:,2],\n            X6b=XY6b[:,1], Y6b=XY6b[:,2],\n            X3a=XY3a[:,1], Y3a=XY3a[:,2],\n            X3b=XY3b[:,1], Y3b=XY3b[:,2]);\nWe can visualize the data using scatter plots of \\(X\\) and \\(Y\\) colored by genotype value:\nf1 = Figure()\nfigttl = [\"Model 1a\", \"Model 1b\", \"Model 6b\", \"Model 3a\", \"Model 3b\"]\nrowid = [1, 1, 1, 2, 2]\ncolid = [1, 2, 3, 1, 2]\nfor k=1:5\n    ax = Axis(f1[rowid[k],colid[k]], xlabel=\"x\", ylabel=\"y\", \n        title=figttl[k],\n        aspect=AxisAspect(1))\n    hidespines!(ax)\n\n    scatter!(data[data.Z0.==0,2*k+1],data[data.Z0.==0,2*k+2],\n        label=\"z=0\", marker=:circle, color=:black, \n        markersize=7)\n    scatter!(data[data.Z0.==1,2*k+1],data[data.Z0.==1,2*k+2],\n        label=\"z=1\", marker=:xcross, color=:lightblue, \n        markersize=12)\n    scatter!(data[data.Z0.==2,2*k+1],data[data.Z0.==2,2*k+2], \n        label=\"z=2\", marker=:cross, color =:red, \n        markersize=12)\n\n    f1[2,3] = Legend(f1, ax, \"Genotype\", \n        framevisible = false, \n        tellheight=false, tellwidth=false,\n        halign=:left, valign=:bottom)\nend   \nf1\n\n\n\nCausal models",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#model-selection",
+    "href": "causal-inference/causal-model-selection.html#model-selection",
+    "title": "Causal model selection",
+    "section": "Model selection",
+    "text": "Model selection\n\nTesting the sufficient condition for \\(X\\to Y\\)\nFor the sufficient condition we have to test whether \\(Z\\) and \\(Y\\) are dependent and whether this dependence disappears after conditioning on \\(X\\). If we assume linear models, these tests can be performed by standard least squares regression and testing for non-zero coefficients.",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-1a",
+    "href": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-1a",
+    "title": "Causal model selection",
+    "section": "Testing data generated by Model 1a",
+    "text": "Testing data generated by Model 1a\nFirst we test whether \\(Z\\) and \\(Y\\) are dependent by regressing \\(Y\\) on \\(Z\\). Note that by construction \\(Y\\) and \\(Z\\) are samples from random variables with zero mean and hence we don’t include an intercept in the regression:\nyg = lm(@formula(Y1a ~ 0 + Z),data)\nFrom the small \\(p\\)-value we can reject the null hypothesis of no dependence between \\(Y\\) and \\(Z\\), and hence we conclude that the first test is passed.\nNext we test whether \\(Z\\) and \\(Y\\) become independent after conditioning on \\(X\\), that is, after regressing out \\(X\\) from \\(Y\\):\nyx = lm(@formula(Y1a ~ 0 + X1a),data)\nThe residuals of the regression of \\(Y\\) on \\(X\\) can now be tested for association with \\(Z\\):\ndata.residYX1a = residuals(yx)\nygx = lm(@formula(residYX1a ~ 0 + Z),data)\nClearly the null hypothesis of no association cannot be rejected, and we conclude that the second test has also been passed.\nIn conclusion, the data satisfies the sufficient condition for causality and we conclude (correctly) that it has been generated by a causal model with an edge \\(X\\to Y\\) (a true positive result).",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-1b",
+    "href": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-1b",
+    "title": "Causal model selection",
+    "section": "Testing data generated by Model 1b",
+    "text": "Testing data generated by Model 1b\nWe repeat the same procedure for the data generated by model 1b:\nyg = lm(@formula(Y1b ~ 0 + Z),data)\nFrom the small \\(p\\)-value we can again reject the null hypothesis of no dependence between \\(Y\\) and \\(Z\\), and hence we conclude that the first test is passed.\nNext we regress out \\(X\\) from \\(Y\\), and test the residuals for association with \\(Z\\):\nyx = lm(@formula(Y1b ~ 0 + X1b),data)\ndata.residYX1b = residuals(yx)\nygx = lm(@formula(residYX1b ~ 0 + Z),data)\nThis time we have to reject the null hypothesis of no association because of the small \\(p\\)-value, and we conclude that the second test has not been passed.\nIn conclusion, the data does not satisfy the sufficient condition for causality and we conclude (wrongly) that it has not been generated by a causal model with an edge \\(X\\to Y\\) (a false negative result).",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-6b",
+    "href": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-6b",
+    "title": "Causal model selection",
+    "section": "Testing data generated by Model 6b",
+    "text": "Testing data generated by Model 6b\nWe repeat the procedure one more time for the data generated by model 6b:\nyg = lm(@formula(Y6b ~ 0 + Z),data)\nThis time we cannot reject the null hypothesis of no dependence between \\(Y\\) and \\(Z\\), and hence we conclude that the first test has not passed.\nWe can conclude immediately that the data does not satisfy the sufficient condition for causality and we conclude (correctly) that it has not been generated by a causal model with an edge \\(X\\to Y\\) (a true negative result).",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#your-turn",
+    "href": "causal-inference/causal-model-selection.html#your-turn",
+    "title": "Causal model selection",
+    "section": "Your turn",
+    "text": "Your turn\nRepeat the analysis of the sufficient condition for the data generated by model 3a and 3b. What do you conclude and are those conclusions correct or not?\n\nTesting the necessary condition for \\(X\\to Y\\)\nFor the necessary condition we have to test whether \\(Z\\) and \\(Y\\) are dependent and whether \\(X\\) and \\(Y\\) become independent after conditioning on \\(Z\\). Assuming linear models, these tests can again be performed by least squares regression and testing for non-zero coefficients.",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-1b-1",
+    "href": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-1b-1",
+    "title": "Causal model selection",
+    "section": "Testing data generated by Model 1b",
+    "text": "Testing data generated by Model 1b\nAs before, we test whether \\(Z\\) and \\(Y\\) are dependent by regressing \\(Y\\) on \\(Z\\):\nyg = lm(@formula(Y1b ~ 0 + Z),data)\nFrom the small \\(p\\)-value we can again reject the null hypothesis of no dependence between \\(Y\\) and \\(Z\\), and hence we conclude that the first test is passed.\nNext we also regress \\(X\\) on \\(Z\\), and test the residuals of both regressions for association with each other:\nxg = lm(@formula(X1b ~ 0 + Z),data)\ndata.residGY1b = residuals(yg)\ndata.residGX1b = residuals(xg)\nygx = lm(@formula(residGY1b ~ 0 + residGX1b),data)\nFrom the small \\(p\\)-value we can reject the null hypothesis of no dependence between the residuals, and hence we conclude that the second test has also been passed.\nIn conclusion, the data satisfiess the necessary condition for causality and we conclude (correctly) that it has been generated by a causal model with an edge \\(X\\to Y\\) (a true positive result).",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-3a",
+    "href": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-3a",
+    "title": "Causal model selection",
+    "section": "Testing data generated by Model 3a",
+    "text": "Testing data generated by Model 3a\nWe repeat the same procedure for the data generated by model 3a:\nyg = lm(@formula(Y3a ~ 0 + Z),data)\nFrom the small \\(p\\)-value we can again reject the null hypothesis of no dependence between \\(Y\\) and \\(Z\\), and hence we conclude that the first test is passed.\nNext we again regress \\(X\\) on \\(Z\\), and test the residuals of both regressions for association with each other:\nxg = lm(@formula(X3a ~ 0 + Z),data)\ndata.residGY3a = residuals(yg)\ndata.residGX3a = residuals(xg)\nygx = lm(@formula(residGY3a ~ 0 + residGX3a),data)\nThis time we cannot reject the null hypothesis of no dependence between the residuals, and hence we conclude that the second test has not been passed.\nIn conclusion, the data does not satisfy the necessary condition for causality and we conclude (correctly) that it has not been generated by a causal model with an edge \\(X\\to Y\\) (a true negative result).",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-3b",
+    "href": "causal-inference/causal-model-selection.html#testing-data-generated-by-model-3b",
+    "title": "Causal model selection",
+    "section": "Testing data generated by Model 3b",
+    "text": "Testing data generated by Model 3b\nWe repeat the same procedure for the data generated by model 3b:\nyg = lm(@formula(Y3b ~ 0 + Z),data)\nFrom the small \\(p\\)-value we can again reject the null hypothesis of no dependence between \\(Y\\) and \\(Z\\), and hence we conclude that the first test is passed.\nNext we again regress \\(X\\) on \\(Z\\), and test the residuals of both regressions for association with each other:\nxg = lm(@formula(X3b ~ 0 + Z),data)\ndata.residGY3b = residuals(yg)\ndata.residGX3b = residuals(xg)\nygx = lm(@formula(residGY3b ~ 0 + residGX3b),data)\nBecause of the small \\(p\\)-value we must reject the null hypothesis of no dependence between the residuals, and hence we conclude that the second test has also passed.\nIn conclusion, the data satisfies the necessary condition for causality and we conclude (wrongly) that it has been generated by a causal model with an edge \\(X\\to Y\\) (a false positive result).",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-model-selection.html#your-turn-1",
+    "href": "causal-inference/causal-model-selection.html#your-turn-1",
+    "title": "Causal model selection",
+    "section": "Your turn",
+    "text": "Your turn\nRepeat the analysis of the sufficient condition for the data generated by model 1a and 6b. What do you conclude and are those conclusions correct or not?\n\nSome comments and further reading\n\nWhich condition for causality to choose?\nDespite the simplicity of these examples they show the full spectrum of what to expect from these approaches to causal inference from molecular QTL data. It is important to stress that the false negative and false positive findings are not due to any errors in the tests themselves, misspecifications of the model (the models used to generate and fit the data are identical) or measurement noise (none was added in the simulations). Instead it is a basic mathematical truth that a condition for causality that is sufficient but not necessary will be prone to false negative predictions, whereas a condition that is necessary but not sufficient will be prone to false positive predictions.\nWhether to use the sufficient or the necessary condition in concrete applications depends on a number of considerations:\n\nIs it more important to generate only high-confidence predictions before performing expensive experimental validation, or is it more important not to miss any real causal interactions before applying additional filtering steps?\nDo you expect that unknown confounders play a major or minor role in your data? For instance, in gene regulatory networks (GRNs) feedforward loops (where a transcription factor (TF) and its target are coregulated by a 2nd TF) are common, and therefore the necessary condition systematically outperforms the sufficient condition for reconstructing GRNs, see for instance these papers:\n\nEfficient and accurate causal inference with hidden confounders from genome-transcriptome variation data.\nComparison between instrumental variable and mediation-based methods for reconstructing causal gene networks in yeast\n\nHow precise are your measurements? The sufficient condition is not only susceptible to hidden confounders, but also to measurement noise, which further increases its false negative rate (see the first paper above for details).\n\n\n\nHow to quantify statistical significance and uncertainty?\nIn the examples above, we basically eye-balled the \\(p\\)-values and gave thumbs-up or thumbs-down for a causal relation. Not only is this practically infeasible when testing causality between ten-thousands of pairs in omics data, we would also like to quantify the statistical significance and uncertainty of each finding. This turns out to be a non-trivial question, because:\n\nBoth the sufficient and necessary condition are combinations of statistical tests.\nThe necessary condition includes a test where accepting the null hypothesis is a positive finding, but a non-significant \\(p\\)-value (no evidence for rejecting the null hypothesis) does not imply significant evidence against the alternative hypothesis.\n\nOne strand of research has focused on summarizing the outcome of multiple hypothesis tests by a single \\(p\\)-value with the usual interpretation that a small \\(p\\)-value is evidence for rejecting the null hypothesis of no causal interaction, see these papers:\n\nDisentangling molecular relationships with a causal inference test\nModeling Causality for Pairs of Phenotypes in System Genetics\ncit: hypothesis testing software for mediation analysis in genomic applications\n\nHowever, to overcome in particular the second problem above, these methods have to introduce pairwise model comparison statistics almost by stealth. A much better approach (in my not so objective opinion!) is to do this explicitly in a Bayesian framework.\nIn the papers below, each of the component tests (for instance, \\(¬(Z⫫Y)\\) or \\(Z⫫Y\\mid X\\) in the sufficient condition) is expressed as a likelihood-ratio test between two nested, null and alternative, models. Using \\(q\\)-values, the likelihood-ratio test statistics are converted into probabilities of the null or alternative model being true. These probabilities can then be combined by the usual rules of probability theory (e.g., multiplied to express that two tests must be true).\n\nHarnessing naturally randomized transcription to infer regulatory relationships among genes\nEfficient and accurate causal inference with hidden confounders from genome-transcriptome variation data\n\nIn addition, the second paper provides a software implementation that is highly efficient, and can test both the sufficient and the necessary condition for causality (all other papers essentially only study the sufficient condition).\n\n\nYour turn?\nIf you are convinced by the above arguments and have some molecular QTL data waiting to be analyzed by causal inference, try our Findr software.",
+    "crumbs": [
+      "Causal inference",
+      "Causal model selection"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-assoc-genes-disease.html",
+    "href": "causal-inference/causal-assoc-genes-disease.html",
+    "title": "Causal associations between gene expression and disease",
+    "section": "",
+    "text": "Classic paper\n\n\n\nSchadt, E., Lamb, J., Yang, X. et al. An integrative genomics approach to infer causal associations between gene expression and disease. Nat Genet 37, 710–717 (2005).",
+    "crumbs": [
+      "Causal inference",
+      "Causal associations between gene expression and disease"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-assoc-genes-disease.html#an-integrative-genomics-approach-to-infer-causal-associations-between-gene-expression-and-disease",
+    "href": "causal-inference/causal-assoc-genes-disease.html#an-integrative-genomics-approach-to-infer-causal-associations-between-gene-expression-and-disease",
+    "title": "Causal associations between gene expression and disease",
+    "section": "",
+    "text": "Classic paper\n\n\n\nSchadt, E., Lamb, J., Yang, X. et al. An integrative genomics approach to infer causal associations between gene expression and disease. Nat Genet 37, 710–717 (2005).",
+    "crumbs": [
+      "Causal inference",
+      "Causal associations between gene expression and disease"
+    ]
+  },
+  {
+    "objectID": "statistical-significance/statistical-significance-gws.html",
+    "href": "statistical-significance/statistical-significance-gws.html",
+    "title": "Statistical significance for genome-wide studies",
+    "section": "",
+    "text": "Classic paper\n\n\n\nStorey, John D., and Robert Tibshirani. “Statistical significance for genomewide studies.” Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.",
+    "crumbs": [
+      "Statistical significance",
+      "Statistical significance for genome-wide studies"
+    ]
+  },
+  {
+    "objectID": "statistical-significance/statistical-significance-gws.html#statistical-significance-for-genomewide-studies",
+    "href": "statistical-significance/statistical-significance-gws.html#statistical-significance-for-genomewide-studies",
+    "title": "Statistical significance for genome-wide studies",
+    "section": "",
+    "text": "Classic paper\n\n\n\nStorey, John D., and Robert Tibshirani. “Statistical significance for genomewide studies.” Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.",
+    "crumbs": [
+      "Statistical significance",
+      "Statistical significance for genome-wide studies"
+    ]
+  },
+  {
+    "objectID": "statistical-significance/statistical-significance-gws.html#introduction",
+    "href": "statistical-significance/statistical-significance-gws.html#introduction",
+    "title": "Statistical significance for genome-wide studies",
+    "section": "Introduction",
+    "text": "Introduction",
+    "crumbs": [
+      "Statistical significance",
+      "Statistical significance for genome-wide studies"
+    ]
+  },
+  {
+    "objectID": "statistical-significance/statistical-significance-gws.html#questions-for-discussion",
+    "href": "statistical-significance/statistical-significance-gws.html#questions-for-discussion",
+    "title": "Statistical significance for genome-wide studies",
+    "section": "Questions for discussion",
+    "text": "Questions for discussion\nWe cover the following parts:\n\nAbstract\nExample 1, differentially expressed genes\nTable 1\nWhat is a p-value?\nWhat is the FDR?\nDerivation that p-values are uniformly distributed under the null hypothesis\nFigure 1\nFDR estimation\nFigure 2\nWhat is a q-value?",
+    "crumbs": [
+      "Statistical significance",
+      "Statistical significance for genome-wide studies"
     ]
   },
   {
@@ -105,6 +622,83 @@
     "text": "Do I have to use Julia?\nNo.\nAssignments can be submitted in any programming language.\nThe example notebooks are all in Julia, but their combination of text and code should (hopefully) make it easy to translate them to Jupyter, R markdown, or any other notebook/language combination of your choice. Likewise, it should not be too hard to replace JuliaHub by another cloud computing platform. If you do decide to reproduce the course notebooks in another language and/or on another platform, please share your results!",
     "crumbs": [
       "Introduction to Julia"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/drug-sensitivity.html",
+    "href": "regularized-regression/drug-sensitivity.html",
+    "title": "Drug sensitivity prediction",
+    "section": "",
+    "text": "Classic paper\n\n\n\nBarretina J et al. The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity. Nature 483:603 (2012).\n\n\n\n\nAbstract - What is the study about and why was it performed?\nWhat is a cancer cell line? See\n\nNCI dictionary\nCCLE homepage\n\nWhich genomic profiles were generated?\nAre cell lines good models for real tumours? Figure 1.\nWhat are pharmacological profiles, how is drug sensitivity measured?\nWhat is predictive modelling, how were robust models derived, what is shown in Figure 2?\n\n\n\nGhandi, M., Huang, F.W., Jané-Valbuena, J. et al. Next-generation characterization of the Cancer Cell Line Encyclopedia. Nature 569, 503–508 (2019).",
+    "crumbs": [
+      "Regularized regression",
+      "Drug sensitivity prediction"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/drug-sensitivity.html#the-cancer-cell-line-encyclopedia-enables-predictive-modelling-of-anticancer-drug-sensitivity",
+    "href": "regularized-regression/drug-sensitivity.html#the-cancer-cell-line-encyclopedia-enables-predictive-modelling-of-anticancer-drug-sensitivity",
+    "title": "Drug sensitivity prediction",
+    "section": "",
+    "text": "Classic paper\n\n\n\nBarretina J et al. The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity. Nature 483:603 (2012).\n\n\n\n\nAbstract - What is the study about and why was it performed?\nWhat is a cancer cell line? See\n\nNCI dictionary\nCCLE homepage\n\nWhich genomic profiles were generated?\nAre cell lines good models for real tumours? Figure 1.\nWhat are pharmacological profiles, how is drug sensitivity measured?\nWhat is predictive modelling, how were robust models derived, what is shown in Figure 2?\n\n\n\nGhandi, M., Huang, F.W., Jané-Valbuena, J. et al. Next-generation characterization of the Cancer Cell Line Encyclopedia. Nature 569, 503–508 (2019).",
+    "crumbs": [
+      "Regularized regression",
+      "Drug sensitivity prediction"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/tsne-umap.html",
+    "href": "dimensionality-reduction/tsne-umap.html",
+    "title": "t-SNE, UMAP",
+    "section": "",
+    "text": "References\n\n\n\n\nL.J.P. van der Maaten and G.E. Hinton. Visualizing Data Using t-SNE. Journal of Machine Learning Research 9(Nov):2579-2605, 2008.\nMcInnes, L, Healy, J, UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction, ArXiv e-prints 1802.03426, 2018",
+    "crumbs": [
+      "Dimensionality reduction",
+      "t-SNE, UMAP"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/tsne-umap.html#t-stochastic-neighbor-embedding-t-sne",
+    "href": "dimensionality-reduction/tsne-umap.html#t-stochastic-neighbor-embedding-t-sne",
+    "title": "t-SNE, UMAP",
+    "section": "t-Stochastic Neighbor Embedding (t-SNE)",
+    "text": "t-Stochastic Neighbor Embedding (t-SNE)\nLinear dimensionality reduction methods (like PCA) may not able to retain both the local and global structure of the data in a single map.\nt-SNE is a non-linear method that aims to overcome this limitation.\nt-SNE is particularly successful at visualizing high-dimensional data (reducing it to two dimensions).\nCare must be taken when applying t-SNE due to random initialization of the algorithm, which may lead to solutions that do not represent the global structure of the data well.\n\n(Symmetric) Stochastic Neighbor Embedding (SNE)\nAs before, assume we have a set of \\(N\\) observations \\(x_1,\\dots,x_N\\in \\mathbb{R}^p\\) of \\(p\\) variables, collected in the \\(N\\times p\\) matrix \\(\\mathbf{X}\\).\nSNE introduces a directional similarity of \\(x_j\\) to \\(x_i\\),\n\\[\n\\begin{aligned}\n    p_{j\\mid i} = \\frac{\\exp\\bigl(-\\frac{1}{2\\sigma_i^2}\\|x_i-x_j\\|^2\\bigr)}{\\sum_{k\\neq i}\\exp\\bigl(-\\frac{1}{2\\sigma_i^2}\\|x_i-x_k\\|^2\\bigr)}\n\\end{aligned}\n\\]\nThe variances \\(\\sigma_i\\) are chosen such that the perplexities\n\\[\n\\begin{aligned}\n    \\mathcal{P_i} = \\exp\\Bigl(-\\sum_{j\\neq i} p_{j\\mid i}\\log p_{j\\mid i}\\Bigr)\n\\end{aligned}\n\\]\ntake some prespecified value.\nSymmetric, undirectional similarities are defined as\n\\[\n\\begin{aligned}\n    p_{ij} = \\frac{p_{j\\mid i}+p_{i\\mid j}}{2n}\n\\end{aligned}\n\\]\nsuch that \\(\\sum_{ij}p_{ij}=1\\)\nA map is a two or three-dimensional representation \\({\\cal Y}=\\{y_1,\\dots,y_N\\}\\) of the high-dimensional data \\({\\cal X}=\\{x_1,\\dots,x_N\\}\\).\nIn the low-dimensional representation, we define the probability of picking \\(y_i\\) and \\(y_j\\) as neighbors by\n\\[\n\\begin{aligned}\n    q_{ij} = \\frac{\\exp\\bigl(-\\|y_i-y_j\\|^2\\bigr)}{\\sum_{k\\neq l}\\exp\\bigl(-\\|y_k-y_l\\|^2\\bigr)}\n\\end{aligned}\n\\]\n(Symmetric) Stochastic Neighbor Embedding (SNE) finds the map \\({\\cal Y}\\) that minimizes the mismatch between \\(p_{ij}\\) and \\(q_{ij}\\), across all pairs \\(i\\) and \\(j\\).\nThe mismatch cost function is given by the Kullback-Leibler divergence:\n\\[\n\\begin{aligned}\n    C = \\sum_i \\sum_j p_{ij} \\log \\frac{p_{ij}}{q_{ij}}\\geq 0\n\\end{aligned}\n\\]\nwith \\(C=0\\) if, and only if, \\(q_{ij}=p_{ij}\\) for all \\(i\\) and \\(j\\).\n\n\nSNE suffers from a “crowding problem”\nThe volume of a sphere with radius \\(r\\) in \\(p\\) dimensions scales as \\(r^p\\).\nConsider a cluster of datapoints that are approximately uniformly distributed in a sphere of radius \\(r\\).\nIf \\(p\\gg 2\\), then the available 2-dimensional area to model the distances in this cluster accurately will be too small compared to the total area available, forcing clusters of nearby points to crush together.\n\n\nHeavy-tails in the low-dimensional space resolve the crowding problem\nA heavy-tail distribution in the low-dimensional space allows a moderate distance in the high-dimensional space to be faithfully modelled by a much larger distance in the map.\nIn t-SNE a Student t-distribution with 1 d.o.f. (a Cauchy distribution) is used as the heavy-tailed distribution in the low-dimensional map:\n\\[\n\\begin{aligned}\n    q_{ij} = \\frac{\\left(1+\\|y_i-y_j\\|^2\\right)^{-1}}{\\sum_{k\\neq l}\\left(1+\\|y_k-y_l\\|^2\\right)^{-1}}\n\\end{aligned}\n\\]\nThe Cauchy distribution offers additional advantages in the numerical optimization of the cost function.\n\n\n\nGaussian (\\(\\sigma=1/\\sqrt{2}\\)) vs Cauchy p.d.f. for \\(r\\geq 0\\).\n\n\n\n\nSummary\nt-SNE:\n\nputs emphasis on modelling dissimilar datapoints by means of large pairwise distances, and similar datapoints by small pairwise distances,\noffers dramatic improvement in finding and preserving local structure in the data, compared to, for instance, PCA.\n\nOptimization of the t-SNE cost function is easier than optimizing earlier SNE versions, but:\n\nthe cost function is non-convex,\nseveral optimization parameters need to be chosen,\nthe constructed solutions depend on these choices and may be different each time t-SNE is run from an initial random configuration.\n\nFormal theory supporting t-SNE is lacking:\n\nsimilarity measures and cost function are based on heuristics, appealing to “intuitive” justifications,\nthere is no formal generative model connecting high- and low-dimensional representations,\nthe probability semantics used to describe t-SNE is descriptive, rather than foundational.",
+    "crumbs": [
+      "Dimensionality reduction",
+      "t-SNE, UMAP"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/tsne-umap.html#uniform-manifold-approximation-and-projection-umap",
+    "href": "dimensionality-reduction/tsne-umap.html#uniform-manifold-approximation-and-projection-umap",
+    "title": "t-SNE, UMAP",
+    "section": "Uniform Manifold Approximation and Projection (UMAP)",
+    "text": "Uniform Manifold Approximation and Projection (UMAP)\nIn the words of the authors:\n\nUMAPs design decisions were all grounded in a solid theoretic foundation and not derived through experimentation with any particular task focused objective function.\nThe theoretical foundations for UMAP are largely based in manifold theory and topological data analysis.\nA purely computational view [of UMAP] fails to shed any light upon the reasoning that underlies the algorithmic decisions made in UMAP.\n\n\nA computational view of UMAP\nFrom a practical computational perspective, UMAP can be described in terms of, construction of, and operations on, weighted graphs:\n\nGraph construction:\n\nConstruct a weighted k-neighbour graph\nApply some transform on the edges to represent local distance.\nDeal with the inherent asymmetry of the k-neighbour graph.\n\n\nGraph layout:\n\nDefine a cost function that preserves desired characteristics of this k-neighbour graph.\nFind a low dimensional representation which optimizes this cost function.\n\n\nt-SNE and UMAP can both be cast in this form, but with some (subtle) differences in the edge weighting (dissimilarity measure) and graph layout (cost function).",
+    "crumbs": [
+      "Dimensionality reduction",
+      "t-SNE, UMAP"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/tsne-umap.html#a-comparison-of-dimension-reduction-algorithms",
+    "href": "dimensionality-reduction/tsne-umap.html#a-comparison-of-dimension-reduction-algorithms",
+    "title": "t-SNE, UMAP",
+    "section": "A comparison of dimension reduction algorithms",
+    "text": "A comparison of dimension reduction algorithms\nSee figure from the UMAP paper.",
+    "crumbs": [
+      "Dimensionality reduction",
+      "t-SNE, UMAP"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/tsne-umap.html#practical-recommendations",
+    "href": "dimensionality-reduction/tsne-umap.html#practical-recommendations",
+    "title": "t-SNE, UMAP",
+    "section": "Practical recommendations",
+    "text": "Practical recommendations\n\nClaims of UMAP or t-SNE (or related methods) being superior are usually overrated.\nBoth algorithms suffer from a need for careful parameter tuning and initialization choices.\nUsing and understanding one algorithm well is more important flipping between algorithms and never changing default parameters.\n\nAn excellent reference for using t-SNE for single-cell data:\nKobak & Berens. The art of using t-SNE for single-cell transcriptomics. Nat. Comm. 10:5416 (2019)\nSee also: github.com/berenslab/rna-seq-tsne",
+    "crumbs": [
+      "Dimensionality reduction",
+      "t-SNE, UMAP"
     ]
   },
   {

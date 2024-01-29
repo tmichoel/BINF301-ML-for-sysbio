@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BINF301 Genome-scale Algorithms - Causal model selection</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">BINF301 Genome-scale Algorithms</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../causal-inference/causal-assoc-genes-disease.html">Causal inference</a></li><li class="breadcrumb-item"><a href="../causal-inference/causal-model-selection.html">Causal model selection</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../julia-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Julia</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Cluster analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cancer subtypes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Combinatorial clustering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mixture distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Statistical significance</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical significance for genome-wide studies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">False discovery rate estimation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Regularized regression</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drug sensitivity prediction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Dimensionality reduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">t-SNE, UMAP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Causal inference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causal associations between gene expression and disease</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mediation and instrumental variable analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Causal model selection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Graphical models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gene regulatory networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian networks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Spatio-Temporal models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial gene experssion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variance component models and Gaussian processes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Appendix</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#a-sufficient-condition-for-xto-y" id="toc-a-sufficient-condition-for-xto-y" class="nav-link" data-scroll-target="#a-sufficient-condition-for-xto-y">A sufficient condition for <span class="math inline">\(X\to Y\)</span></a></li>
+  <li><a href="#a-necessary-condition-for-xto-y" id="toc-a-necessary-condition-for-xto-y" class="nav-link" data-scroll-target="#a-necessary-condition-for-xto-y">A necessary condition for <span class="math inline">\(X\to Y\)</span></a></li>
+  <li><a href="#import-packages" id="toc-import-packages" class="nav-link" data-scroll-target="#import-packages">Import packages</a></li>
+  <li><a href="#data-simulation" id="toc-data-simulation" class="nav-link" data-scroll-target="#data-simulation">Data simulation</a>
+  <ul class="collapse">
+  <li><a href="#genotype-data-simulation" id="toc-genotype-data-simulation" class="nav-link" data-scroll-target="#genotype-data-simulation">Genotype data simulation</a></li>
+  <li><a href="#expression-data-simulation" id="toc-expression-data-simulation" class="nav-link" data-scroll-target="#expression-data-simulation">Expression data simulation</a></li>
+  </ul></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a>
+  <ul class="collapse">
+  <li><a href="#testing-the-sufficient-condition-for-xto-y" id="toc-testing-the-sufficient-condition-for-xto-y" class="nav-link" data-scroll-target="#testing-the-sufficient-condition-for-xto-y">Testing the sufficient condition for <span class="math inline">\(X\to Y\)</span></a></li>
+  </ul></li>
+  <li><a href="#testing-data-generated-by-model-1a" id="toc-testing-data-generated-by-model-1a" class="nav-link" data-scroll-target="#testing-data-generated-by-model-1a">Testing data generated by Model 1a</a></li>
+  <li><a href="#testing-data-generated-by-model-1b" id="toc-testing-data-generated-by-model-1b" class="nav-link" data-scroll-target="#testing-data-generated-by-model-1b">Testing data generated by Model 1b</a></li>
+  <li><a href="#testing-data-generated-by-model-6b" id="toc-testing-data-generated-by-model-6b" class="nav-link" data-scroll-target="#testing-data-generated-by-model-6b">Testing data generated by Model 6b</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn</a>
+  <ul class="collapse">
+  <li><a href="#testing-the-necessary-condition-for-xto-y" id="toc-testing-the-necessary-condition-for-xto-y" class="nav-link" data-scroll-target="#testing-the-necessary-condition-for-xto-y">Testing the necessary condition for <span class="math inline">\(X\to Y\)</span></a></li>
+  </ul></li>
+  <li><a href="#testing-data-generated-by-model-1b-1" id="toc-testing-data-generated-by-model-1b-1" class="nav-link" data-scroll-target="#testing-data-generated-by-model-1b-1">Testing data generated by Model 1b</a></li>
+  <li><a href="#testing-data-generated-by-model-3a" id="toc-testing-data-generated-by-model-3a" class="nav-link" data-scroll-target="#testing-data-generated-by-model-3a">Testing data generated by Model 3a</a></li>
+  <li><a href="#testing-data-generated-by-model-3b" id="toc-testing-data-generated-by-model-3b" class="nav-link" data-scroll-target="#testing-data-generated-by-model-3b">Testing data generated by Model 3b</a></li>
+  <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1">Your turn</a>
+  <ul class="collapse">
+  <li><a href="#some-comments-and-further-reading" id="toc-some-comments-and-further-reading" class="nav-link" data-scroll-target="#some-comments-and-further-reading">Some comments and further reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../causal-inference/causal-assoc-genes-disease.html">Causal inference</a></li><li class="breadcrumb-item"><a href="../causal-inference/causal-model-selection.html">Causal model selection</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Causal model selection</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>In this tutorial we consider two continuous and correlated variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, representing the expression levels of two genes. We also consider a discrete variable <span class="math inline">\(Z\)</span> representing a genotype for gene <span class="math inline">\(X\)</span>. Typically, <span class="math inline">\(Z\)</span> will have been obtained by <a href="https://en.wikipedia.org/wiki/Expression_quantitative_trait_loci">eQTL mapping</a> for gene <span class="math inline">\(X\)</span>. We wish to determine if variation in <span class="math inline">\(X\)</span> causes variation in <span class="math inline">\(Y\)</span>.</p>
+<p>The <strong>aim of causal model selection</strong> is: given observational data for <span class="math inline">\(Z\)</span>, <span class="math inline">\(X\)</span>, and <span class="math inline">\(Y\)</span> in a set of independent samples, which causal model (represented by a directed acyclic graph) explains the data best.</p>
+<p>To restrict the space of possible models that need to be considered, a number of assumptions reflecting biological knowledge can be made:</p>
+<ol type="1">
+<li><p>Genetic variation influences variation in gene expression (and phenotypes more generally), but changing the value of an individual’s phenotype does not change their genome. Hence, in our models there can be <strong>no incoming arrows into <span class="math inline">\(Z\)</span></strong>.</p></li>
+<li><p>We assume that the statistical association between <span class="math inline">\(Z\)</span> and <span class="math inline">\(X\)</span> is due to a <em>direct</em> effect, that is, all causal models we consider <strong>must contain the directed edge <span class="math inline">\(Z\to X\)</span></strong>. This assumption is justified if <span class="math inline">\(Z\)</span> is located within or near to <span class="math inline">\(X\)</span> (on the genome) and in a known regulatory region for <span class="math inline">\(X\)</span>.</p></li>
+<li><p>For <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> to be correlated (non-independent), there must be a path in the graph between them, more precisely <strong><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> must not be</strong> <a href="http://bayes.cs.ucla.edu/BOOK-2K/d-sep.html"><strong>d-separated</strong></a>.</p></li>
+<li><p>By the laws of <a href="https://en.wikipedia.org/wiki/Mendelian_inheritance">Mendelian inheritance</a> (particularly the random segregation of alleles), we may assume that <span class="math inline">\(Z\)</span> is independent of any unobserved confounding factors <span class="math inline">\(U\)</span> that cause <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> to be correlated, and therefore <strong>there are no edges between <span class="math inline">\(Z\)</span> and any unobserved <span class="math inline">\(U\)</span></strong>.</p></li>
+</ol>
+<p>If we assume that there are <strong>no unobserved factors</strong>, there are 5 possible models satisfying assumptions 1-4 (see figure below). If we allow for the <strong>presence of unobserved factors</strong>, we have the same 5 models with an additional unobserved <span class="math inline">\(U\)</span> having a causal effect on <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, plus one more model without an edge between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> where all of their correlation is explained by <span class="math inline">\(U\)</span> (see figure).</p>
+<p>Below each model in the figure, some of the key conditional independences implied by the model are shown, using the mathematical notation <span class="math inline">\(⫫\)</span> for “is independent of”, <span class="math inline">\(∣\)</span> for “conditional on”, <span class="math inline">\(∧\)</span> for “and”, and <span class="math inline">\(¬\)</span> for “it is not the case that”.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="causal_models.png" class="img-fluid figure-img"></p>
+<figcaption>Causal models</figcaption>
+</figure>
+</div>
+<p>From this figure it is immediately clear that our aim of deciding whether <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span> is unachievable. Even without any unobserved factors, models 4a and 5a are <a href="https://www.cs.ru.nl/~peterl/markoveq.pdf">Markov equivalent</a>: they entail the same conditional independences and are indistinguishable using observational data. In other words, <strong>there exists no condition that is both necessary and sufficient</strong> for <span class="math inline">\(X\)</span> to cause <span class="math inline">\(Y\)</span> given the above 4 assumptions.</p>
+<p>There are two possible paths forward (apart from giving up): to <strong>use a sufficient condition or a necessary condition</strong> for causality. If the joint probability distribution of <span class="math inline">\(Z\)</span>, <span class="math inline">\(X\)</span>, and <span class="math inline">\(Y\)</span> passes a sufficient condition, then it is guaranteed to have been generated by a model where <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span>, but there may be distributions with <span class="math inline">\(X\to Y\)</span> that don’t pass the test (false negatives). Conversely, all joint distributions generated by models with <span class="math inline">\(X\to Y\)</span> will pass a necessary condition, but there may be distributions generated by models where <span class="math inline">\(X\)</span> does not cause <span class="math inline">\(Y\)</span> that also pass the test (false positives).</p>
+<p>Because estimating the joint distribution of <span class="math inline">\(Z\)</span>, <span class="math inline">\(X\)</span>, and <span class="math inline">\(Y\)</span> and its conditional independences from a finite number of samples is itself an imperfect process that can only ever approximate the true distribution, having additional errors from using an imperfect causality test is not necessarily catastrophic, provided those errors are small enough.</p>
+</section>
+<section id="a-sufficient-condition-for-xto-y" class="level2">
+<h2 class="anchored" data-anchor-id="a-sufficient-condition-for-xto-y">A sufficient condition for <span class="math inline">\(X\to Y\)</span></h2>
+<p>Our sufficient condition for <span class="math inline">\(X\to Y\)</span> is based on model 1a. This model implies that <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are not independent, but <span class="math inline">\(Z\)</span> is independent of <span class="math inline">\(Y\)</span> conditioned on <span class="math inline">\(X\)</span> (<span class="math inline">\(X\)</span> is a <strong>mediator</strong> for the causal path from <span class="math inline">\(Z\)</span> to <span class="math inline">\(Y\)</span>). No other model satisfies those two relations:</p>
+<ul>
+<li>In models 2a, 2b, and 6b, <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are independent.</li>
+<li>In all other models <span class="math inline">\(Z\)</span> is not independent of <span class="math inline">\(Y\)</span> conditioned on <span class="math inline">\(X\)</span>, either because there is a direct path from <span class="math inline">\(Z\)</span> to <span class="math inline">\(Y\)</span> not passing through <span class="math inline">\(X\)</span>, or because conditioning on <span class="math inline">\(X\)</span> opens a path from <span class="math inline">\(Z\)</span> to <span class="math inline">\(Y\)</span> via the confounder <span class="math inline">\(U\)</span> (due to the v-structure or <a href="https://en.wikipedia.org/wiki/Collider_(statistics)">collider</a> at <span class="math inline">\(X\)</span>).</li>
+</ul>
+<p>Hence any joint distribution in which <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are not independent, but <span class="math inline">\(Z\)</span> is independent of <span class="math inline">\(Y\)</span> conditioned on <span class="math inline">\(X\)</span>, must have been generated by model 1a, that is, by a model where <span class="math inline">\(X\to Y\)</span>. In mathematical notation:</p>
+<p><span class="math display">\[
+¬(Z⫫Y) ∧ (Z⫫Y∣X) ⇒ (X→Y)
+\]</span></p>
+</section>
+<section id="a-necessary-condition-for-xto-y" class="level2">
+<h2 class="anchored" data-anchor-id="a-necessary-condition-for-xto-y">A necessary condition for <span class="math inline">\(X\to Y\)</span></h2>
+<p>Because all models contain the edge <span class="math inline">\(G→X\)</span>, it follows that if <span class="math inline">\(X→Y\)</span>, then <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> cannot be independent, providing a simple necessary condition for <span class="math inline">\(X→Y\)</span>. However, <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are also not independent in models 3a-b and 5a-b, in which <span class="math inline">\(Y→X\)</span>, because of the direct edge <span class="math inline">\(G→Y\)</span>. Of these, only 3a can be excluded, because in 3a, <span class="math inline">\(X⫫Y∣Z\)</span>, a condition not satisfied in any model where <span class="math inline">\(X→Y\)</span>. Combining these two results, we obtain</p>
+<p><span class="math display">\[
+(X→Y) ⇒ ¬(Z⫫Y) ∧ ¬(X⫫Y∣Z)
+\]</span></p>
+</section>
+<section id="import-packages" class="level2">
+<h2 class="anchored" data-anchor-id="import-packages">Import packages</h2>
+<p>In this tutorial, we will first set up some code to generate and visualize simulated data for <span class="math inline">\(Z\)</span>, <span class="math inline">\(X\)</span>, and <span class="math inline">\(Y\)</span> given one of the models in the figure above. Then we will implement the sufficient and necessary conditions for <span class="math inline">\(X→Y\)</span> and assess how well they perform in a number of scenarios. The code is written in <a href="https://julialang.org">julia</a>. It should be fairly straightforward to translate into other languages.</p>
+<p>We start by importing some necessary packages:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLM</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LaTeXStrings</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="data-simulation">Data simulation</h2>
+<p>First we set a random seed and fix the number of samples:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">123</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="fl">200</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In our simulations, as in real biology, a genotype value is sampled first. Then expression values for the two genes are sampled conditional on the genotype value.</p>
+<section id="genotype-data-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="genotype-data-simulation">Genotype data simulation</h3>
+<p>We simulate the genotype of a bi-allelic (2 values), diploid (2 copies) polymorphism. We encode the major and minor alleles by the values 0 and 1, respectively. The genotype is sampled by defining the minor allele frequency (MAF) as a parameter of the simulation. Two haploids are sampled using a Bernoulli distribution and summed to give the genotype, that is, the genotype is the number of copies of the minor allele in an individual.</p>
+<p>Because the mean of a Bernoulli distribution with probability of success <span class="math inline">\(p\)</span> is <span class="math inline">\(p\)</span>, the mean of <span class="math inline">\(Z\)</span> is 2 times the minor allele frequency, and we therefore subtract this value from the sampled genotypes to obtain samples from a random variable <span class="math inline">\(Z\)</span> with mean zero. Note that we <em>cannot</em> center the actual sampled values at this point, because we still need to generate the expression data conditional on <span class="math inline">\(Z\)</span>, and the expression levels of an individual cannot depend on the sample mean of the genotypes in a population!</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>maf <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>H1 <span class="op">=</span> <span class="fu">rand</span>(<span class="fu">Bernoulli</span>(maf),N)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>H2 <span class="op">=</span> <span class="fu">rand</span>(<span class="fu">Bernoulli</span>(maf),N)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Z0 <span class="op">=</span> H1 <span class="op">.+</span> H2 </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Z0 <span class="op">.-</span> <span class="fl">2</span><span class="op">*</span>maf;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="expression-data-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="expression-data-simulation">Expression data simulation</h3>
+<p>To simulate data for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, we must first set up the <a href="https://en.wikipedia.org/wiki/Structural_equation_modeling">structural equations</a> for the <a href="https://en.wikipedia.org/wiki/Causal_model">causal model</a> we want to simulate. We will assume linear models with additive Gaussian noise throughout.</p>
+<p>Let’s start by models 1a, 1b, and 6b. Their structural equations can be written as</p>
+<p><span class="math display">\[
+\begin{align}
+X &amp;= a Z + U_X\\\\
+Y &amp;= b X + U_Y
+\end{align}
+\]</span></p>
+<p>where <span class="math inline">\(U_X\)</span> and <span class="math inline">\(U_Y\)</span> are normally distributed errors with joint distribution</p>
+<p><span class="math display">\[
+(U_X, U_Y)^T \sim {\cal N}(0,Σ_{U})
+\]</span></p>
+<p>with covariance matrix</p>
+<p><span class="math display">\[
+Σ_{U} =
+\begin{pmatrix}
+1 &amp; ρ\\\\
+ρ &amp; 1
+\end{pmatrix}
+\]</span></p>
+<p>In model 1a, the errors are uncorrelated, <span class="math inline">\(\rho=0\)</span>, and we arbitrarily set the errors to have unit variance. In model 1b, the unobserved confounder <span class="math inline">\(U\)</span> has the effect of correlating the errors, that is <span class="math inline">\(0&lt;\rho&lt;1\)</span>. In model 6b, the errors are also correlated, <span class="math inline">\(0&lt;\rho&lt;1\)</span>, but there is no direct effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>, that is <span class="math inline">\(b=0\)</span>.</p>
+<p>The parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are the causal effect sizes, and their magnitudes should be interpreted relative to the unit standard deviation of the random errors. In other words, each additional alternative allele shifts the mean of <span class="math inline">\(X\)</span> by <span class="math inline">\(a\)</span> standard deviations of the random errors.</p>
+<p>Given a value <span class="math inline">\(Z=z\)</span>, eqs. (1)–(2) can be rewritten in matrix-vector notation as</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+X\\\\
+Y
+\end{pmatrix}
+=
+\begin{pmatrix}
+az \\\\
+abz
+\end{pmatrix} +
+\begin{pmatrix}
+1 &amp; 0\\\\
+b  &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+U_X\\\\
+U_Y
+\end{pmatrix}
+\]</span></p>
+<p>Using <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Affine_transformation">properties of the multivariate normal distribution</a>, it follows that</p>
+<p><span class="math display">\[
+\begin{equation}
+\begin{pmatrix}
+X\\\\
+Y
+\end{pmatrix} \mid Z=z
+∼ {\cal N} \left( \mu_z, Σ_{XY} \right)
+\end{equation}
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+\begin{align*}
+\mu_z &amp;= \begin{pmatrix}
+az \\\\
+abz
+\end{pmatrix} \\\\
+Σ_{XY} &amp;=
+\begin{pmatrix}
+1 &amp; 0\\\\
+b  &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; ρ\\\\
+ρ  &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; b \\\\
+0  &amp; 1
+\end{pmatrix}
+= \begin{pmatrix}
+1 &amp; b+ρ\\\\
+b+ρ  &amp; b^2 + 2b\rho + 1
+\end{pmatrix}
+\end{align*}
+\]</span></p>
+<p>Hence given a sampled genotype value <span class="math inline">\(Z\)</span>, we can sample values for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> by sampling from the multivariate normal distribution (3). In fact, <a href="https://julialang.org/">julia</a> knows how to do calculus with <a href="https://juliastats.org/Distributions.jl/stable/">distributions</a>, and we only need to specify the distribution of the random errors and the affine matrix-vector transformation:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sample_XcauseY</span>(Z,a<span class="op">=</span><span class="fl">1.0</span>,b<span class="op">=</span><span class="fl">0.8</span>,rho<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># number of samples</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="fu">length</span>(Z)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Covariance matrix for the unmodelled factors</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    covU <span class="op">=</span> [<span class="fl">1.0</span> rho</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            rho <span class="fl">1.0</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># distribution of the unmodelled factors</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    distU <span class="op">=</span> <span class="fu">MvNormal</span>(covU)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the covariance between X and Y due to direct and unmodelled effects</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> [<span class="fl">1</span>. <span class="fl">0</span>.</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>         b  <span class="fl">1</span>.]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    distXY <span class="op">=</span> B <span class="op">*</span> distU</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sample XY expression levels from model 1a, 1b, or 6b, depending on the values of rho and b</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    XY <span class="op">=</span> [a<span class="op">*</span>Z a<span class="op">*</span>b<span class="op">*</span>Z] <span class="op">+</span> <span class="fu">rand</span>(distXY,N)<span class="ch">'</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> XY</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Your turn:</strong> Can you derive and implement the structural equations for the other models?</p>
+<p>The function to sample from models 3a or 3b is as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sample_GcauseXY</span>(Z,a<span class="op">=</span><span class="fl">1.0</span>,b<span class="op">=</span><span class="fl">0.8</span>,rho<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># number of samples</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="fu">length</span>(Z)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Covariance matrix for the unmodelled factors</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    covU <span class="op">=</span> [<span class="fl">1.0</span> rho</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            rho <span class="fl">1.0</span>]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># distribution of unmodelled factors</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    distU <span class="op">=</span> <span class="fu">MvNormal</span>(covU)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sample XY expression levels from model 3a or 3b, depending on the value of rho</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    XY <span class="op">=</span> [a<span class="op">*</span>Z b<span class="op">*</span>Z] <span class="op">+</span> <span class="fu">rand</span>(distU,N)<span class="ch">'</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> XY</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now sample some data:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>XY1a <span class="op">=</span> <span class="fu">sample_XcauseY</span>(Z,<span class="fl">1</span>.,<span class="fl">0.8</span>,<span class="fl">0</span>.) <span class="co"># sample from model 1a</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>XY1b <span class="op">=</span> <span class="fu">sample_XcauseY</span>(Z,<span class="fl">1</span>.,<span class="fl">0.8</span>,<span class="fl">0.4</span>) <span class="co"># sample from model 1b</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>XY6b <span class="op">=</span> <span class="fu">sample_XcauseY</span>(Z,<span class="fl">1</span>.,<span class="fl">0</span>.,<span class="fl">0.4</span>); <span class="co"># sample from model 6b</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>XY3a <span class="op">=</span> <span class="fu">sample_GcauseXY</span>(Z,<span class="fl">1</span>.,<span class="fl">0.8</span>,<span class="fl">0</span>.) <span class="co"># sample from model 3a</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>XY3b <span class="op">=</span> <span class="fu">sample_GcauseXY</span>(Z,<span class="fl">1</span>.,<span class="fl">0.8</span>,<span class="fl">0.4</span>); <span class="co"># sample from model 3b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s collect all our data in a dataframe:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">DataFrame</span>(Z0<span class="op">=</span>Z0, Z<span class="op">=</span>Z, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>            X1a<span class="op">=</span>XY1a[<span class="op">:</span>,<span class="fl">1</span>], Y1a<span class="op">=</span>XY1a[<span class="op">:</span>,<span class="fl">2</span>],</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            X1b<span class="op">=</span>XY1b[<span class="op">:</span>,<span class="fl">1</span>], Y1b<span class="op">=</span>XY1b[<span class="op">:</span>,<span class="fl">2</span>],</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            X6b<span class="op">=</span>XY6b[<span class="op">:</span>,<span class="fl">1</span>], Y6b<span class="op">=</span>XY6b[<span class="op">:</span>,<span class="fl">2</span>],</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            X3a<span class="op">=</span>XY3a[<span class="op">:</span>,<span class="fl">1</span>], Y3a<span class="op">=</span>XY3a[<span class="op">:</span>,<span class="fl">2</span>],</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            X3b<span class="op">=</span>XY3b[<span class="op">:</span>,<span class="fl">1</span>], Y3b<span class="op">=</span>XY3b[<span class="op">:</span>,<span class="fl">2</span>]);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can visualize the data using scatter plots of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> colored by genotype value:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> <span class="fu">Figure</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>figttl <span class="op">=</span> [<span class="st">"Model 1a"</span>, <span class="st">"Model 1b"</span>, <span class="st">"Model 6b"</span>, <span class="st">"Model 3a"</span>, <span class="st">"Model 3b"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>rowid <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>colid <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span>]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> <span class="fu">Axis</span>(f1[rowid[k],colid[k]], xlabel<span class="op">=</span><span class="st">"x"</span>, ylabel<span class="op">=</span><span class="st">"y"</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span>figttl[k],</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        aspect<span class="op">=</span><span class="fu">AxisAspect</span>(<span class="fl">1</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hidespines!</span>(ax)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>(data[data.Z0<span class="op">.==</span><span class="fl">0</span>,<span class="fl">2</span><span class="op">*</span>k<span class="op">+</span><span class="fl">1</span>],data[data.Z0<span class="op">.==</span><span class="fl">0</span>,<span class="fl">2</span><span class="op">*</span>k<span class="op">+</span><span class="fl">2</span>],</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">"z=0"</span>, marker<span class="op">=:</span>circle, color<span class="op">=:</span>black, </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="fl">7</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>(data[data.Z0<span class="op">.==</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">*</span>k<span class="op">+</span><span class="fl">1</span>],data[data.Z0<span class="op">.==</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">*</span>k<span class="op">+</span><span class="fl">2</span>],</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">"z=1"</span>, marker<span class="op">=:</span>xcross, color<span class="op">=:</span>lightblue, </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="fl">12</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>(data[data.Z0<span class="op">.==</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">*</span>k<span class="op">+</span><span class="fl">1</span>],data[data.Z0<span class="op">.==</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">*</span>k<span class="op">+</span><span class="fl">2</span>], </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">"z=2"</span>, marker<span class="op">=:</span>cross, color <span class="op">=:</span>red, </span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="fl">12</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    f1[<span class="fl">2</span>,<span class="fl">3</span>] <span class="op">=</span> <span class="fu">Legend</span>(f1, ax, <span class="st">"Genotype"</span>, </span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        framevisible <span class="op">=</span> <span class="cn">false</span>, </span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        tellheight<span class="op">=</span><span class="cn">false</span>, tellwidth<span class="op">=</span><span class="cn">false</span>,</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        halign<span class="op">=:</span>left, valign<span class="op">=:</span>bottom)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span>   </span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>f1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="causal_model_selection_8_1.png" class="img-fluid figure-img"></p>
+<figcaption>Causal models</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="model-selection" class="level2">
+<h2 class="anchored" data-anchor-id="model-selection">Model selection</h2>
+<section id="testing-the-sufficient-condition-for-xto-y" class="level3">
+<h3 class="anchored" data-anchor-id="testing-the-sufficient-condition-for-xto-y">Testing the sufficient condition for <span class="math inline">\(X\to Y\)</span></h3>
+<p>For the sufficient condition we have to test whether <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are dependent and whether this dependence disappears after conditioning on <span class="math inline">\(X\)</span>. If we assume linear models, these tests can be performed by standard least squares regression and testing for non-zero coefficients.</p>
+</section>
+</section>
+<section id="testing-data-generated-by-model-1a" class="level2">
+<h2 class="anchored" data-anchor-id="testing-data-generated-by-model-1a">Testing data generated by Model 1a</h2>
+<p>First we test whether <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are dependent by regressing <span class="math inline">\(Y\)</span> on <span class="math inline">\(Z\)</span>. Note that by construction <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span> are samples from random variables with zero mean and hence we don’t include an intercept in the regression:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>yg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(Y1a <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the small <span class="math inline">\(p\)</span>-value we can reject the null hypothesis of no dependence between <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>, and hence we conclude that the first test is passed.</p>
+<p>Next we test whether <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> become independent after conditioning on <span class="math inline">\(X\)</span>, that is, after regressing out <span class="math inline">\(X\)</span> from <span class="math inline">\(Y\)</span>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>yx <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(Y1a <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> X1a),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The residuals of the regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span> can now be tested for association with <span class="math inline">\(Z\)</span>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.residYX1a <span class="op">=</span> <span class="fu">residuals</span>(yx)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ygx <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(residYX1a <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Clearly the null hypothesis of no association <em>cannot</em> be rejected, and we conclude that the second test has also been passed.</p>
+<p>In conclusion, the data satisfies the sufficient condition for causality and we conclude (correctly) that it has been generated by a causal model with an edge <span class="math inline">\(X\to Y\)</span> (a <strong>true positive</strong> result).</p>
+</section>
+<section id="testing-data-generated-by-model-1b" class="level2">
+<h2 class="anchored" data-anchor-id="testing-data-generated-by-model-1b">Testing data generated by Model 1b</h2>
+<p>We repeat the same procedure for the data generated by model 1b:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>yg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(Y1b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the small <span class="math inline">\(p\)</span>-value we can again reject the null hypothesis of no dependence between <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>, and hence we conclude that the first test is passed.</p>
+<p>Next we regress out <span class="math inline">\(X\)</span> from <span class="math inline">\(Y\)</span>, and test the residuals for association with <span class="math inline">\(Z\)</span>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>yx <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(Y1b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> X1b),data)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data.residYX1b <span class="op">=</span> <span class="fu">residuals</span>(yx)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ygx <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(residYX1b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This time we have to reject the null hypothesis of no association because of the small <span class="math inline">\(p\)</span>-value, and we conclude that the second test has <em>not</em> been passed.</p>
+<p>In conclusion, the data does <em>not</em> satisfy the sufficient condition for causality and we conclude (wrongly) that it has <em>not</em> been generated by a causal model with an edge <span class="math inline">\(X\to Y\)</span> (a <strong>false negative</strong> result).</p>
+</section>
+<section id="testing-data-generated-by-model-6b" class="level2">
+<h2 class="anchored" data-anchor-id="testing-data-generated-by-model-6b">Testing data generated by Model 6b</h2>
+<p>We repeat the procedure one more time for the data generated by model 6b:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>yg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(Y6b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This time we <em>cannot</em> reject the null hypothesis of no dependence between <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>, and hence we conclude that the first test has <em>not</em> passed.</p>
+<p>We can conclude immediately that the data does <em>not</em> satisfy the sufficient condition for causality and we conclude (correctly) that it has <em>not</em> been generated by a causal model with an edge <span class="math inline">\(X\to Y\)</span> (a <strong>true negative</strong> result).</p>
+</section>
+<section id="your-turn" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
+<p>Repeat the analysis of the sufficient condition for the data generated by model 3a and 3b. What do you conclude and are those conclusions correct or not?</p>
+<section id="testing-the-necessary-condition-for-xto-y" class="level3">
+<h3 class="anchored" data-anchor-id="testing-the-necessary-condition-for-xto-y">Testing the necessary condition for <span class="math inline">\(X\to Y\)</span></h3>
+<p>For the necessary condition we have to test whether <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are dependent and whether <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> become independent after conditioning on <span class="math inline">\(Z\)</span>. Assuming linear models, these tests can again be performed by least squares regression and testing for non-zero coefficients.</p>
+</section>
+</section>
+<section id="testing-data-generated-by-model-1b-1" class="level2">
+<h2 class="anchored" data-anchor-id="testing-data-generated-by-model-1b-1">Testing data generated by Model 1b</h2>
+<p>As before, we test whether <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> are dependent by regressing <span class="math inline">\(Y\)</span> on <span class="math inline">\(Z\)</span>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>yg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(Y1b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the small <span class="math inline">\(p\)</span>-value we can again reject the null hypothesis of no dependence between <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>, and hence we conclude that the first test is passed.</p>
+<p>Next we also regress <span class="math inline">\(X\)</span> on <span class="math inline">\(Z\)</span>, and test the residuals of both regressions for association with each other:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>xg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(X1b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>data.residGY1b <span class="op">=</span> <span class="fu">residuals</span>(yg)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>data.residGX1b <span class="op">=</span> <span class="fu">residuals</span>(xg)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ygx <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(residGY1b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> residGX1b),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the small <span class="math inline">\(p\)</span>-value we can reject the null hypothesis of no dependence between the residuals, and hence we conclude that the second test has also been passed.</p>
+<p>In conclusion, the data satisfiess the necessary condition for causality and we conclude (correctly) that it has been generated by a causal model with an edge <span class="math inline">\(X\to Y\)</span> (a <strong>true positive</strong> result).</p>
+</section>
+<section id="testing-data-generated-by-model-3a" class="level2">
+<h2 class="anchored" data-anchor-id="testing-data-generated-by-model-3a">Testing data generated by Model 3a</h2>
+<p>We repeat the same procedure for the data generated by model 3a:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>yg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(Y3a <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the small <span class="math inline">\(p\)</span>-value we can again reject the null hypothesis of no dependence between <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>, and hence we conclude that the first test is passed.</p>
+<p>Next we again regress <span class="math inline">\(X\)</span> on <span class="math inline">\(Z\)</span>, and test the residuals of both regressions for association with each other:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>xg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(X3a <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data.residGY3a <span class="op">=</span> <span class="fu">residuals</span>(yg)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>data.residGX3a <span class="op">=</span> <span class="fu">residuals</span>(xg)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>ygx <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(residGY3a <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> residGX3a),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This time we <em>cannot</em> reject the null hypothesis of no dependence between the residuals, and hence we conclude that the second test has <em>not</em> been passed.</p>
+<p>In conclusion, the data does <em>not</em> satisfy the necessary condition for causality and we conclude (correctly) that it has <em>not</em> been generated by a causal model with an edge <span class="math inline">\(X\to Y\)</span> (a <strong>true negative</strong> result).</p>
+</section>
+<section id="testing-data-generated-by-model-3b" class="level2">
+<h2 class="anchored" data-anchor-id="testing-data-generated-by-model-3b">Testing data generated by Model 3b</h2>
+<p>We repeat the same procedure for the data generated by model 3b:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>yg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(Y3b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the small <span class="math inline">\(p\)</span>-value we can again reject the null hypothesis of no dependence between <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>, and hence we conclude that the first test is passed.</p>
+<p>Next we again regress <span class="math inline">\(X\)</span> on <span class="math inline">\(Z\)</span>, and test the residuals of both regressions for association with each other:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>xg <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(X3b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> Z),data)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>data.residGY3b <span class="op">=</span> <span class="fu">residuals</span>(yg)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>data.residGX3b <span class="op">=</span> <span class="fu">residuals</span>(xg)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>ygx <span class="op">=</span> <span class="fu">lm</span>(<span class="pp">@formula</span>(residGY3b <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> residGX3b),data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Because of the small <span class="math inline">\(p\)</span>-value we must reject the null hypothesis of no dependence between the residuals, and hence we conclude that the second test has also passed.</p>
+<p>In conclusion, the data satisfies the necessary condition for causality and we conclude (wrongly) that it has been generated by a causal model with an edge <span class="math inline">\(X\to Y\)</span> (a <strong>false positive</strong> result).</p>
+</section>
+<section id="your-turn-1" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn-1">Your turn</h2>
+<p>Repeat the analysis of the sufficient condition for the data generated by model 1a and 6b. What do you conclude and are those conclusions correct or not?</p>
+<section id="some-comments-and-further-reading" class="level3">
+<h3 class="anchored" data-anchor-id="some-comments-and-further-reading">Some comments and further reading</h3>
+<section id="which-condition-for-causality-to-choose" class="level4">
+<h4 class="anchored" data-anchor-id="which-condition-for-causality-to-choose">Which condition for causality to choose?</h4>
+<p>Despite the simplicity of these examples they show the full spectrum of what to expect from these approaches to causal inference from molecular QTL data. It is important to stress that the false negative and false positive findings are not due to any errors in the tests themselves, misspecifications of the model (the models used to generate and fit the data are identical) or measurement noise (none was added in the simulations). Instead it is a basic mathematical truth that a condition for causality that is sufficient but not necessary will be prone to false negative predictions, whereas a condition that is necessary but not sufficient will be prone to false positive predictions.</p>
+<p>Whether to use the sufficient or the necessary condition in concrete applications depends on a number of considerations:</p>
+<ul>
+<li><p>Is it more important to generate only high-confidence predictions before performing expensive experimental validation, or is it more important not to miss any real causal interactions before applying additional filtering steps?</p></li>
+<li><p>Do you expect that unknown confounders play a major or minor role in your data? For instance, in gene regulatory networks (GRNs) feedforward loops (where a transcription factor (TF) and its target are coregulated by a 2nd TF) are common, and therefore the necessary condition systematically outperforms the sufficient condition for reconstructing GRNs, see for instance these papers:</p>
+<ul>
+<li><a href="https://doi.org/10.1371/journal.pcbi.1005703">Efficient and accurate causal inference with hidden confounders from genome-transcriptome variation data</a>.</li>
+<li><a href="https://doi.org/10.1039/D0MO00140F">Comparison between instrumental variable and mediation-based methods for reconstructing causal gene networks in yeast</a></li>
+</ul></li>
+<li><p>How precise are your measurements? The sufficient condition is not only susceptible to hidden confounders, but also to measurement noise, which further increases its false negative rate (see the first paper above for details).</p></li>
+</ul>
+</section>
+<section id="how-to-quantify-statistical-significance-and-uncertainty" class="level4">
+<h4 class="anchored" data-anchor-id="how-to-quantify-statistical-significance-and-uncertainty">How to quantify statistical significance and uncertainty?</h4>
+<p>In the examples above, we basically eye-balled the <span class="math inline">\(p\)</span>-values and gave thumbs-up or thumbs-down for a causal relation. Not only is this practically infeasible when testing causality between ten-thousands of pairs in omics data, we would also like to quantify the statistical significance and uncertainty of each finding. This turns out to be a non-trivial question, because:</p>
+<ul>
+<li>Both the sufficient and necessary condition are <em>combinations</em> of statistical tests.</li>
+<li>The necessary condition includes a test where <em>accepting</em> the null hypothesis is a <em>positive</em> finding, but a non-significant <span class="math inline">\(p\)</span>-value (no evidence for rejecting the null hypothesis) does not imply significant evidence against the alternative hypothesis.</li>
+</ul>
+<p>One strand of research has focused on summarizing the outcome of multiple hypothesis tests by a single <span class="math inline">\(p\)</span>-value with the usual interpretation that a small <span class="math inline">\(p\)</span>-value is evidence for rejecting the null hypothesis of no causal interaction, see these papers:</p>
+<ul>
+<li><a href="https://doi.org/10.1186/1471-2156-10-23">Disentangling molecular relationships with a causal inference test</a></li>
+<li><a href="https://doi.org/10.1534/genetics.112.147124">Modeling Causality for Pairs of Phenotypes in System Genetics</a></li>
+<li><a href="https://doi.org/10.1093/bioinformatics/btw135">cit: hypothesis testing software for mediation analysis in genomic applications</a></li>
+</ul>
+<p>However, to overcome in particular the second problem above, these methods have to introduce pairwise model comparison statistics almost by stealth. A much better approach (in my not so objective opinion!) is to do this explicitly in a Bayesian framework.</p>
+<p>In the papers below, each of the component tests (for instance, <span class="math inline">\(¬(Z⫫Y)\)</span> or <span class="math inline">\(Z⫫Y\mid X\)</span> in the sufficient condition) is expressed as a <a href="https://en.wikipedia.org/wiki/Likelihood-ratio_test">likelihood-ratio test</a> between two nested, null and alternative, models. Using <a href="https://en.wikipedia.org/wiki/Q-value_(statistics)"><span class="math inline">\(q\)</span>-values</a>, the likelihood-ratio test statistics are converted into probabilities of the null or alternative model being true. These probabilities can then be combined by the usual rules of probability theory (e.g., multiplied to express that two tests must be true).</p>
+<ul>
+<li><a href="https://doi.org/10.1186/gb-2007-8-10-r219">Harnessing naturally randomized transcription to infer regulatory relationships among genes</a></li>
+<li><a href="https://doi.org/10.1371/journal.pcbi.1005703">Efficient and accurate causal inference with hidden confounders from genome-transcriptome variation data</a></li>
+</ul>
+<p>In addition, the second paper provides a software implementation that is highly efficient, and can test both the sufficient and the necessary condition for causality (all other papers essentially only study the sufficient condition).</p>
+</section>
+<section id="your-turn-2" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-2">Your turn?</h4>
+<p>If you are convinced by the above arguments and have some molecular QTL data waiting to be analyzed by causal inference, try our <a href="https://github.com/tmichoel/Findr.jl">Findr software</a>.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

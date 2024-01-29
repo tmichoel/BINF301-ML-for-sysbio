@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Genome-scale Algorithms - Welcome</title>
+<title>BINF301 Genome-scale Algorithms - False discovery rate estimation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BINF301 Genome-scale Algorithms</span>
     </a>
   </div>
@@ -92,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistical-significance/statistical-significance-gws.html">Statistical significance</a></li><li class="breadcrumb-item"><a href="../statistical-significance/fdr-estimation.html">False discovery rate estimation</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -114,13 +143,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../julia-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Julia</span></a>
   </div>
 </li>
@@ -135,19 +164,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cancer subtypes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combinatorial clustering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
   </div>
 </li>
@@ -164,13 +193,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical significance for genome-wide studies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">False discovery rate estimation</span></a>
   </div>
 </li>
@@ -187,13 +216,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Drug sensitivity prediction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
   </div>
 </li>
@@ -210,13 +239,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PCA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">t-SNE, UMAP</span></a>
   </div>
 </li>
@@ -233,19 +262,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal associations between gene expression and disease</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mediation and instrumental variable analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal model selection</span></a>
   </div>
 </li>
@@ -262,13 +291,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gene regulatory networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bayesian networks</span></a>
   </div>
 </li>
@@ -285,13 +314,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial gene experssion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance component models and Gaussian processes</span></a>
   </div>
 </li>
@@ -306,20 +335,32 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#statistical-significance" id="toc-statistical-significance" class="nav-link active" data-scroll-target="#statistical-significance">Statistical significance</a></li>
+  <li><a href="#false-discovery-rate" id="toc-false-discovery-rate" class="nav-link" data-scroll-target="#false-discovery-rate">False discovery rate</a>
+  <ul class="collapse">
+  <li><a href="#plug-in-estimator-of-the-fdr" id="toc-plug-in-estimator-of-the-fdr" class="nav-link" data-scroll-target="#plug-in-estimator-of-the-fdr">Plug-in estimator of the FDR</a></li>
+  <li><a href="#bayesian-estimate-of-the-fdr" id="toc-bayesian-estimate-of-the-fdr" class="nav-link" data-scroll-target="#bayesian-estimate-of-the-fdr">Bayesian estimate of the FDR</a></li>
+  <li><a href="#q-values" id="toc-q-values" class="nav-link" data-scroll-target="#q-values"><span class="math inline">\(Q\)</span>-values</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistical-significance/statistical-significance-gws.html">Statistical significance</a></li><li class="breadcrumb-item"><a href="../statistical-significance/fdr-estimation.html">False discovery rate estimation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">False discovery rate estimation</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -331,35 +372,184 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is the website for the second half of the course <a href="https://www4.uib.no/en/courses/BINF301">BINF301 Genome-scale Algorithms</a>. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.</p>
-<p>Machine learning plays an important role in computational biology. See the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a> or the <a href="http://mlcb.org">Machine Learning in Computational Biology conference series</a>.</p>
-<p>The lectures are divided in modules, each focusing on a specific class of methods:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Book sections
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Clustering</li>
-<li>Regularized regression</li>
-<li>Dimensionality reduction</li>
-<li>Causal inference</li>
-<li>Graphical models</li>
-<li>Spatio-Temporal models</li>
+<li><a href="https://hastie.su.domains/ElemStatLearn/"><em>Elements of Statistical Learning</em></a>: <strong>Section 18.7</strong></li>
+<li><a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a>: <strong>Section 13.4</strong></li>
 </ul>
-<p>Each module follows the same structure:</p>
+</div>
+</div>
+<section id="statistical-significance" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-significance">Statistical significance</h2>
+<p>When we analyze genome-wide data, we are usually interested in identifying <strong>statistically significant</strong> features or patterns, that is, patterns we would not expect to see purely by chance. For example:</p>
 <ul>
-<li>A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.</li>
-<li>The method used in the paper is studied in detail, along with additional methods to solve the same type of problem.</li>
-<li>The methods are put in practice using, where possible, original data from the papers studied in the first part.</li>
+<li>Genes differentially expressed between healthy and disease samples, treated and untreated samples, etc.</li>
+<li>Genes coexpressed across tumour samples</li>
+<li>…</li>
 </ul>
-<p>The computational demonstrations for the course were developed in <a href="https://julialang.org/">Julia</a>, and the course starts with an <a href="./julia-intro.html">introduction to Julia</a>. For the assignments, you can use any programming language.</p>
-<p>An appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.</p>
-<p>The theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:</p>
-<ul>
-<li>Trevor Hastie, Robert Tibshirani, and Jerome Friedman. <a href="https://hastie.su.domains/ElemStatLearn/"><em>The Elements of Statistical Learning (second edition)</em></a> (2009).</li>
-<li>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. <a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a> (2023).</li>
-<li>Christopher Bishop. <a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a> (2006).</li>
-<li>Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. <a href="https://mml-book.github.io/"><em>Mathematics for Machine Learning</em></a> (2020).</li>
-</ul>
-<p>The use of classic papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+<p>We will use differential expression between two conditions, treated and untreated, as a running example. Of course this applies equally to other types of comparisons, e.g.&nbsp;ER positive vs ER negative breast tumours.</p>
+<p>Statistical significance is expressed in terms of comparing a <strong>null hypothesis</strong> <span class="math inline">\(H_0\)</span> to an <strong>alternative hypothesis</strong> <span class="math inline">\(H_1\)</span>. For instance</p>
+<p><span class="math display">\[
+\begin{aligned}
+  H_0 &amp;= \text{treatment has no effect on gene expression}\\\\
+  H_1 &amp;= \text{treatment does have an effect on gene expression}
+\end{aligned}
+\]</span></p>
+<p>To compare gene expression between the two groups, we can for instance do a <a href="https://en.wikipedia.org/wiki/Student%27s_t-test">two-sample <span class="math inline">\(t\)</span>-test</a>: compute for each gene</p>
+<p><span class="math display">\[
+t = \frac{\overline{x_1} - \overline{x_2}}{\text{se}}
+\]</span></p>
+<p>where <span class="math inline">\(\overline{x_1}\)</span> and <span class="math inline">\(\overline{x_2}\)</span> are the average expression levels of the gene in each group, and <span class="math inline">\(\text{se}\)</span> is the pooled within-group standard error:</p>
+<p><span class="math display">\[
+\text{se} = \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}
+\]</span></p>
+<p>where <span class="math inline">\(s_i^2\)</span> and <span class="math inline">\(n_i\)</span> are the variance and number of samples in group <span class="math inline">\(i\)</span>, respectively</p>
+<p><span class="math display">\[
+\begin{aligned}
+  \overline{x_i} &amp;= \frac{1}{n_i}\sum_{j\in G_i} x_{j} \\\\
+  s_i^2 &amp;= \frac{1}{(n_i-1)}\sum_{j\in G_i} (x_i - \overline{x_i})^2
+\end{aligned}
+\]</span></p>
+<p>The <span class="math inline">\(t\)</span>-statistic measures the difference in average expression between the two groups, relative to the natural variation within each group. The greater <span class="math inline">\(|t|\)</span>, the more likely there is a true difference between the groups. Nevertheless, even if there is no true difference, some variation between the groups will be observed in a finite number of samples due to random sampling noise. The distribution of <span class="math inline">\(t\)</span>-values observed between two groups when in fact there is no true difference between them is called the <strong>null distribution</strong>. Statistical significance is usually expressed by the <span class="math inline">\(p\)</span>-value, which, for a given value of <span class="math inline">\(t\)</span>, expresses the probability to observe a <span class="math inline">\(t\)</span>-statistic greater than <span class="math inline">\(t\)</span> (in absolute value) under the null hypothesis:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  p = \text{Pr}(|T|\geq |t| \mid H_0)
+\end{aligned}
+\]</span></p>
+<p>For some test statistics, the true null distribution to compute the <span class="math inline">\(p\)</span>-value is known. Otherwise random permutations can be used: randomly permute the group labels of the samples a large number of times, compute the test statistic for each permutation, and use these values to construct an <strong>empirical null distribution</strong>.</p>
+<p>An important property of <span class="math inline">\(p\)</span>-values is the following: under the null hypothesis, <span class="math inline">\(p\)</span>-values are uniformly distributed between 0 and 1:</p>
+<p><span class="math display">\[
+\text{Pr}(P\leq p \mid H_0) = p
+\]</span></p>
+<p>Conventionally, a <span class="math inline">\(p\)</span>-value threshold of 0.05 is often used. This means that the probability that we declare a gene as being affected by the treatment, even though in reality it is not affected, is less than 5%.</p>
+<p>In genome-wide studies, we typically measure around 20,000 genes (in humans). From the uniformity of the <span class="math inline">\(p\)</span>-value distribution under the null hypothesis, it follows that even if none of the genes are affected by treatment, we would still expect 5% or 1,000 genes to have a <span class="math inline">\(p\)</span>-value less than 0.05. Clearly it would be wrong to call any of these genes differentially expressed!</p>
+</section>
+<section id="false-discovery-rate" class="level2">
+<h2 class="anchored" data-anchor-id="false-discovery-rate">False discovery rate</h2>
+<p>The <span class="math inline">\(p\)</span>-value is often wrongly interpreted as saying that the probability that our gene is truly affected by treatment is greater than 95% if <span class="math inline">\(p&lt;0.05\)</span>. The latter is the probability that the alternative hypothesis is true given that the <span class="math inline">\(p\)</span>-value is below a certain threshold, or <span class="math inline">\(\text{Pr}(H_1 \mid P\leq p)\)</span>. More commonly, we express this through the <strong>false discrovery rate (FDR)</strong>, that is, the probability that the null hypothesis is true given that the <span class="math inline">\(p\)</span>-value is below a certain threshold, <span class="math inline">\(\text{Pr}(H_0 \mid P\leq p)=1-\text{Pr}(H_1 \mid P\leq p)\)</span>.</p>
+<p>To get a feel for what such probabilities mean, consider the following table:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Significant</th>
+<th>Not Significant</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><span class="math inline">\(H_0\)</span> true</strong></td>
+<td><span class="math inline">\(F\)</span></td>
+<td><span class="math inline">\(M_0-F\)</span></td>
+<td><span class="math inline">\(M_0\)</span></td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(H_1\)</span> true</strong></td>
+<td><span class="math inline">\(T\)</span></td>
+<td><span class="math inline">\(M_1-T\)</span></td>
+<td><span class="math inline">\(M_1\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td><span class="math inline">\(S\)</span></td>
+<td><span class="math inline">\(M-S\)</span></td>
+<td><span class="math inline">\(M\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Here “F” stands for “false positive” (not affected by treatment, but still called significant), “T” for “true positive”. The second column contains respectively the “true negative” and “false negative” results.</p>
+<p>Then the false discovery rate is</p>
+<p><span class="math display">\[
+\text{FDR} = \mathbb{E}\left(\frac{F}{S}\right)
+\]</span></p>
+<p>Obviously, we never know the true value of the numbers in the table, and hence FDR must be estimated. There exist several approaches for doing this. We consider two popular ones: the plug-in estimator and a Bayesian approach.</p>
+<section id="plug-in-estimator-of-the-fdr" class="level3">
+<h3 class="anchored" data-anchor-id="plug-in-estimator-of-the-fdr">Plug-in estimator of the FDR</h3>
+<p>Consider again the differential expression problem. Compute <span class="math inline">\(t\)</span>-statistics for each gene and consider a range of thresholds <span class="math inline">\(C\)</span>, either on the absolute <span class="math inline">\(t\)</span>-values or on the corresponding <span class="math inline">\(p\)</span>-values. For each value of <span class="math inline">\(C\)</span>, we know <span class="math inline">\(S_{obs}(C)\)</span>, the observed number of significant genes at threshold <span class="math inline">\(C\)</span>.</p>
+<p>Now generate <span class="math inline">\(K\)</span> random permutations of the group labels, and compute for each permutation <span class="math inline">\(k\)</span>, <span class="math inline">\(F_{obs}(C,k)\)</span>, the number of significant genes at threshold <span class="math inline">\(C\)</span> in permutation <span class="math inline">\(k\)</span>, which by virtue of the randomization, must all correspond to cases where <span class="math inline">\(H_0\)</span> is true. Compute the average over all permutations:</p>
+<p><span class="math display">\[
+F_{obs}(C) = \frac{1}{K}\sum_{k=1}^K F_{obs}(C,k)
+\]</span></p>
+<p>The plug-in estimate of the FDR at threshold <span class="math inline">\(C\)</span> is then defined as</p>
+<p><span class="math display">\[
+\widehat{\text{FDR}}(C) = \frac{F_{obs}(C)}{S_{obs}(C)}
+\]</span></p>
+<p>We can now vary <span class="math inline">\(C\)</span> until we reached a desired FDR value, e.g.&nbsp;10%, such that we expect no more than 10% of the genes we call differentially expressed to be false positives.</p>
+<p>Note that in practice, the number of permutations <span class="math inline">\(K\)</span> need not be very large to reach a stable value for the average. This is because in each permutation, we obtain random <span class="math inline">\(p\)</span>-values for a large number of features (genes).</p>
+</section>
+<section id="bayesian-estimate-of-the-fdr" class="level3">
+<h3 class="anchored" data-anchor-id="bayesian-estimate-of-the-fdr">Bayesian estimate of the FDR</h3>
+<p>When we perform a genome-wide test for differential expression, we obtain on the order of <span class="math inline">\(10^4\)</span> test statistic values, with corresponding <span class="math inline">\(p\)</span>-values under the null hypothesis. If all is well, the distribution of these <span class="math inline">\(p\)</span>-values, visualized using a histogram, typically looks like the <em>anti-conservative p-values</em> on this page:</p>
+<p><a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">How to interpret a <span class="math inline">\(p\)</span>-value histogram</a></p>
+<p>We know that under the null hypothesis, <span class="math inline">\(p\)</span>-values are uniformly distributed. We recognize the uniform distribution in the flat profile of the histogram for unsignificant (<span class="math inline">\(p\to 1\)</span>) <span class="math inline">\(p\)</span>-values, which with very high probability come from genes unaffected by the treatment. At very small <span class="math inline">\(p\)</span>-values, we see a deviation from the uniform distribution, which indicates the presence of truly affected genes, which obsviously don’t follow the null distribution.</p>
+<p>Hence it seems like we can model the observed <span class="math inline">\(p\)</span>-value distribution as a <strong>mixture distribution</strong> with one component corresponding to the null distribution and one component corresponding to the alternative distribution:</p>
+<p><span class="math display">\[
+f(p) = \pi_0 f_0(p) + (1-\pi_0) f_1(p)
+\]</span></p>
+<p>where <span class="math inline">\(f(p)\)</span> is the probability density function (p.d.f.) of the observed <span class="math inline">\(p\)</span>-value distribution, <span class="math inline">\(f_0\)</span> and <span class="math inline">\(f_1\)</span> are the p.d.f. of the <span class="math inline">\(p\)</span>-value distribution under the null and alternative distribution, respectively, and <span class="math inline">\(\pi_0 = \text{Pr}(H_0)\)</span>, the prior probability of a gene being unaffected by treatment (prior as in, before observing any data), .</p>
+<p>As before, we can imagine that our <span class="math inline">\(p\)</span>-values are generated by a process that first samples a hidden variable <span class="math inline">\(Z=0\)</span> with probability <span class="math inline">\(\pi_0\)</span> and <span class="math inline">\(Z=1\)</span> with probability <span class="math inline">\(1-\pi_0\)</span>, and then samples a <span class="math inline">\(p\)</span>-value (or <span class="math inline">\(t\)</span>-statistic) from the null or alternative distribution depending on the value of <span class="math inline">\(Z\)</span>. We know the null distribution is the uniform distribution. If we knew a parametric form for the alternative distribution, we could apply EM to estimate <span class="math inline">\(\pi_0\)</span> and the parameters of the alternative distribution, and then compute for each gene the <em>recognition distribution</em> or <em>local false discovery rate</em> (lfdr)</p>
+<p><span class="math display">\[
+\begin{aligned}
+  \text{lfdr}(p)  &amp;= \text{Pr}(H_0 \mid p)
+  = \text{Pr}(Z=0 \mid p)
+  = \frac{\pi_0 f_0(p)}{f(p)}
+\end{aligned}
+\]</span></p>
+<p>The word <em>“local”</em> refers to the fact that the above expression gives the expected rate of false positives among all genes with <span class="math inline">\(p\)</span>-value equal to <span class="math inline">\(p\)</span>, as opposed to the <em>“tail”</em> FDR estimated in the previous section giving the he expected rate of false positive among all genes with <span class="math inline">\(p\)</span>-value less than or equal to <span class="math inline">\(p\)</span>.</p>
+<p>In reality, EM is rarely used in this context, because we rarely have a good enough idea about a parametric form for the alternative distribution. Instead a non-parametric approach is used that exploits the knowledge that:</p>
+<ol type="1">
+<li><p><span class="math inline">\(p\)</span>-values are uniformly distributed under the null hypothesis, that is</p>
+<p><span class="math display">\[
+f_0(p) = 1
+\]</span></p></li>
+<li><p><span class="math inline">\(p\)</span>-values close to 1 almost surely come from the null distribution, that is,</p>
+<p><span class="math display">\[
+  \begin{aligned}
+\lim_{p\to 1} f_1(p) &amp;= 0 \\\\
+\lim_{p\to 1} f(p) &amp;= \pi_0 \lim_{p\to 1} f_0(p) = \pi_0
+  \end{aligned}
+  \]</span></p></li>
+</ol>
+<p>Hence in the observed <span class="math inline">\(p\)</span>-value histogram, <span class="math inline">\(\pi_0\)</span> can be estimated from the height of the “flat” region near <span class="math inline">\(p\approx 1\)</span>.</p>
+<p>We obtain</p>
+<p><span class="math display">\[
+\text{lfdr}(p) = \frac{\hat{\pi}_0}{f(p)}
+\]</span></p>
+<p>It remains to estimate the p.d.f. of the real <span class="math inline">\(p\)</span>-value distribution <span class="math inline">\(f(p)\)</span>. In the popular <a href="https://github.com/StoreyLab/qvalue">q-value package</a>, this is done by <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation">kernel density estimation</a> followed by some smoothing.</p>
+<p>The local false discovery rate provide a useful measure for the importance of a feature with <span class="math inline">\(p\)</span>-value <span class="math inline">\(p\)</span>. However, <span class="math inline">\(p\)</span>-values themselves represent <em>tail</em> probabilities, <span class="math inline">\(p=\text{Pr}(P\leq p \mid H_0)\)</span>, see above. Similarly, we can compute the FDR among all features with <span class="math inline">\(p\)</span>-value less than some threshold <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[
+\text{FDR}(p) = \text{Pr}(H_0\mid P\leq p).
+\]</span></p>
+<p>This tells us the estimated false discovery rate among all features that are equally or more significant than a feature with <span class="math inline">\(p\)</span>-value <span class="math inline">\(p\)</span>.</p>
+<p>Writing <span class="math inline">\(F(p)\)</span>, <span class="math inline">\(F_0(p)\)</span> and <span class="math inline">\(F_1(p)\)</span> for the cumulative probability functions of the observed, null, and alternative <span class="math inline">\(p\)</span>-value distributions, the reasoning above can be repeated to obtain</p>
+<p><span class="math display">\[
+F(p)=\pi_0 F_0(p) + (1-\pi_0) F_1(p) = \pi_0 p + (1-\pi_0) F_1(p)
+\]</span></p>
+<p>where we used <span class="math inline">\(F_0(p)=p\)</span>. It follows that</p>
+<p><span class="math display">\[
+\text{FDR}(p) = \text{Pr}(H_0\mid P\leq p) = \text{Pr}(Z=0\mid P\leq p) =\frac{\pi_0 p}{F(p)}
+\]</span></p>
+</section>
+<section id="q-values" class="level3">
+<h3 class="anchored" data-anchor-id="q-values"><span class="math inline">\(Q\)</span>-values</h3>
+<p>The <span class="math inline">\(q\)</span>-value of a feature with <span class="math inline">\(p\)</span>-value <span class="math inline">\(p\)</span> is defined as the minimum FDR that can be attained when calling that feature significant, that is, by choosing a <span class="math inline">\(p\)</span>-value threshold <span class="math inline">\(r\geq p\)</span>. Hence</p>
+<p><span class="math display">\[
+q(p) = \min_{r\geq p} \text{FDR}(r)
+\]</span></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

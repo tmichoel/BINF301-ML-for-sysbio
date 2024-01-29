@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Genome-scale Algorithms - Welcome</title>
+<title>BINF301 Genome-scale Algorithms - Ridge, lasso and elastic net regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BINF301 Genome-scale Algorithms</span>
     </a>
   </div>
@@ -92,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../regularized-regression/drug-sensitivity.html">Regularized regression</a></li><li class="breadcrumb-item"><a href="../regularized-regression/ridge-lasso-elnet.html">Ridge, lasso and elastic net regression</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -114,13 +143,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../julia-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Julia</span></a>
   </div>
 </li>
@@ -135,19 +164,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cancer subtypes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combinatorial clustering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
   </div>
 </li>
@@ -164,13 +193,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical significance for genome-wide studies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">False discovery rate estimation</span></a>
   </div>
 </li>
@@ -187,13 +216,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Drug sensitivity prediction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
   </div>
 </li>
@@ -210,13 +239,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PCA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">t-SNE, UMAP</span></a>
   </div>
 </li>
@@ -233,19 +262,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal associations between gene expression and disease</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mediation and instrumental variable analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal model selection</span></a>
   </div>
 </li>
@@ -262,13 +291,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gene regulatory networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bayesian networks</span></a>
   </div>
 </li>
@@ -285,13 +314,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial gene experssion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance component models and Gaussian processes</span></a>
   </div>
 </li>
@@ -306,20 +335,32 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#linear-models-and-least-squares" id="toc-linear-models-and-least-squares" class="nav-link active" data-scroll-target="#linear-models-and-least-squares">Linear models and least squares</a></li>
+  <li><a href="#limitations-of-least-squares-linear-regression" id="toc-limitations-of-least-squares-linear-regression" class="nav-link" data-scroll-target="#limitations-of-least-squares-linear-regression">Limitations of least-squares linear regression</a></li>
+  <li><a href="#ridge-regression" id="toc-ridge-regression" class="nav-link" data-scroll-target="#ridge-regression">Ridge regression</a></li>
+  <li><a href="#lasso-regression" id="toc-lasso-regression" class="nav-link" data-scroll-target="#lasso-regression">Lasso regression</a></li>
+  <li><a href="#elastic-net-regression" id="toc-elastic-net-regression" class="nav-link" data-scroll-target="#elastic-net-regression">Elastic net regression</a></li>
+  <li><a href="#generalized-linear-models" id="toc-generalized-linear-models" class="nav-link" data-scroll-target="#generalized-linear-models">Generalized linear models</a></li>
+  <li><a href="#selecting-the-hyperparameters" id="toc-selecting-the-hyperparameters" class="nav-link" data-scroll-target="#selecting-the-hyperparameters">Selecting the hyperparameters</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../regularized-regression/drug-sensitivity.html">Regularized regression</a></li><li class="breadcrumb-item"><a href="../regularized-regression/ridge-lasso-elnet.html">Ridge, lasso and elastic net regression</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Ridge, lasso and elastic net regression</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -331,35 +372,220 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is the website for the second half of the course <a href="https://www4.uib.no/en/courses/BINF301">BINF301 Genome-scale Algorithms</a>. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.</p>
-<p>Machine learning plays an important role in computational biology. See the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a> or the <a href="http://mlcb.org">Machine Learning in Computational Biology conference series</a>.</p>
-<p>The lectures are divided in modules, each focusing on a specific class of methods:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Book sections
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Clustering</li>
-<li>Regularized regression</li>
-<li>Dimensionality reduction</li>
-<li>Causal inference</li>
-<li>Graphical models</li>
-<li>Spatio-Temporal models</li>
+<li><a href="https://hastie.su.domains/ElemStatLearn/"><em>Elements of Statistical Learning</em></a>: <strong>Section 2.3, 3.1, 3.2, 3.4, 4.4</strong></li>
+<li><a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a>: <strong>Section 3.1, 6.2</strong></li>
 </ul>
-<p>Each module follows the same structure:</p>
+</div>
+</div>
+<section id="linear-models-and-least-squares" class="level2">
+<h2 class="anchored" data-anchor-id="linear-models-and-least-squares">Linear models and least squares</h2>
+<p>In a linear model, a (continuous) output <span class="math inline">\(Y\)</span> is predicted from a vector of inputs <span class="math inline">\(X^T=(X_1,X_2,\dots,X_p)\)</span> via <span class="math display">\[\begin{aligned}
+    \hat Y = \hat\beta_0 + \sum_{j=1}^p \hat{\beta}_j X_j
+\end{aligned}\]</span></p>
 <ul>
-<li>A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.</li>
-<li>The method used in the paper is studied in detail, along with additional methods to solve the same type of problem.</li>
-<li>The methods are put in practice using, where possible, original data from the papers studied in the first part.</li>
+<li><span class="math inline">\(\hat Y\)</span> is the predicted value of <span class="math inline">\(Y\)</span>,</li>
+<li><span class="math inline">\(\hat\beta_0\)</span> is the intercept (in statistics) or bias (in machinelearning),</li>
+<li><span class="math inline">\((\hat\beta_1,\hat\beta_2,\dots,\hat\beta_p)^T\)</span> is the vector of (regression) coefficients,</li>
 </ul>
-<p>The computational demonstrations for the course were developed in <a href="https://julialang.org/">Julia</a>, and the course starts with an <a href="./julia-intro.html">introduction to Julia</a>. For the assignments, you can use any programming language.</p>
-<p>An appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.</p>
-<p>The theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:</p>
+<p>For convenience, we often include a constant variable 1 in <span class="math inline">\(X\)</span>, include <span class="math inline">\(\hat \beta_0\)</span> in the vector of coefficients, and write the linear model in vector form: <span class="math display">\[\begin{aligned}
+  \hat Y = X^T\hat\beta
+\end{aligned}\]</span></p>
+<p>Least squares is the most popular method to fit the linear model to a set of training data <span class="math inline">\((x_1,y_1)\)</span> <span class="math inline">\(\dots\)</span> <span class="math inline">\((x_N,y_N)\)</span>: we pick the coefficients <span class="math inline">\(\beta\)</span> to minimize the residual sum of squares</p>
+<p><span class="math display">\[\begin{aligned}
+    RSS(\beta) &amp;= \sum_{i=1}^N (y_i - \hat y_i)^2
+    = \sum_{i=1}^N \left(y_i - x_i^T\beta\right)^2
+    = \sum_{i=1}^N \Bigl(y_i - \sum_{j=1}^p x_{ij}\beta_j\Bigr)^2
+\end{aligned}\]</span></p>
+<p>Collecting the data for the inputs and ouptput in a <span class="math inline">\(N\times p\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(N\)</span>-vector <span class="math inline">\(\mathbf{y}\)</span>, respectively, <span class="math display">\[\begin{aligned}
+    \mathbf{X}= (x_1,x_2,\dots,x_p) = \begin{pmatrix}
+      x_{11} &amp; x_{12} &amp; \dots &amp; x_{1p}\\
+      x_{21} &amp; x_{22} &amp; \dots &amp; x_{2p}\\
+      \vdots &amp; \vdots &amp; &amp; \vdots\\
+      x_{N1} &amp; x_{N2} &amp; \dots &amp; x_{Np}
+    \end{pmatrix} &amp;&amp;
+    \mathbf{y}= \begin{pmatrix}
+      y_1\\
+      y_2\\
+      \vdots\\
+      y_N
+    \end{pmatrix}
+  \end{aligned}\]</span> we can write <span class="math display">\[\begin{aligned}
+  RSS(\beta) &amp;= (\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)
+\end{aligned}\]</span> If the <span class="math inline">\(p\times p\)</span> matrix <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> is non-singular, then the unique minimizer of <span class="math inline">\(RSS(\beta)\)</span> is given by <span class="math display">\[\tag{1}
+    \hat\beta = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{y}\]</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prove eq. (1) by differentiating <span class="math inline">\(RSS(\beta)\)</span> w.r.t. <span class="math inline">\(\beta_i\)</span>.</p>
+</div>
+</div>
+<p>The fitted value at the <span class="math inline">\(i\)</span>th input <span class="math inline">\(x_i\)</span> is <span class="math inline">\(\hat y_i=x_i^T\hat\beta\)</span>. In matrix-vector notation, we can write <span class="math display">\[\begin{aligned}
+\hat{\mathbf{y}} = \mathbf{X}\hat\beta = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
+  \end{aligned}\]</span> Write <span class="math display">\[\begin{aligned}
+    \mathbf{H}= \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T
+  \end{aligned}\]</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Show that <span class="math inline">\(\mathbf{H}\)</span> is a projection matrix, <span class="math inline">\(\mathbf{H}^2=\mathbf{H}\)</span>. <span class="math inline">\(\mathbf{H}\)</span> projects on the linear subspace of <span class="math inline">\(\mathbb{R}^N\)</span> spanned by the columns of <span class="math inline">\(\mathbf{X}\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="limitations-of-least-squares-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-of-least-squares-linear-regression">Limitations of least-squares linear regression</h2>
+<p>Least-squares linear regression involves the matrix inverse <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span>:</p>
 <ul>
-<li>Trevor Hastie, Robert Tibshirani, and Jerome Friedman. <a href="https://hastie.su.domains/ElemStatLearn/"><em>The Elements of Statistical Learning (second edition)</em></a> (2009).</li>
-<li>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. <a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a> (2023).</li>
-<li>Christopher Bishop. <a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a> (2006).</li>
-<li>Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. <a href="https://mml-book.github.io/"><em>Mathematics for Machine Learning</em></a> (2020).</li>
+<li>If the columns of <span class="math inline">\(\mathbf{X}\)</span> are not linearly independent (<span class="math inline">\(\mathbf{X}\)</span> is not full rank), then <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> is singular and <span class="math inline">\(\hat\beta\)</span> are not uniquely defined, although the fitted values <span class="math inline">\(\hat{\mathbf{y}}=\mathbf{X}\hat\beta\)</span> are still the projection of <span class="math inline">\(\mathbf{y}\)</span> on the column space of <span class="math inline">\(\mathbf{X}\)</span>. This is usually resolved automatically by stats software packages.</li>
+<li>If <span class="math inline">\(\mathbf{X}\)</span> is full rank, but some predictors are highly correlated, <span class="math inline">\(\det(\mathbf{X})\)</span> will be close to 0. This leads to numerical instability and high variance in <span class="math inline">\(\hat\beta\)</span> (small changes in the training data lead to large changes in <span class="math inline">\(\hat\beta\)</span>).</li>
+<li>If <span class="math inline">\(p&gt;N\)</span> (but <span class="math inline">\(rnk(\mathbf{X})=N\)</span>), then the columns of <span class="math inline">\(\mathbf{X}\)</span> span the entire space <span class="math inline">\(\mathbb{R}^N\)</span>, that is, <span class="math inline">\(\mathbf{H}=\mathbb{1}\)</span> and <span class="math inline">\(\hat{\mathbf{y}}=\mathbf{y}\)</span>: overfitting the training data.</li>
 </ul>
-<p>The use of classic papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+<p>High variance and overfitting result in poor prediction accuracy (generalization to unseen data).</p>
+<p>Prediction accuracy can be improved by shrinking regression coefficients towards zero (imposing a penalty on their size).</p>
+</section>
+<section id="ridge-regression" class="level2">
+<h2 class="anchored" data-anchor-id="ridge-regression">Ridge regression</h2>
+<p>Regularization by shrinkage: Ridge regression</p>
+<p>The ridge regression coefficients minimize a penalized residual sum of of squares: <span class="math display">\[\tag{2}
+\beta^{\text{ridge}} = \text{argmin}_\beta \left\{ \sum_{i=1}^N \Bigl(y_i - \beta_0 - \sum_{j=1}^p x_{ij}\beta_j\Bigr)^2 + \textcolor{red}{\lambda\sum_{j=1}^p\beta_j^2}  \right\}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\lambda\geq 0\)</span> is a hyperparameter that controls the amount of shrinkage.</li>
+<li>The inputs <span class="math inline">\(X_j\)</span> (columns of <span class="math inline">\(\mathbf{X}\)</span>) are normally standardized before solving eq. (2).</li>
+<li>The intercept <span class="math inline">\(\beta_0\)</span> is not penalized.</li>
+<li>With centered inputs, <span class="math inline">\(\hat\beta_0=\bar y=\frac1N\sum_i y_i\)</span>, and remaining <span class="math inline">\(\beta_j\)</span> can be estimated by a ridge regression without intercept.</li>
+</ul>
+<p>The criterion in eq. (2) can be written in matrix form: <span class="math display">\[\begin{aligned}
+    RSS(\beta,\lambda) = (\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta) + \lambda \beta^T\beta
+  \end{aligned}\]</span> with unique minimizer <span class="math display">\[\tag{3}
+    \beta^{\text{ridge}}= (\mathbf{X}^T\mathbf{X}+\lambda\mathbb{1})^{-1}\mathbf{X}^T\mathbf{y}\]</span></p>
+<p>Note that <span class="math inline">\(\mathbf{X}^T\mathbf{X}+\lambda\mathbb{1}\)</span> is always non-singular.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prove eq. (3) by differentiating <span class="math inline">\(RSS(\beta)\)</span> w.r.t. <span class="math inline">\(\beta_i\)</span></p>
+</div>
+</div>
+</section>
+<section id="lasso-regression" class="level2">
+<h2 class="anchored" data-anchor-id="lasso-regression">Lasso regression</h2>
+<p>Lasso regression: regularization by shrinkage and subset selection</p>
+<p>The lasso regression coefficients minimize a penalized residual sum of squares: <span class="math display">\[\tag{4}
+    \beta^{\text{lasso}}=  = \text{argmin}_\beta \left\{ \sum_{i=1}^N \Bigl(y_i - \beta_0 - \sum_{j=1}^p x_{ij}\beta_j\Bigr)^2 + \textcolor{red}{\lambda\sum_{j=1}^p|\beta_j|}  \right\}\]</span></p>
+<ul>
+<li>Lasso regression has no closed form solution, the solutions are non-linear in the <span class="math inline">\(y_i\)</span>,</li>
+<li>If <span class="math inline">\(\lambda\)</span> is large enough, some coefficients will be exactly zero.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the case with one predictor (<span class="math inline">\(p=1\)</span>) and training data <span class="math display">\[\begin{aligned}
+      \mathbf{x}= \begin{pmatrix}
+      x_1\\
+      x_2\\
+      \vdots\\
+      x_N
+    \end{pmatrix} &amp;&amp;
+      \mathbf{y}= \begin{pmatrix}
+      y_1\\
+      y_2\\
+      \vdots\\
+      y_N
+    \end{pmatrix}
+    \end{aligned}\]</span> Assume that the data are standardized (mean zero and standard deviation one), and that <span class="math inline">\(\mathbf{x}^T\mathbf{y}&gt;0\)</span> (positive correlation between input and output).</p>
+<ul>
+<li>Write down the loss functions and find analytic solutions for the ordinary least squares, ridge regression, and lasso regression coefficient.</li>
+<li>Draw schematically how <span class="math inline">\(\beta^{\text{ridge}}\)</span> and <span class="math inline">\(\beta^{\text{lasso}}\)</span> vary as a function of <span class="math inline">\(\beta^{\text{OLS}}\)</span>.</li>
+<li>Explain what shrinkage and variable selection mean in this simple example.</li>
+</ul>
+<p>How can the exact lasso solution with one predictor be used to construct an algorithm to solve the general case?</p>
+</div>
+</div>
+</section>
+<section id="elastic-net-regression" class="level2">
+<h2 class="anchored" data-anchor-id="elastic-net-regression">Elastic net regression</h2>
+<p>Elastic net regression combines ridge and lasso regularization.</p>
+<ul>
+<li>In genomic applications, there are often strong correlations among predictor variables (genes operate in molecular pathways).</li>
+<li>The lasso penalty is somewhat indifferent to the choice among a set of strong but correlated variables.</li>
+<li>The ridge penalty tends to shrink the coefficients of correlated variables towards each other.</li>
+<li>The elastic net penalty is a compromise, and has the form <span class="math display">\[\begin{aligned}
+        \lambda\sum_{j=1}^p \Bigl(\alpha|\beta_j|+\tfrac12(1-\alpha)\beta_j^2\Bigr).
+      \end{aligned}\]</span> The second term encourages highly correlated features to be averaged, while the first term encourages a sparse solution in the coefficients of these averaged features.</li>
+</ul>
+</section>
+<section id="generalized-linear-models" class="level2">
+<h2 class="anchored" data-anchor-id="generalized-linear-models">Generalized linear models</h2>
+<ul>
+<li>Ridge, lasso, and elastic net regression can also be used to fit generalized linear models when the number of predictors is high.</li>
+<li>The most commonly used model is logistic regression, where a binary output <span class="math inline">\(Y\)</span> is predicted from a vector of inputs <span class="math inline">\(X^T=(X_1,\dots,X_p)\)</span> via <span class="math display">\[\begin{aligned}
+  \log\frac{P(Y=1\mid X)}{P(Y=0\mid X)}  &amp;= \beta_0 + \sum_{j=1}^p \beta_j X_j\\
+  P(Y=1\mid X) = 1 - P(Y=0\mid X) &amp;= \frac1{1+e^{-\beta_0 - \sum_{j=1}^p \beta_j X_j}}
+\end{aligned}\]</span></li>
+<li>With training data <span class="math inline">\((\mathbf{X},\mathbf{y})\)</span>, the parameters are estimated by maximizing the penalized log-likelihood: <span class="math display">\[\begin{aligned}
+      \mathcal{L}(\beta) &amp;= \log \prod_{i=1}^N P(y_i\mid x_{i1},\dots,x_{ip}) - \sum_{j=1}^p \left(\alpha|\beta_j|+\tfrac12(1-\alpha)\beta_j^2\right)\\
+      &amp;= \sum_{i=1}^N \log P(y_i\mid x_{i1},\dots,x_{ip}) - \lambda \sum_{j=1}^p \left(\alpha|\beta_j|+\tfrac12(1-\alpha)\beta_j^2\right)
+    \end{aligned}\]</span></li>
+<li>Generalized linear models can be fitted using a iterative least squares approximation: a quadratic approximation to the log-likelihood around the current estimates for <span class="math inline">\(\beta\)</span>, and this quadratic approximation is used to find the next estimates using the standard linear elastic net solution.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Find an expression for <span class="math inline">\(\mathcal{L}(\beta)\)</span> in the case of logistic regression.</p>
+</div>
+</div>
+</section>
+<section id="selecting-the-hyperparameters" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-the-hyperparameters">Selecting the hyperparameters</h2>
+<p>Cross-validation is used to select value for the hyperparameters <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\alpha\)</span>. See <a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a> (Section 6.2.3)</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

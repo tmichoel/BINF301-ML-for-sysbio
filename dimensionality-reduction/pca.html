@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Genome-scale Algorithms - Welcome</title>
+<title>BINF301 Genome-scale Algorithms - PCA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BINF301 Genome-scale Algorithms</span>
     </a>
   </div>
@@ -92,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dimensionality-reduction/pca.html">Dimensionality reduction</a></li><li class="breadcrumb-item"><a href="../dimensionality-reduction/pca.html">PCA</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -114,13 +143,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./julia-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../julia-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Julia</span></a>
   </div>
 </li>
@@ -135,19 +164,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cancer subtypes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combinatorial clustering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
+  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
   </div>
 </li>
@@ -164,13 +193,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical significance for genome-wide studies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">False discovery rate estimation</span></a>
   </div>
 </li>
@@ -187,13 +216,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/drug-sensitivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Drug sensitivity prediction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
   </div>
 </li>
@@ -210,13 +239,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">PCA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
+  <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">t-SNE, UMAP</span></a>
   </div>
 </li>
@@ -233,19 +262,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-assoc-genes-disease.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal associations between gene expression and disease</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mediation and instrumental variable analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Causal model selection</span></a>
   </div>
 </li>
@@ -262,13 +291,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/gene-regulatory-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gene regulatory networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
+  <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bayesian networks</span></a>
   </div>
 </li>
@@ -285,13 +314,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial gene experssion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
+  <a href="../spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance component models and Gaussian processes</span></a>
   </div>
 </li>
@@ -306,20 +335,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link active" data-scroll-target="#dimensionality-reduction">Dimensionality reduction</a></li>
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca">Principal component analysis (PCA)</a></li>
+  <li><a href="#probabilistic-pca" id="toc-probabilistic-pca" class="nav-link" data-scroll-target="#probabilistic-pca">Probabilistic PCA</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dimensionality-reduction/pca.html">Dimensionality reduction</a></li><li class="breadcrumb-item"><a href="../dimensionality-reduction/pca.html">PCA</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">PCA</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -331,35 +368,117 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is the website for the second half of the course <a href="https://www4.uib.no/en/courses/BINF301">BINF301 Genome-scale Algorithms</a>. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.</p>
-<p>Machine learning plays an important role in computational biology. See the <a href="http://cosi.iscb.org/wiki/MLCSB:Home">Machine Learning in Computational and Systems Biology community</a> or the <a href="http://mlcb.org">Machine Learning in Computational Biology conference series</a>.</p>
-<p>The lectures are divided in modules, each focusing on a specific class of methods:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Book sections
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Clustering</li>
-<li>Regularized regression</li>
-<li>Dimensionality reduction</li>
-<li>Causal inference</li>
-<li>Graphical models</li>
-<li>Spatio-Temporal models</li>
+<li><a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a>: <strong>Chapter 12</strong></li>
+<li><a href="https://hastie.su.domains/ElemStatLearn/"><em>Elements of Statistical Learning</em></a>: <strong>Section 14.5.1</strong></li>
+<li><a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a>: <strong>Section 6.3.1</strong></li>
 </ul>
-<p>Each module follows the same structure:</p>
-<ul>
-<li>A classic or ground-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was used.</li>
-<li>The method used in the paper is studied in detail, along with additional methods to solve the same type of problem.</li>
-<li>The methods are put in practice using, where possible, original data from the papers studied in the first part.</li>
-</ul>
-<p>The computational demonstrations for the course were developed in <a href="https://julialang.org/">Julia</a>, and the course starts with an <a href="./julia-intro.html">introduction to Julia</a>. For the assignments, you can use any programming language.</p>
-<p>An appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.</p>
-<p>The theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:</p>
-<ul>
-<li>Trevor Hastie, Robert Tibshirani, and Jerome Friedman. <a href="https://hastie.su.domains/ElemStatLearn/"><em>The Elements of Statistical Learning (second edition)</em></a> (2009).</li>
-<li>Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. <a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a> (2023).</li>
-<li>Christopher Bishop. <a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a> (2006).</li>
-<li>Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. <a href="https://mml-book.github.io/"><em>Mathematics for Machine Learning</em></a> (2020).</li>
-</ul>
-<p>The use of classic papers is motivated by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a>. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.</p>
+</div>
+</div>
+<section id="dimensionality-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="dimensionality-reduction">Dimensionality reduction</h2>
+<p>Assume we have a set of <span class="math inline">\(N\)</span> observations (e.g.&nbsp;cells) of <span class="math inline">\(p\)</span> variables (e.g.&nbsp;genes).</p>
+<p>Dimensionality reduction consists of representing the observations in a lower-dimensional space with dimension <span class="math inline">\(q\ll p\)</span> while preserving some characteristics (e.g.&nbsp;relative distance) of the original <span class="math inline">\(p\)</span>-dimensional representation.</p>
+<p>For visualizing relationships among observations, we typically use <span class="math inline">\(q=2\)</span>.</p>
+</section>
+<section id="principal-component-analysis-pca" class="level2">
+<h2 class="anchored" data-anchor-id="principal-component-analysis-pca">Principal component analysis (PCA)</h2>
+<p>Assume we have a set of <span class="math inline">\(N\)</span> observations <span class="math inline">\(x_1,\dots,x_N\in \mathbb{R}^p\)</span> of <span class="math inline">\(p\)</span> variables, collected in the <span class="math inline">\(N\times p\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span>.</p>
+<p>The principal components of <span class="math inline">\(\mathbf{X}\)</span> provide a sequence of best linear approximations to <span class="math inline">\(\mathbf{X}\)</span>, representing <span class="math inline">\(\mathbf{X}\)</span> by a line (<span class="math inline">\(q=1\)</span>), plane (<span class="math inline">\(q=2\)</span>), etc. in <span class="math inline">\(p\)</span>-dimensional space.</p>
+<p>A rank-<span class="math inline">\(q\)</span> linear model in <span class="math inline">\(p\)</span>-dimensional space takes the form</p>
+<p><span class="math display">\[
+f(y) = \mu + y_1 v_1 + \dots + y_q v_q = \mu + \mathbf{V}_q z,
+\]</span></p>
+<p>where <span class="math inline">\(\mu\in\mathbb{R}^p\)</span> is a location vector, <span class="math inline">\(z\in\mathbb{R}^q\)</span> is a (low-dimensional) vector, and <span class="math inline">\(\mathbf{V}_q=(v_1,\dots,v_q)\)</span> is a <span class="math inline">\(p\times q\)</span> matrix of <span class="math inline">\(q\)</span> orthogonal unit vectors,</p>
+<p><span class="math display">\[
+\begin{aligned}
+    v_k v_{k'}^T = \sum_{j=1}^p v_{kj}v_{k'j}= \delta_{kk'}
+\end{aligned}
+\]</span></p>
+<p>Fitting this model to the data using least squares amounts to minimizing the reconstruction error:</p>
+<p><span class="math display">\[
+\min_{\mu,\{y_{i}\},\mathbf{V}\_q} \sum_{i=1}^N \Bigl\| x_i - \mu - \mathbf{V}_q z_i \Bigr\|^2
+\]</span></p>
+<p>Partial optimization for <span class="math inline">\(\mu\)</span> and the <span class="math inline">\(y_i\)</span> gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+    \hat{\mu} &amp;= \bar x = \frac1{N}\sum_{i=1}^N x_i\\
+    \hat{z}_i &amp;= \mathbf{V}_q^T(x_i-\bar{x})
+\end{aligned}
+\]</span></p>
+<p>Plugging this into () leaves us to find the orthogonal matrix <span class="math inline">\(\mathbf{V}_q\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+    \min_{\mathbf{V}\_q} \sum_{i=1}^{N} \Bigl\| (x_i - \bar{x}) - \mathbf{V}_q\mathbf{V}_q^T(x_i-\bar{x}) \Bigr\|^2
+\end{aligned}
+\]</span></p>
+<p>It can be shown that the optimal solution is found when <span class="math inline">\(\mathbf{V}_q=(v_1,\dots,v_q)\)</span> contains the <span class="math inline">\(q\)</span> eigenvectors with largest eigenvalues of the <span class="math inline">\(p\times p\)</span> matrix <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> (if the data is centred such that <span class="math inline">\(\bar x=0\)</span>).</p>
+<p>The solution can be expressed using the <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a> of the obsered data matrix <span class="math inline">\(\mathbf{X}\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{X} = \mathbf{U} \Lambda \mathbf{V}^T
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{U}\)</span> is an <span class="math inline">\(N\times p\)</span> orthogonal matrix (<span class="math inline">\(\mathbf{U}^T\mathbf{U}=\mathbf{I}_p\)</span>) whose columns are called the <em>left singular vectors</em>, <span class="math inline">\(\mathbf{V}\)</span> is a <span class="math inline">\(p\times p\)</span> orthogonal matrix (<span class="math inline">\(\mathbf{V}^T\mathbf{V}=\mathbf{I}_p\)</span>) whose columns are called the <em>right singular vectors</em>, and <span class="math inline">\(\Lambda\)</span> is a <span class="math inline">\(p\times p\)</span> diagonal matrix with diagonal elements <span class="math inline">\(\lambda_1\geq \lambda_2 \geq \dots \geq \lambda_p\geq 0\)</span> called the <em>singular values</em>.</p>
+<p>The solution <span class="math inline">\(\mathbf{V}_q\)</span> above consists of the first <span class="math inline">\(q\)</span> columns of <span class="math inline">\(\mathbf{V}\)</span>.</p>
+<p>The columns of <span class="math inline">\(\mathbf{U}\Lambda\)</span> are called the <em>principal components</em> of <span class="math inline">\(\mathbf{X}\)</span>. The first <span class="math inline">\(q\)</span> principal components are <span class="math inline">\(\mathbf{U}_q\Lambda_q\)</span>. Each principal component is a vector in <span class="math inline">\(\R^N\)</span>, that is, it takes a value for each observation. The solution <span class="math inline">\(\hat{z}_i\)</span> above consists of the rows of <span class="math inline">\(\mathbf{U}_q\Lambda_q\)</span>, that is, for each observation <span class="math inline">\(i\)</span>, <span class="math inline">\(\hat{z}_i\)</span> consists of the values of the first <span class="math inline">\(q\)</span> principal components for observation <span class="math inline">\(i\)</span>.</p>
+</section>
+<section id="probabilistic-pca" class="level2">
+<h2 class="anchored" data-anchor-id="probabilistic-pca">Probabilistic PCA</h2>
+<p>Probabilistic PCA is a continuous generalization of the <a href="../cluster-analysis/mixture-distributions.html">Gaussian mixture model</a> where we again assume that an observation <span class="math inline">\(X=(x_1,\dots,x_p)\)</span> of <span class="math inline">\(p\)</span> variables is generated by a latent variable <span class="math inline">\(Z\)</span>:</p>
+<pre class="mermaid"><code>flowchart LR
+  Z --&gt; X</code></pre>
+<p>In the Gaussian mixture model, <span class="math inline">\(Z\)</span> is assumed to take discrete values leading to clustered observations. Here we assume that <span class="math inline">\(Z=(z_1,\dots,z_q)\)</span> is a <span class="math inline">\(q\)</span>-dimensional <em>continous</em> variable with distribution</p>
+<p><span class="math display">\[
+Z\sim \mathcal{N}(0,\mathbf{I})
+\]</span></p>
+<p>that is, we assume each <span class="math inline">\(z_i\)</span> is drawn from an independent normal distribution with mean zero and standard deviation 1. The conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Z\)</span> is just like in the discrete mixture distribution assumed to be a multivariate normal with mean dependent on the value of <span class="math inline">\(Z\)</span>; the covariance matrix is assumed to be a multiple of the identity matrix, meaning that conditional on the latent factors <span class="math inline">\(Z\)</span>, the <span class="math inline">\(p\)</span> observed features <span class="math inline">\(X\)</span> are <em>independent</em> and have equal error distribution:</p>
+<p><span class="math display">\[
+p(x \mid z) = \mathcal{N}(\mathbf{\mu} + \mathbf{V}z, \sigma^2 \mathbf{I})
+\]</span></p>
+<p>where <span class="math inline">\(\mu\in\R^p\)</span> is a mean offset vector, <span class="math inline">\(\mathbf{V}\in\R^{p\times q}\)</span> is a linear maps, and <span class="math inline">\(\sigma^2&gt;0\)</span> a common variance parameter for all <span class="math inline">\(p\)</span> dimensions. Note the similarity between this model and the model above.</p>
+<p>Following the Gaussian mixture model example, we want to maximize the likelihood of the observed data, which follows the <strong>marginal distribution</strong></p>
+<p><span class="math display">\[
+p(x) = \int dz\; p(x\mid z) p(z)
+\]</span></p>
+<p>which can be interpreted as a “continuous” Gaussian mixture distribution. Unlike in the finite mixture model, this integral can in fact be solved using properties of the <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">multivariate normal distribution</a>:</p>
+<p><span class="math display">\[
+p(x) = \mathcal{N}(\mu,\mathbf{C})
+\]</span></p>
+<p>with covariance matrix <span class="math inline">\(\mathbf{C}=\mathbf{V}\mathbf{V}^T+\sigma^2\mathbf{I}\)</span>. The corresponding log-likelihood for <span class="math inline">\(N\)</span> observations <span class="math inline">\(x_1.\dots,x_N\in\R^p\)</span> is</p>
+<p><span class="math display">\[
+\mathcal{L} = -\frac{N}{2}\Bigl\{p \ln(2\pi) + \ln(\det(\mathbf{C})) + \mathrm{tr}(\mathbf{C}^{-1}\mathbf{S}) \Bigr\}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\mathbf{S}= \frac{1}{N}\sum_{i=1}^N (x_i-\mu)(x_i-\mu)
+\]</span></p>
+<p>The maximum-likelihood for <span class="math inline">\(\mu\)</span> is the sample mean, <span class="math inline">\(\hat{\mu}=\overline{x}=\frac{1}{N}\sum_{i=1}^N x_i\)</span>, such that <span class="math inline">\(\mathbf{S}\)</span> is the sample covariance matrix. The log-likelihood function measures how much <span class="math inline">\(\mathbf{C}\)</span> differs from the sample covariance and is maximized by making <span class="math inline">\(\mathbf{C}\)</span> as “similar” as possible to it. The solution turns out to be the standard PCA solution where the columns of <span class="math inline">\(\mathbf{V}\)</span> are the <span class="math inline">\(q\)</span> eigenvectors with largest eigenvalues of <span class="math inline">\(\mathbf{S}\)</span>. This conclusion is valid only if we assume the <em>independent error model</em>, where features are independent given latent factors, that is, the latent factors explain <em>all</em> the covariance between the features. In summary:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Probabilistic PCA interpretation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If we assume that our high-dimensional observations are generated by a linear combination of low-dimensional latent (=hidden) factors, and the observed features are independent given the latent factors, then the maximum-likelihood solution for the map between latent and observed space is PCA.</p>
+</div>
+</div>
+<p>Note the important benefit of the probabilistic approach. In standard PCA, we simply fit a linear function to a set of observation, without giving any thought to the deviations (errors) between the (noisy) observations and the fitted model. In probabilistic PCA, as in all generative models, we must be explicit about our assumptions, and standard PCA is only recovered if we assume that features are independent given the latent factors.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
