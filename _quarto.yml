@@ -18,11 +18,30 @@ website:
           - cluster-analysis/combinatorial-clustering.qmd
           - cluster-analysis/mixture-distributions.qmd
       - section: "Statistical significance"
+        contents:
+          - statistical-significance/statistical-significance-gws.qmd
+          - statistical-significance/fdr-estimation.qmd
       - section: "Regularized regression"
+        contents:
+          - regularized-regression/drug-sensitivity.qmd
+          - regularized-regression/ridge-lasso-elnet.qmd
       - section: "Dimensionality reduction"
+        contents:
+          - dimensionality-reduction/pca.qmd
+          - dimensionality-reduction/tsne-umap.qmd
       - section: "Causal inference"
+        contents:
+          - causal-inference/causal-assoc-genes-disease.qmd
+          - causal-inference/mediation-iv.qmd
+          - causal-inference/causal-model-selection.qmd
       - section: "Graphical models"
+        contents:
+          - graphical-models/gene-regulatory-networks.qmd
+          - graphical-models/bayesian-networks.qmd
       - section: "Spatio-Temporal models"
+        contents:
+          - spatio-temporal-models/spatial-gene-expression.qmd
+          - spatio-temporal-models/gaussian-processes.qmd
       - section: "Appendix"
 format:
   html:
