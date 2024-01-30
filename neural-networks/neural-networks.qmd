@@ -1,0 +1,14 @@
+---
+title: "Neural networks"
+page-layout: full
+title-block-banner: false
+---
+
+
+::: {.callout-tip}
+## Book sections
+
+- [*Elements of Statistical Learning*](https://hastie.su.domains/ElemStatLearn/): **Chapter 11**
+- [*An Introduction to Statistical Learning*](https://www.statlearning.com/): **Chapter 10**
+- [*Pattern Recognition and Machine Learning*](https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/): **Chapter 5**
+:::

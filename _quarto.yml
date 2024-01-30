@@ -39,12 +39,14 @@ website:
         contents:
           - graphical-models/gene-regulatory-networks.qmd
           - graphical-models/bayesian-networks.qmd
-      - section: "Spatio-Temporal models"
+      - section: "Variance components"
         contents:
-          - spatio-temporal-models/spatial-gene-expression.qmd
-          - spatio-temporal-models/gaussian-processes.qmd
+          - variance-components/variance-components-genomics.qmd
+          - variance-components/gaussian-processes.qmd
       - section: "Neural networks"
         contents:
+          - neural-networks/protein-structure-prediction.qmd
+          - neural-networks/neural-networks.qmd
       - section: "Appendix"
 format:
   html:

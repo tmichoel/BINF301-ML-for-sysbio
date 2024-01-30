@@ -15,14 +15,14 @@ The lectures are divided in modules, each focusing on a specific class of method
 - Dimensionality reduction
 - Causal inference
 - Graphical models
-- Spatio-Temporal models
+- Variance component models
 - Neural networks
 
 Each module follows the same structure:
 
-- A classic or path-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was first used.
-- The method used in the paper is studied in detail, along with additional methods to solve the same type of problem. 
-- The methods are put in practice using, where possible, original data from the papers studied in the first part. 
+- A classic or path-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was first used. One or more "test of time" papers illustrate recent applications of the same algorithms.
+- The method used in the paper(s) is studied in detail, along with additional methods to solve the same type of problem. 
+- The methods are put in practice using original data from the papers studied in the first part. 
 
 The computational demonstrations for the course were developed in [Julia][2], and the course starts with an [introduction to Julia](julia-intro.qmd). For the assignments, you can use any programming language.
 

@@ -34,3 +34,5 @@ Talukdar HA, et al. [*Cross-tissue regulatory gene networks in coronary artery d
 
 Beckmann ND., et al. [*Multiscale causal networks identify VGF as a key regulator of Alzheimer's disease*](https://doi.org/10.1038/s41467-020-17405-z). Nature communications 11:3942 (2020).
 :::
+
+## Other approaches to gene regulatory network inference
