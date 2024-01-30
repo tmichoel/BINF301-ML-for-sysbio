@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "BINF301 Genome-scale Algorithms"
+  title: "BINF301 Machine Learning for Systems Biology"
   reader-mode: true
   page-navigation: true
   navbar:
