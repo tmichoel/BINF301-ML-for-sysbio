@@ -3,6 +3,8 @@ project:
 
 website:
   title: "BINF301 Genome-scale Algorithms"
+  reader-mode: true
+  page-navigation: true
   navbar:
     search: true
   sidebar:
@@ -39,10 +41,10 @@ website:
         contents:
           - graphical-models/gene-regulatory-networks.qmd
           - graphical-models/bayesian-networks.qmd
-      - section: "Variance components"
+      - section: "Gaussian processes"
         contents:
-          - variance-components/variance-components-genomics.qmd
-          - variance-components/gaussian-processes.qmd
+          - gaussian-processes/variance-components-genomics.qmd
+          - gaussian-processes/gaussian-processes.qmd
       - section: "Neural networks"
         contents:
           - neural-networks/protein-structure-prediction.qmd

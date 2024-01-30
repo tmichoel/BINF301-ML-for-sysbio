@@ -9,14 +9,15 @@ This is the website for the second half of the course [BINF301 Genome-scale Algo
 
 The lectures are divided in modules, each focusing on a specific class of methods:
 
-- Statistical significance
-- Clustering
-- Regularized regression
-- Dimensionality reduction
-- Causal inference
-- Graphical models
-- Variance component models
-- Neural networks
+1. Statistical significance
+2. Clustering
+3. Regularized regression
+4. Dimensionality reduction
+5. Causal inference
+6. Graphical models
+7. Gaussian processes
+8. Neural networks
+9. (Network propagation)
 
 Each module follows the same structure:
 

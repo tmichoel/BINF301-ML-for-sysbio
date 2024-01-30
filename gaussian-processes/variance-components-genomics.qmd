@@ -1,5 +1,5 @@
 ---
-title: "Spatial gene experssion"
+title: "Variance components"
 page-layout: full
 title-block-banner: false
 ---
@@ -25,7 +25,7 @@ Population structure:
 :::
 
 
-Single-cell RNA-seq:
+Temporal structure:
 
 ::: {.callout-tip}
 ## Test of time paper
@@ -33,7 +33,7 @@ Single-cell RNA-seq:
 Buettner F, et al. [*Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells*](https://doi.org/10.1038/nbt.3102). Nat Biotechnol 33, 155–160 (2015). 
 :::
 
-Spatial transcriptomics:
+Spatial structure:
 
 ::: {.callout-tip}
 ## Test of time paper
