@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Variance component models and Gaussian processes">
 
-<title>BINF301 Genome-scale Algorithms - Gaussian processes</title>
+<title>BINF301 Genome-scale Algorithms - Protein structure prediction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,35 +67,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -122,7 +92,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../spatio-temporal-models/spatial-gene-expression.html">Spatio-Temporal models</a></li><li class="breadcrumb-item"><a href="../spatio-temporal-models/gaussian-processes.html">Gaussian processes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../neural-networks/protein-structure-prediction.html">Neural networks</a></li><li class="breadcrumb-item"><a href="../neural-networks/protein-structure-prediction.html">Protein structure prediction</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -306,30 +276,49 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Spatio-Temporal models</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">Variance components</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../spatio-temporal-models/spatial-gene-expression.html" class="sidebar-item-text sidebar-link">
+  <a href="../variance-components/variance-components-genomics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial gene experssion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../spatio-temporal-models/gaussian-processes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../variance-components/gaussian-processes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gaussian processes</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Neural networks</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Neural networks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../neural-networks/protein-structure-prediction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Protein structure prediction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../neural-networks/neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Neural networks</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -345,25 +334,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#linear-regression-from-fixed-to-random-coefficients" id="toc-linear-regression-from-fixed-to-random-coefficients" class="nav-link active" data-scroll-target="#linear-regression-from-fixed-to-random-coefficients">Linear regression, from fixed to random coefficients</a></li>
-  <li><a href="#kernel-based-variance-component-models" id="toc-kernel-based-variance-component-models" class="nav-link" data-scroll-target="#kernel-based-variance-component-models">Kernel-based variance component models</a></li>
-  <li><a href="#gaussian-processes" id="toc-gaussian-processes" class="nav-link" data-scroll-target="#gaussian-processes">Gaussian processes</a></li>
+  <li><a href="#path-breaking-paper-prediction-of-protein-secondary-structure-at-better-than-70-accuracy" id="toc-path-breaking-paper-prediction-of-protein-secondary-structure-at-better-than-70-accuracy" class="nav-link active" data-scroll-target="#path-breaking-paper-prediction-of-protein-secondary-structure-at-better-than-70-accuracy">Path-breaking paper: Prediction of Protein Secondary Structure at Better than 70% Accuracy</a></li>
+  <li><a href="#test-of-time" id="toc-test-of-time" class="nav-link" data-scroll-target="#test-of-time">Test of time</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../spatio-temporal-models/spatial-gene-expression.html">Spatio-Temporal models</a></li><li class="breadcrumb-item"><a href="../spatio-temporal-models/gaussian-processes.html">Gaussian processes</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../neural-networks/protein-structure-prediction.html">Neural networks</a></li><li class="breadcrumb-item"><a href="../neural-networks/protein-structure-prediction.html">Protein structure prediction</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Gaussian processes</h1>
+<h1 class="title">Protein structure prediction</h1>
 </div>
 
-<div>
-  <div class="description">
-    Variance component models and Gaussian processes
-  </div>
-</div>
 
 
 <div class="quarto-title-meta column-body">
@@ -378,168 +361,40 @@ window.Quarto = {
 </header>
 
 
+<section id="path-breaking-paper-prediction-of-protein-secondary-structure-at-better-than-70-accuracy" class="level2">
+<h2 class="anchored" data-anchor-id="path-breaking-paper-prediction-of-protein-secondary-structure-at-better-than-70-accuracy">Path-breaking paper: Prediction of Protein Secondary Structure at Better than 70% Accuracy</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Book sections
+Path-breaking paper
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a>: <strong>Chapter 6</strong></p>
+<p>Rost B and Sander C. <a href="https://doi.org/10.1006/jmbi.1993.1413"><em>Prediction of protein secondary structure at better than 70% accuracy</em></a>. Journal of Molecular Biology 232: 584-599 (1993).</p>
 </div>
 </div>
-<section id="linear-regression-from-fixed-to-random-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="linear-regression-from-fixed-to-random-coefficients">Linear regression, from fixed to random coefficients</h3>
-<p>In a standard linear regression model for an outcome <span class="math inline">\(Y\)</span> on one or more predictors <span class="math inline">\(X_1,\dots,X_p\)</span></p>
-<p><span class="math display">\[
-Y = \sum_i\beta_i X_i + \epsilon = X^T\beta + \epsilon, \qquad
-  \epsilon \sim \mathcal{N}(0,\sigma_e^2)
-\]</span></p>
-<p>the effects <span class="math inline">\(\beta_i\)</span> are treated as <strong>fixed</strong>, such that the distribution of <span class="math inline">\(Y\)</span> is:</p>
-<p><span class="math display">\[
-p(Y\mid X) = \mathcal{N}(X^T\beta,\sigma_e^2),
-\]</span></p>
-<p>that is, in a <strong>fixed effect model</strong>, the predictors affect the average or expected value of <span class="math inline">\(Y\)</span>. In a fixed effect model, we always assume that the data to fit the parameters are obtained from <strong>independent samples</strong> of an underlying model.</p>
-<p>If our data consists of <strong>non-independent samples</strong> (e.g.&nbsp;due to temporal, spatial or familial relations among the observations), we can use a <strong>random effect model</strong> to explain these correlations as a function of covariates <span class="math inline">\(X\)</span>. As <a href="../../regularized-regression/ridge-lasso-elnet/">before</a>, we collect the data for the inputs and ouptput in a <span class="math inline">\(N\times p\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(N\)</span>-vector <span class="math inline">\(\mathbf{y}\)</span>, respectively, <span class="math display">\[\begin{aligned}
-    \mathbf{X}= (x_1,x_2,\dots,x_p) = \begin{pmatrix}
-      x_{11} &amp; x_{12} &amp; \dots &amp; x_{1p}\\
-      x_{21} &amp; x_{22} &amp; \dots &amp; x_{2p}\\
-      \vdots &amp; \vdots &amp; &amp; \vdots\\
-      x_{N1} &amp; x_{N2} &amp; \dots &amp; x_{Np}
-    \end{pmatrix} &amp;&amp;
-    \mathbf{y}= \begin{pmatrix}
-      y_1\\
-      y_2\\
-      \vdots\\
-      y_N
-    \end{pmatrix}
-  \end{aligned}\]</span></p>
-<p>We model the data as</p>
-<p><span class="math display">\[
-\begin{aligned}
-  \mathbf{y} &amp;= \mathbf{X} \alpha + \epsilon\
-\end{aligned}
-\]</span></p>
-<p>where <span class="math inline">\(\alpha = (\alpha_1,\dots,\alpha_p)^T\)</span> are random effects with multi-variate normal distribution</p>
-<p><span class="math display">\[
-\alpha \sim \mathcal{N}(0,\sigma_a^2 I_p)
-\]</span></p>
-<p>and <span class="math inline">\(\epsilon = (\epsilon_1,\dots,\epsilon_N)\)</span> are independent error terms</p>
-<p><span class="math display">\[
-\epsilon \sim \mathcal{N}(0,\sigma_e^2 I_N).
-\]</span></p>
-<p>The random effects are assumed to be independent or the errors. We assumed the random effects are mutually independent, but this can easily be generalized.</p>
-<p>Using <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Affine_transformation">properties of the multivariate normal distribution</a>, the distribution of <span class="math inline">\(\mathbf{y}\)</span> can be seen to be:</p>
-<p><span class="math display">\[
-p(\mathbf{y}\mid \mathbf{X}) = \mathcal{N}(0, \sigma_a^2 \mathbf{X}\mathbf{X}^T + \sigma_e^2 I_N)
-\]</span></p>
-<p>and we see that <span class="math inline">\(\mathbf{X}\)</span>, or more precisely the covariance matrix <span class="math inline">\(\mathbf{X}\mathbf{X}^T\)</span> indeed models correlations among the samples in <span class="math inline">\(\mathbf{y}\)</span>.</p>
-<p>Naturally, fixed and random effects can be combined into a so-called <a href="https://en.wikipedia.org/wiki/Mixed_model">mixed model</a>.</p>
-<p>Models of this kind are often used in genetics, where the random effect covariates <span class="math inline">\(\mathbf{X}\)</span> are genetic markers and their covariance matrix <span class="math inline">\(\mathbf{X}\mathbf{X}^T\)</span> expresses the genetic similarity between individuals in the study.</p>
-<p>So far we assumed that all random effects had the same variance <span class="math inline">\(\sigma_a^2\)</span>. If we assume that each <span class="math inline">\(\alpha_j\)</span> has a different variance <span class="math inline">\(\sigma_j^2\)</span>, we would obtain</p>
-<p><span class="math display">\[
-p(\mathbf{y}\mid \mathbf{X}) = \mathcal{N}(0, \mathbf{K})
-\]</span></p>
-<p>where</p>
-<p><span class="math display">\[
-\mathbf{K} = \sum_{j=1}^p \sigma_j^2 \mathbf{x}_j \mathbf{x}_j^T  + \sigma_e^2 I_N
-\]</span></p>
-<p>that is, <span class="math inline">\(\sigma_j^2\)</span> measures the contribution of covariate <span class="math inline">\(X_j\)</span> to the correlations among samples of <span class="math inline">\(Y\)</span>.</p>
-<p>To estimate the variance parameters, maximum-likelihood is employed, that is, we find the values of the <span class="math inline">\(\sigma_j^2\)</span> and <span class="math inline">\(\sigma_e^2\)</span> which maximize</p>
-<p><span class="math display">\[
-\log p(\mathbf{y}) = -\frac12 \log \det (\mathbf{K} ) - \frac12 \mathbf{y}^T \mathbf{K}^{-1} \mathbf{y} - \frac{N}2 \log(2\pi)
-\]</span></p>
-<p>This is a difficult, non-convex optimization problem which requires the use of numerical, gradient-based optimizers.</p>
-<p>Note that the covariance matrix satisfies</p>
-<p><span class="math display">\[
-\begin{aligned}
-  \mathbb{E}(y_i y_j) = K_{ij}
-\end{aligned}
-\]</span> and hence the total variance of <span class="math inline">\(\mathbf{y}\)</span> can be written as</p>
-<p><span class="math display">\[
-\begin{aligned}
-  \mathbb{E}(\mathbf{y}^T\mathbf{y}) = \sum_i \mathbb{E}(y_i^2) = \sum_i K_{ii} = \mathrm{tr}(K)
-\end{aligned}
-\]</span></p>
-<p>From the definition of <span class="math inline">\(\mathbf{K}\)</span>, its trace can be written as</p>
-<p><span class="math display">\[
-\mathrm{tr}(K) = \sum_{j=1}^p \sigma_j^2 \mathbf{x}_j^T \mathbf{x}_j   + N \sigma_e^2.
-\]</span></p>
-<p>Therefore we say that</p>
-<p><span class="math display">\[
-\frac{\sigma_j^2 \mathbf{x}_j^T \mathbf{x}_j}{\mathrm{tr}(K) }
-\]</span></p>
-<p>is the <strong>variance in <span class="math inline">\(\mathbf{y}\)</span> explained by variance component <span class="math inline">\(\mathbf{x}_i\)</span></strong>.</p>
 </section>
-<section id="kernel-based-variance-component-models" class="level3">
-<h3 class="anchored" data-anchor-id="kernel-based-variance-component-models">Kernel-based variance component models</h3>
-<p>Since the posterior distribution <span class="math inline">\(p(\mathbf{y}\mid \mathbf{X})\)</span> only depends on the matrix <span class="math inline">\(\mathbf{K}\)</span>, an immediate generalization is to define variance component models directly in terms of <strong>kernel matrices</strong> instead of starting from a linear, random effect model, namely define</p>
-<p><span class="math display">\[
-p(\mathbf{y}) = \mathcal{N}(0, \mathbf{K})
-\]</span></p>
-<p>For instance, if the elements (samples) <span class="math inline">\(y_i\)</span> of <span class="math inline">\(\mathbf{y}\)</span> are obtained at specific locations (e.g.&nbsp;pixels in an image) <span class="math inline">\(\mathbf{x_i}\in \mathbb{R}^2\)</span> (or <span class="math inline">\(\mathbb{R}^p\)</span> more generally), we can define</p>
-<p><span class="math display">\[
-K_{ij} = k(\mathbf{x}_i,\mathbf{x}_j)
-\]</span></p>
-<p>where the <strong>kernel function</strong> <span class="math inline">\(k\)</span> is a function that measures the similarity or closeness between samples.</p>
-<p>Generalizing from before, the kernel matrix <span class="math inline">\(\mathbf{K}\)</span> can consist of multiple components,</p>
-<p><span class="math display">\[
-\mathbf{K} = \sum_{j=1}^p \sigma_j^2 \mathbf{K}_j  + \sigma_e^2 I_N
-\]</span></p>
-<p>and the <strong>variance explained</strong> by the <span class="math inline">\(j^{\text{th}}\)</span> component is</p>
-<p><span class="math display">\[
-\frac{\sigma_j^2\mathrm{tr}(\mathbf{K}_j)}{\mathrm{tr}(\mathbf{K})}
-\]</span></p>
-</section>
-<section id="gaussian-processes" class="level3">
-<h3 class="anchored" data-anchor-id="gaussian-processes">Gaussian processes</h3>
-<p>In many applications, the “positions” <span class="math inline">\(\mathbf{x}_i\)</span> where samples are obtained are not fixed, but a finite subset of a possibly infinite, continuous range. For instance, when studying a dynamic process, we typically obtain noisy measurements <span class="math inline">\(y_i\)</span> at a finite number of time points <span class="math inline">\(t_i\)</span>, and are interested in the entire underlying process <span class="math inline">\(y(t)\)</span> for all times <span class="math inline">\(t\)</span> in some time interval. Similarly, we may have measurements <span class="math inline">\(y_i\)</span> at a finite number of locations <span class="math inline">\(\mathbf{x}_i\)</span>, and are interested in the entire function <span class="math inline">\(y(\mathbf{x})\)</span> for all positions <span class="math inline">\(\mathbf{x}\)</span> in some spatial region.</p>
-<p>A <a href="https://en.wikipedia.org/wiki/Gaussian_process">Gaussian process</a> is a <a href="https://en.wikipedia.org/wiki/Stochastic_process">stochastic process</a>, to be understood as a probability distribution over functions <span class="math inline">\(y(\mathbf{x})\)</span> over some continuous domain <span class="math inline">\(D\)</span>, such that the set of values of <span class="math inline">\(y(\mathbf{x})\)</span> evaluated at a finite set of points <span class="math inline">\(\mathbf{x}_1,\dots,\mathbf{x}_N\in D\)</span> are jointly normally distributed. A Gaussian process is specified by a kernel function <span class="math inline">\(k(\mathbf{x},\mathbf{x}')\)</span>, for <span class="math inline">\(\mathbf{x},\mathbf{x}' \in D\)</span>. Writing <span class="math inline">\(\mathbf{y} = (y(\mathbf{x}_1), \dots, y(\mathbf{x}_N))\)</span>, the kernel defines the probability distribution</p>
-<p><span class="math display">\[
-p(\mathbf{y}) = \mathcal{N}(0, \mathbf{K})
-\]</span></p>
-<p>where</p>
-<p><span class="math display">\[
-K_{ij} = k(\mathbf{x}_i,\mathbf{x}_j)
-\]</span></p>
-<p>Hence, for the purposes of parameter estimation, the Gaussian process and variance component viewpoints are identical, which is why the term are often used interchangeably. The main difference lies in the interpretation, where Gaussian process see the data as a finite set of samples from a continuous space. Hence in the Gaussian process viewpoint, we would be particularly interested in <strong>interpolation</strong>, predicting expected values of the function <span class="math inline">\(y(\mathbf{x})\)</span> at locations <span class="math inline">\(\mathbf{x}\)</span> that were not part of the initial (training) data.</p>
-<p>Keeping the notation <span class="math inline">\(\mathbf{y}\)</span> for the function values at the training positions <span class="math inline">\(\mathbf{x}_i\)</span>, we know that the joint distribution of <span class="math inline">\(\mathbf{y}\)</span> and the value of <span class="math inline">\(y(\mathbf{x})\)</span> at a new position <span class="math inline">\(\mathbf{x}\)</span> is given by</p>
-<p><span class="math display">\[
-p\left(
-\begin{bmatrix}
-  \mathbf{y}\\
-  y(\mathbf{x})
-\end{bmatrix}
-\right) =  \mathcal{N}(0, \mathbf{K}')
-\]</span></p>
-<p>where <span class="math inline">\(\mathbf{K}'\)</span> is the <span class="math inline">\((N+1)\times (N+1)\)</span> matrix</p>
-<p><span class="math display">\[
-\mathbf{K}' =
-\begin{bmatrix}
-  \mathbf{K} &amp; \mathbf{k}\\
-  \mathbf{k}^T &amp; c
-\end{bmatrix}
-\]</span></p>
-<p>where</p>
-<p><span class="math display">\[
-\begin{aligned}
-  \mathbf{K} &amp;= \left[ k(\mathbf{x}_i,\mathbf{x}_j) \right] \in \mathbb{R}^{N\times N}\\
-  \mathbf{k} &amp;= k(\mathbf{x}_i,\mathbf{x}) \in \mathbb{R}^{N} \\
-  c &amp;= k(\mathbf{x},\mathbf{x})\in \mathbb{R}
-\end{aligned}
-\]</span></p>
-<p>Using <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Conditional_distributions">properties of the multivariate normal distribution</a>, the conditional distribution of the unseen value given the training data is:</p>
-<p><span class="math display">\[
-\begin{aligned}
-  p\left( y(\mathbf{x}) \mid \mathbf{y} \right) &amp;= \mathcal{N}(\mu,\sigma^2)\\
-  \mu &amp;= \mathbf{k}^T \mathbf{K}^{-1}\mathbf{y}\\
-  \sigma^2 &amp;= c - \mathbf{k}^T \mathbf{K}^{-1} \mathbf{k}
-\end{aligned}
-\]</span></p>
-<p>Generalization to interpolation to multiple points is immediate.</p>
+<section id="test-of-time" class="level2">
+<h2 class="anchored" data-anchor-id="test-of-time">Test of time</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test of time paper
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Jumper J, et al.&nbsp;<a href="https://doi.org/10.1038/s41586-021-03819-2"><em>Highly accurate protein structure prediction with AlphaFold</em></a>. Nature 596, 583–589 (2021).</li>
+<li>Baek M, et al.&nbsp;<a href="https://doi.org/10.1126/science.abj8754"><em>Accurate prediction of protein structures and interactions using a three-track neural network</em></a>. Science 373:871-876 (2021).</li>
+</ul>
+</div>
+</div>
 
 
 </section>
