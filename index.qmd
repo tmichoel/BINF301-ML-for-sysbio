@@ -3,7 +3,7 @@ title: "Welcome"
 page-layout: full
 title-block-banner: false
 ---
-This is the website for the second half of the course [BINF301 Genome-scale Algorithms][1]. This part of the course focuses on machine learning algorithms for analyzing genome-scale data.
+This is the website for the second half of the course [BINF301 Genome-scale Algorithms][1]. This part of the course focuses on machine learning algorithms for systems biology.
 
 
 
