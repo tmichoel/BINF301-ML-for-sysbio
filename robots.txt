@@ -1,1 +1,1 @@
-Sitemap: https://tmichoel.github.io/BINF301-genome-scale-algorithms/sitemap.xml
+Sitemap: https://tmichoel.github.io/BINF301-ML-for-sysbio/sitemap.xml

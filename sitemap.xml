@@ -1,95 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/cluster-analysis/cancer-subtypes.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/cluster-analysis/cancer-subtypes.html</loc>
+    <lastmod>2024-01-30T20:24:27.148Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/cluster-analysis/combinatorial-clustering.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/cluster-analysis/combinatorial-clustering.html</loc>
+    <lastmod>2024-01-30T20:24:27.148Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/posts/post-with-code/index.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/posts/post-with-code/index.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/dimensionality-reduction/pca.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/dimensionality-reduction/pca.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/regularized-regression/ridge-lasso-elnet.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/regularized-regression/ridge-lasso-elnet.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/neural-networks/neural-networks.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/neural-networks/neural-networks.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/gaussian-processes/variance-components-genomics.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/gaussian-processes/variance-components-genomics.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/statistical-significance/fdr-estimation.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/statistical-significance/fdr-estimation.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/about.html</loc>
-    <lastmod>2024-01-30T20:21:05.805Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/about.html</loc>
+    <lastmod>2024-01-30T20:24:27.148Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/causal-inference/mediation-iv.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/causal-inference/mediation-iv.html</loc>
+    <lastmod>2024-01-30T20:24:27.148Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/graphical-models/gene-regulatory-networks.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/graphical-models/gene-regulatory-networks.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/index.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/index.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/graphical-models/bayesian-networks.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/graphical-models/bayesian-networks.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/causal-inference/causal-model-selection.html</loc>
-    <lastmod>2024-01-30T20:21:05.805Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/causal-inference/causal-model-selection.html</loc>
+    <lastmod>2024-01-30T20:24:27.148Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/causal-inference/causal-assoc-genes-disease.html</loc>
-    <lastmod>2024-01-30T20:21:05.805Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/causal-inference/causal-assoc-genes-disease.html</loc>
+    <lastmod>2024-01-30T20:24:27.148Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/statistical-significance/statistical-significance-gws.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/statistical-significance/statistical-significance-gws.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/julia-intro.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/julia-intro.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/gaussian-processes/gaussian-processes.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/gaussian-processes/gaussian-processes.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/neural-networks/protein-structure-prediction.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/neural-networks/protein-structure-prediction.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/regularized-regression/drug-sensitivity.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/regularized-regression/drug-sensitivity.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/dimensionality-reduction/tsne-umap.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/dimensionality-reduction/tsne-umap.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/posts/welcome/index.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/posts/welcome/index.html</loc>
+    <lastmod>2024-01-30T20:24:27.152Z</lastmod>
   </url>
   <url>
-    <loc>https://tmichoel.github.io/BINF301-genome-scale-algorithms/cluster-analysis/mixture-distributions.html</loc>
-    <lastmod>2024-01-30T20:21:05.809Z</lastmod>
+    <loc>https://tmichoel.github.io/BINF301-ML-for-sysbio/cluster-analysis/mixture-distributions.html</loc>
+    <lastmod>2024-01-30T20:24:27.148Z</lastmod>
   </url>
 </urlset>
