@@ -13,6 +13,19 @@ Barretina J et al. [*The Cancer Cell Line Encyclopedia enables predictive modell
 :::
 
 
+::: {.callout-note}
+## Test of time paper
+
+Ghandi, M., Huang, F.W., Jané-Valbuena, J. et al. [*Next-generation characterization of the Cancer Cell Line Encyclopedia*](https://doi.org/10.1038/s41586-019-1186-3). Nature 569, 503–508 (2019). 
+:::
+
+::: {.callout-note}
+## Test of time paper
+Dixit A, et al. [*Perturb-Seq: Dissecting Molecular Circuits with Scalable Single-Cell RNA Profiling of Pooled Genetic Screens*](https://doi.org/10.1016/j.cell.2016.11.038). Cell 167(7):1853-66 (2016).
+:::
+
+### Motivation
+
 ### Questions for discussion 
 
 Abstract - **What** is the study about and **why** was it performed?
@@ -31,15 +44,4 @@ What are pharmacological profiles, how is drug sensitivity measured?
 What is predictive modelling, how were robust models derived, what is shown in Figure 2?
 
 
-## Test of time
-
-::: {.callout-tip}
-## Test of time paper
-
-Ghandi, M., Huang, F.W., Jané-Valbuena, J. et al. [*Next-generation characterization of the Cancer Cell Line Encyclopedia*](https://doi.org/10.1038/s41586-019-1186-3). Nature 569, 503–508 (2019). 
-:::
-
-::: {.callout-tip}
-## Test of time paper
-Dixit A, et al. [*Perturb-Seq: Dissecting Molecular Circuits with Scalable Single-Cell RNA Profiling of Pooled Genetic Screens*](https://doi.org/10.1016/j.cell.2016.11.038). Cell 167(7):1853-66 (2016).
-:::
+### Test of time

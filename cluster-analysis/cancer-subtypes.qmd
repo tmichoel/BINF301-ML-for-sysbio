@@ -7,16 +7,23 @@ title-block-banner: false
 ## Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer
 
 ::: {.callout-tip}
+## Path-breaking paper
 
 van 't Veer L et al. [*Gene expression profiling predicts clinical outcome of breast cancer*](https://doi.org/10.1038/415530a) . Nature 415:530 (2002).  See also the comment: [*The molecular outlook*](https://www.nature.com/articles/415484a)
 :::
 
 
-### Introduction
+### Motivation
 
-The [study by van 't Veer et al](https://doi.org/10.1038/415530a) was one of the first to use to [microarrays](https://en.wikipedia.org/wiki/DNA_microarray), a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al. [*Molecular portraits of human breast tumours*](https://www.nature.com/articles/35021093). The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.'s [*Cluster analysis and display of genome-wide expression patterns*](https://doi.org/10.1073/pnas.95.25.14863).
+We start our sequel to [*Back to the future: education for systems-level biologists*](https://pubmed.ncbi.nlm.nih.gov/16990789/) where the first one ended, with [cluster analysis](https://en.wikipedia.org/wiki/Cluster_analysis) of [transcriptome data](https://en.wikipedia.org/wiki/Transcriptome). The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.'s [*Cluster analysis and display of genome-wide expression patterns*](https://doi.org/10.1073/pnas.95.25.14863), which was the paper selected by [Wingreen & Botstein](https://pubmed.ncbi.nlm.nih.gov/16990789/) for their course. To avoid repetition, we go for van 't Veer et al.'s  [*Gene expression profiling predicts clinical outcome of breast cancer*](https://doi.org/10.1038/415530a).
 
-Using [cluster analysis](https://en.wikipedia.org/wiki/Cluster_analysis) to detect meaningful patterns in genome-scale data has stood the test of time and is often one of the first steps to take when exploring a new dataset.
+The [study by van 't Veer et al](https://doi.org/10.1038/415530a) was one of the first to use [microarrays](https://en.wikipedia.org/wiki/DNA_microarray), a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al. [*Molecular portraits of human breast tumours*](https://www.nature.com/articles/35021093).
+
+Another reason for choosing [van 't Veer et al](https://doi.org/10.1038/415530a) is the interesting story that followed: the authors went on a 20-year journey to translate the gene expression signature they identified to a commercial diagnostic tool, see @sec-translation below.
+
+The success of these initial studies using [cluster analysis](https://en.wikipedia.org/wiki/Cluster_analysis) to detect meaningful and clinically relevant patterns in genome-scale data arguably paved the way for large-scale studies such as [The Cancer Genome Atlas (TCGA) Program](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga). We take the [2012 TCGA paper on breast tumours](https://doi.org/10.1038/nature11412) as our test-of-time paper, see @sec-test-of-time.
+
+
 
 ### Questions for discussion
 
@@ -36,7 +43,7 @@ Clinical features to annotate and understand the observed separation of gene exp
 
 The authors identified a minimal prognostic signature from their data using a supervised approach. How does this approach work and how many marker genes were in the final, optimal set? For those with machine learning background, can you think of other (better?) supervised approaches to achieve the same goal?
 
-### Translation to the clinic
+### Translation to the clinic {#sec-translation}
 
 Having identified a strong gene expression signature to predict clinical outcome of breast cancer, the race to bring it to the clinic is on. That this is far from trivial can be seen by tracing the follow-up studies and clinical trials:
 
@@ -50,7 +57,7 @@ They got there eventually, and the gene expression signature is now commercially
 
 
 
-## Test of time: The Cancer Genome Atlas
+### Test of time: The Cancer Genome Atlas {#sec-test-of-time}
 
 Although the results by Van 't Veer et al. were obtained from a small (by current standards!) sample size, they have been reproduced consistenly in larger studies and arguably spawned a search for similar signatures in other cancer types through large-scale projects, such as [The Cancer Genome Atlas (TCGA) Program](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga).
 

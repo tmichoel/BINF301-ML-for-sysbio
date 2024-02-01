@@ -15,9 +15,25 @@ title-block-banner: false
 Storey, John D., and Robert Tibshirani. ["Statistical significance for genomewide studies."](https://www.pnas.org/doi/10.1073/pnas.1530509100) Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.
 :::
 
-### Introduction
+
+::: {.callout-note}
+## Test of time  paper
+
+The GTEx Consortium. [*The GTEx Consortium atlas of genetic regulatory effects across human tissues*](https://doi.org/10.1126/science.aaz1776). Science **369**, 1318--1330 (2020).
+:::
+
+::: {.callout-note}
+## Test of time  paper
+
+Chen X, Robinson DG, Storey JD, [*The functional false discovery rate with applications to genomics*](https://doi.org/10.1093/biostatistics/kxz010), Biostatistics, Volume 22, Issue 1, January 2021, Pages 68–81, 
+:::
 
 
+### Motivation
+
+Is it statistics or is it machine learning? Does it matter? [Storey and Tibshirani's paper](https://www.pnas.org/doi/10.1073/pnas.1530509100) can rightfully claim to have changed the field of statistical learning. It has been cited more than 10,000 times and its results are now included in all textbooks in the field. Every student wishing to analyze genome-scale data must understand what [q-values](https://en.wikipedia.org/wiki/Q-value_(statistics)) and [false discovery rate](https://en.wikipedia.org/wiki/False_discovery_rate) mean.
+
+With a paper of this standing, it can seem exaggerated to ask for a test of time. We look at a paper from the [GTEx project](https://www.gtexportal.org/) to show how the multiple testing problem has exploded far beyond the scale considered in [Storey and Tibshirani's paper](https://www.pnas.org/doi/10.1073/pnas.1530509100), but can still be adequately addressed using their method. We also look at a recent methodological paper, to show there is always scope for new ideas, even for something as well established as [Storey and Tibshirani's method](https://www.pnas.org/doi/10.1073/pnas.1530509100).
 
 ### Questions for discussion
 
@@ -34,24 +50,4 @@ We cover the following parts:
 - Figure 2
 - What is a q-value?
 
-## Test of time
-
-Q-values and FDR estimation have changed the entire field of statistics, passing the test of time doesn't get any better than for this paper.
-
-To illustrate how the number of tests in genome-wide studies has exploded after 2003, see the GTEx paper, which uses q-values to control for multiple testing:
-
-::: {.callout-tip}
-## Test of time  paper
-
-The GTEx Consortium. [*The GTEx Consortium atlas of genetic regulatory effects across human tissues*](https://doi.org/10.1126/science.aaz1776). Science **369**, 1318--1330 (2020).
-
-See also the [GTEx portal](https://www.gtexportal.org/)
-:::
-
-To illustrate how Storey & Tibshirani's pape still inspires further method development for genomewide studies, see this paper:
-
-::: {.callout-tip}
-## Test of time  paper
-
-Chen X, Robinson DG, Storey JD, [*The functional false discovery rate with applications to genomics*](https://doi.org/10.1093/biostatistics/kxz010), Biostatistics, Volume 22, Issue 1, January 2021, Pages 68–81, 
-:::
+### Test of time
