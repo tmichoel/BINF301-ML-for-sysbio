@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../regularized-regression/ridge-lasso-elnet.html" rel="next">
-<link href="../cluster-analysis/mixture-distributions.html" rel="prev">
+<link href="../statistical-significance/fdr-estimation.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -134,35 +134,15 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Statistical significance</span></a>
+ <span class="menu-text">Cluster analysis</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Genome-wide studies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FDR estimation</span></a>
-  </div>
-</li>
-      </ul>
+ <span class="menu-text">cluster-analysis/index.qmd</span>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Cluster analysis</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
@@ -179,6 +159,29 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Statistical significance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Genome-wide studies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FDR estimation</span></a>
   </div>
 </li>
       </ul>
@@ -343,9 +346,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#path-breaking-paper-the-cancer-cell-line-encyclopedia-enables-predictive-modelling-of-anticancer-drug-sensitivity" id="toc-path-breaking-paper-the-cancer-cell-line-encyclopedia-enables-predictive-modelling-of-anticancer-drug-sensitivity" class="nav-link active" data-scroll-target="#path-breaking-paper-the-cancer-cell-line-encyclopedia-enables-predictive-modelling-of-anticancer-drug-sensitivity">Path-breaking paper: The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity</a>
   <ul class="collapse">
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
-  </ul></li>
   <li><a href="#test-of-time" id="toc-test-of-time" class="nav-link" data-scroll-target="#test-of-time">Test of time</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -386,6 +390,35 @@ Path-breaking paper
 <p>Barretina J et al.&nbsp;<a href="https://doi.org/10.1038/nature11003"><em>The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity</em></a>. Nature 483:603 (2012).</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test of time paper
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ghandi, M., Huang, F.W., Jané-Valbuena, J. et al.&nbsp;<a href="https://doi.org/10.1038/s41586-019-1186-3"><em>Next-generation characterization of the Cancer Cell Line Encyclopedia</em></a>. Nature 569, 503–508 (2019).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test of time paper
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dixit A, et al.&nbsp;<a href="https://doi.org/10.1016/j.cell.2016.11.038"><em>Perturb-Seq: Dissecting Molecular Circuits with Scalable Single-Cell RNA Profiling of Pooled Genetic Screens</em></a>. Cell 167(7):1853-66 (2016).</p>
+</div>
+</div>
+<section id="motivation" class="level3">
+<h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
+</section>
 <section id="questions-for-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="questions-for-discussion">Questions for discussion</h3>
 <p>Abstract - <strong>What</strong> is the study about and <strong>why</strong> was it performed?</p>
@@ -399,37 +432,11 @@ Path-breaking paper
 <p>What are pharmacological profiles, how is drug sensitivity measured?</p>
 <p>What is predictive modelling, how were robust models derived, what is shown in Figure 2?</p>
 </section>
+<section id="test-of-time" class="level3">
+<h3 class="anchored" data-anchor-id="test-of-time">Test of time</h3>
+
+
 </section>
-<section id="test-of-time" class="level2">
-<h2 class="anchored" data-anchor-id="test-of-time">Test of time</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Test of time paper
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Ghandi, M., Huang, F.W., Jané-Valbuena, J. et al.&nbsp;<a href="https://doi.org/10.1038/s41586-019-1186-3"><em>Next-generation characterization of the Cancer Cell Line Encyclopedia</em></a>. Nature 569, 503–508 (2019).</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Test of time paper
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Dixit A, et al.&nbsp;<a href="https://doi.org/10.1016/j.cell.2016.11.038"><em>Perturb-Seq: Dissecting Molecular Circuits with Scalable Single-Cell RNA Profiling of Pooled Genetic Screens</em></a>. Cell 167(7):1853-66 (2016).</p>
-</div>
-</div>
-
-
 </section>
 
 </main> <!-- /main -->
@@ -822,8 +829,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../cluster-analysis/mixture-distributions.html" class="pagination-link  aria-label=" mixture="" distributions"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Mixture distributions</span>
+      <a href="../statistical-significance/fdr-estimation.html" class="pagination-link  aria-label=" fdr="" estimation"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">FDR estimation</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

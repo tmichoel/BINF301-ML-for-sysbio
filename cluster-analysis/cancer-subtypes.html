@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../cluster-analysis/combinatorial-clustering.html" rel="next">
-<link href="../statistical-significance/fdr-estimation.html" rel="prev">
+<link href="../julia-intro.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -99,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cluster analysis</a></li><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cancer subtypes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cluster analysis</li><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cancer subtypes</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -133,36 +133,16 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Statistical significance</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Genome-wide studies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FDR estimation</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Cluster analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">cluster-analysis/index.qmd</span>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link active">
@@ -179,6 +159,29 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixture distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Statistical significance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/statistical-significance-gws.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Genome-wide studies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FDR estimation</span></a>
   </div>
 </li>
       </ul>
@@ -343,12 +346,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#path-breaking-paper-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" id="toc-path-breaking-paper-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" class="nav-link active" data-scroll-target="#path-breaking-paper-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer">Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer</a>
   <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
-  <li><a href="#translation-to-the-clinic" id="toc-translation-to-the-clinic" class="nav-link" data-scroll-target="#translation-to-the-clinic">Translation to the clinic</a></li>
-  </ul></li>
-  <li><a href="#test-of-time-the-cancer-genome-atlas" id="toc-test-of-time-the-cancer-genome-atlas" class="nav-link" data-scroll-target="#test-of-time-the-cancer-genome-atlas">Test of time: The Cancer Genome Atlas</a>
-  <ul class="collapse">
+  <li><a href="#sec-translation" id="toc-sec-translation" class="nav-link" data-scroll-target="#sec-translation">Translation to the clinic</a></li>
+  <li><a href="#sec-test-of-time" id="toc-sec-test-of-time" class="nav-link" data-scroll-target="#sec-test-of-time">Test of time: The Cancer Genome Atlas</a></li>
   <li><a href="#questions-for-discussion-1" id="toc-questions-for-discussion-1" class="nav-link" data-scroll-target="#questions-for-discussion-1">Questions for discussion</a></li>
   </ul></li>
   </ul>
@@ -357,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cluster analysis</a></li><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cancer subtypes</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cluster analysis</li><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cancer subtypes</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Cancer subtypes</h1>
 </div>
@@ -384,17 +385,19 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Path-breaking paper
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>van ’t Veer L et al.&nbsp;<a href="https://doi.org/10.1038/415530a"><em>Gene expression profiling predicts clinical outcome of breast cancer</em></a> . Nature 415:530 (2002). See also the comment: <a href="https://www.nature.com/articles/415484a"><em>The molecular outlook</em></a></p>
 </div>
 </div>
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<p>The <a href="https://doi.org/10.1038/415530a">study by van ’t Veer et al</a> was one of the first to use to <a href="https://en.wikipedia.org/wiki/DNA_microarray">microarrays</a>, a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al.&nbsp;<a href="https://www.nature.com/articles/35021093"><em>Molecular portraits of human breast tumours</em></a>. The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.’s <a href="https://doi.org/10.1073/pnas.95.25.14863"><em>Cluster analysis and display of genome-wide expression patterns</em></a>.</p>
-<p>Using <a href="https://en.wikipedia.org/wiki/Cluster_analysis">cluster analysis</a> to detect meaningful patterns in genome-scale data has stood the test of time and is often one of the first steps to take when exploring a new dataset.</p>
+<section id="motivation" class="level3">
+<h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
+<p>We start our sequel to <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a> where the first one ended, with <a href="https://en.wikipedia.org/wiki/Cluster_analysis">cluster analysis</a> of <a href="https://en.wikipedia.org/wiki/Transcriptome">transcriptome data</a>. The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.’s <a href="https://doi.org/10.1073/pnas.95.25.14863"><em>Cluster analysis and display of genome-wide expression patterns</em></a>, which was the paper selected by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/">Wingreen &amp; Botstein</a> for their course. To avoid repetition, we go for van ’t Veer et al.’s <a href="https://doi.org/10.1038/415530a"><em>Gene expression profiling predicts clinical outcome of breast cancer</em></a>.</p>
+<p>The <a href="https://doi.org/10.1038/415530a">study by van ’t Veer et al</a> was one of the first to use <a href="https://en.wikipedia.org/wiki/DNA_microarray">microarrays</a>, a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al.&nbsp;<a href="https://www.nature.com/articles/35021093"><em>Molecular portraits of human breast tumours</em></a>.</p>
+<p>Another reason for choosing <a href="https://doi.org/10.1038/415530a">van ’t Veer et al</a> is the interesting story that followed: the authors went on a 20-year journey to translate the gene expression signature they identified to a commercial diagnostic tool, see <a href="#sec-translation" class="quarto-xref">Section&nbsp;1.3</a> below.</p>
+<p>The success of these initial studies using <a href="https://en.wikipedia.org/wiki/Cluster_analysis">cluster analysis</a> to detect meaningful and clinically relevant patterns in genome-scale data arguably paved the way for large-scale studies such as <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga">The Cancer Genome Atlas (TCGA) Program</a>. We take the <a href="https://doi.org/10.1038/nature11412">2012 TCGA paper on breast tumours</a> as our test-of-time paper, see <a href="#sec-test-of-time" class="quarto-xref">Section&nbsp;1.4</a>.</p>
 </section>
 <section id="questions-for-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="questions-for-discussion">Questions for discussion</h3>
@@ -411,8 +414,8 @@ Tip
 </ul>
 <p>The authors identified a minimal prognostic signature from their data using a supervised approach. How does this approach work and how many marker genes were in the final, optimal set? For those with machine learning background, can you think of other (better?) supervised approaches to achieve the same goal?</p>
 </section>
-<section id="translation-to-the-clinic" class="level3">
-<h3 class="anchored" data-anchor-id="translation-to-the-clinic">Translation to the clinic</h3>
+<section id="sec-translation" class="level3">
+<h3 class="anchored" data-anchor-id="sec-translation">Translation to the clinic</h3>
 <p>Having identified a strong gene expression signature to predict clinical outcome of breast cancer, the race to bring it to the clinic is on. That this is far from trivial can be seen by tracing the follow-up studies and clinical trials:</p>
 <ul>
 <li>Van De Vijver MJ et al.&nbsp;<a href="https://doi.org/10.1056/NEJMoa021967"><em>A gene-expression signature as a predictor of survival in breast cancer</em></a>. NEJM 347:1999 (2002).</li>
@@ -423,12 +426,12 @@ Tip
 </ul>
 <p>They got there eventually, and the gene expression signature is now commercially available under the name of <a href="https://agendia.com/mammaprint/">Mammaprint</a>.</p>
 </section>
-</section>
-<section id="test-of-time-the-cancer-genome-atlas" class="level2">
-<h2 class="anchored" data-anchor-id="test-of-time-the-cancer-genome-atlas">Test of time: The Cancer Genome Atlas</h2>
+<section id="sec-test-of-time" class="level3">
+<h3 class="anchored" data-anchor-id="sec-test-of-time">Test of time: The Cancer Genome Atlas</h3>
 <p>Although the results by Van ’t Veer et al.&nbsp;were obtained from a small (by current standards!) sample size, they have been reproduced consistenly in larger studies and arguably spawned a search for similar signatures in other cancer types through large-scale projects, such as <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga">The Cancer Genome Atlas (TCGA) Program</a>.</p>
 <p>The amount of <a href="https://gdc.cancer.gov/">data</a> and number of <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/publications">publications</a> produced by TCGA is too enormous to survey here in detail.</p>
 <p>To see how far the field progressed in the decade after <a href="https://doi.org/10.1038/415530a">van ’t Veer et al</a>, read the <a href="https://doi.org/10.1038/nature11412">2012 TCGA paper on breast tumours</a>.</p>
+</section>
 <section id="questions-for-discussion-1" class="level3">
 <h3 class="anchored" data-anchor-id="questions-for-discussion-1">Questions for discussion</h3>
 <p>What are the main differences between <a href="https://doi.org/10.1038/415530a">van ’t Veer et al</a> and the <a href="https://doi.org/10.1038/nature11412">TCGA paper</a>?</p>
@@ -828,8 +831,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../statistical-significance/fdr-estimation.html" class="pagination-link  aria-label=" fdr="" estimation"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">FDR estimation</span>
+      <a href="../julia-intro.html" class="pagination-link  aria-label=" introduction="" to="" julia"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to Julia</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
