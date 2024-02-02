@@ -1,10 +1,9 @@
 ---
-title: "Causal gene-disease associations"
-description: "Causal associations between gene expression and disease"
+title: "Path-breaking paper"
 page-layout: full
 title-block-banner: false
 ---
-## Path-breaking: An integrative genomics approach to infer causal associations between gene expression and disease
+##  An integrative genomics approach to infer causal associations between gene expression and disease
 
 ::: {.callout-tip}
 ## Path-breaking paper
@@ -12,10 +11,17 @@ title-block-banner: false
 Schadt, E., Lamb, J., Yang, X. et al. [*An integrative genomics approach to infer causal associations between gene expression and disease*](https://doi.org/10.1038/ng1589). Nat Genet 37, 710–717 (2005).
 :::
 
-## Test of time
 
-::: {.callout-tip}
+::: {.callout-note}
 ## Test of time paper
-
+Zheng J, et al. [*Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases*](https://doi.org/10.1038/s41588-020-0682-6). Nat Genet 52, 1122–1131 (2020). 
 :::
+
+### Motivation
+
+### Questions for discussion
+
+
+### Test of time
+
 

@@ -1,10 +1,10 @@
 ---
-title: "Variance components"
+title: "Path-breaking paper"
 page-layout: full
 title-block-banner: false
 ---
 
-## Path-breaking paper: Efficient Control of Population Structure in Model Organism Association Mapping
+## Efficient Control of Population Structure in Model Organism Association Mapping
 
 ::: {.callout-tip}
 ## Path-breaking paper
@@ -13,11 +13,7 @@ Kang HM, et al. [*Efficient Control of Population Structure in Model Organism As
 :::
 
 
-## Test of time
-
-Population structure:
-
-::: {.callout-tip}
+::: {.callout-note}
 ## Test of time paper
 
 - Canela-Xandri O, Rawlik K & Tenesa A. [*An atlas of genetic associations in UK Biobank*](https://doi.org/10.1038/s41588-018-0248-z). Nat Genet 50, 1593–1599 (2018). 
@@ -25,18 +21,23 @@ Population structure:
 :::
 
 
-Temporal structure:
 
-::: {.callout-tip}
+::: {.callout-note}
 ## Test of time paper
 
 Buettner F, et al. [*Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells*](https://doi.org/10.1038/nbt.3102). Nat Biotechnol 33, 155–160 (2015). 
 :::
 
-Spatial structure:
 
-::: {.callout-tip}
+
+::: {.callout-note}
 ## Test of time paper
 
 Arnol, et al. [*Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis.*](https://doi.org/10.1016/j.celrep.2019.08.077) Cell Reports 29:202 (2019).
 :::
+
+### Motivation
+
+### Questions for discussion
+
+### Test of time

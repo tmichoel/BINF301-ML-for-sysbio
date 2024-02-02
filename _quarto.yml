@@ -17,7 +17,6 @@ website:
       - julia-intro.qmd
       - section: "Cluster analysis"
         contents:
-          - cluster-analysis/index.qmd
           - cluster-analysis/cancer-subtypes.qmd
           - cluster-analysis/combinatorial-clustering.qmd
           - cluster-analysis/mixture-distributions.qmd
