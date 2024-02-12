@@ -1,10 +1,8 @@
 ---
-title: "Path-breaking paper"
+title: "Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer"
 page-layout: full
 title-block-banner: false
 ---
-
-##  Gene expression profiling predicts clinical outcome of breast cancer
 
 ::: {.callout-tip}
 ## Path-breaking paper

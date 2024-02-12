@@ -19,9 +19,7 @@ Follow the instructions on the [MIT Introduction to Computational Thinking cours
 
 Create an account on [JuliaHub][3].
 
-[1]: https://julialang.org/
-[2]: https://plutojl.org/
-[3]: https://juliahub.com/
+To run notebooks locally, [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) the [BINF301-code repository](https://github.com/tmichoel/BINF301-ML-for-sysbio-code) and follow the installation instructions. Make sure to [sync your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) regularly to make sure it remains up-to-date!
 
 ## Do I *have* to use Julia?
 
@@ -30,3 +28,9 @@ Create an account on [JuliaHub][3].
 Assignments can be submitted in *any* programming language. 
 
 The example notebooks are all in [Julia][1], but their combination of text and code should (hopefully) make it easy to translate them to [Jupyter](https://jupyter.org/), [R markdown](https://rmarkdown.rstudio.com/), or any other notebook/language combination of your choice. Likewise, it should not be too hard to replace [JuliaHub][3] by another cloud computing platform. If you do decide to reproduce the course notebooks in another language and/or on another platform, please share your results!
+
+
+
+[1]: https://julialang.org/
+[2]: https://plutojl.org/
+[3]: https://juliahub.com/

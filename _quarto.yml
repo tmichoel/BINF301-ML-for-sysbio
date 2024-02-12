@@ -17,38 +17,56 @@ website:
       - julia-intro.qmd
       - section: "Cluster analysis"
         contents:
-          - cluster-analysis/cancer-subtypes.qmd
-          - cluster-analysis/combinatorial-clustering.qmd
-          - cluster-analysis/mixture-distributions.qmd
+          - href: cluster-analysis/cancer-subtypes.qmd
+            text: Path-breaking paper
+          - href: cluster-analysis/combinatorial-clustering.qmd
+            text: Theory I
+          - href: cluster-analysis/mixture-distributions.qmd
+            text: Theory II
       - section: "Statistical significance"
         contents:
-          - statistical-significance/statistical-significance-gws.qmd
-          - statistical-significance/fdr-estimation.qmd
+          - href: statistical-significance/statistical-significance-gws.qmd
+            text: Path-breaking paper
+          - href: statistical-significance/fdr-estimation.qmd
+            text: Theory
       - section: "Regularized regression"
         contents:
-          - regularized-regression/drug-sensitivity.qmd
-          - regularized-regression/ridge-lasso-elnet.qmd
+          - href: regularized-regression/drug-sensitivity.qmd
+            text: Path-breaking paper
+          - href: regularized-regression/ridge-lasso-elnet.qmd
+            text: Theory
       - section: "Dimensionality reduction"
         contents:
-          - dimensionality-reduction/pca.qmd
-          - dimensionality-reduction/tsne-umap.qmd
+          - href: dimensionality-reduction/pca.qmd
+            text: Theory I
+          - href: dimensionality-reduction/tsne-umap.qmd
+            text: Theory II
       - section: "Causal inference"
         contents:
-          - causal-inference/causal-assoc-genes-disease.qmd
-          - causal-inference/mediation-iv.qmd
-          - causal-inference/causal-model-selection.qmd
+          - href: causal-inference/causal-assoc-genes-disease.qmd
+            text: Path-breaking paper
+          - href: causal-inference/mediation-iv.qmd
+            text: Theory
+          - href: causal-inference/causal-model-selection.qmd
+            text: Implementation
       - section: "Graphical models"
         contents:
-          - graphical-models/gene-regulatory-networks.qmd
-          - graphical-models/bayesian-networks.qmd
+          - href: graphical-models/gene-regulatory-networks.qmd
+            text: Path-breaking paper
+          - href: graphical-models/bayesian-networks.qmd
+            text: Theory
       - section: "Gaussian processes"
         contents:
-          - gaussian-processes/variance-components-genomics.qmd
-          - gaussian-processes/gaussian-processes.qmd
+          - href: gaussian-processes/variance-components-genomics.qmd
+            text: Path-breaking paper
+          - href: gaussian-processes/gaussian-processes.qmd
+            text: Theory
       - section: "Neural networks"
         contents:
-          - neural-networks/protein-structure-prediction.qmd
-          - neural-networks/neural-networks.qmd
+          - href: neural-networks/protein-structure-prediction.qmd
+            text: Path-breaking paper
+          - href: neural-networks/neural-networks.qmd
+            text: Theory
       - section: "Appendix"
 format:
   html:

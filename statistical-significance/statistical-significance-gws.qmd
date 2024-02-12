@@ -1,12 +1,8 @@
 ---
-title: "Path-breaking paper"
+title: "Path-breaking paper: Statistical significance for genomewide studies"
 page-layout: full
 title-block-banner: false
 ---
-
-
-## Statistical significance for genomewide studies
-
 
 ::: {.callout-tip}
 ## Path-breaking  paper

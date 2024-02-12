@@ -1,10 +1,8 @@
 ---
-title: "Path-breaking paper"
+title: "Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks"
 page-layout: full
 title-block-banner: false
 ---
-
-## Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks
 
 ::: {.callout-tip}
 ## Path-breaking paper
@@ -36,4 +34,4 @@ Beckmann ND., et al. [*Multiscale causal networks identify VGF as a key regulato
 
 
 
-## Other approaches to gene regulatory network inference
+### Other approaches to gene regulatory network inference

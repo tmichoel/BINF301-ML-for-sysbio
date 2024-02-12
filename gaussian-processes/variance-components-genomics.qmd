@@ -1,10 +1,8 @@
 ---
-title: "Path-breaking paper"
+title: "Path-breaking paper: Efficient Control of Population Structure in Model Organism Association Mapping"
 page-layout: full
 title-block-banner: false
 ---
-
-## Efficient Control of Population Structure in Model Organism Association Mapping
 
 ::: {.callout-tip}
 ## Path-breaking paper

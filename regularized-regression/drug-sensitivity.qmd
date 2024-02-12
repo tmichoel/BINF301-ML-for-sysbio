@@ -1,10 +1,10 @@
 ---
-title: "Path-breaking paper"
+title: "Path-breaking paper: The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity"
 page-layout: full
 title-block-banner: false
 ---
 
-## The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer drug sensitivity
+
 
 ::: {.callout-tip}
 ## Path-breaking paper

@@ -1,10 +1,8 @@
 ---
-title: "Path-breaking paper"
+title: "Path-breaking paper: An integrative genomics approach to infer causal associations between gene expression and disease"
 page-layout: full
 title-block-banner: false
 ---
-##  An integrative genomics approach to infer causal associations between gene expression and disease
-
 ::: {.callout-tip}
 ## Path-breaking paper
 

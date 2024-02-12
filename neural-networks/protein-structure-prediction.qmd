@@ -1,10 +1,8 @@
 ---
-title: "Path-breaking paper"
+title: "Path-breaking paper: Prediction of Protein Secondary Structure at Better than 70% Accuracy"
 page-layout: full
 title-block-banner: false
 ---
-
-## Prediction of Protein Secondary Structure at Better than 70% Accuracy
 
 ::: {.callout-tip}
 ## Path-breaking paper
