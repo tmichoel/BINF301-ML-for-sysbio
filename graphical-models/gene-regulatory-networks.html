@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Machine Learning for Systems Biology - Path-breaking paper</title>
+<title>BINF301 Machine Learning for Systems Biology - Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,13 +149,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Combinatorial clustering</span></a>
+ <span class="menu-text">Theory I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixture distributions</span></a>
+ <span class="menu-text">Theory II</span></a>
   </div>
 </li>
       </ul>
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FDR estimation</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -218,13 +218,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PCA</span></a>
+ <span class="menu-text">Theory I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">t-SNE, UMAP</span></a>
+ <span class="menu-text">Theory II</span></a>
   </div>
 </li>
       </ul>
@@ -247,13 +247,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mediation and instrumental variable analysis</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Causal model selection</span></a>
+ <span class="menu-text">Implementation</span></a>
   </div>
 </li>
       </ul>
@@ -276,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bayesian networks</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -299,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../gaussian-processes/gaussian-processes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gaussian processes</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -322,7 +322,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../neural-networks/neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Neural networks</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -341,11 +341,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" id="toc-integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" class="nav-link active" data-scroll-target="#integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks">Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks</a>
-  <ul class="collapse">
-  <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
+  <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link active" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
   <li><a href="#test-of-time" id="toc-test-of-time" class="nav-link" data-scroll-target="#test-of-time">Test of time</a></li>
-  </ul></li>
   <li><a href="#other-approaches-to-gene-regulatory-network-inference" id="toc-other-approaches-to-gene-regulatory-network-inference" class="nav-link" data-scroll-target="#other-approaches-to-gene-regulatory-network-inference">Other approaches to gene regulatory network inference</a></li>
   </ul>
 </nav>
@@ -355,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../graphical-models/gene-regulatory-networks.html">Graphical models</a></li><li class="breadcrumb-item"><a href="../graphical-models/gene-regulatory-networks.html">Path-breaking paper</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Path-breaking paper</h1>
+<h1 class="title">Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks</h1>
 </div>
 
 
@@ -372,8 +369,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks" class="level2">
-<h2 class="anchored" data-anchor-id="integrating-large-scale-functional-genomic-data-to-dissect-the-complexity-of-yeast-regulatory-networks">Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -432,9 +427,8 @@ Test of time paper
 <section id="test-of-time" class="level3">
 <h3 class="anchored" data-anchor-id="test-of-time">Test of time</h3>
 </section>
-</section>
-<section id="other-approaches-to-gene-regulatory-network-inference" class="level2">
-<h2 class="anchored" data-anchor-id="other-approaches-to-gene-regulatory-network-inference">Other approaches to gene regulatory network inference</h2>
+<section id="other-approaches-to-gene-regulatory-network-inference" class="level3">
+<h3 class="anchored" data-anchor-id="other-approaches-to-gene-regulatory-network-inference">Other approaches to gene regulatory network inference</h3>
 
 
 </section>
@@ -829,13 +823,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../causal-inference/causal-model-selection.html" class="pagination-link  aria-label=" causal="" model="" selection"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Causal model selection</span>
+      <a href="../causal-inference/causal-model-selection.html" class="pagination-link  aria-label=" implementation"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Implementation</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../graphical-models/bayesian-networks.html" class="pagination-link" aria-label="Bayesian networks">
-        <span class="nav-page-text">Bayesian networks</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../graphical-models/bayesian-networks.html" class="pagination-link" aria-label="Theory">
+        <span class="nav-page-text">Theory</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

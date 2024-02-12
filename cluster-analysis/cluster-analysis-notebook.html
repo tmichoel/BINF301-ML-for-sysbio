@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Machine Learning for Systems Biology - Mixture distributions</title>
+<title>BINF301 Machine Learning for Systems Biology - Cluster analysis notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../statistical-significance/statistical-significance-gws.html" rel="next">
-<link href="../cluster-analysis/combinatorial-clustering.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,35 +67,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -128,7 +97,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cluster analysis</a></li><li class="breadcrumb-item"><a href="../cluster-analysis/mixture-distributions.html">Theory II</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cluster analysis notebook</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -162,13 +131,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Cluster analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
@@ -183,7 +152,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link active">
+  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Theory II</span></a>
   </div>
 </li>
@@ -365,32 +334,20 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#generative-models" id="toc-generative-models" class="nav-link active" data-scroll-target="#generative-models">Generative models</a></li>
-  <li><a href="#gaussian-mixture-models" id="toc-gaussian-mixture-models" class="nav-link" data-scroll-target="#gaussian-mixture-models">Gaussian mixture models</a></li>
-  <li><a href="#some-em-language" id="toc-some-em-language" class="nav-link" data-scroll-target="#some-em-language">Some EM language</a></li>
-  <li><a href="#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation" class="nav-link" data-scroll-target="#maximum-likelihood-estimation">Maximum-likelihood estimation</a></li>
-  <li><a href="#the-em-algorithm" id="toc-the-em-algorithm" class="nav-link" data-scroll-target="#the-em-algorithm">The EM algorithm</a></li>
-  <li><a href="#what-are-soft-cluster-assignments" id="toc-what-are-soft-cluster-assignments" class="nav-link" data-scroll-target="#what-are-soft-cluster-assignments">What are “soft cluster assignments”?</a></li>
-  <li><a href="#generalizations" id="toc-generalizations" class="nav-link" data-scroll-target="#generalizations">Generalizations</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cluster analysis</a></li><li class="breadcrumb-item"><a href="../cluster-analysis/mixture-distributions.html">Theory II</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mixture distributions</h1>
+<h1 class="title">Cluster analysis notebook</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -402,165 +359,14 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Book sections
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p>A <a href="https://plutojl.org/">Pluto</a> notebook “<strong>Cluster_analysis.jl</strong>” is available:</p>
 <ul>
-<li><a href="https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"><em>Pattern Recognition and Machine Learning</em></a>: <strong>Chapter 9</strong></li>
-<li><a href="https://hastie.su.domains/ElemStatLearn/"><em>Elements of Statistical Learning</em></a>: <strong>Section 14.3</strong></li>
-<li><a href="https://www.statlearning.com/"><em>An Introduction to Statistical Learning</em></a>: <strong>Section 12.4</strong></li>
+<li>On <a href="https://juliahub.com/ui/Notebooks/tmichoel-1/BINF301/Cluster_analysis.jl">JuliaHub</a></li>
+<li>In the <a href="https://github.com/tmichoel/BINF301-ML-for-sysbio-code/blob/main/notebooks/Cluster_analysis.jl">BINF301-code repository</a></li>
 </ul>
-</div>
-</div>
-<section id="generative-models" class="level3">
-<h3 class="anchored" data-anchor-id="generative-models">Generative models</h3>
-<p>A generative model is a statistical model for the process that <em>could have</em> generated your data. Generative models offer many advantages compared to combinatorial algorithms that treat data as a collection of objects. Most importantly, working with a generative model forces you to be explicit about your assumptions. Likewise, a generative model allows you to encode, and be explicit about, prior (biological) knowledge you may have about the data generating process.</p>
-</section>
-<section id="gaussian-mixture-models" class="level3">
-<h3 class="anchored" data-anchor-id="gaussian-mixture-models">Gaussian mixture models</h3>
-<p>Let’s assume there is an unmeasured (or hidden) random variable <span class="math inline">\(Z\)</span> that determines to which group an observation <span class="math inline">\(X\)</span> belongs. For simplicity, assume that <span class="math inline">\(Z\)</span> can only take two values, 0 or 1, and that the measurement <span class="math inline">\(X\)</span> is one-dimensional and normally distributed in each group.</p>
-<p>Consider the following process:</p>
-<ol type="1">
-<li><p>Randomly sample cluster label <span class="math inline">\(Z=1\)</span> with probability <span class="math inline">\(\pi\)</span> and <span class="math inline">\(Z=0\)</span> with probability <span class="math inline">\(1-\pi\)</span>.</p></li>
-<li><p>Sample features</p></li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-X \sim \begin{cases}
-\mathcal{N}(\mu_0,\sigma_0^2) &amp;  \text{ if } Z=0\\
-\mathcal{N}(\mu_1,\sigma_1^2) &amp;  \text{ if } Z=1
-\end{cases}
-\end{aligned}
-\]</span></p>
-<p>Tthe model generates cluster labels <span class="math inline">\(Z\)</span> and real numbers <span class="math inline">\(x\in\mathbb{R}\)</span> from the model</p>
-<p><span class="math display">\[
-\begin{aligned}
-Z &amp;\longrightarrow X\\\\
-p(Z,x) = P(Z) &amp;\times p(x\mid Z)
-\end{aligned}
-\]</span></p>
-<p>where we use lower-case “p” for probability density functions (<span class="math inline">\(X\)</span> is continuous) and upper-case “P” for discrete probabilities, and</p>
-<p><span class="math display">\[
-\begin{aligned}
-P(Z=1) &amp;= \pi = 1 - P(Z=0) \\\\
-p(x\mid Z=k) &amp;= \mathcal{N}(\mu_k,\sigma_k^2)
-\end{aligned}
-\]</span></p>
-</section>
-<section id="some-em-language" class="level3">
-<h3 class="anchored" data-anchor-id="some-em-language">Some EM language</h3>
-<p>The <strong>joint distribution</strong> is the probability distribution of a cluster label <span class="math inline">\(Z\)</span> and feature value <span class="math inline">\(x\)</span> both being produced by the model:</p>
-<p><span class="math display">\[
-p(Z,x) = p(x\mid Z)\\; P(Z)
-\]</span></p>
-<p>The <strong>marginal distribution</strong> is th probability distribution that the model produces a feature value <span class="math inline">\(x\)</span>:</p>
-<p><span class="math display">\[
-p(x) = \sum_{k=0,1} p(x\mid Z=k)\\; P(Z=k)
-\]</span></p>
-<p>The <strong>responsibility</strong> of <span class="math inline">\(Z\)</span> for feature value <span class="math inline">\(x\)</span>, also called the <strong>recognition distribution</strong>, is obtained using Bayes’ theorem</p>
-<p><span class="math display">\[
-P(Z=k\mid x) = \frac{p(x\mid Z=k) \\; P(Z=k)}{p(x)}
-\]</span></p>
-<p>This value can be used as a <strong>soft cluster assignment</strong>: with probability <span class="math inline">\(P(Z=k \mid x)\)</span>, an observed value <span class="math inline">\(x\)</span> belongs to cluster k.</p>
-<p>Note that the expected value of <span class="math inline">\(Z\)</span> given a data point <span class="math inline">\(x\)</span> is:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\mathbb{E}\left(Z\mid x\right) &amp;= 1 \cdot P(Z=1 \mid x) + 0\cdot P(Z=0 \mid x) = P(Z=1 \mid x)
-% &amp;= \frac{\pi p(x\mid \mu_1, \igma_1^2)}{\pi p(x \mid \mu_1, \sigma_1^2) + (1-\pi) p(x \mid \mu_0, \sigma_0^2)}
-\end{aligned}
-\]</span></p>
-</section>
-<section id="maximum-likelihood-estimation" class="level3">
-<h3 class="anchored" data-anchor-id="maximum-likelihood-estimation">Maximum-likelihood estimation</h3>
-<p>To fit the model to the data, we can only use the observed data <span class="math inline">\(x\)</span>, which follows the <strong>Gaussian mixture distribution</strong></p>
-<p><span class="math display">\[
-p(x) = \sum_{k=0,1} p(x\mid Z=k)\\; P(Z=k)
-\]</span></p>
-<p>The log-likelihood of observing <span class="math inline">\(N\)</span> independent samples <span class="math inline">\((x_1,\dots,x_N)\)</span> is</p>
-<p><span class="math display">\[
-\mathcal{L}= \log\left(\prod_{i=1}^N p(x_{i}) \right) = \sum_{i=1}^N \log p(x_{i})
-\]</span></p>
-<p>We want to find the best-fitting model by maximizing the log-likelihood.</p>
-<p>Directly maximizing the log-likelihood with respect to the paramaters <span class="math inline">\(\pi\)</span>, <span class="math inline">\(\mu_k\)</span>, and <span class="math inline">\(\sigma_k^2\)</span> is difficult, because:</p>
-<ul>
-<li>Only the feature values <span class="math inline">\(x\)</span> are observed.</li>
-<li>The cluster labels <span class="math inline">\(Z\)</span> are hidden, they are latent variables.</li>
-<li>The log-likelihood is expressed purely in terms of the observable distribution, involves logarithms of sums, and is intractable.</li>
-</ul>
-<p>If we knew the cluster labels <span class="math inline">\(k\)</span> for each sample, we could easily fit the parameters <span class="math inline">\((\pi,\mu_k,\sigma_k^2)\)</span> from the data for each cluster.</p>
-<p>If we knew the parameters <span class="math inline">\((\pi, \mu_k,\sigma_k^2)\)</span>, we could easily determine the probability for each data point to belong to each cluster and determine cluster labels.</p>
-<p>To get around this catch-22, we replace actual cluster labels by their current expected values given current values for the parameters, and then iterate the above two steps until convergence - this is the Expectation-Maximization (EM) algorithm.</p>
-</section>
-<section id="the-em-algorithm" class="level3">
-<h3 class="anchored" data-anchor-id="the-em-algorithm">The EM algorithm</h3>
-<ol type="1">
-<li>Take initial guesses <span class="math inline">\(\hat\pi\)</span>, <span class="math inline">\(\hat\mu_k\)</span>, <span class="math inline">\(\hat\sigma_k^2\)</span> for the model parameters.</li>
-<li>Expectation step: Compute the responsibilities <span class="math inline">\(P(Z_i=k\mid x_i)\)</span> for each data point <span class="math inline">\(x_i\)</span>.</li>
-<li>Maximization step: Update <span class="math inline">\(\hat\pi\)</span>, <span class="math inline">\(\hat\mu_k\)</span>, <span class="math inline">\(\hat\sigma_k^2\)</span> by maximizing the log-likelihood using the soft cluster assignments <span class="math inline">\(P(Z_i=k\mid x_i)\)</span>.</li>
-<li>Iterate steps 2 and 3 until convergence.</li>
-</ol>
-</section>
-<section id="what-are-soft-cluster-assignments" class="level3">
-<h3 class="anchored" data-anchor-id="what-are-soft-cluster-assignments">What are “soft cluster assignments”?</h3>
-<p>Consider <span class="math inline">\(N\)</span> samples <span class="math inline">\((x_1,\dots,x_N)\)</span> from a normal distribution <span class="math inline">\(p(x\mid \mu,\sigma^2)\)</span>. The log-likelihood is</p>
-<p><span class="math display">\[
-\begin{aligned}
-\mathcal{L}= \sum_{i=1}^N \log \left(\frac1{\sqrt{2\pi\sigma^2}} e^{-\frac{1}{2\sigma^2}(x_i-\mu)^2}\right) = -\frac{N}{2} \log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^N (x_i-\mu)^2
-\end{aligned}
-\]</span></p>
-<p><span class="math inline">\(\mathcal{L}\)</span> is maximized for</p>
-<p><span class="math display">\[
-\begin{aligned}
-\hat\mu &amp;= \frac{1}{N} \sum_{i=1}^N x_i\\\\
-\hat\sigma^2 &amp;= \frac{1}{N} \sum_{i=1}^N (x_i-\hat\mu)^2
-\end{aligned}
-\]</span></p>
-<p>Now consider <span class="math inline">\(N\)</span> samples <span class="math inline">\((Z_1,\dots,Z_N)\)</span> and <span class="math inline">\((x_1,\dots,x_N)\)</span> from the generative model where the cluster labels are also observed. The log-likelihood is</p>
-<p><span class="math display">\[
-\begin{aligned}
-\mathcal{L}&amp;=  \sum_{i=1}^N \log p(Z_i,x_i)\\\\
-&amp;= \sum_{i=1}^N \Bigl(Z_i \log p(Z_i=1,x_i) + (1-Z_i) \log p(Z_i=0,x_i)\Bigr) \\\\
-&amp;= \sum_{i=1}^N \Bigl(Z_i \log p(x_i\mid \mu_1,\sigma_1^2) + (1-Z_i) \log p(x_i\mid \mu_0,\sigma_0^2)\Bigr) + \sum_{i=1}^N \Bigl(Z_i\log\pi + (1-Z_i) \log(1-\pi)\Bigr)
-\end{aligned}
-\]</span></p>
-<p><span class="math inline">\(\mathcal{L}\)</span> is maximized for</p>
-<p><span class="math display">\[
-\begin{aligned}
-\hat\pi &amp;= \frac{N_1}{N}\\\\
-\hat\mu_k &amp;= \frac{1}{N_k} \sum_{Z_i=k} x_i\\\\
-\hat\sigma_k^2 &amp;= \frac{1}{N_k} \sum_{Z_i=k}^N (x_i-\hat\mu_k)^2
-\end{aligned}
-\]</span></p>
-<p>Since the cluster labels are not observed, we don’t know the value of the <span class="math inline">\(Z_i\)</span>. The “trick” is to replace them with their expectation values <span class="math inline">\(\mathbb{E}(Z_i=k) = P(Z_i=k\mid x_i)\)</span> in the EM algorithm, using the current estimates for <span class="math inline">\(\hat\pi\)</span>, <span class="math inline">\(\hat\mu_k\)</span>, <span class="math inline">\(\hat\sigma_k^2\)</span>.</p>
-<p>This leads to updated estimates</p>
-<p><span class="math display">\[
-\begin{aligned}
-\hat\pi^{\text{(new)}} &amp;= \frac{\sum_{i=1}^N P(Z_i=k\mid x_i)}{N}\\\\
-\hat\mu_k^{\text{(new)}} &amp;= \frac{1}{N} \sum_{i=1}^N P(Z_i=k\mid x_i)\\;  x_i \\\\
-(\hat\sigma_k^2)^{\text{(new)}} &amp;= \frac{1}{N} \sum_{i=1}^N P(Z_i=k\mid x_i)\\; (x_i-\hat\mu_k)^2
-\end{aligned}
-\]</span></p>
-<p>Hence, instead of a “hard” assignment of each sample <span class="math inline">\(x_i\)</span> to one cluster <span class="math inline">\(k\)</span> when the <span class="math inline">\(Z_i\)</span> are observed, each sample now contributes with a “soft assignment” weight <span class="math inline">\(P(Z_i=k\mid x_i)\)</span> to the parameters of each cluster.</p>
-<p>After convergence, the final <span class="math inline">\(P(Z_i=k\mid x_i)\)</span> can be used to assign data points to clusters, for instance to the cluster <span class="math inline">\(k\)</span> with highest responsibility for <span class="math inline">\(x_i\)</span>.</p>
-</section>
-<section id="generalizations" class="level3">
-<h3 class="anchored" data-anchor-id="generalizations">Generalizations</h3>
-<p>We have so far considered the case where the data are one-dimensional (real numbers) and the number of clusters is pre-fixed. Important generalizations are:</p>
-<ol type="1">
-<li><p>The data can be of any dimension <span class="math inline">\(D\)</span>. In higher dimensions the components of the mixture model are <em>multivariate</em> normal distributions. The mean parameters <span class="math inline">\(\mu_k\)</span> simply become <span class="math inline">\(D\)</span>-dimensional vectors. The variance parameters <span class="math inline">\(\sigma_k^2\)</span> however become <span class="math inline">\(D\times D\)</span> covariance <em>matrices</em>. For simplicity and to reduce the number of paramaters, it is often assumed that the covariance matrices are diagonal, such that the number of variance parameters again scales linearly in <span class="math inline">\(D\)</span>. However, when features are correlated, this assumption will be a poor representation of the underlying data.</p></li>
-<li><p>Instead of treating the cluster weights, means, and variances as fixed parameters that need to be estimated, they can be seen as random variables themselves with a distribution (uncertainty) that can be learned from the data. For more information, see this <a href="https://turinglang.org/v0.24/tutorials/01-gaussian-mixture-model/">tutorial</a>.</p></li>
-<li><p>In an <em>infinite mixture model</em>, the number of clusters need not be fixed in advance, but can be learned from the data. For more information, see this <a href="https://turinglang.org/v0.24/tutorials/06-infinite-mixture-model/">tutorial</a>.</p></li>
-</ol>
+<p>Make sure you have followed the software installation instructions in the <a href="../julia-intro.html">Introduction to Julia</a> page!</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -950,18 +756,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-body">
-  <div class="nav-page nav-page-previous">
-      <a href="../cluster-analysis/combinatorial-clustering.html" class="pagination-link  aria-label=" theory="" i"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Theory I</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../statistical-significance/statistical-significance-gws.html" class="pagination-link" aria-label="Path-breaking paper">
-        <span class="nav-page-text">Path-breaking paper</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

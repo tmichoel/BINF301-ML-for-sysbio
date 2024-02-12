@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BINF301 Machine Learning for Systems Biology - Path-breaking paper</title>
+<title>BINF301 Machine Learning for Systems Biology - Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,13 +149,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Combinatorial clustering</span></a>
+ <span class="menu-text">Theory I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixture distributions</span></a>
+ <span class="menu-text">Theory II</span></a>
   </div>
 </li>
       </ul>
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FDR estimation</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../regularized-regression/ridge-lasso-elnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ridge, lasso and elastic net regression</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -218,13 +218,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dimensionality-reduction/pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PCA</span></a>
+ <span class="menu-text">Theory I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dimensionality-reduction/tsne-umap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">t-SNE, UMAP</span></a>
+ <span class="menu-text">Theory II</span></a>
   </div>
 </li>
       </ul>
@@ -247,13 +247,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../causal-inference/mediation-iv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mediation and instrumental variable analysis</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../causal-inference/causal-model-selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Causal model selection</span></a>
+ <span class="menu-text">Implementation</span></a>
   </div>
 </li>
       </ul>
@@ -276,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../graphical-models/bayesian-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bayesian networks</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -299,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../gaussian-processes/gaussian-processes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gaussian processes</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -322,7 +322,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../neural-networks/neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Neural networks</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
       </ul>
@@ -341,14 +341,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" id="toc-gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" class="nav-link active" data-scroll-target="#gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer">Gene expression profiling predicts clinical outcome of breast cancer</a>
-  <ul class="collapse">
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
   <li><a href="#sec-translation" id="toc-sec-translation" class="nav-link" data-scroll-target="#sec-translation">Translation to the clinic</a></li>
   <li><a href="#sec-test-of-time" id="toc-sec-test-of-time" class="nav-link" data-scroll-target="#sec-test-of-time">Test of time: The Cancer Genome Atlas</a></li>
   <li><a href="#questions-for-discussion-1" id="toc-questions-for-discussion-1" class="nav-link" data-scroll-target="#questions-for-discussion-1">Questions for discussion</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -357,7 +354,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cluster analysis</a></li><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Path-breaking paper</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Path-breaking paper</h1>
+<h1 class="title">Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer</h1>
 </div>
 
 
@@ -374,8 +371,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer" class="level2">
-<h2 class="anchored" data-anchor-id="gene-expression-profiling-predicts-clinical-outcome-of-breast-cancer">Gene expression profiling predicts clinical outcome of breast cancer</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -406,8 +401,8 @@ Test of time paper
 <h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
 <p>We start our sequel to <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/"><em>Back to the future: education for systems-level biologists</em></a> where the first one ended, with <a href="https://en.wikipedia.org/wiki/Cluster_analysis">cluster analysis</a> of <a href="https://en.wikipedia.org/wiki/Transcriptome">transcriptome data</a>. The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.’s <a href="https://doi.org/10.1073/pnas.95.25.14863"><em>Cluster analysis and display of genome-wide expression patterns</em></a>, which was the paper selected by <a href="https://pubmed.ncbi.nlm.nih.gov/16990789/">Wingreen &amp; Botstein</a> for their course. To avoid repetition, we go for van ’t Veer et al.’s <a href="https://doi.org/10.1038/415530a"><em>Gene expression profiling predicts clinical outcome of breast cancer</em></a>.</p>
 <p>The <a href="https://doi.org/10.1038/415530a">study by van ’t Veer et al</a> was one of the first to use <a href="https://en.wikipedia.org/wiki/DNA_microarray">microarrays</a>, a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al.&nbsp;<a href="https://www.nature.com/articles/35021093"><em>Molecular portraits of human breast tumours</em></a>. A perspective on these papers from the time of publication is in <a href="https://www.nature.com/articles/415484a"><em>The molecular outlook</em></a>.</p>
-<p>Another reason for choosing <a href="https://doi.org/10.1038/415530a">van ’t Veer et al</a> is the interesting story that followed: the authors went on a 20-year journey to translate the gene expression signature they identified to a commercial diagnostic tool, see <a href="#sec-translation" class="quarto-xref">Section&nbsp;1.3</a> below.</p>
-<p>The success of these initial studies using <a href="https://en.wikipedia.org/wiki/Cluster_analysis">cluster analysis</a> to detect meaningful and clinically relevant patterns in genome-scale data arguably paved the way for large-scale studies such as <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga">The Cancer Genome Atlas (TCGA) Program</a>. We take the <a href="https://doi.org/10.1038/nature11412">2012 TCGA paper on breast tumours</a> as our test-of-time paper, see <a href="#sec-test-of-time" class="quarto-xref">Section&nbsp;1.4</a>.</p>
+<p>Another reason for choosing <a href="https://doi.org/10.1038/415530a">van ’t Veer et al</a> is the interesting story that followed: the authors went on a 20-year journey to translate the gene expression signature they identified to a commercial diagnostic tool, see <a href="#sec-translation" class="quarto-xref">Section&nbsp;0.3</a> below.</p>
+<p>The success of these initial studies using <a href="https://en.wikipedia.org/wiki/Cluster_analysis">cluster analysis</a> to detect meaningful and clinically relevant patterns in genome-scale data arguably paved the way for large-scale studies such as <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga">The Cancer Genome Atlas (TCGA) Program</a>. We take the <a href="https://doi.org/10.1038/nature11412">2012 TCGA paper on breast tumours</a> as our test-of-time paper, see <a href="#sec-test-of-time" class="quarto-xref">Section&nbsp;0.4</a>.</p>
 </section>
 <section id="questions-for-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="questions-for-discussion">Questions for discussion</h3>
@@ -448,7 +443,6 @@ Test of time paper
 <p>How is cluster analysis used in the <a href="https://doi.org/10.1038/nature11412">TCGA paper</a>?</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -846,8 +840,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../cluster-analysis/combinatorial-clustering.html" class="pagination-link" aria-label="Combinatorial clustering">
-        <span class="nav-page-text">Combinatorial clustering</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../cluster-analysis/combinatorial-clustering.html" class="pagination-link" aria-label="Theory I">
+        <span class="nav-page-text">Theory I</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
