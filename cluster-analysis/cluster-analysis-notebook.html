@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../statistical-significance/statistical-significance-gws.html" rel="next">
+<link href="../cluster-analysis/combinatorial-clustering.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -97,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cluster analysis notebook</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cluster analysis</a></li><li class="breadcrumb-item"><a href="../cluster-analysis/cluster-analysis-notebook.html">Implementation</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -131,13 +133,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Cluster analysis</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/cancer-subtypes.html" class="sidebar-item-text sidebar-link">
@@ -147,13 +149,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cluster-analysis/combinatorial-clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Theory I</span></a>
+ <span class="menu-text">Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cluster-analysis/mixture-distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Theory II</span></a>
+  <a href="../cluster-analysis/cluster-analysis-notebook.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Implementation</span></a>
   </div>
 </li>
       </ul>
@@ -177,6 +179,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../statistical-significance/fdr-estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-significance/statistical-significance-notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementation</span></a>
   </div>
 </li>
       </ul>
@@ -340,7 +348,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cluster-analysis/cancer-subtypes.html">Cluster analysis</a></li><li class="breadcrumb-item"><a href="../cluster-analysis/cluster-analysis-notebook.html">Implementation</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Cluster analysis notebook</h1>
 </div>
@@ -362,7 +370,7 @@ ul.task-list li input[type="checkbox"] {
 <p>A <a href="https://plutojl.org/">Pluto</a> notebook “<strong>Cluster_analysis.jl</strong>” is available:</p>
 <ul>
 <li>On <a href="https://juliahub.com/ui/Notebooks/tmichoel-1/BINF301/Cluster_analysis.jl">JuliaHub</a></li>
-<li>In the <a href="https://github.com/tmichoel/BINF301-ML-for-sysbio-code/blob/main/notebooks/Cluster_analysis.jl">BINF301-code repository</a></li>
+<li>In the <a href="https://github.com/tmichoel/BINF301-ML-for-sysbio-code/">BINF301-code repository</a></li>
 </ul>
 <p>Make sure you have followed the software installation instructions in the <a href="../julia-intro.html">Introduction to Julia</a> page!</p>
 
@@ -756,6 +764,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../cluster-analysis/combinatorial-clustering.html" class="pagination-link  aria-label=" theory"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Theory</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../statistical-significance/statistical-significance-gws.html" class="pagination-link" aria-label="Path-breaking paper">
+        <span class="nav-page-text">Path-breaking paper</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
