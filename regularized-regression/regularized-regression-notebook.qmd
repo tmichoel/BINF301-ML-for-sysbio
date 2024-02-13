@@ -1,0 +1,12 @@
+---
+title: "Regularized regression notebook"
+page-layout: full
+title-block-banner: false
+---
+A [Pluto](https://plutojl.org/) notebook "**Regularized_regression.jl**" is available:
+
+
+- On [JuliaHub](https://juliahub.com/ui/Notebooks/tmichoel-1/BINF301/Regularized_regression.jl)
+- In the [BINF301-code repository](https://github.com/tmichoel/BINF301-ML-for-sysbio-code/)
+
+Make sure you have followed the software installation instructions in the [Introduction to Julia](../julia-intro.qmd) page!
