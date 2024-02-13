@@ -1,0 +1,12 @@
+---
+title: "Causal inference and model selection notebook"
+page-layout: full
+title-block-banner: false
+---
+A [Pluto](https://plutojl.org/) notebook "**Causal_inference.jl**" is available:
+
+
+- On [JuliaHub](https://juliahub.com/ui/Notebooks/tmichoel-1/BINF301/Causal_inference.jl)
+- In the [BINF301-code repository](https://github.com/tmichoel/BINF301-ML-for-sysbio-code/)
+
+Make sure you have followed the software installation instructions in the [Introduction to Julia](../julia-intro.qmd) page!

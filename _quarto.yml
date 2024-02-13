@@ -51,7 +51,7 @@ website:
             text: Path-breaking paper
           - href: causal-inference/mediation-iv.qmd
             text: Theory
-          - href: causal-inference/causal-model-selection.qmd
+          - href: causal-inference/causal-inference-notebook.qmd
             text: Implementation
       - section: "Graphical models"
         contents:
