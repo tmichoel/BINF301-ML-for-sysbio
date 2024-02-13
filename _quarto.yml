@@ -20,15 +20,17 @@ website:
           - href: cluster-analysis/cancer-subtypes.qmd
             text: Path-breaking paper
           - href: cluster-analysis/combinatorial-clustering.qmd
-            text: Theory I
-          - href: cluster-analysis/mixture-distributions.qmd
-            text: Theory II
+            text: Theory
+          - href: cluster-analysis/cluster-analysis-notebook.qmd
+            text: Implementation
       - section: "Statistical significance"
         contents:
           - href: statistical-significance/statistical-significance-gws.qmd
             text: Path-breaking paper
           - href: statistical-significance/fdr-estimation.qmd
             text: Theory
+          - href: statistical-significance/statistical-significance-notebook.qmd
+            text: Implementation
       - section: "Regularized regression"
         contents:
           - href: regularized-regression/drug-sensitivity.qmd
