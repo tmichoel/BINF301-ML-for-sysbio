@@ -37,6 +37,8 @@ website:
             text: Path-breaking paper
           - href: regularized-regression/ridge-lasso-elnet.qmd
             text: Theory
+          - href: regularized-regression/regularized-regression-notebook.qmd
+            text: Implementation
       - section: "Dimensionality reduction"
         contents:
           - href: dimensionality-reduction/pca.qmd
