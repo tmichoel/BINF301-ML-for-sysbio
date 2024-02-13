@@ -9,8 +9,8 @@ This is the website for the second half of the course [BINF301 Genome-scale Algo
 
 The lectures are divided in modules, each focusing on a specific class of methods:
 
-1. Statistical significance
-2. Clustering
+1. Clustering
+2. Statistical significance
 3. Regularized regression
 4. Dimensionality reduction
 5. Causal inference
@@ -23,7 +23,7 @@ Each module follows the same structure:
 
 - A classic or path-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was first used. One or more "test of time" papers illustrate recent applications of the same algorithms.
 - The method used in the paper(s) is studied in detail, along with additional methods to solve the same type of problem. 
-- The methods are put in practice using original data from the papers studied in the first part. 
+- The methods are put in practice using original or similar data from the papers studied in the first part. 
 
 The computational demonstrations for the course were developed in [Julia][2], and the course starts with an [introduction to Julia](julia-intro.qmd). For the assignments, you can use any programming language.
 
@@ -38,7 +38,7 @@ The theoretical sections contain the basic information to understand a method, p
 
 The use of path-breaking papers is motivated by [*Back to the future: education for systems-level biologists*](https://pubmed.ncbi.nlm.nih.gov/16990789/). Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.
 
-It is sometimes said that we humans overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To show the evolution in the field, each path-breaking paper is accompanied by one or more *"test of time"* papers, illustrating more recent applications of similar algorithms as the original one. Often we will see thath the major change is in the size and types of genome-scale data that can be generated nowadays, while the algorithms have mostly stood the test of time.
+It is sometimes said that we overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To show the evolution in the field, each path-breaking paper is accompanied by one or more *"test of time"* papers, illustrating more recent applications of similar algorithms as the original one. Often we will see that the major change is in the size and types of genome-scale data that can be generated nowadays, while the algorithms have mostly stood the test of time.
 
 If you want to stay up-to-date on what is happening in the field now, consider joining the [Machine Learning in Computational and Systems Biology community](http://cosi.iscb.org/wiki/MLCSB:Home).
 
