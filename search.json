@@ -1,23 +1,23 @@
 [
   {
-    "objectID": "graphical-models/bayesian-networks.html",
-    "href": "graphical-models/bayesian-networks.html",
+    "objectID": "bayesian-networks/bayesian-networks.html",
+    "href": "bayesian-networks/bayesian-networks.html",
     "title": "Bayesian networks",
     "section": "",
     "text": "Book sections\n\n\n\nPattern Recognition and Machine Learning: Chapter 8",
     "crumbs": [
-      "Graphical models",
+      "Bayesian networks",
       "Theory"
     ]
   },
   {
-    "objectID": "graphical-models/bayesian-networks.html#a-crash-course-in-bayesian-networks",
-    "href": "graphical-models/bayesian-networks.html#a-crash-course-in-bayesian-networks",
+    "objectID": "bayesian-networks/bayesian-networks.html#a-crash-course-in-bayesian-networks",
+    "href": "bayesian-networks/bayesian-networks.html#a-crash-course-in-bayesian-networks",
     "title": "Bayesian networks",
     "section": "A crash course in Bayesian networks",
     "text": "A crash course in Bayesian networks\nIn Bayesian networks, the joint distribution over a set \\(\\{X_1,\\dots, X_p\\}\\) of random variables is represented by:\n\na directed acyclic graph (DAG) \\(\\cal G\\) with the variables as vertices,\na set of conditional probability distributions, \\[\\begin{aligned}\n  P\\bigl(X_i \\mid \\{X_j \\mid j\\in \\mathrm{Pa}_i\\}\\bigr),\n\\end{aligned}\\] where \\(\\mathrm{Pa}_i\\) is the set of parents of vertex \\(i\\) in \\(\\mathcal{G}\\),\n\nsuch that \\[\\begin{aligned}\n  P(X_1,\\dots,X_p) = \\prod_{i=1}^p P\\bigl(X_i \\mid \\{X_j \\mid j\\in \\mathrm{Pa}_i\\}\\bigr)\n\\end{aligned}\\]\nIn GRN reconstruction:\n\n\\(X_i\\) represents the expression level of gene \\(i\\),\n\\(P(X_1,\\dots,X_p)\\) represents the joint distribution from which (independent) experimental samples are drawn,\n\\(\\mathcal{G}\\) represents the unknown GRN.\n\nAssume we have a set of \\(N\\) observations \\(x_1,\\dots,x_N\\in \\mathbb{R}^p\\) of \\(p\\) variables, collected in the \\(N\\times p\\) matrix \\(\\mathbf{X}\\).\nAssume we know \\(\\mathcal{G}\\) and the conditional distributions. Then the likelihood of observing the data is:\n\\[\\begin{aligned}\n  P(\\mathbf{X}\\mid \\mathcal{G}) &= \\prod_{k=1}^N P(X_{k1},\\dots,X_{kp}\\mid \\mathcal{G})\\\\\\\\\n  &= \\prod_{i=1}^p \\prod_{k=1}^N  P\\bigl(X_{ki} \\mid \\{X_{kj} \\mid j\\in \\mathrm{Pa}_i\\}\\bigr)\n\\end{aligned}\\]\nWe can now use an iterative algorithm to optimize \\(\\mathcal{G}\\) and the conditional distributions:\n\nStart with a random graph \\(\\mathcal{G}\\).\nGiven \\(\\mathcal{G}\\), the likelihood decomposes in a product of independent likelihoods, one for each gene, and the conditional distributions can be optimized by standard regression analysis.\nIn the next iterations, randomly add, delete, or reverse edges in \\(\\mathcal{G}\\), as long as the likelihood improves.\n\nA more formal approach to optimizing \\(\\mathcal{G}\\) uses Bayes’ theorem: \\[\\begin{aligned}\n  P(\\mathcal{G}\\mid \\mathbf{X}) = \\frac{P(\\mathbf{X}\\mid \\mathcal{G}) P(\\mathcal{G})}{P(\\mathbf{X})}\n\\end{aligned}\\]\n\n\\(P(\\mathcal{G})\\) represents the prior distribution: even without seeing any data, not all graphs need to be equally likely a priori.\n\\(P(\\mathbf{X})\\) represents the marginal distribution: \\(P(\\mathbf{X}) = \\sum_{\\mathcal{G}'} P(\\mathbf{X}\\mid \\mathcal{G}') P(\\mathcal{G}')\\). It is independent of \\(\\mathcal{G}\\) and can be ignored.\n\nWe can use \\(P(\\mathcal{G})\\) to encode evidence for causal interactions from integrating genomics and transcriptomics data. This is the main idea from Zhu et al. (2004).",
     "crumbs": [
-      "Graphical models",
+      "Bayesian networks",
       "Theory"
     ]
   },
@@ -372,6 +372,30 @@
     ]
   },
   {
+    "objectID": "dimensionality-reduction/brain-cell-types.html",
+    "href": "dimensionality-reduction/brain-cell-types.html",
+    "title": "Path-breaking paper: Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing",
+    "section": "",
+    "text": "Path-breaking paper\n\n\n\nUsoskin D et al. * Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing* . Nature Neuroscience 18:145 (2015).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nSiletti K et al. Transcriptomic diversity of cell types across the adult human brain. Science 382:eadd7046 (2023).\nSee also the Brain Cell Census collection\n\n\n\nMotivation\n\n\nQuestions for discussion\n\n\nTest of time: The Brain Cell Census"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This is the website for the second half of the course BINF301 Genome-scale Algorithms. This part of the course focuses on machine learning algorithms for systems biology.\nThe lectures are divided in modules, each focusing on a specific class of methods:\n\nClustering\nStatistical significance\nRegularized regression\nDimensionality reduction\nCausal inference\nGraphical models\nGaussian processes\nNeural networks\n(Network propagation)\n\nEach module follows the same structure:\n\nA classic or path-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was first used. One or more “test of time” papers illustrate recent applications of the same algorithms.\nThe method used in the paper(s) is studied in detail, along with additional methods to solve the same type of problem.\nThe methods are put in practice using original or similar data from the papers studied in the first part.\n\nThe computational demonstrations for the course were developed in Julia, and the course starts with an introduction to Julia. For the assignments, you can use any programming language.\nAn appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.\nThe theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:\n\nTrevor Hastie, Robert Tibshirani, and Jerome Friedman. The Elements of Statistical Learning (second edition) (2009).\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. An Introduction to Statistical Learning (2023).\nChristopher Bishop. Pattern Recognition and Machine Learning (2006).\nMarc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. Mathematics for Machine Learning (2020).\n\nThe use of path-breaking papers is motivated by Back to the future: education for systems-level biologists. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.\nIt is sometimes said that we overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To show the evolution in the field, each path-breaking paper is accompanied by one or more “test of time” papers, illustrating more recent applications of similar algorithms as the original one. Often we will see that the major change is in the size and types of genome-scale data that can be generated nowadays, while the algorithms have mostly stood the test of time.\nIf you want to stay up-to-date on what is happening in the field now, consider joining the Machine Learning in Computational and Systems Biology community.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this website"
+  },
+  {
     "objectID": "julia-intro.html",
     "href": "julia-intro.html",
     "title": "Introduction to Julia",
@@ -409,23 +433,6 @@
     "text": "Do I have to use Julia?\nNo.\nAssignments can be submitted in any programming language.\nThe example notebooks are all in Julia, but their combination of text and code should (hopefully) make it easy to translate them to Jupyter, R markdown, or any other notebook/language combination of your choice. Likewise, it should not be too hard to replace JuliaHub by another cloud computing platform. If you do decide to reproduce the course notebooks in another language and/or on another platform, please share your results!",
     "crumbs": [
       "Introduction to Julia"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this website"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "This is the website for the second half of the course BINF301 Genome-scale Algorithms. This part of the course focuses on machine learning algorithms for systems biology.\nThe lectures are divided in modules, each focusing on a specific class of methods:\n\nClustering\nStatistical significance\nRegularized regression\nDimensionality reduction\nCausal inference\nGraphical models\nGaussian processes\nNeural networks\n(Network propagation)\n\nEach module follows the same structure:\n\nA classic or path-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was first used. One or more “test of time” papers illustrate recent applications of the same algorithms.\nThe method used in the paper(s) is studied in detail, along with additional methods to solve the same type of problem.\nThe methods are put in practice using original or similar data from the papers studied in the first part.\n\nThe computational demonstrations for the course were developed in Julia, and the course starts with an introduction to Julia. For the assignments, you can use any programming language.\nAn appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.\nThe theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:\n\nTrevor Hastie, Robert Tibshirani, and Jerome Friedman. The Elements of Statistical Learning (second edition) (2009).\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. An Introduction to Statistical Learning (2023).\nChristopher Bishop. Pattern Recognition and Machine Learning (2006).\nMarc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. Mathematics for Machine Learning (2020).\n\nThe use of path-breaking papers is motivated by Back to the future: education for systems-level biologists. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.\nIt is sometimes said that we overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To show the evolution in the field, each path-breaking paper is accompanied by one or more “test of time” papers, illustrating more recent applications of similar algorithms as the original one. Often we will see that the major change is in the size and types of genome-scale data that can be generated nowadays, while the algorithms have mostly stood the test of time.\nIf you want to stay up-to-date on what is happening in the field now, consider joining the Machine Learning in Computational and Systems Biology community.",
-    "crumbs": [
-      "Home"
     ]
   },
   {
@@ -601,13 +608,13 @@
     ]
   },
   {
-    "objectID": "graphical-models/gene-regulatory-networks.html",
-    "href": "graphical-models/gene-regulatory-networks.html",
+    "objectID": "bayesian-networks/gene-regulatory-networks.html",
+    "href": "bayesian-networks/gene-regulatory-networks.html",
     "title": "Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks",
     "section": "",
     "text": "Path-breaking paper\n\n\n\nZhu J et al. Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks. Nature Genetics 40:854 (2008).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nZhang B, et al. . Integrated systems approach identifies genetic nodes and networks in late-onset Alzheimer’s disease. Cell 153:707–720 (2013)\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nTalukdar HA, et al. Cross-tissue regulatory gene networks in coronary artery disease. Cell Systems 2:196 (2016)\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nBeckmann ND., et al. Multiscale causal networks identify VGF as a key regulator of Alzheimer’s disease. Nature communications 11:3942 (2020).\n\n\n\nQuestions for discussion\n\n\nTest of time\n\n\nOther approaches to gene regulatory network inference",
     "crumbs": [
-      "Graphical models",
+      "Bayesian networks",
       "Path-breaking paper"
     ]
   }
