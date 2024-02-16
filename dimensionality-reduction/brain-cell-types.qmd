@@ -1,0 +1,25 @@
+---
+title: "Path-breaking paper: Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing"
+page-layout: full
+title-block-banner: false
+---
+
+::: {.callout-tip}
+## Path-breaking paper
+
+Usoskin D et al. [* Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing*](https://doi.org/10.1038/nn.3881) . Nature Neuroscience **18**:145 (2015).
+:::
+
+::: {.callout-note}
+## Test of time paper
+
+Siletti K et al. [*Transcriptomic diversity of cell types across the adult human brain*](https://doi.org/10.1126/science.add7046). Science 382:eadd7046 (2023).
+
+See also the [Brain Cell Census collection](https://www.science.org/collections/brain-cell-census)
+:::
+
+### Motivation
+
+### Questions for discussion
+
+### Test of time: The Brain Cell Census

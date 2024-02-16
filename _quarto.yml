@@ -53,11 +53,11 @@ website:
             text: Theory
           - href: causal-inference/causal-inference-notebook.qmd
             text: Implementation
-      - section: "Graphical models"
+      - section: "Bayesian networks"
         contents:
-          - href: graphical-models/gene-regulatory-networks.qmd
+          - href: bayesian-networks/gene-regulatory-networks.qmd
             text: Path-breaking paper
-          - href: graphical-models/bayesian-networks.qmd
+          - href: bayesian-networks/bayesian-networks.qmd
             text: Theory
       - section: "Gaussian processes"
         contents:
