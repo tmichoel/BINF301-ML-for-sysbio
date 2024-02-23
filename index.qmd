@@ -12,12 +12,13 @@ The lectures are divided in modules, each focusing on a specific class of method
 1. Clustering
 2. Statistical significance
 3. Regularized regression
-4. Dimensionality reduction
-5. Causal inference
-6. Graphical models
-7. Gaussian processes
-8. Neural networks
-9. (Network propagation)
+4. (Classification)
+5. Dimensionality reduction
+6. Causal inference
+7. Graphical models
+8. Gaussian processes
+9. Neural networks
+10. (Network propagation)
 
 Each module follows the same structure:
 
