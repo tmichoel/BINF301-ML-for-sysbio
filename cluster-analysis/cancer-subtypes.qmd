@@ -8,6 +8,8 @@ title-block-banner: false
 ## Path-breaking paper
 
 van 't Veer L et al. [*Gene expression profiling predicts clinical outcome of breast cancer*](https://doi.org/10.1038/415530a) . Nature 415:530 (2002).
+
+See also: [*The molecular outlook.*](https://www.nature.com/articles/415484a)
 :::
 
 ::: {.callout-note}
@@ -21,7 +23,7 @@ The Cancer Genome Atlas Network. [*Comprehensive molecular portraits of human br
 
 We start our sequel to [*Back to the future: education for systems-level biologists*](https://pubmed.ncbi.nlm.nih.gov/16990789/) where the first one ended, with [cluster analysis](https://en.wikipedia.org/wiki/Cluster_analysis) of [transcriptome data](https://en.wikipedia.org/wiki/Transcriptome). The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.'s [*Cluster analysis and display of genome-wide expression patterns*](https://doi.org/10.1073/pnas.95.25.14863), which was the paper selected by [Wingreen & Botstein](https://pubmed.ncbi.nlm.nih.gov/16990789/) for their course. To avoid repetition, we go for van 't Veer et al.'s  [*Gene expression profiling predicts clinical outcome of breast cancer*](https://doi.org/10.1038/415530a).
 
-The [study by van 't Veer et al](https://doi.org/10.1038/415530a) was one of the first to use [microarrays](https://en.wikipedia.org/wiki/DNA_microarray), a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al. [*Molecular portraits of human breast tumours*](https://www.nature.com/articles/35021093). A perspective on these papers from the time of publication is in [*The molecular outlook*](https://www.nature.com/articles/415484a).
+The [study by van 't Veer et al](https://doi.org/10.1038/415530a) was one of the first to use [microarrays](https://en.wikipedia.org/wiki/DNA_microarray), a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al. [*Molecular portraits of human breast tumours*](https://www.nature.com/articles/35021093). A perspective on these papers from the time of publication is in [*The molecular outlook*](https://www.nature.com/articles/415484a). 
 
 Another reason for choosing [van 't Veer et al](https://doi.org/10.1038/415530a) is the interesting story that followed: the authors went on a 20-year journey to translate the gene expression signature they identified to a commercial diagnostic tool, see @sec-translation below.
 
@@ -31,11 +33,13 @@ The success of these initial studies using [cluster analysis](https://en.wikiped
 
 ### Questions for discussion
 
+Why is classification of diseases important? How were breast tumours classified *before* molecular profiles became available?
+
 How many tumour samples were analyzed by Van 't Veer et al? How many genes were used for the cluster analysis and how were these genes selected
 
 The most striking finding is in Figure 1. What does this figure show?
 
-Clinical features to annotate and understand the observed separation of gene expression profiles in distinct clusters. What does each of the features measure and how do the authors characterize the overall classification of tumours? Starting points to read more about the clinical features:
+Clinical features are used to annotate and understand the observed separation of gene expression profiles in distinct clusters. What does each of the features measure and how do the authors characterize the overall classification of tumours? Starting points to read more about the clinical features:
 
 - [BRCA1 germline mutation](https://www.cancer.gov/about-cancer/causes-prevention/genetics/brca-fact-sheet): harmful variants in the *BRCA1* or *BRCA2* genes that markedly increase risk for developing breast cancer.
 - [Estrogen receptor (ER) status](https://www.cancer.org/cancer/breast-cancer/understanding-a-breast-cancer-diagnosis/breast-cancer-hormone-receptor-status.html): breast tumour cells that express ER on their surface need [estrogen](https://en.wikipedia.org/wiki/Estrogen) to grow, and are therefore more susceptible to hormone therapy.
