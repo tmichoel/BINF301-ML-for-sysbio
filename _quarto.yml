@@ -41,6 +41,8 @@ website:
             text: Implementation
       - section: "Dimensionality reduction"
         contents:
+          - href: dimensionality-reduction/brain-cell-types.qmd
+            text: Path-breaking paper
           - href: dimensionality-reduction/pca.qmd
             text: Theory I
           - href: dimensionality-reduction/tsne-umap.qmd
