@@ -6,7 +6,7 @@ title-block-banner: false
 Two [Pluto](https://plutojl.org/) notebooks "**Regularized_regression_Glmnet.jl**" and "**Regularized_regression_MLJ.jl**" are available:
 
 
-- On JUliaHub, [here](https://juliahub.com/ui/Notebooks/tmichoel-1/BINF301/Regularized_regression_Glmnet.jl) and [here](https://juliahub.com/ui/Notebooks/tmichoel-1/BINF301/Regularized_regression_MLJ.jl)
+- On JuliaHub, [here](https://juliahub.com/ui/Notebooks/tmichoel-1/BINF301/Regularized_regression_Glmnet.jl) and [here](https://juliahub.com/ui/Notebooks/tmichoel-1/BINF301/Regularized_regression_MLJ.jl)
 - In the [BINF301-code repository](https://github.com/tmichoel/BINF301-ML-for-sysbio-code/)
 
 Make sure you have followed the software installation instructions in the [Introduction to Julia](../julia-intro.qmd) page!
