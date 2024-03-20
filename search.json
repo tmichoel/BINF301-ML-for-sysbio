@@ -423,7 +423,7 @@
     "href": "regularized-regression/regularized-regression-notebook.html",
     "title": "Regularized regression notebook",
     "section": "",
-    "text": "Two Pluto notebooks “Regularized_regression_Glmnet.jl” and “Regularized_regression_MLJ.jl” are available:\n\nOn JUliaHub, here and here\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "text": "Two Pluto notebooks “Regularized_regression_Glmnet.jl” and “Regularized_regression_MLJ.jl” are available:\n\nOn JuliaHub, here and here\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
     "crumbs": [
       "Regularized regression",
       "Implementation"
