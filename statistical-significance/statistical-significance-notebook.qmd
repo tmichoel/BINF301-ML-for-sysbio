@@ -1,5 +1,5 @@
 ---
-title: "Cluster analysis notebook"
+title: "Statistical significance notebook"
 page-layout: full
 title-block-banner: false
 ---

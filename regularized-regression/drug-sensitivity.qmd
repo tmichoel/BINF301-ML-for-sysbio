@@ -26,6 +26,14 @@ Dixit A, et al. [*Perturb-Seq: Dissecting Molecular Circuits with Scalable Singl
 
 ### Motivation
 
+Fitting linear prediction models using [elastic net regularization](https://en.wikipedia.org/wiki/Elastic_net_regularization) is highly popular when working with genome-scale data because it serves (at least) three important modelling goals:
+
+- Elastic net regularization handles data where the number of predictive features is much larger than the number of samples.
+- Elastic net regularization performs *variable selection* (such that only a subset of features contribute to the model) while also encouraging *grouping* (such that strongly correlated features are in or out of the model together).
+- Elastic net regularized models are *linear*, and hence the contribution of each feature to the model is easily measurable by its regression weight.
+
+It is hard to determine exactly when elastic net regression made it into mainstream computational biology. Here we selected the first paper of the [CCLE project](https://sites.broadinstitute.org/ccle/), where elastic net regression played an important role. The paper allows to introduce an important and still running large-scale project (as shown by the first test-of-time paper), and allows to contrast the difference between *perturbational* and *observational* data. This gives a natural connection to a more modern approach to perturbational experiments that combines [CRISPR](https://en.wikipedia.org/wiki/CRISPR)  and single-cell sequencing technologies (second test-of-time paper).
+
 ### Questions for discussion 
 
 Abstract - **What** is the study about and **why** was it performed?
