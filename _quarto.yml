@@ -44,9 +44,11 @@ website:
           - href: dimensionality-reduction/brain-cell-types.qmd
             text: Path-breaking paper
           - href: dimensionality-reduction/pca.qmd
-            text: Theory I
+            text: Theory (PCA)
           - href: dimensionality-reduction/tsne-umap.qmd
-            text: Theory II
+            text: Theory (t-SNE, UMAP)
+          - href: dimensionality-reduction/dimensionality-reduction-notebook.qmd
+            text: Implementation
       - section: "Causal inference"
         contents:
           - href: causal-inference/causal-assoc-genes-disease.qmd
