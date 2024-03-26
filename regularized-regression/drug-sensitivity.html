@@ -428,6 +428,13 @@ Test of time paper
 </div>
 <section id="motivation" class="level3">
 <h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
+<p>Fitting linear prediction models using <a href="https://en.wikipedia.org/wiki/Elastic_net_regularization">elastic net regularization</a> is highly popular when working with genome-scale data because it serves (at least) three important modelling goals:</p>
+<ul>
+<li>Elastic net regularization handles data where the number of predictive features is much larger than the number of samples.</li>
+<li>Elastic net regularization performs <em>variable selection</em> (such that only a subset of features contribute to the model) while also encouraging <em>grouping</em> (such that strongly correlated features are in or out of the model together).</li>
+<li>Elastic net regularized models are <em>linear</em>, and hence the contribution of each feature to the model is easily measurable by its regression weight.</li>
+</ul>
+<p>It is hard to determine exactly when elastic net regression made it into mainstream computational biology. Here we selected the first paper of the <a href="https://sites.broadinstitute.org/ccle/">CCLE project</a>, where elastic net regression played an important role. The paper allows to introduce an important and still running large-scale project (as shown by the first test-of-time paper), and allows to contrast the difference between <em>perturbational</em> and <em>observational</em> data. This gives a natural connection to a more modern approach to perturbational experiments that combines <a href="https://en.wikipedia.org/wiki/CRISPR">CRISPR</a> and single-cell sequencing technologies (second test-of-time paper).</p>
 </section>
 <section id="questions-for-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="questions-for-discussion">Questions for discussion</h3>
