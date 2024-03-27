@@ -1,41 +1,33 @@
 ---
-title: "Path-breaking paper: Efficient Control of Population Structure in Model Organism Association Mapping"
+title: "Path-breaking papers: Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region & SpatialDE: identification of spatially variable genes"
 page-layout: full
 title-block-banner: false
 ---
 
+
+
 ::: {.callout-tip}
-## Path-breaking paper
+## Path-breaking paper combo
+
+**Data & Technology:** Moffit JR, et al. [*Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region*](https://doi.org/10.1126/science.aau5324), Science 262:eaau5324 (2018).
+
+**Methodology:** Svensson V, et. al. [*SpatialDE: identification of spatially variable genes*](https://doi.org/10.1038%2Fnmeth.4636), Nature Methods 15:343 (2018).
+Arnol, et al. [*Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis.*](https://doi.org/10.1016/j.celrep.2019.08.077) Cell Reports 29:202 (2019).
+:::
+
+::: {.callout-note}
+## Reverse test of time paper
 
 Kang HM, et al. [*Efficient Control of Population Structure in Model Organism Association Mapping*](https://doi.org/10.1534/genetics.107.080101), Genetics 178(3):1709–1723 (2008)
 :::
 
 
-::: {.callout-note}
-## Test of time paper
-
-- Canela-Xandri O, Rawlik K & Tenesa A. [*An atlas of genetic associations in UK Biobank*](https://doi.org/10.1038/s41588-018-0248-z). Nat Genet 50, 1593–1599 (2018). 
-- Loh PR,  et al. [*Mixed-model association for biobank-scale datasets*](https://doi.org/10.1038/s41588-018-0144-6). Nat Genet 50, 906–908 (2018). 
-:::
-
-
-
-::: {.callout-note}
-## Test of time paper
-
-Buettner F, et al. [*Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells*](https://doi.org/10.1038/nbt.3102). Nat Biotechnol 33, 155–160 (2015). 
-:::
-
-
-
-::: {.callout-note}
-## Test of time paper
-
-Arnol, et al. [*Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis.*](https://doi.org/10.1016/j.celrep.2019.08.077) Cell Reports 29:202 (2019).
-:::
-
 ### Motivation
 
-### Questions for discussion
+Most statistical and machine learning methods for analyzing genome-scale data assume that the data consist of independent samples from an unknown distribution or data generating process. However, in important applications, this assumption is *not* true: in genetic studies, the correlation structure of sampled data (e.g. transcriptome profiles) may reflect underlying [population structure](https://en.wikipedia.org/wiki/Population_structure_(genetics)), while in studies of spatial structures or temporal processes, the correlation structure of sampled data will reflect the spatial or temporal proximity of samples.
 
-### Test of time
+[Variance component models](https://en.wikipedia.org/wiki/Random_effects_model) and [Gaussian processes](https://en.wikipedia.org/wiki/Gaussian_process) have emerged as powerful methods for modelling data with an underlying correlation structure. Historically, the first application of this type of models to genome-wide data appears to be [Kang et al.'s paper](https://doi.org/10.1534/genetics.107.080101) to correct for population structure in genetic association studies, and related approaches are now the standard in the field (see [this paper](https://doi.org/10.1038/nmeth.1681) for an important methodological innovation and [this paper](https://doi.org/10.1038/s41588-018-0248-z) for an application on [UK Biobank](https://www.ukbiobank.ac.uk/) data). Because we already work with population genomics data in the [causal inference](../causal-inference/causal-assoc-genes-disease.qmd) and [Bayesian networks](../bayesian-networks/gene-regulatory-networks.qmd) modules, we present this line of research as a "reverse test of time" paper.
+
+For many computational biologists, the challenge of working with data with an underlying correlation structure nowadays is most prominent in the field of [spatial transcriptomics](https://en.wikipedia.org/wiki/Spatial_transcriptomics). Because there is no single paper that was path-breaking in terms of both biology and computational methodology, we study a combination of papers. [Moffit et al](https://doi.org/10.1126/science.aau5324) was one of the first papers to apply the [MERFISH](https://zhuang.harvard.edu/merfish.html) technology to measure the spatial distribution of gene expression in single cells, and we will use their data in our own analysis. [Svensson et al](https://doi.org/10.1038%2Fnmeth.4636) and [Arnol et al](https://doi.org/10.1016/j.celrep.2019.08.077) show how the application of [Gaussian process](https://en.wikipedia.org/wiki/Gaussian_process) models can identify genes with spatial structure in their expression from this type of data.
+
+### Questions for discussion
