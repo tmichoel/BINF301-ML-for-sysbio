@@ -16,7 +16,7 @@ Jancen RC and Nap JP. [*Genetical genomics: the added value from segregation*](h
 Schadt, E., Lamb, J., Yang, X. et al. [*An integrative genomics approach to infer causal associations between gene expression and disease*](https://doi.org/10.1038/ng1589). Nat Genet 37, 710–717 (2005).
 :::
 
-::: {.callout-tip}
+::: {.callout-note}
 ## Test of time paper
 
 Li Y, Tesson BM, Churchill GA, and Jancen RC. [*Critical reasoning on causal inference in genome-wide linkage and association studies*](https://doi.org/10.1016%2Fj.tig.2010.09.002). Trends in Genetics 26:493 (2010)
