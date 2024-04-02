@@ -4,7 +4,7 @@ page-layout: full
 title-block-banner: false
 ---
 
-::: {.callout-note}
+::: {.callout-tip}
 ## Path-breaking paper
 Jancen RC and Nap JP. [*Genetical genomics: the added value from segregation*](https://doi.org/10.1016/s0168-9525(01)02310-1). Trends in Genetics 17:388 (2001)
 
