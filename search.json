@@ -233,7 +233,7 @@
     "href": "dimensionality-reduction/tsne-umap.html",
     "title": "t-SNE, UMAP",
     "section": "",
-    "text": "References\n\n\n\n\nL.J.P. van der Maaten and G.E. Hinton. Visualizing Data Using t-SNE. Journal of Machine Learning Research 9(Nov):2579-2605, 2008.\nMcInnes, L, Healy, J, UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction, ArXiv e-prints 1802.03426, 2018",
+    "text": "References\n\n\n\n\nL.J.P. van der Maaten and G.E. Hinton. Visualizing Data Using t-SNE. Journal of Machine Learning Research 9(Nov):2579-2605, 2008.\nMcInnes, L, Healy, J, UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction, ArXiv e-prints 1802.03426, 2018\nKobak & Berens. The art of using t-SNE for single-cell transcriptomics. Nat. Comm. 10:5416 (2019)",
     "crumbs": [
       "Dimensionality reduction",
       "Theory (t-SNE, UMAP)"
