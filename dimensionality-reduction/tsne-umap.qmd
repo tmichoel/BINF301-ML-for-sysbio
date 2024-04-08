@@ -8,9 +8,15 @@ title-block-banner: false
 ::: {.callout-tip}
 ## References
 
+**Theory:**
+
 - L.J.P. van der Maaten and G.E. Hinton. [*Visualizing Data Using t-SNE*](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf). Journal of Machine Learning Research 9(Nov):2579-2605, 2008.
 - McInnes, L, Healy, J, [*UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction*](https://arxiv.org/abs/1802.03426), ArXiv e-prints 1802.03426, 2018
+
+**Practical:**
+
 - Kobak & Berens. [*The art of using t-SNE for single-cell transcriptomics*.](https://doi.org/10.1038/s41467-019-13056-x) Nat. Comm. **10**:5416 (2019)
+- Becht et al. [*Dimensionality reduction for visualizing single-cell data using UMAP*](https://doi.org/10.1038/nbt.4314)
 
 :::
 
