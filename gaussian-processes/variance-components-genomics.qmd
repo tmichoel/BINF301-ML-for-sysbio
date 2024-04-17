@@ -30,4 +30,8 @@ Most statistical and machine learning methods for analyzing genome-scale data as
 
 For many computational biologists, the challenge of working with data with an underlying correlation structure nowadays is most prominent in the field of [spatial transcriptomics](https://en.wikipedia.org/wiki/Spatial_transcriptomics). Because there is no single paper that was path-breaking in terms of both biology and computational methodology, we study a combination of papers. [Moffit et al](https://doi.org/10.1126/science.aau5324) was one of the first papers to apply the [MERFISH](https://zhuang.harvard.edu/merfish.html) technology to measure the spatial distribution of gene expression in single cells, and we will use their data in our own analysis. [Svensson et al](https://doi.org/10.1038%2Fnmeth.4636) and [Arnol et al](https://doi.org/10.1016/j.celrep.2019.08.077) show how the application of [Gaussian process](https://en.wikipedia.org/wiki/Gaussian_process) models can identify genes with spatial structure in their expression profile from this type of data.
 
+### Video lecture on spatial transcriptomics
+
+[Spatial transcriptome lecture](https://www.youtube.com/watch?v=OFW_cQ4vtaY) from the [Linnarsson lab](https://linnarssonlab.org/).
+
 ### Questions for discussion
