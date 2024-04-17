@@ -32,6 +32,6 @@ For many computational biologists, the challenge of working with data with an un
 
 ### Video lecture on spatial transcriptomics
 
-[Spatial transcriptome lecture](https://www.youtube.com/watch?v=OFW_cQ4vtaY) from the [Linnarsson lab](https://linnarssonlab.org/).
+[Spatial transcriptome profiling lecture](https://www.youtube.com/watch?v=OFW_cQ4vtaY) from the [Linnarsson lab](https://linnarssonlab.org/).
 
 ### Questions for discussion
