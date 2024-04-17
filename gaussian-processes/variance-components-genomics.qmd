@@ -9,10 +9,16 @@ title-block-banner: false
 ::: {.callout-tip}
 ## Path-breaking paper combo
 
-**Data & Technology:** Moffit JR, et al. [*Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region*](https://doi.org/10.1126/science.aau5324), Science 262:eaau5324 (2018).
+**Data & Technology:** 
 
-**Methodology:** Svensson V, et. al. [*SpatialDE: identification of spatially variable genes*](https://doi.org/10.1038%2Fnmeth.4636), Nature Methods 15:343 (2018).
-Arnol, et al. [*Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis.*](https://doi.org/10.1016/j.celrep.2019.08.077) Cell Reports 29:202 (2019).
+- Ståhl PL et al. [Visualization and analysis of gene expression in tissue sections by spatial transcriptomics](https://doi.org/10.1126/science.aaf2403)
+- Moffit JR, et al. [*Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region*](https://doi.org/10.1126/science.aau5324), Science 262:eaau5324 (2018).
+
+
+**Methodology:** 
+
+- Svensson V, et. al. [*SpatialDE: identification of spatially variable genes*](https://doi.org/10.1038%2Fnmeth.4636), Nature Methods 15:343 (2018).
+- Arnol, et al. [*Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis.*](https://doi.org/10.1016/j.celrep.2019.08.077) Cell Reports 29:202 (2019).
 :::
 
 ::: {.callout-note}
@@ -28,7 +34,9 @@ Most statistical and machine learning methods for analyzing genome-scale data as
 
 [Variance component models](https://en.wikipedia.org/wiki/Random_effects_model) and [Gaussian processes](https://en.wikipedia.org/wiki/Gaussian_process) have emerged as powerful methods for modelling data with an underlying correlation structure. Historically, the first application of this type of models to genome-wide data appears to be [Kang et al.'s paper](https://doi.org/10.1534/genetics.107.080101) to correct for population structure in genetic association studies, and related approaches are now the standard in the field (see [this paper](https://doi.org/10.1038/nmeth.1681) for an important methodological innovation and [this paper](https://doi.org/10.1038/s41588-018-0248-z) for an application on [UK Biobank](https://www.ukbiobank.ac.uk/) data). Because we already work with population genomics data in the [causal inference](../causal-inference/causal-assoc-genes-disease.qmd) and [Bayesian networks](../bayesian-networks/gene-regulatory-networks.qmd) modules, we present this line of research as a "reverse test of time" paper.
 
-For many computational biologists, the challenge of working with data with an underlying correlation structure nowadays is most prominent in the field of [spatial transcriptomics](https://en.wikipedia.org/wiki/Spatial_transcriptomics). Because there is no single paper that was path-breaking in terms of both biology and computational methodology, we study a combination of papers. [Moffit et al](https://doi.org/10.1126/science.aau5324) was one of the first papers to apply the [MERFISH](https://zhuang.harvard.edu/merfish.html) technology to measure the spatial distribution of gene expression in single cells, and we will use their data in our own analysis. [Svensson et al](https://doi.org/10.1038%2Fnmeth.4636) and [Arnol et al](https://doi.org/10.1016/j.celrep.2019.08.077) show how the application of [Gaussian process](https://en.wikipedia.org/wiki/Gaussian_process) models can identify genes with spatial structure in their expression profile from this type of data.
+For many computational biologists, the challenge of working with data with an underlying correlation structure nowadays is most prominent in the field of [spatial transcriptomics](https://en.wikipedia.org/wiki/Spatial_transcriptomics). Because there is no single paper that was path-breaking in terms of both biology and computational methodology, we study a combination of papers. [Ståhl et al](https://doi.org/10.1126/science.aaf2403) combine RNA sequencing with spatial barcodes and are [credited on Wikipedia](https://en.wikipedia.org/wiki/Spatial_transcriptomics) with being the first to develop a spatial transcriptomics method, while [Moffit et al](https://doi.org/10.1126/science.aau5324) was one of the first papers to apply the [MERFISH](https://zhuang.harvard.edu/merfish.html) technology to measure the spatial distribution of gene expression in single cells. We will use data from both these papers in our own analysis. 
+
+[Svensson et al](https://doi.org/10.1038%2Fnmeth.4636) and [Arnol et al](https://doi.org/10.1016/j.celrep.2019.08.077) show how the application of [Gaussian process](https://en.wikipedia.org/wiki/Gaussian_process) models can identify genes with spatial structure in their expression profile from this type of data.
 
 ### Video lecture on spatial transcriptomics
 
