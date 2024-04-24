@@ -1,21 +1,149 @@
 [
   {
-    "objectID": "neural-networks/protein-structure-prediction.html",
-    "href": "neural-networks/protein-structure-prediction.html",
-    "title": "Path-breaking paper: Prediction of Protein Secondary Structure at Better than 70% Accuracy",
+    "objectID": "julia-intro.html",
+    "href": "julia-intro.html",
+    "title": "Introduction to Julia",
     "section": "",
-    "text": "Path-breaking paper\n\n\n\nRost B and Sander C. Prediction of protein secondary structure at better than 70% accuracy. Journal of Molecular Biology 232: 584-599 (1993).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nJumper J, et al. Highly accurate protein structure prediction with AlphaFold. Nature 596, 583–589 (2021).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nBaek M, et al. Accurate prediction of protein structures and interactions using a three-track neural network. Science 373:871-876 (2021).\n\n\n\nMotivation\n\n\nQuestions for discussion\n\n\nTest of time",
+    "text": "Julia is an open-source programming language that combines the interactivity of Python, R and Matlab, with the speed of C. Read more about its design principles and why it is good for scienticific applications, including computational biology here:\n\nWhy we created Julia\nJulia: come for the syntax, stay for the speed\nJulia for biologists\n\nInterestingly, despite not (yet!) being as popular as Python, ChatGPT performs better on Julia than Python (and R) for Large Language Model (LLM) code generation. Using AskAI, an interface to ChatGPT tailored specifically for Julia-related questions, should make Julia code generation even better.",
     "crumbs": [
-      "Neural networks",
+      "Introduction to Julia"
+    ]
+  },
+  {
+    "objectID": "julia-intro.html#why-julia",
+    "href": "julia-intro.html#why-julia",
+    "title": "Introduction to Julia",
+    "section": "",
+    "text": "Julia is an open-source programming language that combines the interactivity of Python, R and Matlab, with the speed of C. Read more about its design principles and why it is good for scienticific applications, including computational biology here:\n\nWhy we created Julia\nJulia: come for the syntax, stay for the speed\nJulia for biologists\n\nInterestingly, despite not (yet!) being as popular as Python, ChatGPT performs better on Julia than Python (and R) for Large Language Model (LLM) code generation. Using AskAI, an interface to ChatGPT tailored specifically for Julia-related questions, should make Julia code generation even better.",
+    "crumbs": [
+      "Introduction to Julia"
+    ]
+  },
+  {
+    "objectID": "julia-intro.html#software-installation",
+    "href": "julia-intro.html#software-installation",
+    "title": "Introduction to Julia",
+    "section": "Software installation",
+    "text": "Software installation\nFollow the instructions on the MIT Introduction to Computational Thinking course to install Julia and Pluto.\nCreate an account on JuliaHub.\nTo run notebooks locally, fork the BINF301-code repository and follow the installation instructions. Make sure to sync your fork regularly to make sure it remains up-to-date!",
+    "crumbs": [
+      "Introduction to Julia"
+    ]
+  },
+  {
+    "objectID": "julia-intro.html#do-i-have-to-use-julia",
+    "href": "julia-intro.html#do-i-have-to-use-julia",
+    "title": "Introduction to Julia",
+    "section": "Do I have to use Julia?",
+    "text": "Do I have to use Julia?\nNo.\nAssignments can be submitted in any programming language.\nThe example notebooks are all in Julia, but their combination of text and code should (hopefully) make it easy to translate them to Jupyter, R markdown, or any other notebook/language combination of your choice. Likewise, it should not be too hard to replace JuliaHub by another cloud computing platform. If you do decide to reproduce the course notebooks in another language and/or on another platform, please share your results!",
+    "crumbs": [
+      "Introduction to Julia"
+    ]
+  },
+  {
+    "objectID": "regularized-regression/regularized-regression-notebook.html",
+    "href": "regularized-regression/regularized-regression-notebook.html",
+    "title": "Regularized regression notebook",
+    "section": "",
+    "text": "Two Pluto notebooks “Regularized_regression_Glmnet.jl” and “Regularized_regression_MLJ.jl” are available:\n\nOn JuliaHub, here and here\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "crumbs": [
+      "Regularized regression",
+      "Implementation"
+    ]
+  },
+  {
+    "objectID": "statistical-significance/statistical-significance-gws.html",
+    "href": "statistical-significance/statistical-significance-gws.html",
+    "title": "Path-breaking paper: Statistical significance for genomewide studies",
+    "section": "",
+    "text": "Path-breaking paper\n\n\n\nStorey, John D., and Robert Tibshirani. “Statistical significance for genomewide studies.” Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nThe GTEx Consortium. The GTEx Consortium atlas of genetic regulatory effects across human tissues. Science 369, 1318–1330 (2020).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nChen X, Robinson DG, Storey JD, The functional false discovery rate with applications to genomics, Biostatistics, Volume 22, Issue 1, January 2021, Pages 68–81,\n\n\n\nMotivation\nIs it statistics or is it machine learning? Does it matter? Storey and Tibshirani’s paper can rightfully claim to have changed the field of statistical learning. It has been cited more than 10,000 times and its results are now included in all textbooks in the field. Every student wishing to analyze genome-scale data must understand what q-values and false discovery rate mean.\nWith a paper of this standing, it can seem exaggerated to ask for a test of time. We look at a paper from the GTEx project to show how the multiple testing problem has exploded far beyond the scale considered in Storey and Tibshirani’s paper, but can still be adequately addressed using their method. We also look at a recent methodological paper, to show there is always scope for new ideas, even for something as well established as Storey and Tibshirani’s method.\n\n\nQuestions for discussion\nWe cover the following parts:\n\nAbstract\nExample 1, differentially expressed genes\nTable 1\nWhat is a p-value?\nWhat is the FDR?\nDerivation that p-values are uniformly distributed under the null hypothesis\nFigure 1\nFDR estimation\nFigure 2\nWhat is a q-value?\n\n\n\nTest of time",
+    "crumbs": [
+      "Statistical significance",
       "Path-breaking paper"
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "statistical-significance/statistical-significance-notebook.html",
+    "href": "statistical-significance/statistical-significance-notebook.html",
+    "title": "Statistical significance notebook",
     "section": "",
-    "text": "About this website"
+    "text": "A Pluto notebook “Statistical_significance.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "crumbs": [
+      "Statistical significance",
+      "Implementation"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/brain-cell-types.html",
+    "href": "dimensionality-reduction/brain-cell-types.html",
+    "title": "Path-breaking paper: Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing",
+    "section": "",
+    "text": "Path-breaking paper\n\n\n\nUsoskin D et al. Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing . Nature Neuroscience 18:145 (2015).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nTasic B et al. Shared and distinct transcriptomic cell types across neocortical areas. Nature 563:72 (2018).\nSiletti K et al. Transcriptomic diversity of cell types across the adult human brain. Science 382:eadd7046 (2023). See also the Brain Cell Census collection\n\n\n\nMotivation\nReducing high-dimensional data to a low-dimensional representation for the purposes of visualization and pattern discovery is a classical approach in statistics, with principal component analysis (PCA) probably the best known method. PCA and other dimensionality reduction methods have been used in systems biology for as long as (relatively) large data have been around. Nowadays, dimensionality reduction is mostly associated with the analysis of single-cell sequencing data. Given the importance of single-cell sequencing technologies, and the relative lack of understanding of the non-linear dimensionality reduction methods that are regularly employed in this context, this will be our angle for learning about dimensionality reduction.\nFor our path-breaking paper, we select a relatively early study of cell types in the brain using single-cell sequencing of 622 mouse neurons. In this study, PCA is used to visualize data in two and three dimensions and to identify distinct types of sensory neurons.\nTo illustrate how far the field of single-cell sequencing has advanced in the last decade, we select a paper from 2018, which sequenced more than 23 thousand cells and whose data we will use in our practical analysis, and a paper from the BRAIN Initiative Cell Census Network, which sequenced more than three million human brain cells, including more than two million neurons. In these papers, t-SNE and UMAP are used for dimensionality reduction, as is the case in most current studies in the field.\n\n\nQuestions for discussion\nWhat is single-cell transcriptomics? We will look in more detail at this review paper: Revealing the vectors of cellular identity with Single-cell genomics.\nWhat is the basic idea for discovering and classifying cell types?\nHow many expressed genes were detected on average in each cell? How many genes were detected in total across all cells (see Methods)? What could explain these numbers?\nHow did the authors decide on the initial classification of genes in neuronal and non-neuronal clusters? How did they define further subclusters of the initial neuronal clusters?\nWhat is shown in Figure 1?\nWhat is shown in Figure 4? How is the “fraction of positive cells” defined for a given gene?",
+    "crumbs": [
+      "Dimensionality reduction",
+      "Path-breaking paper"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/dimensionality-reduction-notebook.html",
+    "href": "dimensionality-reduction/dimensionality-reduction-notebook.html",
+    "title": "Dimensionality reduction notebook",
+    "section": "",
+    "text": "A Pluto notebook “Dimensionality_reduction.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "crumbs": [
+      "Dimensionality reduction",
+      "Implementation"
+    ]
+  },
+  {
+    "objectID": "bayesian-networks/bayesian-networks.html",
+    "href": "bayesian-networks/bayesian-networks.html",
+    "title": "Bayesian networks",
+    "section": "",
+    "text": "Book sections\n\n\n\nPattern Recognition and Machine Learning: Chapter 8",
+    "crumbs": [
+      "Bayesian networks",
+      "Theory"
+    ]
+  },
+  {
+    "objectID": "bayesian-networks/bayesian-networks.html#a-crash-course-in-bayesian-networks",
+    "href": "bayesian-networks/bayesian-networks.html#a-crash-course-in-bayesian-networks",
+    "title": "Bayesian networks",
+    "section": "A crash course in Bayesian networks",
+    "text": "A crash course in Bayesian networks\nIn Bayesian networks, the joint distribution over a set \\(\\{X_1,\\dots, X_p\\}\\) of random variables is represented by:\n\na directed acyclic graph (DAG) \\(\\cal G\\) with the variables as vertices,\na set of conditional probability distributions, \\[\\begin{aligned}\n  P\\bigl(X_i \\mid \\{X_j \\mid j\\in \\mathrm{Pa}_i\\}\\bigr),\n\\end{aligned}\\] where \\(\\mathrm{Pa}_i\\) is the set of parents of vertex \\(i\\) in \\(\\mathcal{G}\\),\n\nsuch that \\[\\begin{aligned}\n  P(X_1,\\dots,X_p) = \\prod_{i=1}^p P\\bigl(X_i \\mid \\{X_j \\mid j\\in \\mathrm{Pa}_i\\}\\bigr)\n\\end{aligned}\\]\nIn GRN reconstruction:\n\n\\(X_i\\) represents the expression level of gene \\(i\\),\n\\(P(X_1,\\dots,X_p)\\) represents the joint distribution from which (independent) experimental samples are drawn,\n\\(\\mathcal{G}\\) represents the unknown GRN.\n\nAssume we have a set of \\(N\\) observations \\(x_1,\\dots,x_N\\in \\mathbb{R}^p\\) of \\(p\\) variables, collected in the \\(N\\times p\\) matrix \\(\\mathbf{X}\\).\nAssume we know \\(\\mathcal{G}\\) and the conditional distributions. Then the likelihood of observing the data is:\n\\[\\begin{aligned}\n  P(\\mathbf{X}\\mid \\mathcal{G}) &= \\prod_{k=1}^N P(X_{k1},\\dots,X_{kp}\\mid \\mathcal{G})\\\\\\\\\n  &= \\prod_{i=1}^p \\prod_{k=1}^N  P\\bigl(X_{ki} \\mid \\{X_{kj} \\mid j\\in \\mathrm{Pa}_i\\}\\bigr)\n\\end{aligned}\\]\nWe can now use an iterative algorithm to optimize \\(\\mathcal{G}\\) and the conditional distributions:\n\nStart with a random graph \\(\\mathcal{G}\\).\nGiven \\(\\mathcal{G}\\), the likelihood decomposes in a product of independent likelihoods, one for each gene, and the conditional distributions can be optimized by standard regression analysis.\nIn the next iterations, randomly add, delete, or reverse edges in \\(\\mathcal{G}\\), as long as the likelihood improves.\n\nA more formal approach to optimizing \\(\\mathcal{G}\\) uses Bayes’ theorem: \\[\\begin{aligned}\n  P(\\mathcal{G}\\mid \\mathbf{X}) = \\frac{P(\\mathbf{X}\\mid \\mathcal{G}) P(\\mathcal{G})}{P(\\mathbf{X})}\n\\end{aligned}\\]\n\n\\(P(\\mathcal{G})\\) represents the prior distribution: even without seeing any data, not all graphs need to be equally likely a priori.\n\\(P(\\mathbf{X})\\) represents the marginal distribution: \\(P(\\mathbf{X}) = \\sum_{\\mathcal{G}'} P(\\mathbf{X}\\mid \\mathcal{G}') P(\\mathcal{G}')\\). It is independent of \\(\\mathcal{G}\\) and can be ignored.\n\nWe can use \\(P(\\mathcal{G})\\) to encode evidence for causal interactions from integrating genomics and transcriptomics data. This is the main idea from Zhu et al. (2004).",
+    "crumbs": [
+      "Bayesian networks",
+      "Theory"
+    ]
+  },
+  {
+    "objectID": "gaussian-processes/gaussian-processes-notebook.html",
+    "href": "gaussian-processes/gaussian-processes-notebook.html",
+    "title": "Dimensionality reduction notebook",
+    "section": "",
+    "text": "A Pluto notebook “Gaussian_processes.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!"
+  },
+  {
+    "objectID": "gaussian-processes/gaussian-processes.html",
+    "href": "gaussian-processes/gaussian-processes.html",
+    "title": "Gaussian processes",
+    "section": "",
+    "text": "Book sections\n\n\n\nPattern Recognition and Machine Learning: Chapter 6\n\n\n\nLinear regression, from fixed to random coefficients\nIn a standard linear regression model for an outcome \\(Y\\) on one or more predictors \\(X_1,\\dots,X_p\\)\n\\[\nY = \\sum_i\\beta_i X_i + \\epsilon = X^T\\beta + \\epsilon, \\qquad\n  \\epsilon \\sim \\mathcal{N}(0,\\sigma_e^2)\n\\]\nthe effects \\(\\beta_i\\) are treated as fixed, such that the distribution of \\(Y\\) is:\n\\[\np(Y\\mid X) = \\mathcal{N}(X^T\\beta,\\sigma_e^2),\n\\]\nthat is, in a fixed effect model, the predictors affect the average or expected value of \\(Y\\). In a fixed effect model, we always assume that the data to fit the parameters are obtained from independent samples of an underlying model.\nIf our data consists of non-independent samples (e.g. due to temporal, spatial or familial relations among the observations), we can use a random effect model to explain these correlations as a function of covariates \\(X\\). As before, we collect the data for the inputs and ouptput in a \\(N\\times p\\) matrix \\(\\mathbf{X}\\) and \\(N\\)-vector \\(\\mathbf{y}\\), respectively, \\[\\begin{aligned}\n    \\mathbf{X}= (x_1,x_2,\\dots,x_p) = \\begin{pmatrix}\n      x_{11} & x_{12} & \\dots & x_{1p}\\\\\n      x_{21} & x_{22} & \\dots & x_{2p}\\\\\n      \\vdots & \\vdots & & \\vdots\\\\\n      x_{N1} & x_{N2} & \\dots & x_{Np}\n    \\end{pmatrix} &&\n    \\mathbf{y}= \\begin{pmatrix}\n      y_1\\\\\n      y_2\\\\\n      \\vdots\\\\\n      y_N\n    \\end{pmatrix}\n  \\end{aligned}\\]\nWe model the data as\n\\[\n\\begin{aligned}\n  \\mathbf{y} &= \\mathbf{X} \\alpha + \\epsilon\\\n\\end{aligned}\n\\]\nwhere \\(\\alpha = (\\alpha_1,\\dots,\\alpha_p)^T\\) are random effects with multi-variate normal distribution\n\\[\n\\alpha \\sim \\mathcal{N}(0,\\sigma_a^2 I_p)\n\\]\nand \\(\\epsilon = (\\epsilon_1,\\dots,\\epsilon_N)\\) are independent error terms\n\\[\n\\epsilon \\sim \\mathcal{N}(0,\\sigma_e^2 I_N).\n\\]\nThe random effects are assumed to be independent or the errors. We assumed the random effects are mutually independent, but this can easily be generalized.\nUsing properties of the multivariate normal distribution, the distribution of \\(\\mathbf{y}\\) can be seen to be:\n\\[\np(\\mathbf{y}\\mid \\mathbf{X}) = \\mathcal{N}(0, \\sigma_a^2 \\mathbf{X}\\mathbf{X}^T + \\sigma_e^2 I_N)\n\\]\nand we see that \\(\\mathbf{X}\\), or more precisely the covariance matrix \\(\\mathbf{X}\\mathbf{X}^T\\) indeed models correlations among the samples in \\(\\mathbf{y}\\).\nNaturally, fixed and random effects can be combined into a so-called mixed model.\nModels of this kind are often used in genetics, where the random effect covariates \\(\\mathbf{X}\\) are genetic markers and their covariance matrix \\(\\mathbf{X}\\mathbf{X}^T\\) expresses the genetic similarity between individuals in the study.\nSo far we assumed that all random effects had the same variance \\(\\sigma_a^2\\). If we assume that each \\(\\alpha_j\\) has a different variance \\(\\sigma_j^2\\), we would obtain\n\\[\np(\\mathbf{y}\\mid \\mathbf{X}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nwhere\n\\[\n\\mathbf{K} = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{x}_j \\mathbf{x}_j^T  + \\sigma_e^2 I_N\n\\]\nthat is, \\(\\sigma_j^2\\) measures the contribution of covariate \\(X_j\\) to the correlations among samples of \\(Y\\).\nTo estimate the variance parameters, maximum-likelihood is employed, that is, we find the values of the \\(\\sigma_j^2\\) and \\(\\sigma_e^2\\) which maximize\n\\[\n\\log p(\\mathbf{y}) = -\\frac12 \\log \\det (\\mathbf{K} ) - \\frac12 \\mathbf{y}^T \\mathbf{K}^{-1} \\mathbf{y} - \\frac{N}2 \\log(2\\pi)\n\\]\nThis is a difficult, non-convex optimization problem which requires the use of numerical, gradient-based optimizers.\nNote that the covariance matrix satisfies\n\\[\n\\begin{aligned}\n  \\mathbb{E}(y_i y_j) = K_{ij}\n\\end{aligned}\n\\] and hence the total variance of \\(\\mathbf{y}\\) can be written as\n\\[\n\\begin{aligned}\n  \\mathbb{E}(\\mathbf{y}^T\\mathbf{y}) = \\sum_i \\mathbb{E}(y_i^2) = \\sum_i K_{ii} = \\mathrm{tr}(K)\n\\end{aligned}\n\\]\nFrom the definition of \\(\\mathbf{K}\\), its trace can be written as\n\\[\n\\mathrm{tr}(K) = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{x}_j^T \\mathbf{x}_j   + N \\sigma_e^2.\n\\]\nTherefore we say that\n\\[\n\\frac{\\sigma_j^2 \\mathbf{x}_j^T \\mathbf{x}_j}{\\mathrm{tr}(K) }\n\\]\nis the variance in \\(\\mathbf{y}\\) explained by variance component \\(\\mathbf{x}_i\\).\n\n\nKernel-based variance component models\nSince the posterior distribution \\(p(\\mathbf{y}\\mid \\mathbf{X})\\) only depends on the matrix \\(\\mathbf{K}\\), an immediate generalization is to define variance component models directly in terms of kernel matrices instead of starting from a linear, random effect model, namely define\n\\[\np(\\mathbf{y}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nFor instance, if the elements (samples) \\(y_i\\) of \\(\\mathbf{y}\\) are obtained at specific locations (e.g. pixels in an image) \\(\\mathbf{x_i}\\in \\mathbb{R}^2\\) (or \\(\\mathbb{R}^p\\) more generally), we can define\n\\[\nK_{ij} = k(\\mathbf{x}_i,\\mathbf{x}_j)\n\\]\nwhere the kernel function \\(k\\) is a function that measures the similarity or closeness between samples.\nGeneralizing from before, the kernel matrix \\(\\mathbf{K}\\) can consist of multiple components,\n\\[\n\\mathbf{K} = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{K}_j  + \\sigma_e^2 I_N\n\\]\nand the variance explained by the \\(j^{\\text{th}}\\) component is\n\\[\n\\frac{\\sigma_j^2\\mathrm{tr}(\\mathbf{K}_j)}{\\mathrm{tr}(\\mathbf{K})}\n\\]\n\n\nGaussian processes\nIn many applications, the “positions” \\(\\mathbf{x}_i\\) where samples are obtained are not fixed, but a finite subset of a possibly infinite, continuous range. For instance, when studying a dynamic process, we typically obtain noisy measurements \\(y_i\\) at a finite number of time points \\(t_i\\), and are interested in the entire underlying process \\(y(t)\\) for all times \\(t\\) in some time interval. Similarly, we may have measurements \\(y_i\\) at a finite number of locations \\(\\mathbf{x}_i\\), and are interested in the entire function \\(y(\\mathbf{x})\\) for all positions \\(\\mathbf{x}\\) in some spatial region.\nA Gaussian process is a stochastic process, to be understood as a probability distribution over functions \\(y(\\mathbf{x})\\) over some continuous domain \\(D\\), such that the set of values of \\(y(\\mathbf{x})\\) evaluated at a finite set of points \\(\\mathbf{x}_1,\\dots,\\mathbf{x}_N\\in D\\) are jointly normally distributed. A Gaussian process is specified by a kernel function \\(k(\\mathbf{x},\\mathbf{x}')\\), for \\(\\mathbf{x},\\mathbf{x}' \\in D\\). Writing \\(\\mathbf{y} = (y(\\mathbf{x}_1), \\dots, y(\\mathbf{x}_N))\\), the kernel defines the probability distribution\n\\[\np(\\mathbf{y}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nwhere\n\\[\nK_{ij} = k(\\mathbf{x}_i,\\mathbf{x}_j)\n\\]\nHence, for the purposes of parameter estimation, the Gaussian process and variance component viewpoints are identical, which is why the term are often used interchangeably. The main difference lies in the interpretation, where Gaussian process see the data as a finite set of samples from a continuous space. Hence in the Gaussian process viewpoint, we would be particularly interested in interpolation, predicting expected values of the function \\(y(\\mathbf{x})\\) at locations \\(\\mathbf{x}\\) that were not part of the initial (training) data.\nKeeping the notation \\(\\mathbf{y}\\) for the function values at the training positions \\(\\mathbf{x}_i\\), we know that the joint distribution of \\(\\mathbf{y}\\) and the value of \\(y(\\mathbf{x})\\) at a new position \\(\\mathbf{x}\\) is given by\n\\[\np\\left(\n\\begin{bmatrix}\n  \\mathbf{y}\\\\\n  y(\\mathbf{x})\n\\end{bmatrix}\n\\right) =  \\mathcal{N}(0, \\mathbf{K}')\n\\]\nwhere \\(\\mathbf{K}'\\) is the \\((N+1)\\times (N+1)\\) matrix\n\\[\n\\mathbf{K}' =\n\\begin{bmatrix}\n  \\mathbf{K} & \\mathbf{k}\\\\\n  \\mathbf{k}^T & c\n\\end{bmatrix}\n\\]\nwhere\n\\[\n\\begin{aligned}\n  \\mathbf{K} &= \\left[ k(\\mathbf{x}_i,\\mathbf{x}_j) \\right] \\in \\mathbb{R}^{N\\times N}\\\\\n  \\mathbf{k} &= k(\\mathbf{x}_i,\\mathbf{x}) \\in \\mathbb{R}^{N} \\\\\n  c &= k(\\mathbf{x},\\mathbf{x})\\in \\mathbb{R}\n\\end{aligned}\n\\]\nUsing properties of the multivariate normal distribution, the conditional distribution of the unseen value given the training data is:\n\\[\n\\begin{aligned}\n  p\\left( y(\\mathbf{x}) \\mid \\mathbf{y} \\right) &= \\mathcal{N}(\\mu,\\sigma^2)\\\\\n  \\mu &= \\mathbf{k}^T \\mathbf{K}^{-1}\\mathbf{y}\\\\\n  \\sigma^2 &= c - \\mathbf{k}^T \\mathbf{K}^{-1} \\mathbf{k}\n\\end{aligned}\n\\]\nGeneralization to interpolation to multiple points is immediate.",
+    "crumbs": [
+      "Gaussian processes",
+      "Theory"
+    ]
+  },
+  {
+    "objectID": "neural-networks/neural-networks.html",
+    "href": "neural-networks/neural-networks.html",
+    "title": "Neural networks",
+    "section": "",
+    "text": "Book sections\n\n\n\n\nElements of Statistical Learning: Chapter 11\nAn Introduction to Statistical Learning: Chapter 10\nPattern Recognition and Machine Learning: Chapter 5",
+    "crumbs": [
+      "Neural networks",
+      "Theory"
+    ]
   },
   {
     "objectID": "posts/welcome/index.html",
@@ -130,25 +258,36 @@
     "text": "Your turn\nRepeat the analysis of the sufficient condition for the data generated by model 1a and 6b. What do you conclude and are those conclusions correct or not?\n\nSome comments and further reading\n\nWhich condition for causality to choose?\nDespite the simplicity of these examples they show the full spectrum of what to expect from these approaches to causal inference from molecular QTL data. It is important to stress that the false negative and false positive findings are not due to any errors in the tests themselves, misspecifications of the model (the models used to generate and fit the data are identical) or measurement noise (none was added in the simulations). Instead it is a basic mathematical truth that a condition for causality that is sufficient but not necessary will be prone to false negative predictions, whereas a condition that is necessary but not sufficient will be prone to false positive predictions.\nWhether to use the sufficient or the necessary condition in concrete applications depends on a number of considerations:\n\nIs it more important to generate only high-confidence predictions before performing expensive experimental validation, or is it more important not to miss any real causal interactions before applying additional filtering steps?\nDo you expect that unknown confounders play a major or minor role in your data? For instance, in gene regulatory networks (GRNs) feedforward loops (where a transcription factor (TF) and its target are coregulated by a 2nd TF) are common, and therefore the necessary condition systematically outperforms the sufficient condition for reconstructing GRNs, see for instance these papers:\n\nEfficient and accurate causal inference with hidden confounders from genome-transcriptome variation data.\nComparison between instrumental variable and mediation-based methods for reconstructing causal gene networks in yeast\n\nHow precise are your measurements? The sufficient condition is not only susceptible to hidden confounders, but also to measurement noise, which further increases its false negative rate (see the first paper above for details).\n\n\n\nHow to quantify statistical significance and uncertainty?\nIn the examples above, we basically eye-balled the \\(p\\)-values and gave thumbs-up or thumbs-down for a causal relation. Not only is this practically infeasible when testing causality between ten-thousands of pairs in omics data, we would also like to quantify the statistical significance and uncertainty of each finding. This turns out to be a non-trivial question, because:\n\nBoth the sufficient and necessary condition are combinations of statistical tests.\nThe necessary condition includes a test where accepting the null hypothesis is a positive finding, but a non-significant \\(p\\)-value (no evidence for rejecting the null hypothesis) does not imply significant evidence against the alternative hypothesis.\n\nOne strand of research has focused on summarizing the outcome of multiple hypothesis tests by a single \\(p\\)-value with the usual interpretation that a small \\(p\\)-value is evidence for rejecting the null hypothesis of no causal interaction, see these papers:\n\nDisentangling molecular relationships with a causal inference test\nModeling Causality for Pairs of Phenotypes in System Genetics\ncit: hypothesis testing software for mediation analysis in genomic applications\n\nHowever, to overcome in particular the second problem above, these methods have to introduce pairwise model comparison statistics almost by stealth. A much better approach (in my not so objective opinion!) is to do this explicitly in a Bayesian framework.\nIn the papers below, each of the component tests (for instance, \\(¬(Z⫫Y)\\) or \\(Z⫫Y\\mid X\\) in the sufficient condition) is expressed as a likelihood-ratio test between two nested, null and alternative, models. Using \\(q\\)-values, the likelihood-ratio test statistics are converted into probabilities of the null or alternative model being true. These probabilities can then be combined by the usual rules of probability theory (e.g., multiplied to express that two tests must be true).\n\nHarnessing naturally randomized transcription to infer regulatory relationships among genes\nEfficient and accurate causal inference with hidden confounders from genome-transcriptome variation data\n\nIn addition, the second paper provides a software implementation that is highly efficient, and can test both the sufficient and the necessary condition for causality (all other papers essentially only study the sufficient condition).\n\n\nYour turn?\nIf you are convinced by the above arguments and have some molecular QTL data waiting to be analyzed by causal inference, try our Findr software."
   },
   {
-    "objectID": "causal-inference/causal-inference-notebook.html",
-    "href": "causal-inference/causal-inference-notebook.html",
-    "title": "Causal inference and model selection notebook",
+    "objectID": "causal-inference/mediation-iv.html",
+    "href": "causal-inference/mediation-iv.html",
+    "title": "Mediation and instrumental variable analysis",
     "section": "",
-    "text": "A Pluto notebook “Causal_inference.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "text": "Cis-trans eQTLs\n\n\nFigure by Sean Bankier from this review.\nThe GTEx study identified trans-eQTLs that are also cis-eQTLs and asked if the cis-eGene could be the cause of the trans-eQTL association (see fig above), that is, if the following model is supported by the data:\nflowchart LR\n  Z --&gt; X --&gt; Y\nwhere \\(Z\\) is a SNP that is a cis-eQTL for gene \\(X\\) and trans-eQTL for gene \\(Y\\). This model implies that \\(X\\) blocks the path between \\(Z\\) and \\(Y\\), and hence that \\(Z\\) and \\(Y\\) are independent conditional on \\(X\\), in mathematical notation\n\\[\nZ \\perp Y \\mid X\n\\]\nThe principle for testing whether the model \\(Z\\to X \\to Y\\) is true using the conditional independence criterion is illustrated in the figure below. Assuming linear relations between all variables, three conditions must be met:\n\nThe expression levels of \\(X\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to X\\) association).\nThe expression levels of \\(Y\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to Y\\) association).\nThe residuals of \\(Y\\) after regression on \\(X\\) do not differ differ significantly between the genotype groups of \\(Z\\) (to confirm that the \\(Z\\to Y\\) association is mediated by \\(X\\), and hence that \\(Z\\to X \\to Y\\) is true).",
     "crumbs": [
       "Causal inference",
-      "Implementation"
+      "Theory"
     ]
   },
   {
-    "objectID": "bayesian-networks/gene-regulatory-networks.html",
-    "href": "bayesian-networks/gene-regulatory-networks.html",
-    "title": "Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks",
+    "objectID": "causal-inference/mediation-iv.html#mediation-analysis",
+    "href": "causal-inference/mediation-iv.html#mediation-analysis",
+    "title": "Mediation and instrumental variable analysis",
     "section": "",
-    "text": "Path-breaking paper\n\n\n\nZhu J et al. Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks. Nature Genetics 40:854 (2008).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nZhang B, et al. . Integrated systems approach identifies genetic nodes and networks in late-onset Alzheimer’s disease. Cell 153:707–720 (2013)\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nTalukdar HA, et al. Cross-tissue regulatory gene networks in coronary artery disease. Cell Systems 2:196 (2016)\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nBeckmann ND., et al. Multiscale causal networks identify VGF as a key regulator of Alzheimer’s disease. Nature communications 11:3942 (2020).\n\n\n\nQuestions for discussion\n\n\nTest of time\n\n\nOther approaches to gene regulatory network inference",
+    "text": "Cis-trans eQTLs\n\n\nFigure by Sean Bankier from this review.\nThe GTEx study identified trans-eQTLs that are also cis-eQTLs and asked if the cis-eGene could be the cause of the trans-eQTL association (see fig above), that is, if the following model is supported by the data:\nflowchart LR\n  Z --&gt; X --&gt; Y\nwhere \\(Z\\) is a SNP that is a cis-eQTL for gene \\(X\\) and trans-eQTL for gene \\(Y\\). This model implies that \\(X\\) blocks the path between \\(Z\\) and \\(Y\\), and hence that \\(Z\\) and \\(Y\\) are independent conditional on \\(X\\), in mathematical notation\n\\[\nZ \\perp Y \\mid X\n\\]\nThe principle for testing whether the model \\(Z\\to X \\to Y\\) is true using the conditional independence criterion is illustrated in the figure below. Assuming linear relations between all variables, three conditions must be met:\n\nThe expression levels of \\(X\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to X\\) association).\nThe expression levels of \\(Y\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to Y\\) association).\nThe residuals of \\(Y\\) after regression on \\(X\\) do not differ differ significantly between the genotype groups of \\(Z\\) (to confirm that the \\(Z\\to Y\\) association is mediated by \\(X\\), and hence that \\(Z\\to X \\to Y\\) is true).",
     "crumbs": [
-      "Bayesian networks",
-      "Path-breaking paper"
+      "Causal inference",
+      "Theory"
+    ]
+  },
+  {
+    "objectID": "causal-inference/mediation-iv.html#instrumental-variable-analysis-mendelian-randomization",
+    "href": "causal-inference/mediation-iv.html#instrumental-variable-analysis-mendelian-randomization",
+    "title": "Mediation and instrumental variable analysis",
+    "section": "Instrumental variable analysis / Mendelian randomization",
+    "text": "Instrumental variable analysis / Mendelian randomization\nThe mediation method fails if \\(X\\) and \\(Y\\) are affected by common cause \\(U\\) (which may be an unknown or hidden variable):\nflowchart LR\n  Z --&gt; X --&gt; Y\n  U --&gt; X & Y\nIn this case, conditioning on \\(X\\) opens the collider \\(Z \\to X \\leftarrow U\\), creating a path \\(Z\\\\; --- \\\\; U \\to Y\\), such that the residuals of \\(Y\\) will still show a difference between the genotype groups of \\(Z\\), and the mediation method concludes (wrongly!) that the \\(Z\\to Y\\) association must be due to another factor than \\(X\\) (no causal \\(X\\to Y\\) relation).\nInstrumental variable, known as Mendelian randomization (MR), is an alternative causal inference approach that is not affected by hidden confounders \\(U\\), but with subtly different underlying assumptions.\nSpecifically, in MR we assume that the \\(Z\\to Y\\) association must be due to \\(X\\) (for instance because \\(X\\) is the only cis-eGene of \\(Z\\), and trans-eQTL associations must be mediated by some initial cis effects), and we seek to estimate the magnitude of the causal effect of \\(X\\) on \\(Y\\).\nThe diagram above can be written as a structural equation model\n\\[\n\\begin{aligned}\n  X &= a Z + c_X U + E_X\\\\\n  Y &= b X + c_Y U + E_Y\n\\end{aligned}\n\\]\nwhere \\(E_X\\) and \\(E_Y\\) are error terms, mutually independent and independent of \\(Z\\) and \\(U\\). Since \\(Z\\) and \\(U\\) are assumed to be independent (no arrows in the diagram), it follows that\n\\[\n\\begin{aligned}\n  \\mathrm{cov}(Y,Z) &= b\\\\\n  \\mathrm{cov}(X,Z) &= ab\n\\end{aligned}\n\\]\nand hence the causal effect of \\(X\\) on \\(Y\\) is estimated by the ratio of covariances:\n\\[\nb = \\frac{\\mathrm{cov}(Y,Z)}{\\mathrm{cov}(X,Z)}\n\\]",
+    "crumbs": [
+      "Causal inference",
+      "Theory"
     ]
   },
   {
@@ -170,14 +309,94 @@
     ]
   },
   {
-    "objectID": "dimensionality-reduction/dimensionality-reduction-notebook.html",
-    "href": "dimensionality-reduction/dimensionality-reduction-notebook.html",
-    "title": "Dimensionality reduction notebook",
+    "objectID": "cluster-analysis/cancer-subtypes.html",
+    "href": "cluster-analysis/cancer-subtypes.html",
+    "title": "Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer",
     "section": "",
-    "text": "A Pluto notebook “Dimensionality_reduction.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "text": "Path-breaking paper\n\n\n\nvan ’t Veer L et al. Gene expression profiling predicts clinical outcome of breast cancer . Nature 415:530 (2002).\nSee also: The molecular outlook.\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nThe Cancer Genome Atlas Network. Comprehensive molecular portraits of human breast tumours. Nature 490, 61–70 (2012).\n\n\n\nMotivation\nWe start our sequel to Back to the future: education for systems-level biologists where the first one ended, with cluster analysis of transcriptome data. The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.’s Cluster analysis and display of genome-wide expression patterns, which was the paper selected by Wingreen & Botstein for their course. To avoid repetition, we go for van ’t Veer et al.’s Gene expression profiling predicts clinical outcome of breast cancer.\nThe study by van ’t Veer et al was one of the first to use microarrays, a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al. Molecular portraits of human breast tumours. A perspective on these papers from the time of publication is in The molecular outlook.\nAnother reason for choosing van ’t Veer et al is the interesting story that followed: the authors went on a 20-year journey to translate the gene expression signature they identified to a commercial diagnostic tool, see Section 0.3 below.\nThe success of these initial studies using cluster analysis to detect meaningful and clinically relevant patterns in genome-scale data arguably paved the way for large-scale studies such as The Cancer Genome Atlas (TCGA) Program. We take the 2012 TCGA paper on breast tumours as our test-of-time paper, see Section 0.4.\n\n\nQuestions for discussion\nWhy is classification of diseases important? How were breast tumours classified before molecular profiles became available?\nHow many tumour samples were analyzed by Van ’t Veer et al? How many genes were used for the cluster analysis and how were these genes selected\nThe most striking finding is in Figure 1. What does this figure show?\nClinical features are used to annotate and understand the observed separation of gene expression profiles in distinct clusters. What does each of the features measure and how do the authors characterize the overall classification of tumours? Starting points to read more about the clinical features:\n\nBRCA1 germline mutation: harmful variants in the BRCA1 or BRCA2 genes that markedly increase risk for developing breast cancer.\nEstrogen receptor (ER) status: breast tumour cells that express ER on their surface need estrogen to grow, and are therefore more susceptible to hormone therapy.\nTumour grade: a measure of degree of abnormality of cancer cells.\nLymphocyte infiltration: an indication whether the cancer has spread to the lymph nodes.\nAngionvasion: an indication whether the cancer has spread to the blood vessels.\nMetastatic status: an indication whether the cancer has spread to othre organs.\n\nThe authors identified a minimal prognostic signature from their data using a supervised approach. How does this approach work and how many marker genes were in the final, optimal set? For those with machine learning background, can you think of other (better?) supervised approaches to achieve the same goal?\n\n\nTranslation to the clinic\nHaving identified a strong gene expression signature to predict clinical outcome of breast cancer, the race to bring it to the clinic is on. That this is far from trivial can be seen by tracing the follow-up studies and clinical trials:\n\nVan De Vijver MJ et al. A gene-expression signature as a predictor of survival in breast cancer. NEJM 347:1999 (2002).\nBuyse M et al. Validation and clinical utility of a 70-gene prognostic signature for women with node-negative breast cancer. J Ntnl Canc Inst 98:1183 (2006).\nMook S et al. Individualization of therapy using MammaPrint: From development to the MINDACT Trial. Canc Genomics & Proteomics 4:147 (2007).\nCardoso F et al. 70-gene signature as an aid to treatment decisions in early-stage breast cancer. NEJM 375:717 (2016).\nBrandão M, Pondé N, Piccart-Gebhart M. Mammaprint: a comprehensive review. Fut Onc 15:207 (2019).\n\nThey got there eventually, and the gene expression signature is now commercially available under the name of Mammaprint.\n\n\nTest of time: The Cancer Genome Atlas\nAlthough the results by Van ’t Veer et al. were obtained from a small (by current standards!) sample size, they have been reproduced consistenly in larger studies and arguably spawned a search for similar signatures in other cancer types through large-scale projects, such as The Cancer Genome Atlas (TCGA) Program.\nThe amount of data and number of publications produced by TCGA is too enormous to survey here in detail.\nTo see how far the field progressed in the decade after van ’t Veer et al, read the 2012 TCGA paper on breast tumours.\n\n\nQuestions for discussion\nWhat are the main differences between van ’t Veer et al and the TCGA paper?\nHow is cluster analysis used in the TCGA paper?",
     "crumbs": [
-      "Dimensionality reduction",
+      "Cluster analysis",
+      "Path-breaking paper"
+    ]
+  },
+  {
+    "objectID": "cluster-analysis/combinatorial-clustering.html",
+    "href": "cluster-analysis/combinatorial-clustering.html",
+    "title": "Combinatorial clustering",
+    "section": "",
+    "text": "Book sections\n\n\n\n\nElements of Statistical Learning: Section 14.3\nAn Introduction to Statistical Learning: Section 12.4\n\n\n\n\nIntroduction\nThe goal of cluster analysis is to group or segment a collection of objects into subsets or “clusters”, such that objects within a cluster are more closely related than objects in different clusters.\nMany datasets exhibit a hierarchical structure, with no clear demarcation of clusters, and clusters can themselves be grouped successively such that clusters within one group are more similar than those in different groups. Deciding where to make the “cut” is usually done by setting parameters of a clustering algorithm, and almost always involves an arbitrary choice by the user.\nCentral to all clustering methods is the notion of the degree of similarity (or dissimilarity) between the objects being clustered. Sometimes data are presented directly in terms of proximity/similarity between objects. More often we have measurements (e.g. gene expression) on objects (e.g. genes or samples) that we want to cluster, and a (dis)similariy matrix must be constructed first.\n\n\nQuestions and problems for discussion\n\nDissimilarity measures\nAssume we have measurements \\(x_{ij}\\) for objects \\(i=1,2,\\dots,N\\) on variables (or attributes) \\(j=1,2,\\dots,p\\). Usually, we first define a dissimilarity function \\(d_j(x_{ij},x_{i'j})\\) between values of the \\(j\\)th attribute. How is the dissimilarity between objects defined and how can we vary the relative influence of a given attribute in the overall dissimilarity between objects?\n\n\n\n\n\n\nImportant\n\n\n\nTo give all attributes equal influence in the object dissimilarity, we must set their relative weights to \\(w_j\\sim 1/\\overline{d_j}\\), with\n\\[\n\\overline{d_j}=\\frac{1}{N^2} \\sum_{i=1}^N  \\sum_{i'=1}^N d_j(x_{ij},x_{i'j})\n\\]\n\n\n\n\n\n\n\n\nExercise\n\n\n\nSetting \\(w_j=1\\) for all \\(j\\) does not necessarily give all attributes equal influence! To see this, compute the average object dissimilarity over all pairs of objects. It should be a sum over attributes, and attributes have equal influence in the object dissimilarity if their contribution to this sum is one. Show that this results in the equation above.\n\n\nThe most common choice of dissimilarity function is squared-error distance:\n\\[\nd_j(x_{ij},x_{i'j}) = (x_{ij}-x_{i'j})^2\n\\]\nDefine the mean and variance of each attribute over all objects as\n\\[\n\\begin{aligned}\n\\mu_j &= \\frac1N \\sum_{i=1}^N x_{ij}\\\\\\\\\n\\sigma_j^2 &= \\frac1N \\sum_{i=1}^N (x_{ij}-\\mu_j)^2\n\\end{aligned}\n\\]\n\n\n\n\n\n\nExercise\n\n\n\nShow that with squared-error distance, the average object dissimilarity on the \\(j\\)th attribute is proportional to its variance.\n\n\nIt is often recommended to standardize data before clustering:\n\\[\nx_{ij} \\to y_{ij}=\\frac{x_{ij}-\\mu_j}{\\sigma_j}\n\\]\nWith squared-error loss, this is equivalent to setting weights \\(w_j \\sim 1/\\sigma_j^2 \\sim 1/\\bar{d}_j\\), that is, to give all attributes equal influence on the average object dissimilarity.\n\n\n\n\n\n\nImportant\n\n\n\nSometimes some attributes exhibit more grouping tendency than others, which may be obscured by standardizing. Find and understand the figure in the book sections above that illustrates this. The solution is to filter attributes by their variance before standardizing, and only use attributes with high variance for clustering. Why?\n\n\n\n\nCombinatorial clustering\nCombinatorial clustering algorithms assign each object to a cluster without regard to a probability model describing the data. Understanding combinatorial clustering is a necessary basis for understanding probabilistic methods.\nIn combinatorial clustering, a prespecified number of clusters \\(K&lt;N\\) is postulated (\\(N\\) the number of objects). An assignment of objects \\(i\\in\\{1,\\dots,N\\}\\) to clusters \\(k\\in\\{1,\\dots,K\\}\\) is charcterized by a many-to-one mapping or encoder \\(k=C(i)\\).\n\\(C\\) is obtained by minimizing the “within cluster” point scatter \\(W(C)\\), which characterizes the extent to which objects assigned to the same cluster tend to be close to one another. How is \\(W(C)\\) defined?\nWe can also define the “between cluster” point scatter \\(B(C)\\), which characterizes the extent to which objects assigned to different clusters tend to be far apart. How is \\(B(C)\\) defined?\nDoes it matter whether we find an optimal clustering by minimizing \\(W(C)\\) or by maximizing \\(B(C)\\)? Hint: compute \\(W(C)+B(C)\\).\n\n\nK-means clustering\nThe \\(K\\)-means algorithm uses the squared Euclidean distance \\[\nd(x_i,x_{i'}) = \\sum_{j=1}^p (x_{ij}-x_{i'j})^2 = \\\\\\| x_i - x_{i'}\\\\\\|^2\n\\] and an iterative greedy descent algorithm to minimize \\(W(C)\\).\nUsing the Euclidean distance expression, find an expression for \\(W(C)\\) in terms of the number of objects assigned to cluster \\(k\\) and the mean vector associated to cluster \\(k\\).\nShow that \\(W(C)\\) is minimized if within each cluster, the average dissimilarity of the objects from the cluster mean, as defined by the points in that cluster, is minimized.\nNote that for any set of objects \\(S\\), \\[\n\\overline{x_S} = \\frac{1}{|S|} \\sum_{i\\in S} x_i = \\text{argmin}_m \\sum_{i\\in S}\\\\\\|x_i-m\\\\\\|^2\n\\]\nFind out how this result is used in a greedy descent algorithm where alternatingly the mean vectors are updated for the current cluster assignments, and object assignments are updated by assigning objects to the nearest current mean vector.\n\n\nHow do we choose the number of clusters K?\nFind the recommended method in the book sections above.",
+    "crumbs": [
+      "Cluster analysis",
+      "Theory"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-assoc-genes-disease.html",
+    "href": "causal-inference/causal-assoc-genes-disease.html",
+    "title": "Path-breaking paper: Genetical genomics: the added value from segregation",
+    "section": "",
+    "text": "Path-breaking paper\n\n\n\nJancen RC and Nap JP. Genetical genomics: the added value from segregation. Trends in Genetics 17:388 (2001)\nSchadt, E., Lamb, J., Yang, X. et al. An integrative genomics approach to infer causal associations between gene expression and disease. Nat Genet 37, 710–717 (2005).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nLi Y, Tesson BM, Churchill GA, and Jancen RC. Critical reasoning on causal inference in genome-wide linkage and association studies. Trends in Genetics 26:493 (2010)\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nZheng J, et al. Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. Nat Genet 52, 1122–1131 (2020).\n\n\n\nMotivation\n\n\nQuestions for discussion\n\n\nTest of time",
+    "crumbs": [
+      "Causal inference",
+      "Path-breaking paper"
+    ]
+  },
+  {
+    "objectID": "causal-inference/causal-inference-notebook.html",
+    "href": "causal-inference/causal-inference-notebook.html",
+    "title": "Causal inference and model selection notebook",
+    "section": "",
+    "text": "A Pluto notebook “Causal_inference.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "crumbs": [
+      "Causal inference",
       "Implementation"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this website"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "neural-networks/protein-structure-prediction.html",
+    "href": "neural-networks/protein-structure-prediction.html",
+    "title": "Path-breaking paper: Prediction of Protein Secondary Structure at Better than 70% Accuracy",
+    "section": "",
+    "text": "Path-breaking paper\n\n\n\nRost B and Sander C. Prediction of protein secondary structure at better than 70% accuracy. Journal of Molecular Biology 232: 584-599 (1993).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nJumper J, et al. Highly accurate protein structure prediction with AlphaFold. Nature 596, 583–589 (2021).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nBaek M, et al. Accurate prediction of protein structures and interactions using a three-track neural network. Science 373:871-876 (2021).\n\n\n\nMotivation\n\n\nQuestions for discussion\n\n\nTest of time",
+    "crumbs": [
+      "Neural networks",
+      "Path-breaking paper"
+    ]
+  },
+  {
+    "objectID": "gaussian-processes/variance-components-genomics.html",
+    "href": "gaussian-processes/variance-components-genomics.html",
+    "title": "Path-breaking papers: Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region & SpatialDE: identification of spatially variable genes",
+    "section": "",
+    "text": "Path-breaking paper combo\n\n\n\nData & Technology:\n\nStåhl PL et al. Visualization and analysis of gene expression in tissue sections by spatial transcriptomics\nMoffit JR, et al. Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region, Science 262:eaau5324 (2018).\n\nMethodology:\n\nSvensson V, et. al. SpatialDE: identification of spatially variable genes, Nature Methods 15:343 (2018).\nArnol, et al. Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis. Cell Reports 29:202 (2019).\n\n\n\n\n\n\n\n\n\nReverse test of time paper\n\n\n\nKang HM, et al. Efficient Control of Population Structure in Model Organism Association Mapping, Genetics 178(3):1709–1723 (2008)\n\n\n\nMotivation\nMost statistical and machine learning methods for analyzing genome-scale data assume that the data consist of independent samples from an unknown distribution or data generating process. However, in important applications, the assumption of independence does not hold: in genetic studies, the correlation structure of sampled data (e.g. transcriptome profiles) may reflect underlying population structure, while in studies of spatially inhomogeneous structures (e.g tissues or organs) or temporal processes, the correlation structure of sampled data will reflect their spatial or temporal proximity.\nVariance component models and Gaussian processes have emerged as powerful methods for modelling data with an underlying correlation structure. Historically, the first application of this type of models to genome-wide data appears to be Kang et al.’s paper to correct for population structure in genetic association studies, and related approaches are now the standard in the field (see this paper for an important methodological innovation and this paper for an application on UK Biobank data). Because we already work with population genomics data in the causal inference and Bayesian networks modules, we present this line of research as a “reverse test of time” paper.\nFor many computational biologists, the challenge of working with data with an underlying correlation structure nowadays is most prominent in the field of spatial transcriptomics. Because there is no single paper that was path-breaking in terms of both biology and computational methodology, we study a combination of papers. Ståhl et al combine RNA sequencing with spatial barcodes and are credited on Wikipedia with being the first to develop a spatial transcriptomics method, while Moffit et al was one of the first papers to apply the MERFISH technology to measure the spatial distribution of gene expression in single cells. We will use data from both these papers in our own analysis.\nSvensson et al and Arnol et al show how the application of Gaussian process models can identify genes with spatial structure in their expression profile from this type of data.\n\n\nVideo lecture on spatial transcriptomics\nSpatial transcriptome profiling lecture from the Linnarsson lab.\n\n\nQuestions for discussion",
+    "crumbs": [
+      "Gaussian processes",
+      "Path-breaking paper"
+    ]
+  },
+  {
+    "objectID": "bayesian-networks/gene-regulatory-networks.html",
+    "href": "bayesian-networks/gene-regulatory-networks.html",
+    "title": "Path-breaking paper: Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks",
+    "section": "",
+    "text": "Path-breaking paper\n\n\n\nZhu J et al. Integrating large-scale functional genomic data to dissect the complexity of yeast regulatory networks. Nature Genetics 40:854 (2008).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nZhang B, et al. . Integrated systems approach identifies genetic nodes and networks in late-onset Alzheimer’s disease. Cell 153:707–720 (2013)\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nTalukdar HA, et al. Cross-tissue regulatory gene networks in coronary artery disease. Cell Systems 2:196 (2016)\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nBeckmann ND., et al. Multiscale causal networks identify VGF as a key regulator of Alzheimer’s disease. Nature communications 11:3942 (2020).\n\n\n\nQuestions for discussion\n\n\nTest of time\n\n\nOther approaches to gene regulatory network inference",
+    "crumbs": [
+      "Bayesian networks",
+      "Path-breaking paper"
     ]
   },
   {
@@ -236,14 +455,47 @@
     ]
   },
   {
-    "objectID": "regularized-regression/regularized-regression-notebook.html",
-    "href": "regularized-regression/regularized-regression-notebook.html",
-    "title": "Regularized regression notebook",
+    "objectID": "dimensionality-reduction/pca.html",
+    "href": "dimensionality-reduction/pca.html",
+    "title": "PCA",
     "section": "",
-    "text": "Two Pluto notebooks “Regularized_regression_Glmnet.jl” and “Regularized_regression_MLJ.jl” are available:\n\nOn JuliaHub, here and here\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "text": "Book sections\n\n\n\n\nPattern Recognition and Machine Learning: Chapter 12\nElements of Statistical Learning: Section 14.5.1\nAn Introduction to Statistical Learning: Section 6.3.1",
     "crumbs": [
-      "Regularized regression",
-      "Implementation"
+      "Dimensionality reduction",
+      "Theory (PCA)"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/pca.html#dimensionality-reduction",
+    "href": "dimensionality-reduction/pca.html#dimensionality-reduction",
+    "title": "PCA",
+    "section": "Dimensionality reduction",
+    "text": "Dimensionality reduction\nAssume we have a set of \\(N\\) observations (e.g. cells) of \\(p\\) variables (e.g. genes).\nDimensionality reduction consists of representing the observations in a lower-dimensional space with dimension \\(q\\ll p\\) while preserving some characteristics (e.g. relative distance) of the original \\(p\\)-dimensional representation.\nFor visualizing relationships among observations, we typically use \\(q=2\\).",
+    "crumbs": [
+      "Dimensionality reduction",
+      "Theory (PCA)"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/pca.html#principal-component-analysis-pca",
+    "href": "dimensionality-reduction/pca.html#principal-component-analysis-pca",
+    "title": "PCA",
+    "section": "Principal component analysis (PCA)",
+    "text": "Principal component analysis (PCA)\nAssume we have a set of \\(N\\) observations \\(x_1,\\dots,x_N\\in \\mathbb{R}^p\\) of \\(p\\) variables, collected in the \\(N\\times p\\) matrix \\(\\mathbf{X}\\).\nThe principal components of \\(\\mathbf{X}\\) provide a sequence of best linear approximations to \\(\\mathbf{X}\\), representing \\(\\mathbf{X}\\) by a line (\\(q=1\\)), plane (\\(q=2\\)), etc. in \\(p\\)-dimensional space.\nA rank-\\(q\\) linear model in \\(p\\)-dimensional space takes the form\n\\[\nf(y) = \\mu + y_1 v_1 + \\dots + y_q v_q = \\mu + \\mathbf{V}_q z,\n\\]\nwhere \\(\\mu\\in\\mathbb{R}^p\\) is a location vector, \\(z\\in\\mathbb{R}^q\\) is a (low-dimensional) vector, and \\(\\mathbf{V}_q=(v_1,\\dots,v_q)\\) is a \\(p\\times q\\) matrix of \\(q\\) orthogonal unit vectors,\n\\[\n\\begin{aligned}\n    v_k v_{k'}^T = \\sum_{j=1}^p v_{kj}v_{k'j}= \\delta_{kk'}\n\\end{aligned}\n\\]\nFitting this model to the data using least squares amounts to minimizing the reconstruction error:\n\\[\n\\min_{\\mu,\\{y_{i}\\},\\mathbf{V}\\_q} \\sum_{i=1}^N \\Bigl\\| x_i - \\mu - \\mathbf{V}_q z_i \\Bigr\\|^2\n\\]\nPartial optimization for \\(\\mu\\) and the \\(y_i\\) gives\n\\[\n\\begin{aligned}\n    \\hat{\\mu} &= \\bar x = \\frac1{N}\\sum_{i=1}^N x_i\\\\\n    \\hat{z}_i &= \\mathbf{V}_q^T(x_i-\\bar{x})\n\\end{aligned}\n\\]\nPlugging this into () leaves us to find the orthogonal matrix \\(\\mathbf{V}_q\\):\n\\[\n\\begin{aligned}\n    \\min_{\\mathbf{V}\\_q} \\sum_{i=1}^{N} \\Bigl\\| (x_i - \\bar{x}) - \\mathbf{V}_q\\mathbf{V}_q^T(x_i-\\bar{x}) \\Bigr\\|^2\n\\end{aligned}\n\\]\nIt can be shown that the optimal solution is found when \\(\\mathbf{V}_q=(v_1,\\dots,v_q)\\) contains the \\(q\\) eigenvectors with largest eigenvalues of the \\(p\\times p\\) matrix \\(\\mathbf{X}^T\\mathbf{X}\\) (if the data is centred such that \\(\\bar x=0\\)).\nThe solution can be expressed using the singular value decomposition of the obsered data matrix \\(\\mathbf{X}\\):\n\\[\n\\mathbf{X} = \\mathbf{U} \\Lambda \\mathbf{V}^T\n\\]\nwhere \\(\\mathbf{U}\\) is an \\(N\\times p\\) orthogonal matrix (\\(\\mathbf{U}^T\\mathbf{U}=\\mathbf{I}_p\\)) whose columns are called the left singular vectors, \\(\\mathbf{V}\\) is a \\(p\\times p\\) orthogonal matrix (\\(\\mathbf{V}^T\\mathbf{V}=\\mathbf{I}_p\\)) whose columns are called the right singular vectors, and \\(\\Lambda\\) is a \\(p\\times p\\) diagonal matrix with diagonal elements \\(\\lambda_1\\geq \\lambda_2 \\geq \\dots \\geq \\lambda_p\\geq 0\\) called the singular values.\nThe solution \\(\\mathbf{V}_q\\) above consists of the first \\(q\\) columns of \\(\\mathbf{V}\\).\nThe columns of \\(\\mathbf{U}\\Lambda\\) are called the principal components of \\(\\mathbf{X}\\). The first \\(q\\) principal components are \\(\\mathbf{U}_q\\Lambda_q\\). Each principal component is a vector in \\(\\R^N\\), that is, it takes a value for each observation. The solution \\(\\hat{z}_i\\) above consists of the rows of \\(\\mathbf{U}_q\\Lambda_q\\), that is, for each observation \\(i\\), \\(\\hat{z}_i\\) consists of the values of the first \\(q\\) principal components for observation \\(i\\).",
+    "crumbs": [
+      "Dimensionality reduction",
+      "Theory (PCA)"
+    ]
+  },
+  {
+    "objectID": "dimensionality-reduction/pca.html#probabilistic-pca",
+    "href": "dimensionality-reduction/pca.html#probabilistic-pca",
+    "title": "PCA",
+    "section": "Probabilistic PCA",
+    "text": "Probabilistic PCA\nProbabilistic PCA is a continuous generalization of the Gaussian mixture model where we again assume that an observation \\(X=(x_1,\\dots,x_p)\\) of \\(p\\) variables is generated by a latent variable \\(Z\\):\nflowchart LR\n  Z --&gt; X\nIn the Gaussian mixture model, \\(Z\\) is assumed to take discrete values leading to clustered observations. Here we assume that \\(Z=(z_1,\\dots,z_q)\\) is a \\(q\\)-dimensional continous variable with distribution\n\\[\nZ\\sim \\mathcal{N}(0,\\mathbf{I})\n\\]\nthat is, we assume each \\(z_i\\) is drawn from an independent normal distribution with mean zero and standard deviation 1. The conditional distribution of \\(X\\) given \\(Z\\) is just like in the discrete mixture distribution assumed to be a multivariate normal with mean dependent on the value of \\(Z\\); the covariance matrix is assumed to be a multiple of the identity matrix, meaning that conditional on the latent factors \\(Z\\), the \\(p\\) observed features \\(X\\) are independent and have equal error distribution:\n\\[\np(x \\mid z) = \\mathcal{N}(\\mathbf{\\mu} + \\mathbf{V}z, \\sigma^2 \\mathbf{I})\n\\]\nwhere \\(\\mu\\in\\R^p\\) is a mean offset vector, \\(\\mathbf{V}\\in\\R^{p\\times q}\\) is a linear maps, and \\(\\sigma^2&gt;0\\) a common variance parameter for all \\(p\\) dimensions. Note the similarity between this model and the model above.\nFollowing the Gaussian mixture model example, we want to maximize the likelihood of the observed data, which follows the marginal distribution\n\\[\np(x) = \\int dz\\; p(x\\mid z) p(z)\n\\]\nwhich can be interpreted as a “continuous” Gaussian mixture distribution. Unlike in the finite mixture model, this integral can in fact be solved using properties of the multivariate normal distribution:\n\\[\np(x) = \\mathcal{N}(\\mu,\\mathbf{C})\n\\]\nwith covariance matrix \\(\\mathbf{C}=\\mathbf{V}\\mathbf{V}^T+\\sigma^2\\mathbf{I}\\). The corresponding log-likelihood for \\(N\\) observations \\(x_1.\\dots,x_N\\in\\R^p\\) is\n\\[\n\\mathcal{L} = -\\frac{N}{2}\\Bigl\\{p \\ln(2\\pi) + \\ln(\\det(\\mathbf{C})) + \\mathrm{tr}(\\mathbf{C}^{-1}\\mathbf{S}) \\Bigr\\}\n\\]\nwhere\n\\[\n\\mathbf{S}= \\frac{1}{N}\\sum_{i=1}^N (x_i-\\mu)(x_i-\\mu)\n\\]\nThe maximum-likelihood for \\(\\mu\\) is the sample mean, \\(\\hat{\\mu}=\\overline{x}=\\frac{1}{N}\\sum_{i=1}^N x_i\\), such that \\(\\mathbf{S}\\) is the sample covariance matrix. The log-likelihood function measures how much \\(\\mathbf{C}\\) differs from the sample covariance and is maximized by making \\(\\mathbf{C}\\) as “similar” as possible to it. The solution turns out to be the standard PCA solution where the columns of \\(\\mathbf{V}\\) are the \\(q\\) eigenvectors with largest eigenvalues of \\(\\mathbf{S}\\). This conclusion is valid only if we assume the independent error model, where features are independent given latent factors, that is, the latent factors explain all the covariance between the features. In summary:\n\n\n\n\n\n\nProbabilistic PCA interpretation\n\n\n\nIf we assume that our high-dimensional observations are generated by a linear combination of low-dimensional latent (=hidden) factors, and the observed features are independent given the latent factors, then the maximum-likelihood solution for the map between latent and observed space is PCA.\n\n\nNote the important benefit of the probabilistic approach. In standard PCA, we simply fit a linear function to a set of observation, without giving any thought to the deviations (errors) between the (noisy) observations and the fitted model. In probabilistic PCA, as in all generative models, we must be explicit about our assumptions, and standard PCA is only recovered if we assume that features are independent given the latent factors.",
+    "crumbs": [
+      "Dimensionality reduction",
+      "Theory (PCA)"
     ]
   },
   {
@@ -254,79 +506,6 @@
     "text": "This is the website for the second half of the course BINF301 Genome-scale Algorithms. This part of the course focuses on machine learning algorithms for systems biology.\nThe lectures are divided in modules, each focusing on a specific class of methods:\n\nClustering\nStatistical significance\nRegularized regression\n(Classification)\nDimensionality reduction\nCausal inference\nGraphical models\nGaussian processes\nNeural networks\n(Network propagation)\n\nEach module follows the same structure:\n\nA classic or path-breaking biological or biomedical research paper is studied where the algorithm (or class of algorithms) of interest was first used. One or more “test of time” papers illustrate recent applications of the same algorithms.\nThe method used in the paper(s) is studied in detail, along with additional methods to solve the same type of problem.\nThe methods are put in practice using original or similar data from the papers studied in the first part.\n\nThe computational demonstrations for the course were developed in Julia, and the course starts with an introduction to Julia. For the assignments, you can use any programming language.\nAn appendix contains the minimum required background knowledge on gene regulation, probability theory, linear algebra, and optimization.\nThe theoretical sections contain the basic information to understand a method, pointing to relevant sections of the following textbooks (with free pdfs!) for details:\n\nTrevor Hastie, Robert Tibshirani, and Jerome Friedman. The Elements of Statistical Learning (second edition) (2009).\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor. An Introduction to Statistical Learning (2023).\nChristopher Bishop. Pattern Recognition and Machine Learning (2006).\nMarc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong. Mathematics for Machine Learning (2020).\n\nThe use of path-breaking papers is motivated by Back to the future: education for systems-level biologists. Since the field of genome-scale data analysis is still relatively young, the choice of papers for study is still a bit open and likely to evolve as the course matures.\nIt is sometimes said that we overestimate the change that will happen in 5 years and underestimate the change that will happen in 10 years. To show the evolution in the field, each path-breaking paper is accompanied by one or more “test of time” papers, illustrating more recent applications of similar algorithms as the original one. Often we will see that the major change is in the size and types of genome-scale data that can be generated nowadays, while the algorithms have mostly stood the test of time.\nIf you want to stay up-to-date on what is happening in the field now, consider joining the Machine Learning in Computational and Systems Biology community.",
     "crumbs": [
       "Home"
-    ]
-  },
-  {
-    "objectID": "statistical-significance/statistical-significance-notebook.html",
-    "href": "statistical-significance/statistical-significance-notebook.html",
-    "title": "Statistical significance notebook",
-    "section": "",
-    "text": "A Pluto notebook “Statistical_significance.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
-    "crumbs": [
-      "Statistical significance",
-      "Implementation"
-    ]
-  },
-  {
-    "objectID": "julia-intro.html",
-    "href": "julia-intro.html",
-    "title": "Introduction to Julia",
-    "section": "",
-    "text": "Julia is an open-source programming language that combines the interactivity of Python, R and Matlab, with the speed of C. Read more about its design principles and why it is good for scienticific applications, including computational biology here:\n\nWhy we created Julia\nJulia: come for the syntax, stay for the speed\nJulia for biologists\n\nInterestingly, despite not (yet!) being as popular as Python, ChatGPT performs better on Julia than Python (and R) for Large Language Model (LLM) code generation. Using AskAI, an interface to ChatGPT tailored specifically for Julia-related questions, should make Julia code generation even better.",
-    "crumbs": [
-      "Introduction to Julia"
-    ]
-  },
-  {
-    "objectID": "julia-intro.html#why-julia",
-    "href": "julia-intro.html#why-julia",
-    "title": "Introduction to Julia",
-    "section": "",
-    "text": "Julia is an open-source programming language that combines the interactivity of Python, R and Matlab, with the speed of C. Read more about its design principles and why it is good for scienticific applications, including computational biology here:\n\nWhy we created Julia\nJulia: come for the syntax, stay for the speed\nJulia for biologists\n\nInterestingly, despite not (yet!) being as popular as Python, ChatGPT performs better on Julia than Python (and R) for Large Language Model (LLM) code generation. Using AskAI, an interface to ChatGPT tailored specifically for Julia-related questions, should make Julia code generation even better.",
-    "crumbs": [
-      "Introduction to Julia"
-    ]
-  },
-  {
-    "objectID": "julia-intro.html#software-installation",
-    "href": "julia-intro.html#software-installation",
-    "title": "Introduction to Julia",
-    "section": "Software installation",
-    "text": "Software installation\nFollow the instructions on the MIT Introduction to Computational Thinking course to install Julia and Pluto.\nCreate an account on JuliaHub.\nTo run notebooks locally, fork the BINF301-code repository and follow the installation instructions. Make sure to sync your fork regularly to make sure it remains up-to-date!",
-    "crumbs": [
-      "Introduction to Julia"
-    ]
-  },
-  {
-    "objectID": "julia-intro.html#do-i-have-to-use-julia",
-    "href": "julia-intro.html#do-i-have-to-use-julia",
-    "title": "Introduction to Julia",
-    "section": "Do I have to use Julia?",
-    "text": "Do I have to use Julia?\nNo.\nAssignments can be submitted in any programming language.\nThe example notebooks are all in Julia, but their combination of text and code should (hopefully) make it easy to translate them to Jupyter, R markdown, or any other notebook/language combination of your choice. Likewise, it should not be too hard to replace JuliaHub by another cloud computing platform. If you do decide to reproduce the course notebooks in another language and/or on another platform, please share your results!",
-    "crumbs": [
-      "Introduction to Julia"
-    ]
-  },
-  {
-    "objectID": "gaussian-processes/gaussian-processes.html",
-    "href": "gaussian-processes/gaussian-processes.html",
-    "title": "Gaussian processes",
-    "section": "",
-    "text": "Book sections\n\n\n\nPattern Recognition and Machine Learning: Chapter 6\n\n\n\nLinear regression, from fixed to random coefficients\nIn a standard linear regression model for an outcome \\(Y\\) on one or more predictors \\(X_1,\\dots,X_p\\)\n\\[\nY = \\sum_i\\beta_i X_i + \\epsilon = X^T\\beta + \\epsilon, \\qquad\n  \\epsilon \\sim \\mathcal{N}(0,\\sigma_e^2)\n\\]\nthe effects \\(\\beta_i\\) are treated as fixed, such that the distribution of \\(Y\\) is:\n\\[\np(Y\\mid X) = \\mathcal{N}(X^T\\beta,\\sigma_e^2),\n\\]\nthat is, in a fixed effect model, the predictors affect the average or expected value of \\(Y\\). In a fixed effect model, we always assume that the data to fit the parameters are obtained from independent samples of an underlying model.\nIf our data consists of non-independent samples (e.g. due to temporal, spatial or familial relations among the observations), we can use a random effect model to explain these correlations as a function of covariates \\(X\\). As before, we collect the data for the inputs and ouptput in a \\(N\\times p\\) matrix \\(\\mathbf{X}\\) and \\(N\\)-vector \\(\\mathbf{y}\\), respectively, \\[\\begin{aligned}\n    \\mathbf{X}= (x_1,x_2,\\dots,x_p) = \\begin{pmatrix}\n      x_{11} & x_{12} & \\dots & x_{1p}\\\\\n      x_{21} & x_{22} & \\dots & x_{2p}\\\\\n      \\vdots & \\vdots & & \\vdots\\\\\n      x_{N1} & x_{N2} & \\dots & x_{Np}\n    \\end{pmatrix} &&\n    \\mathbf{y}= \\begin{pmatrix}\n      y_1\\\\\n      y_2\\\\\n      \\vdots\\\\\n      y_N\n    \\end{pmatrix}\n  \\end{aligned}\\]\nWe model the data as\n\\[\n\\begin{aligned}\n  \\mathbf{y} &= \\mathbf{X} \\alpha + \\epsilon\\\n\\end{aligned}\n\\]\nwhere \\(\\alpha = (\\alpha_1,\\dots,\\alpha_p)^T\\) are random effects with multi-variate normal distribution\n\\[\n\\alpha \\sim \\mathcal{N}(0,\\sigma_a^2 I_p)\n\\]\nand \\(\\epsilon = (\\epsilon_1,\\dots,\\epsilon_N)\\) are independent error terms\n\\[\n\\epsilon \\sim \\mathcal{N}(0,\\sigma_e^2 I_N).\n\\]\nThe random effects are assumed to be independent or the errors. We assumed the random effects are mutually independent, but this can easily be generalized.\nUsing properties of the multivariate normal distribution, the distribution of \\(\\mathbf{y}\\) can be seen to be:\n\\[\np(\\mathbf{y}\\mid \\mathbf{X}) = \\mathcal{N}(0, \\sigma_a^2 \\mathbf{X}\\mathbf{X}^T + \\sigma_e^2 I_N)\n\\]\nand we see that \\(\\mathbf{X}\\), or more precisely the covariance matrix \\(\\mathbf{X}\\mathbf{X}^T\\) indeed models correlations among the samples in \\(\\mathbf{y}\\).\nNaturally, fixed and random effects can be combined into a so-called mixed model.\nModels of this kind are often used in genetics, where the random effect covariates \\(\\mathbf{X}\\) are genetic markers and their covariance matrix \\(\\mathbf{X}\\mathbf{X}^T\\) expresses the genetic similarity between individuals in the study.\nSo far we assumed that all random effects had the same variance \\(\\sigma_a^2\\). If we assume that each \\(\\alpha_j\\) has a different variance \\(\\sigma_j^2\\), we would obtain\n\\[\np(\\mathbf{y}\\mid \\mathbf{X}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nwhere\n\\[\n\\mathbf{K} = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{x}_j \\mathbf{x}_j^T  + \\sigma_e^2 I_N\n\\]\nthat is, \\(\\sigma_j^2\\) measures the contribution of covariate \\(X_j\\) to the correlations among samples of \\(Y\\).\nTo estimate the variance parameters, maximum-likelihood is employed, that is, we find the values of the \\(\\sigma_j^2\\) and \\(\\sigma_e^2\\) which maximize\n\\[\n\\log p(\\mathbf{y}) = -\\frac12 \\log \\det (\\mathbf{K} ) - \\frac12 \\mathbf{y}^T \\mathbf{K}^{-1} \\mathbf{y} - \\frac{N}2 \\log(2\\pi)\n\\]\nThis is a difficult, non-convex optimization problem which requires the use of numerical, gradient-based optimizers.\nNote that the covariance matrix satisfies\n\\[\n\\begin{aligned}\n  \\mathbb{E}(y_i y_j) = K_{ij}\n\\end{aligned}\n\\] and hence the total variance of \\(\\mathbf{y}\\) can be written as\n\\[\n\\begin{aligned}\n  \\mathbb{E}(\\mathbf{y}^T\\mathbf{y}) = \\sum_i \\mathbb{E}(y_i^2) = \\sum_i K_{ii} = \\mathrm{tr}(K)\n\\end{aligned}\n\\]\nFrom the definition of \\(\\mathbf{K}\\), its trace can be written as\n\\[\n\\mathrm{tr}(K) = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{x}_j^T \\mathbf{x}_j   + N \\sigma_e^2.\n\\]\nTherefore we say that\n\\[\n\\frac{\\sigma_j^2 \\mathbf{x}_j^T \\mathbf{x}_j}{\\mathrm{tr}(K) }\n\\]\nis the variance in \\(\\mathbf{y}\\) explained by variance component \\(\\mathbf{x}_i\\).\n\n\nKernel-based variance component models\nSince the posterior distribution \\(p(\\mathbf{y}\\mid \\mathbf{X})\\) only depends on the matrix \\(\\mathbf{K}\\), an immediate generalization is to define variance component models directly in terms of kernel matrices instead of starting from a linear, random effect model, namely define\n\\[\np(\\mathbf{y}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nFor instance, if the elements (samples) \\(y_i\\) of \\(\\mathbf{y}\\) are obtained at specific locations (e.g. pixels in an image) \\(\\mathbf{x_i}\\in \\mathbb{R}^2\\) (or \\(\\mathbb{R}^p\\) more generally), we can define\n\\[\nK_{ij} = k(\\mathbf{x}_i,\\mathbf{x}_j)\n\\]\nwhere the kernel function \\(k\\) is a function that measures the similarity or closeness between samples.\nGeneralizing from before, the kernel matrix \\(\\mathbf{K}\\) can consist of multiple components,\n\\[\n\\mathbf{K} = \\sum_{j=1}^p \\sigma_j^2 \\mathbf{K}_j  + \\sigma_e^2 I_N\n\\]\nand the variance explained by the \\(j^{\\text{th}}\\) component is\n\\[\n\\frac{\\sigma_j^2\\mathrm{tr}(\\mathbf{K}_j)}{\\mathrm{tr}(\\mathbf{K})}\n\\]\n\n\nGaussian processes\nIn many applications, the “positions” \\(\\mathbf{x}_i\\) where samples are obtained are not fixed, but a finite subset of a possibly infinite, continuous range. For instance, when studying a dynamic process, we typically obtain noisy measurements \\(y_i\\) at a finite number of time points \\(t_i\\), and are interested in the entire underlying process \\(y(t)\\) for all times \\(t\\) in some time interval. Similarly, we may have measurements \\(y_i\\) at a finite number of locations \\(\\mathbf{x}_i\\), and are interested in the entire function \\(y(\\mathbf{x})\\) for all positions \\(\\mathbf{x}\\) in some spatial region.\nA Gaussian process is a stochastic process, to be understood as a probability distribution over functions \\(y(\\mathbf{x})\\) over some continuous domain \\(D\\), such that the set of values of \\(y(\\mathbf{x})\\) evaluated at a finite set of points \\(\\mathbf{x}_1,\\dots,\\mathbf{x}_N\\in D\\) are jointly normally distributed. A Gaussian process is specified by a kernel function \\(k(\\mathbf{x},\\mathbf{x}')\\), for \\(\\mathbf{x},\\mathbf{x}' \\in D\\). Writing \\(\\mathbf{y} = (y(\\mathbf{x}_1), \\dots, y(\\mathbf{x}_N))\\), the kernel defines the probability distribution\n\\[\np(\\mathbf{y}) = \\mathcal{N}(0, \\mathbf{K})\n\\]\nwhere\n\\[\nK_{ij} = k(\\mathbf{x}_i,\\mathbf{x}_j)\n\\]\nHence, for the purposes of parameter estimation, the Gaussian process and variance component viewpoints are identical, which is why the term are often used interchangeably. The main difference lies in the interpretation, where Gaussian process see the data as a finite set of samples from a continuous space. Hence in the Gaussian process viewpoint, we would be particularly interested in interpolation, predicting expected values of the function \\(y(\\mathbf{x})\\) at locations \\(\\mathbf{x}\\) that were not part of the initial (training) data.\nKeeping the notation \\(\\mathbf{y}\\) for the function values at the training positions \\(\\mathbf{x}_i\\), we know that the joint distribution of \\(\\mathbf{y}\\) and the value of \\(y(\\mathbf{x})\\) at a new position \\(\\mathbf{x}\\) is given by\n\\[\np\\left(\n\\begin{bmatrix}\n  \\mathbf{y}\\\\\n  y(\\mathbf{x})\n\\end{bmatrix}\n\\right) =  \\mathcal{N}(0, \\mathbf{K}')\n\\]\nwhere \\(\\mathbf{K}'\\) is the \\((N+1)\\times (N+1)\\) matrix\n\\[\n\\mathbf{K}' =\n\\begin{bmatrix}\n  \\mathbf{K} & \\mathbf{k}\\\\\n  \\mathbf{k}^T & c\n\\end{bmatrix}\n\\]\nwhere\n\\[\n\\begin{aligned}\n  \\mathbf{K} &= \\left[ k(\\mathbf{x}_i,\\mathbf{x}_j) \\right] \\in \\mathbb{R}^{N\\times N}\\\\\n  \\mathbf{k} &= k(\\mathbf{x}_i,\\mathbf{x}) \\in \\mathbb{R}^{N} \\\\\n  c &= k(\\mathbf{x},\\mathbf{x})\\in \\mathbb{R}\n\\end{aligned}\n\\]\nUsing properties of the multivariate normal distribution, the conditional distribution of the unseen value given the training data is:\n\\[\n\\begin{aligned}\n  p\\left( y(\\mathbf{x}) \\mid \\mathbf{y} \\right) &= \\mathcal{N}(\\mu,\\sigma^2)\\\\\n  \\mu &= \\mathbf{k}^T \\mathbf{K}^{-1}\\mathbf{y}\\\\\n  \\sigma^2 &= c - \\mathbf{k}^T \\mathbf{K}^{-1} \\mathbf{k}\n\\end{aligned}\n\\]\nGeneralization to interpolation to multiple points is immediate.",
-    "crumbs": [
-      "Gaussian processes",
-      "Theory"
-    ]
-  },
-  {
-    "objectID": "gaussian-processes/variance-components-genomics.html",
-    "href": "gaussian-processes/variance-components-genomics.html",
-    "title": "Path-breaking papers: Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region & SpatialDE: identification of spatially variable genes",
-    "section": "",
-    "text": "Path-breaking paper combo\n\n\n\nData & Technology:\n\nStåhl PL et al. Visualization and analysis of gene expression in tissue sections by spatial transcriptomics\nMoffit JR, et al. Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region, Science 262:eaau5324 (2018).\n\nMethodology:\n\nSvensson V, et. al. SpatialDE: identification of spatially variable genes, Nature Methods 15:343 (2018).\nArnol, et al. Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis. Cell Reports 29:202 (2019).\n\n\n\n\n\n\n\n\n\nReverse test of time paper\n\n\n\nKang HM, et al. Efficient Control of Population Structure in Model Organism Association Mapping, Genetics 178(3):1709–1723 (2008)\n\n\n\nMotivation\nMost statistical and machine learning methods for analyzing genome-scale data assume that the data consist of independent samples from an unknown distribution or data generating process. However, in important applications, the assumption of independence does not hold: in genetic studies, the correlation structure of sampled data (e.g. transcriptome profiles) may reflect underlying population structure, while in studies of spatially inhomogeneous structures (e.g tissues or organs) or temporal processes, the correlation structure of sampled data will reflect their spatial or temporal proximity.\nVariance component models and Gaussian processes have emerged as powerful methods for modelling data with an underlying correlation structure. Historically, the first application of this type of models to genome-wide data appears to be Kang et al.’s paper to correct for population structure in genetic association studies, and related approaches are now the standard in the field (see this paper for an important methodological innovation and this paper for an application on UK Biobank data). Because we already work with population genomics data in the causal inference and Bayesian networks modules, we present this line of research as a “reverse test of time” paper.\nFor many computational biologists, the challenge of working with data with an underlying correlation structure nowadays is most prominent in the field of spatial transcriptomics. Because there is no single paper that was path-breaking in terms of both biology and computational methodology, we study a combination of papers. Ståhl et al combine RNA sequencing with spatial barcodes and are credited on Wikipedia with being the first to develop a spatial transcriptomics method, while Moffit et al was one of the first papers to apply the MERFISH technology to measure the spatial distribution of gene expression in single cells. We will use data from both these papers in our own analysis.\nSvensson et al and Arnol et al show how the application of Gaussian process models can identify genes with spatial structure in their expression profile from this type of data.\n\n\nVideo lecture on spatial transcriptomics\nSpatial transcriptome profiling lecture from the Linnarsson lab.\n\n\nQuestions for discussion",
-    "crumbs": [
-      "Gaussian processes",
-      "Path-breaking paper"
     ]
   },
   {
@@ -360,17 +539,6 @@
     "crumbs": [
       "Statistical significance",
       "Theory"
-    ]
-  },
-  {
-    "objectID": "statistical-significance/statistical-significance-gws.html",
-    "href": "statistical-significance/statistical-significance-gws.html",
-    "title": "Path-breaking paper: Statistical significance for genomewide studies",
-    "section": "",
-    "text": "Path-breaking paper\n\n\n\nStorey, John D., and Robert Tibshirani. “Statistical significance for genomewide studies.” Proceedings of the National Academy of Sciences 100.16 (2003): 9440-9445.\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nThe GTEx Consortium. The GTEx Consortium atlas of genetic regulatory effects across human tissues. Science 369, 1318–1330 (2020).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nChen X, Robinson DG, Storey JD, The functional false discovery rate with applications to genomics, Biostatistics, Volume 22, Issue 1, January 2021, Pages 68–81,\n\n\n\nMotivation\nIs it statistics or is it machine learning? Does it matter? Storey and Tibshirani’s paper can rightfully claim to have changed the field of statistical learning. It has been cited more than 10,000 times and its results are now included in all textbooks in the field. Every student wishing to analyze genome-scale data must understand what q-values and false discovery rate mean.\nWith a paper of this standing, it can seem exaggerated to ask for a test of time. We look at a paper from the GTEx project to show how the multiple testing problem has exploded far beyond the scale considered in Storey and Tibshirani’s paper, but can still be adequately addressed using their method. We also look at a recent methodological paper, to show there is always scope for new ideas, even for something as well established as Storey and Tibshirani’s method.\n\n\nQuestions for discussion\nWe cover the following parts:\n\nAbstract\nExample 1, differentially expressed genes\nTable 1\nWhat is a p-value?\nWhat is the FDR?\nDerivation that p-values are uniformly distributed under the null hypothesis\nFigure 1\nFDR estimation\nFigure 2\nWhat is a q-value?\n\n\n\nTest of time",
-    "crumbs": [
-      "Statistical significance",
-      "Path-breaking paper"
     ]
   },
   {
@@ -470,167 +638,6 @@
     "crumbs": [
       "Regularized regression",
       "Path-breaking paper"
-    ]
-  },
-  {
-    "objectID": "dimensionality-reduction/pca.html",
-    "href": "dimensionality-reduction/pca.html",
-    "title": "PCA",
-    "section": "",
-    "text": "Book sections\n\n\n\n\nPattern Recognition and Machine Learning: Chapter 12\nElements of Statistical Learning: Section 14.5.1\nAn Introduction to Statistical Learning: Section 6.3.1",
-    "crumbs": [
-      "Dimensionality reduction",
-      "Theory (PCA)"
-    ]
-  },
-  {
-    "objectID": "dimensionality-reduction/pca.html#dimensionality-reduction",
-    "href": "dimensionality-reduction/pca.html#dimensionality-reduction",
-    "title": "PCA",
-    "section": "Dimensionality reduction",
-    "text": "Dimensionality reduction\nAssume we have a set of \\(N\\) observations (e.g. cells) of \\(p\\) variables (e.g. genes).\nDimensionality reduction consists of representing the observations in a lower-dimensional space with dimension \\(q\\ll p\\) while preserving some characteristics (e.g. relative distance) of the original \\(p\\)-dimensional representation.\nFor visualizing relationships among observations, we typically use \\(q=2\\).",
-    "crumbs": [
-      "Dimensionality reduction",
-      "Theory (PCA)"
-    ]
-  },
-  {
-    "objectID": "dimensionality-reduction/pca.html#principal-component-analysis-pca",
-    "href": "dimensionality-reduction/pca.html#principal-component-analysis-pca",
-    "title": "PCA",
-    "section": "Principal component analysis (PCA)",
-    "text": "Principal component analysis (PCA)\nAssume we have a set of \\(N\\) observations \\(x_1,\\dots,x_N\\in \\mathbb{R}^p\\) of \\(p\\) variables, collected in the \\(N\\times p\\) matrix \\(\\mathbf{X}\\).\nThe principal components of \\(\\mathbf{X}\\) provide a sequence of best linear approximations to \\(\\mathbf{X}\\), representing \\(\\mathbf{X}\\) by a line (\\(q=1\\)), plane (\\(q=2\\)), etc. in \\(p\\)-dimensional space.\nA rank-\\(q\\) linear model in \\(p\\)-dimensional space takes the form\n\\[\nf(y) = \\mu + y_1 v_1 + \\dots + y_q v_q = \\mu + \\mathbf{V}_q z,\n\\]\nwhere \\(\\mu\\in\\mathbb{R}^p\\) is a location vector, \\(z\\in\\mathbb{R}^q\\) is a (low-dimensional) vector, and \\(\\mathbf{V}_q=(v_1,\\dots,v_q)\\) is a \\(p\\times q\\) matrix of \\(q\\) orthogonal unit vectors,\n\\[\n\\begin{aligned}\n    v_k v_{k'}^T = \\sum_{j=1}^p v_{kj}v_{k'j}= \\delta_{kk'}\n\\end{aligned}\n\\]\nFitting this model to the data using least squares amounts to minimizing the reconstruction error:\n\\[\n\\min_{\\mu,\\{y_{i}\\},\\mathbf{V}\\_q} \\sum_{i=1}^N \\Bigl\\| x_i - \\mu - \\mathbf{V}_q z_i \\Bigr\\|^2\n\\]\nPartial optimization for \\(\\mu\\) and the \\(y_i\\) gives\n\\[\n\\begin{aligned}\n    \\hat{\\mu} &= \\bar x = \\frac1{N}\\sum_{i=1}^N x_i\\\\\n    \\hat{z}_i &= \\mathbf{V}_q^T(x_i-\\bar{x})\n\\end{aligned}\n\\]\nPlugging this into () leaves us to find the orthogonal matrix \\(\\mathbf{V}_q\\):\n\\[\n\\begin{aligned}\n    \\min_{\\mathbf{V}\\_q} \\sum_{i=1}^{N} \\Bigl\\| (x_i - \\bar{x}) - \\mathbf{V}_q\\mathbf{V}_q^T(x_i-\\bar{x}) \\Bigr\\|^2\n\\end{aligned}\n\\]\nIt can be shown that the optimal solution is found when \\(\\mathbf{V}_q=(v_1,\\dots,v_q)\\) contains the \\(q\\) eigenvectors with largest eigenvalues of the \\(p\\times p\\) matrix \\(\\mathbf{X}^T\\mathbf{X}\\) (if the data is centred such that \\(\\bar x=0\\)).\nThe solution can be expressed using the singular value decomposition of the obsered data matrix \\(\\mathbf{X}\\):\n\\[\n\\mathbf{X} = \\mathbf{U} \\Lambda \\mathbf{V}^T\n\\]\nwhere \\(\\mathbf{U}\\) is an \\(N\\times p\\) orthogonal matrix (\\(\\mathbf{U}^T\\mathbf{U}=\\mathbf{I}_p\\)) whose columns are called the left singular vectors, \\(\\mathbf{V}\\) is a \\(p\\times p\\) orthogonal matrix (\\(\\mathbf{V}^T\\mathbf{V}=\\mathbf{I}_p\\)) whose columns are called the right singular vectors, and \\(\\Lambda\\) is a \\(p\\times p\\) diagonal matrix with diagonal elements \\(\\lambda_1\\geq \\lambda_2 \\geq \\dots \\geq \\lambda_p\\geq 0\\) called the singular values.\nThe solution \\(\\mathbf{V}_q\\) above consists of the first \\(q\\) columns of \\(\\mathbf{V}\\).\nThe columns of \\(\\mathbf{U}\\Lambda\\) are called the principal components of \\(\\mathbf{X}\\). The first \\(q\\) principal components are \\(\\mathbf{U}_q\\Lambda_q\\). Each principal component is a vector in \\(\\R^N\\), that is, it takes a value for each observation. The solution \\(\\hat{z}_i\\) above consists of the rows of \\(\\mathbf{U}_q\\Lambda_q\\), that is, for each observation \\(i\\), \\(\\hat{z}_i\\) consists of the values of the first \\(q\\) principal components for observation \\(i\\).",
-    "crumbs": [
-      "Dimensionality reduction",
-      "Theory (PCA)"
-    ]
-  },
-  {
-    "objectID": "dimensionality-reduction/pca.html#probabilistic-pca",
-    "href": "dimensionality-reduction/pca.html#probabilistic-pca",
-    "title": "PCA",
-    "section": "Probabilistic PCA",
-    "text": "Probabilistic PCA\nProbabilistic PCA is a continuous generalization of the Gaussian mixture model where we again assume that an observation \\(X=(x_1,\\dots,x_p)\\) of \\(p\\) variables is generated by a latent variable \\(Z\\):\nflowchart LR\n  Z --&gt; X\nIn the Gaussian mixture model, \\(Z\\) is assumed to take discrete values leading to clustered observations. Here we assume that \\(Z=(z_1,\\dots,z_q)\\) is a \\(q\\)-dimensional continous variable with distribution\n\\[\nZ\\sim \\mathcal{N}(0,\\mathbf{I})\n\\]\nthat is, we assume each \\(z_i\\) is drawn from an independent normal distribution with mean zero and standard deviation 1. The conditional distribution of \\(X\\) given \\(Z\\) is just like in the discrete mixture distribution assumed to be a multivariate normal with mean dependent on the value of \\(Z\\); the covariance matrix is assumed to be a multiple of the identity matrix, meaning that conditional on the latent factors \\(Z\\), the \\(p\\) observed features \\(X\\) are independent and have equal error distribution:\n\\[\np(x \\mid z) = \\mathcal{N}(\\mathbf{\\mu} + \\mathbf{V}z, \\sigma^2 \\mathbf{I})\n\\]\nwhere \\(\\mu\\in\\R^p\\) is a mean offset vector, \\(\\mathbf{V}\\in\\R^{p\\times q}\\) is a linear maps, and \\(\\sigma^2&gt;0\\) a common variance parameter for all \\(p\\) dimensions. Note the similarity between this model and the model above.\nFollowing the Gaussian mixture model example, we want to maximize the likelihood of the observed data, which follows the marginal distribution\n\\[\np(x) = \\int dz\\; p(x\\mid z) p(z)\n\\]\nwhich can be interpreted as a “continuous” Gaussian mixture distribution. Unlike in the finite mixture model, this integral can in fact be solved using properties of the multivariate normal distribution:\n\\[\np(x) = \\mathcal{N}(\\mu,\\mathbf{C})\n\\]\nwith covariance matrix \\(\\mathbf{C}=\\mathbf{V}\\mathbf{V}^T+\\sigma^2\\mathbf{I}\\). The corresponding log-likelihood for \\(N\\) observations \\(x_1.\\dots,x_N\\in\\R^p\\) is\n\\[\n\\mathcal{L} = -\\frac{N}{2}\\Bigl\\{p \\ln(2\\pi) + \\ln(\\det(\\mathbf{C})) + \\mathrm{tr}(\\mathbf{C}^{-1}\\mathbf{S}) \\Bigr\\}\n\\]\nwhere\n\\[\n\\mathbf{S}= \\frac{1}{N}\\sum_{i=1}^N (x_i-\\mu)(x_i-\\mu)\n\\]\nThe maximum-likelihood for \\(\\mu\\) is the sample mean, \\(\\hat{\\mu}=\\overline{x}=\\frac{1}{N}\\sum_{i=1}^N x_i\\), such that \\(\\mathbf{S}\\) is the sample covariance matrix. The log-likelihood function measures how much \\(\\mathbf{C}\\) differs from the sample covariance and is maximized by making \\(\\mathbf{C}\\) as “similar” as possible to it. The solution turns out to be the standard PCA solution where the columns of \\(\\mathbf{V}\\) are the \\(q\\) eigenvectors with largest eigenvalues of \\(\\mathbf{S}\\). This conclusion is valid only if we assume the independent error model, where features are independent given latent factors, that is, the latent factors explain all the covariance between the features. In summary:\n\n\n\n\n\n\nProbabilistic PCA interpretation\n\n\n\nIf we assume that our high-dimensional observations are generated by a linear combination of low-dimensional latent (=hidden) factors, and the observed features are independent given the latent factors, then the maximum-likelihood solution for the map between latent and observed space is PCA.\n\n\nNote the important benefit of the probabilistic approach. In standard PCA, we simply fit a linear function to a set of observation, without giving any thought to the deviations (errors) between the (noisy) observations and the fitted model. In probabilistic PCA, as in all generative models, we must be explicit about our assumptions, and standard PCA is only recovered if we assume that features are independent given the latent factors.",
-    "crumbs": [
-      "Dimensionality reduction",
-      "Theory (PCA)"
-    ]
-  },
-  {
-    "objectID": "dimensionality-reduction/brain-cell-types.html",
-    "href": "dimensionality-reduction/brain-cell-types.html",
-    "title": "Path-breaking paper: Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing",
-    "section": "",
-    "text": "Path-breaking paper\n\n\n\nUsoskin D et al. Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing . Nature Neuroscience 18:145 (2015).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nTasic B et al. Shared and distinct transcriptomic cell types across neocortical areas. Nature 563:72 (2018).\nSiletti K et al. Transcriptomic diversity of cell types across the adult human brain. Science 382:eadd7046 (2023). See also the Brain Cell Census collection\n\n\n\nMotivation\nReducing high-dimensional data to a low-dimensional representation for the purposes of visualization and pattern discovery is a classical approach in statistics, with principal component analysis (PCA) probably the best known method. PCA and other dimensionality reduction methods have been used in systems biology for as long as (relatively) large data have been around. Nowadays, dimensionality reduction is mostly associated with the analysis of single-cell sequencing data. Given the importance of single-cell sequencing technologies, and the relative lack of understanding of the non-linear dimensionality reduction methods that are regularly employed in this context, this will be our angle for learning about dimensionality reduction.\nFor our path-breaking paper, we select a relatively early study of cell types in the brain using single-cell sequencing of 622 mouse neurons. In this study, PCA is used to visualize data in two and three dimensions and to identify distinct types of sensory neurons.\nTo illustrate how far the field of single-cell sequencing has advanced in the last decade, we select a paper from 2018, which sequenced more than 23 thousand cells and whose data we will use in our practical analysis, and a paper from the BRAIN Initiative Cell Census Network, which sequenced more than three million human brain cells, including more than two million neurons. In these papers, t-SNE and UMAP are used for dimensionality reduction, as is the case in most current studies in the field.\n\n\nQuestions for discussion\nWhat is single-cell transcriptomics? We will look in more detail at this review paper: Revealing the vectors of cellular identity with Single-cell genomics.\nWhat is the basic idea for discovering and classifying cell types?\nHow many expressed genes were detected on average in each cell? How many genes were detected in total across all cells (see Methods)? What could explain these numbers?\nHow did the authors decide on the initial classification of genes in neuronal and non-neuronal clusters? How did they define further subclusters of the initial neuronal clusters?\nWhat is shown in Figure 1?\nWhat is shown in Figure 4? How is the “fraction of positive cells” defined for a given gene?",
-    "crumbs": [
-      "Dimensionality reduction",
-      "Path-breaking paper"
-    ]
-  },
-  {
-    "objectID": "cluster-analysis/cancer-subtypes.html",
-    "href": "cluster-analysis/cancer-subtypes.html",
-    "title": "Path-breaking paper: Gene expression profiling predicts clinical outcome of breast cancer",
-    "section": "",
-    "text": "Path-breaking paper\n\n\n\nvan ’t Veer L et al. Gene expression profiling predicts clinical outcome of breast cancer . Nature 415:530 (2002).\nSee also: The molecular outlook.\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nThe Cancer Genome Atlas Network. Comprehensive molecular portraits of human breast tumours. Nature 490, 61–70 (2012).\n\n\n\nMotivation\nWe start our sequel to Back to the future: education for systems-level biologists where the first one ended, with cluster analysis of transcriptome data. The credit for being the first to using cluster analysis on gene expression data (from yeast) probably goes to Eisen et al.’s Cluster analysis and display of genome-wide expression patterns, which was the paper selected by Wingreen & Botstein for their course. To avoid repetition, we go for van ’t Veer et al.’s Gene expression profiling predicts clinical outcome of breast cancer.\nThe study by van ’t Veer et al was one of the first to use microarrays, a brand-new technology at the time, to profile gene expression on a genome-wide scale from surgically removed tumour samples - breast tumours in this case. Another paper from around the same time is: Perou et al. Molecular portraits of human breast tumours. A perspective on these papers from the time of publication is in The molecular outlook.\nAnother reason for choosing van ’t Veer et al is the interesting story that followed: the authors went on a 20-year journey to translate the gene expression signature they identified to a commercial diagnostic tool, see Section 0.3 below.\nThe success of these initial studies using cluster analysis to detect meaningful and clinically relevant patterns in genome-scale data arguably paved the way for large-scale studies such as The Cancer Genome Atlas (TCGA) Program. We take the 2012 TCGA paper on breast tumours as our test-of-time paper, see Section 0.4.\n\n\nQuestions for discussion\nWhy is classification of diseases important? How were breast tumours classified before molecular profiles became available?\nHow many tumour samples were analyzed by Van ’t Veer et al? How many genes were used for the cluster analysis and how were these genes selected\nThe most striking finding is in Figure 1. What does this figure show?\nClinical features are used to annotate and understand the observed separation of gene expression profiles in distinct clusters. What does each of the features measure and how do the authors characterize the overall classification of tumours? Starting points to read more about the clinical features:\n\nBRCA1 germline mutation: harmful variants in the BRCA1 or BRCA2 genes that markedly increase risk for developing breast cancer.\nEstrogen receptor (ER) status: breast tumour cells that express ER on their surface need estrogen to grow, and are therefore more susceptible to hormone therapy.\nTumour grade: a measure of degree of abnormality of cancer cells.\nLymphocyte infiltration: an indication whether the cancer has spread to the lymph nodes.\nAngionvasion: an indication whether the cancer has spread to the blood vessels.\nMetastatic status: an indication whether the cancer has spread to othre organs.\n\nThe authors identified a minimal prognostic signature from their data using a supervised approach. How does this approach work and how many marker genes were in the final, optimal set? For those with machine learning background, can you think of other (better?) supervised approaches to achieve the same goal?\n\n\nTranslation to the clinic\nHaving identified a strong gene expression signature to predict clinical outcome of breast cancer, the race to bring it to the clinic is on. That this is far from trivial can be seen by tracing the follow-up studies and clinical trials:\n\nVan De Vijver MJ et al. A gene-expression signature as a predictor of survival in breast cancer. NEJM 347:1999 (2002).\nBuyse M et al. Validation and clinical utility of a 70-gene prognostic signature for women with node-negative breast cancer. J Ntnl Canc Inst 98:1183 (2006).\nMook S et al. Individualization of therapy using MammaPrint: From development to the MINDACT Trial. Canc Genomics & Proteomics 4:147 (2007).\nCardoso F et al. 70-gene signature as an aid to treatment decisions in early-stage breast cancer. NEJM 375:717 (2016).\nBrandão M, Pondé N, Piccart-Gebhart M. Mammaprint: a comprehensive review. Fut Onc 15:207 (2019).\n\nThey got there eventually, and the gene expression signature is now commercially available under the name of Mammaprint.\n\n\nTest of time: The Cancer Genome Atlas\nAlthough the results by Van ’t Veer et al. were obtained from a small (by current standards!) sample size, they have been reproduced consistenly in larger studies and arguably spawned a search for similar signatures in other cancer types through large-scale projects, such as The Cancer Genome Atlas (TCGA) Program.\nThe amount of data and number of publications produced by TCGA is too enormous to survey here in detail.\nTo see how far the field progressed in the decade after van ’t Veer et al, read the 2012 TCGA paper on breast tumours.\n\n\nQuestions for discussion\nWhat are the main differences between van ’t Veer et al and the TCGA paper?\nHow is cluster analysis used in the TCGA paper?",
-    "crumbs": [
-      "Cluster analysis",
-      "Path-breaking paper"
-    ]
-  },
-  {
-    "objectID": "cluster-analysis/combinatorial-clustering.html",
-    "href": "cluster-analysis/combinatorial-clustering.html",
-    "title": "Combinatorial clustering",
-    "section": "",
-    "text": "Book sections\n\n\n\n\nElements of Statistical Learning: Section 14.3\nAn Introduction to Statistical Learning: Section 12.4\n\n\n\n\nIntroduction\nThe goal of cluster analysis is to group or segment a collection of objects into subsets or “clusters”, such that objects within a cluster are more closely related than objects in different clusters.\nMany datasets exhibit a hierarchical structure, with no clear demarcation of clusters, and clusters can themselves be grouped successively such that clusters within one group are more similar than those in different groups. Deciding where to make the “cut” is usually done by setting parameters of a clustering algorithm, and almost always involves an arbitrary choice by the user.\nCentral to all clustering methods is the notion of the degree of similarity (or dissimilarity) between the objects being clustered. Sometimes data are presented directly in terms of proximity/similarity between objects. More often we have measurements (e.g. gene expression) on objects (e.g. genes or samples) that we want to cluster, and a (dis)similariy matrix must be constructed first.\n\n\nQuestions and problems for discussion\n\nDissimilarity measures\nAssume we have measurements \\(x_{ij}\\) for objects \\(i=1,2,\\dots,N\\) on variables (or attributes) \\(j=1,2,\\dots,p\\). Usually, we first define a dissimilarity function \\(d_j(x_{ij},x_{i'j})\\) between values of the \\(j\\)th attribute. How is the dissimilarity between objects defined and how can we vary the relative influence of a given attribute in the overall dissimilarity between objects?\n\n\n\n\n\n\nImportant\n\n\n\nTo give all attributes equal influence in the object dissimilarity, we must set their relative weights to \\(w_j\\sim 1/\\overline{d_j}\\), with\n\\[\n\\overline{d_j}=\\frac{1}{N^2} \\sum_{i=1}^N  \\sum_{i'=1}^N d_j(x_{ij},x_{i'j})\n\\]\n\n\n\n\n\n\n\n\nExercise\n\n\n\nSetting \\(w_j=1\\) for all \\(j\\) does not necessarily give all attributes equal influence! To see this, compute the average object dissimilarity over all pairs of objects. It should be a sum over attributes, and attributes have equal influence in the object dissimilarity if their contribution to this sum is one. Show that this results in the equation above.\n\n\nThe most common choice of dissimilarity function is squared-error distance:\n\\[\nd_j(x_{ij},x_{i'j}) = (x_{ij}-x_{i'j})^2\n\\]\nDefine the mean and variance of each attribute over all objects as\n\\[\n\\begin{aligned}\n\\mu_j &= \\frac1N \\sum_{i=1}^N x_{ij}\\\\\\\\\n\\sigma_j^2 &= \\frac1N \\sum_{i=1}^N (x_{ij}-\\mu_j)^2\n\\end{aligned}\n\\]\n\n\n\n\n\n\nExercise\n\n\n\nShow that with squared-error distance, the average object dissimilarity on the \\(j\\)th attribute is proportional to its variance.\n\n\nIt is often recommended to standardize data before clustering:\n\\[\nx_{ij} \\to y_{ij}=\\frac{x_{ij}-\\mu_j}{\\sigma_j}\n\\]\nWith squared-error loss, this is equivalent to setting weights \\(w_j \\sim 1/\\sigma_j^2 \\sim 1/\\bar{d}_j\\), that is, to give all attributes equal influence on the average object dissimilarity.\n\n\n\n\n\n\nImportant\n\n\n\nSometimes some attributes exhibit more grouping tendency than others, which may be obscured by standardizing. Find and understand the figure in the book sections above that illustrates this. The solution is to filter attributes by their variance before standardizing, and only use attributes with high variance for clustering. Why?\n\n\n\n\nCombinatorial clustering\nCombinatorial clustering algorithms assign each object to a cluster without regard to a probability model describing the data. Understanding combinatorial clustering is a necessary basis for understanding probabilistic methods.\nIn combinatorial clustering, a prespecified number of clusters \\(K&lt;N\\) is postulated (\\(N\\) the number of objects). An assignment of objects \\(i\\in\\{1,\\dots,N\\}\\) to clusters \\(k\\in\\{1,\\dots,K\\}\\) is charcterized by a many-to-one mapping or encoder \\(k=C(i)\\).\n\\(C\\) is obtained by minimizing the “within cluster” point scatter \\(W(C)\\), which characterizes the extent to which objects assigned to the same cluster tend to be close to one another. How is \\(W(C)\\) defined?\nWe can also define the “between cluster” point scatter \\(B(C)\\), which characterizes the extent to which objects assigned to different clusters tend to be far apart. How is \\(B(C)\\) defined?\nDoes it matter whether we find an optimal clustering by minimizing \\(W(C)\\) or by maximizing \\(B(C)\\)? Hint: compute \\(W(C)+B(C)\\).\n\n\nK-means clustering\nThe \\(K\\)-means algorithm uses the squared Euclidean distance \\[\nd(x_i,x_{i'}) = \\sum_{j=1}^p (x_{ij}-x_{i'j})^2 = \\\\\\| x_i - x_{i'}\\\\\\|^2\n\\] and an iterative greedy descent algorithm to minimize \\(W(C)\\).\nUsing the Euclidean distance expression, find an expression for \\(W(C)\\) in terms of the number of objects assigned to cluster \\(k\\) and the mean vector associated to cluster \\(k\\).\nShow that \\(W(C)\\) is minimized if within each cluster, the average dissimilarity of the objects from the cluster mean, as defined by the points in that cluster, is minimized.\nNote that for any set of objects \\(S\\), \\[\n\\overline{x_S} = \\frac{1}{|S|} \\sum_{i\\in S} x_i = \\text{argmin}_m \\sum_{i\\in S}\\\\\\|x_i-m\\\\\\|^2\n\\]\nFind out how this result is used in a greedy descent algorithm where alternatingly the mean vectors are updated for the current cluster assignments, and object assignments are updated by assigning objects to the nearest current mean vector.\n\n\nHow do we choose the number of clusters K?\nFind the recommended method in the book sections above.",
-    "crumbs": [
-      "Cluster analysis",
-      "Theory"
-    ]
-  },
-  {
-    "objectID": "bayesian-networks/bayesian-networks.html",
-    "href": "bayesian-networks/bayesian-networks.html",
-    "title": "Bayesian networks",
-    "section": "",
-    "text": "Book sections\n\n\n\nPattern Recognition and Machine Learning: Chapter 8",
-    "crumbs": [
-      "Bayesian networks",
-      "Theory"
-    ]
-  },
-  {
-    "objectID": "bayesian-networks/bayesian-networks.html#a-crash-course-in-bayesian-networks",
-    "href": "bayesian-networks/bayesian-networks.html#a-crash-course-in-bayesian-networks",
-    "title": "Bayesian networks",
-    "section": "A crash course in Bayesian networks",
-    "text": "A crash course in Bayesian networks\nIn Bayesian networks, the joint distribution over a set \\(\\{X_1,\\dots, X_p\\}\\) of random variables is represented by:\n\na directed acyclic graph (DAG) \\(\\cal G\\) with the variables as vertices,\na set of conditional probability distributions, \\[\\begin{aligned}\n  P\\bigl(X_i \\mid \\{X_j \\mid j\\in \\mathrm{Pa}_i\\}\\bigr),\n\\end{aligned}\\] where \\(\\mathrm{Pa}_i\\) is the set of parents of vertex \\(i\\) in \\(\\mathcal{G}\\),\n\nsuch that \\[\\begin{aligned}\n  P(X_1,\\dots,X_p) = \\prod_{i=1}^p P\\bigl(X_i \\mid \\{X_j \\mid j\\in \\mathrm{Pa}_i\\}\\bigr)\n\\end{aligned}\\]\nIn GRN reconstruction:\n\n\\(X_i\\) represents the expression level of gene \\(i\\),\n\\(P(X_1,\\dots,X_p)\\) represents the joint distribution from which (independent) experimental samples are drawn,\n\\(\\mathcal{G}\\) represents the unknown GRN.\n\nAssume we have a set of \\(N\\) observations \\(x_1,\\dots,x_N\\in \\mathbb{R}^p\\) of \\(p\\) variables, collected in the \\(N\\times p\\) matrix \\(\\mathbf{X}\\).\nAssume we know \\(\\mathcal{G}\\) and the conditional distributions. Then the likelihood of observing the data is:\n\\[\\begin{aligned}\n  P(\\mathbf{X}\\mid \\mathcal{G}) &= \\prod_{k=1}^N P(X_{k1},\\dots,X_{kp}\\mid \\mathcal{G})\\\\\\\\\n  &= \\prod_{i=1}^p \\prod_{k=1}^N  P\\bigl(X_{ki} \\mid \\{X_{kj} \\mid j\\in \\mathrm{Pa}_i\\}\\bigr)\n\\end{aligned}\\]\nWe can now use an iterative algorithm to optimize \\(\\mathcal{G}\\) and the conditional distributions:\n\nStart with a random graph \\(\\mathcal{G}\\).\nGiven \\(\\mathcal{G}\\), the likelihood decomposes in a product of independent likelihoods, one for each gene, and the conditional distributions can be optimized by standard regression analysis.\nIn the next iterations, randomly add, delete, or reverse edges in \\(\\mathcal{G}\\), as long as the likelihood improves.\n\nA more formal approach to optimizing \\(\\mathcal{G}\\) uses Bayes’ theorem: \\[\\begin{aligned}\n  P(\\mathcal{G}\\mid \\mathbf{X}) = \\frac{P(\\mathbf{X}\\mid \\mathcal{G}) P(\\mathcal{G})}{P(\\mathbf{X})}\n\\end{aligned}\\]\n\n\\(P(\\mathcal{G})\\) represents the prior distribution: even without seeing any data, not all graphs need to be equally likely a priori.\n\\(P(\\mathbf{X})\\) represents the marginal distribution: \\(P(\\mathbf{X}) = \\sum_{\\mathcal{G}'} P(\\mathbf{X}\\mid \\mathcal{G}') P(\\mathcal{G}')\\). It is independent of \\(\\mathcal{G}\\) and can be ignored.\n\nWe can use \\(P(\\mathcal{G})\\) to encode evidence for causal interactions from integrating genomics and transcriptomics data. This is the main idea from Zhu et al. (2004).",
-    "crumbs": [
-      "Bayesian networks",
-      "Theory"
-    ]
-  },
-  {
-    "objectID": "causal-inference/mediation-iv.html",
-    "href": "causal-inference/mediation-iv.html",
-    "title": "Mediation and instrumental variable analysis",
-    "section": "",
-    "text": "Cis-trans eQTLs\n\n\nFigure by Sean Bankier from this review.\nThe GTEx study identified trans-eQTLs that are also cis-eQTLs and asked if the cis-eGene could be the cause of the trans-eQTL association (see fig above), that is, if the following model is supported by the data:\nflowchart LR\n  Z --&gt; X --&gt; Y\nwhere \\(Z\\) is a SNP that is a cis-eQTL for gene \\(X\\) and trans-eQTL for gene \\(Y\\). This model implies that \\(X\\) blocks the path between \\(Z\\) and \\(Y\\), and hence that \\(Z\\) and \\(Y\\) are independent conditional on \\(X\\), in mathematical notation\n\\[\nZ \\perp Y \\mid X\n\\]\nThe principle for testing whether the model \\(Z\\to X \\to Y\\) is true using the conditional independence criterion is illustrated in the figure below. Assuming linear relations between all variables, three conditions must be met:\n\nThe expression levels of \\(X\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to X\\) association).\nThe expression levels of \\(Y\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to Y\\) association).\nThe residuals of \\(Y\\) after regression on \\(X\\) do not differ differ significantly between the genotype groups of \\(Z\\) (to confirm that the \\(Z\\to Y\\) association is mediated by \\(X\\), and hence that \\(Z\\to X \\to Y\\) is true).",
-    "crumbs": [
-      "Causal inference",
-      "Theory"
-    ]
-  },
-  {
-    "objectID": "causal-inference/mediation-iv.html#mediation-analysis",
-    "href": "causal-inference/mediation-iv.html#mediation-analysis",
-    "title": "Mediation and instrumental variable analysis",
-    "section": "",
-    "text": "Cis-trans eQTLs\n\n\nFigure by Sean Bankier from this review.\nThe GTEx study identified trans-eQTLs that are also cis-eQTLs and asked if the cis-eGene could be the cause of the trans-eQTL association (see fig above), that is, if the following model is supported by the data:\nflowchart LR\n  Z --&gt; X --&gt; Y\nwhere \\(Z\\) is a SNP that is a cis-eQTL for gene \\(X\\) and trans-eQTL for gene \\(Y\\). This model implies that \\(X\\) blocks the path between \\(Z\\) and \\(Y\\), and hence that \\(Z\\) and \\(Y\\) are independent conditional on \\(X\\), in mathematical notation\n\\[\nZ \\perp Y \\mid X\n\\]\nThe principle for testing whether the model \\(Z\\to X \\to Y\\) is true using the conditional independence criterion is illustrated in the figure below. Assuming linear relations between all variables, three conditions must be met:\n\nThe expression levels of \\(X\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to X\\) association).\nThe expression levels of \\(Y\\) differ significantly between the genotype groups of \\(Z\\) (to confirm the \\(Z\\to Y\\) association).\nThe residuals of \\(Y\\) after regression on \\(X\\) do not differ differ significantly between the genotype groups of \\(Z\\) (to confirm that the \\(Z\\to Y\\) association is mediated by \\(X\\), and hence that \\(Z\\to X \\to Y\\) is true).",
-    "crumbs": [
-      "Causal inference",
-      "Theory"
-    ]
-  },
-  {
-    "objectID": "causal-inference/mediation-iv.html#instrumental-variable-analysis-mendelian-randomization",
-    "href": "causal-inference/mediation-iv.html#instrumental-variable-analysis-mendelian-randomization",
-    "title": "Mediation and instrumental variable analysis",
-    "section": "Instrumental variable analysis / Mendelian randomization",
-    "text": "Instrumental variable analysis / Mendelian randomization\nThe mediation method fails if \\(X\\) and \\(Y\\) are affected by common cause \\(U\\) (which may be an unknown or hidden variable):\nflowchart LR\n  Z --&gt; X --&gt; Y\n  U --&gt; X & Y\nIn this case, conditioning on \\(X\\) opens the collider \\(Z \\to X \\leftarrow U\\), creating a path \\(Z\\\\; --- \\\\; U \\to Y\\), such that the residuals of \\(Y\\) will still show a difference between the genotype groups of \\(Z\\), and the mediation method concludes (wrongly!) that the \\(Z\\to Y\\) association must be due to another factor than \\(X\\) (no causal \\(X\\to Y\\) relation).\nInstrumental variable, known as Mendelian randomization (MR), is an alternative causal inference approach that is not affected by hidden confounders \\(U\\), but with subtly different underlying assumptions.\nSpecifically, in MR we assume that the \\(Z\\to Y\\) association must be due to \\(X\\) (for instance because \\(X\\) is the only cis-eGene of \\(Z\\), and trans-eQTL associations must be mediated by some initial cis effects), and we seek to estimate the magnitude of the causal effect of \\(X\\) on \\(Y\\).\nThe diagram above can be written as a structural equation model\n\\[\n\\begin{aligned}\n  X &= a Z + c_X U + E_X\\\\\n  Y &= b X + c_Y U + E_Y\n\\end{aligned}\n\\]\nwhere \\(E_X\\) and \\(E_Y\\) are error terms, mutually independent and independent of \\(Z\\) and \\(U\\). Since \\(Z\\) and \\(U\\) are assumed to be independent (no arrows in the diagram), it follows that\n\\[\n\\begin{aligned}\n  \\mathrm{cov}(Y,Z) &= b\\\\\n  \\mathrm{cov}(X,Z) &= ab\n\\end{aligned}\n\\]\nand hence the causal effect of \\(X\\) on \\(Y\\) is estimated by the ratio of covariances:\n\\[\nb = \\frac{\\mathrm{cov}(Y,Z)}{\\mathrm{cov}(X,Z)}\n\\]",
-    "crumbs": [
-      "Causal inference",
-      "Theory"
-    ]
-  },
-  {
-    "objectID": "causal-inference/causal-assoc-genes-disease.html",
-    "href": "causal-inference/causal-assoc-genes-disease.html",
-    "title": "Path-breaking paper: Genetical genomics: the added value from segregation",
-    "section": "",
-    "text": "Path-breaking paper\n\n\n\nJancen RC and Nap JP. Genetical genomics: the added value from segregation. Trends in Genetics 17:388 (2001)\nSchadt, E., Lamb, J., Yang, X. et al. An integrative genomics approach to infer causal associations between gene expression and disease. Nat Genet 37, 710–717 (2005).\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nLi Y, Tesson BM, Churchill GA, and Jancen RC. Critical reasoning on causal inference in genome-wide linkage and association studies. Trends in Genetics 26:493 (2010)\n\n\n\n\n\n\n\n\nTest of time paper\n\n\n\nZheng J, et al. Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. Nat Genet 52, 1122–1131 (2020).\n\n\n\nMotivation\n\n\nQuestions for discussion\n\n\nTest of time",
-    "crumbs": [
-      "Causal inference",
-      "Path-breaking paper"
-    ]
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
-    "objectID": "neural-networks/neural-networks.html",
-    "href": "neural-networks/neural-networks.html",
-    "title": "Neural networks",
-    "section": "",
-    "text": "Book sections\n\n\n\n\nElements of Statistical Learning: Chapter 11\nAn Introduction to Statistical Learning: Chapter 10\nPattern Recognition and Machine Learning: Chapter 5",
-    "crumbs": [
-      "Neural networks",
-      "Theory"
     ]
   }
 ]
