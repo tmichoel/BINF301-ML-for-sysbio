@@ -69,6 +69,8 @@ website:
             text: Path-breaking paper
           - href: gaussian-processes/gaussian-processes.qmd
             text: Theory
+          - href: gaussian-processes/gaussian-processes-notebook.qmd
+            text: Implementation
       - section: "Neural networks"
         contents:
           - href: neural-networks/protein-structure-prediction.qmd
