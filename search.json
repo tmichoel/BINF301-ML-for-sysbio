@@ -121,7 +121,11 @@
     "href": "gaussian-processes/gaussian-processes-notebook.html",
     "title": "Dimensionality reduction notebook",
     "section": "",
-    "text": "A Pluto notebook “Gaussian_processes.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!"
+    "text": "A Pluto notebook “Gaussian_processes.jl” is available:\n\nOn JuliaHub\nIn the BINF301-code repository\n\nMake sure you have followed the software installation instructions in the Introduction to Julia page!",
+    "crumbs": [
+      "Gaussian processes",
+      "Implementation"
+    ]
   },
   {
     "objectID": "gaussian-processes/gaussian-processes.html",
