@@ -372,7 +372,6 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link active" data-scroll-target="#questions-for-discussion">Questions for discussion</a></li>
-  <li><a href="#test-of-time" id="toc-test-of-time" class="nav-link" data-scroll-target="#test-of-time">Test of time</a></li>
   <li><a href="#other-approaches-to-gene-regulatory-network-inference" id="toc-other-approaches-to-gene-regulatory-network-inference" class="nav-link" data-scroll-target="#other-approaches-to-gene-regulatory-network-inference">Other approaches to gene regulatory network inference</a></li>
   </ul>
 </nav>
@@ -453,14 +452,37 @@ Test of time paper
 </div>
 <section id="questions-for-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="questions-for-discussion">Questions for discussion</h3>
-</section>
-<section id="test-of-time" class="level3">
-<h3 class="anchored" data-anchor-id="test-of-time">Test of time</h3>
+<p>What was the aim of the study?</p>
+<p>Which data types did the authors combine?</p>
+<p>Several networks are constructed and analyzed, what is their meaning and what do they represent?</p>
+<ul>
+<li>Coexpression network</li>
+<li>PPI network</li>
+<li>Probabilistic causal network / Bayesian network (BN)
+<ul>
+<li>BN raw</li>
+<li>BN qtl</li>
+<li>BN full</li>
+</ul></li>
+</ul>
+<p>How did the authors test if their Bayesian networks were predictive?</p>
 </section>
 <section id="other-approaches-to-gene-regulatory-network-inference" class="level3">
 <h3 class="anchored" data-anchor-id="other-approaches-to-gene-regulatory-network-inference">Other approaches to gene regulatory network inference</h3>
+<p>Bayesian networks are important models for gene regulatory networks because they allow to integrate heterogeneous data, include prior information in a principled matter, and make concrete predictions about the response to experimental perturbations. When the number of abailable data types is limited (for instance when only expression data is available), other approaches may have advantages, for instance in terms of computational efficiency. Common to these approaches is that they only use prior information about which genes can act as regulators (typically <a href="https://en.wikipedia.org/wiki/Transcription_factor">transcription factors</a>). See also a recent perspective on network inference in Nature: <a href="https://www.nature.com/articles/d41586-022-02826-1"><em>Smart software untangles gene regulation in cells</em></a></p>
+<p>Two important methodological directions are:</p>
+<section id="information-theoretic-methods" class="level4">
+<h4 class="anchored" data-anchor-id="information-theoretic-methods">Information-theoretic methods</h4>
+<p>Similar to coexpression networks, methods in this class reconstruct networks using pairwise associations, but using <a href="https://en.wikipedia.org/wiki/Mutual_information">mutual information</a> as a measure. Deciding appropriate threshold levels of significance across genes with potentially very different biological function is the main challenge in this line of work. A gene-specific background correction known as “context likelihood of relatedness” is probably the most successful (and it works well with linear correlation measures too):</p>
+<p>J Faith <em>et al.</em> <a href="https://doi.org/10.1371/journal.pbio.0050008"><em>Large-Scale Mapping and Validation of E. coli Transcriptional Regulation from a Compendium of Expression Profiles.</em></a> PLOS Biol 5:e8 (2007).</p>
+</section>
+<section id="regression-based-methods" class="level4">
+<h4 class="anchored" data-anchor-id="regression-based-methods">Regression-based methods</h4>
+<p>In regression-based methods, regularized regression is used to construct models that predict a gene’s expression level given the expression levels of a set of candidate regulators. Regulators with highest weights or feature importance in these models are then declared to be the gene’s upstream regulators. Essentially any <a href="https://alan-turing-institute.github.io/MLJ.jl/dev/model_browser/#Regression">regression model</a> could be used, but over the years an approach based on <a href="https://en.wikipedia.org/wiki/Random_forest">rendom forest</a> regression has been the most popular:</p>
+<p>V Huynh-Thu et al.&nbsp;<a href="https://doi.org/10.1371/journal.pone.0012776"><em>Inferring Regulatory Networks from Expression Data Using Tree-Based Methods.</em></a> PLOS One 5:e12776 (2010).</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
