@@ -30,8 +30,36 @@ Beckmann ND., et al. [*Multiscale causal networks identify VGF as a key regulato
 
 ### Questions for discussion 
 
-### Test of time
+What was the aim of the study?
 
+Which data types did the authors combine?
 
+Several networks are constructed and analyzed, what is their meaning and what do they represent?
+
+- Coexpression network
+- PPI network
+- Probabilistic causal network / Bayesian network (BN)
+  - BN raw
+  - BN qtl
+  - BN full
+
+How did the authors test if their Bayesian networks were predictive?
 
 ### Other approaches to gene regulatory network inference
+
+Bayesian networks are important models for gene regulatory networks because they allow to integrate heterogeneous data, include prior information in a principled matter, and make concrete predictions about the response to experimental perturbations. When the number of abailable data types is limited (for instance when only expression data is available), other approaches may have advantages, for instance in terms of computational efficiency. Common to these approaches is that they only use prior information about which genes can act as regulators (typically [transcription factors](https://en.wikipedia.org/wiki/Transcription_factor)). See also a recent perspective on network inference in Nature: [*Smart software untangles gene regulation in cells*](https://www.nature.com/articles/d41586-022-02826-1)
+
+Two important methodological directions are:
+
+#### Information-theoretic methods
+
+Similar to coexpression networks, methods in this class reconstruct networks using pairwise associations, but using [mutual information](https://en.wikipedia.org/wiki/Mutual_information) as a measure. Deciding appropriate threshold levels of significance across genes with potentially very different biological function is the main challenge in this line of work. A gene-specific background correction known as "context likelihood of relatedness" is probably the most successful (and it works well with linear correlation measures too):
+
+J Faith *et al.* [*Large-Scale Mapping and Validation of E. coli Transcriptional Regulation from a Compendium of Expression Profiles.*](https://doi.org/10.1371/journal.pbio.0050008) PLOS Biol 5:e8 (2007).
+
+#### Regression-based methods
+
+In regression-based methods, regularized regression is used to construct models that predict a gene's expression level given the expression levels of a set of candidate regulators. Regulators with highest weights or feature importance in these models are then declared to be the gene's upstream regulators. Essentially any [regression model](https://alan-turing-institute.github.io/MLJ.jl/dev/model_browser/#Regression) could be used, but over the years an approach based on [rendom forest](https://en.wikipedia.org/wiki/Random_forest) regression has been the most popular:
+
+V Huynh-Thu et al. [*Inferring Regulatory Networks from Expression Data Using Tree-Based Methods.*](https://doi.org/10.1371/journal.pone.0012776) PLOS One 5:e12776 (2010).
+
