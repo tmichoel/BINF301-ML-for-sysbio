@@ -78,7 +78,7 @@ where $\mathbf{U}$ is an $N\times p$ orthogonal matrix ($\mathbf{U}^T\mathbf{U}=
 
 The solution $\mathbf{V}_q$ above consists of the first $q$ columns of $\mathbf{V}$.
 
-The columns of $\mathbf{U}\Lambda$ are called the *principal components* of $\mathbf{X}$. The first $q$ principal components are $\mathbf{U}_q\Lambda_q$. Each principal component is a vector in $\R^N$, that is, it takes a value for each observation. The solution $\hat{z}_i$ above consists of the rows of $\mathbf{U}_q\Lambda_q$, that is, for each observation $i$, $\hat{z}_i$ consists of the values of the first $q$ principal components for observation $i$.
+The columns of $\mathbf{U}\Lambda$ are called the *principal components* of $\mathbf{X}$. The first $q$ principal components are $\mathbf{U}_q\Lambda_q$. Each principal component is a vector in $\mathbb{R}^N$, that is, it takes a value for each observation. The solution $\hat{z}_i$ above consists of the rows of $\mathbf{U}_q\Lambda_q$, that is, for each observation $i$, $\hat{z}_i$ consists of the values of the first $q$ principal components for observation $i$.
 
 ## Probabilistic PCA
 
@@ -101,7 +101,7 @@ $$
 p(x \mid z) = \mathcal{N}(\mathbf{\mu} + \mathbf{V}z, \sigma^2 \mathbf{I})
 $$
 
-where $\mu\in\R^p$ is a mean offset vector, $\mathbf{V}\in\R^{p\times q}$ is a linear maps, and $\sigma^2>0$ a common variance parameter for all $p$ dimensions. Note the similarity between this model and the model above.
+where $\mu\in\mathbb{R}^p$ is a mean offset vector, $\mathbf{V}\in\mathbb{R}^{p\times q}$ is a linear maps, and $\sigma^2>0$ a common variance parameter for all $p$ dimensions. Note the similarity between this model and the model above.
 
 Following the Gaussian mixture model example, we want to maximize the likelihood of the observed data, which follows the **marginal distribution**
 
@@ -115,7 +115,7 @@ $$
 p(x) = \mathcal{N}(\mu,\mathbf{C})
 $$
 
-with covariance matrix $\mathbf{C}=\mathbf{V}\mathbf{V}^T+\sigma^2\mathbf{I}$. The corresponding log-likelihood for $N$ observations $x_1.\dots,x_N\in\R^p$  is
+with covariance matrix $\mathbf{C}=\mathbf{V}\mathbf{V}^T+\sigma^2\mathbf{I}$. The corresponding log-likelihood for $N$ observations $x_1.\dots,x_N\in\mathbb{R}^p$  is
 
 $$
 \mathcal{L} = -\frac{N}{2}\Bigl\{p \ln(2\pi) + \ln(\det(\mathbf{C})) + \mathrm{tr}(\mathbf{C}^{-1}\mathbf{S}) \Bigr\}
