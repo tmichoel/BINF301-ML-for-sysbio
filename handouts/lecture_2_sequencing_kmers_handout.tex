@@ -1,0 +1,248 @@
+
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ} % <-- robust environment capture
+
+% ===============================
+% Toggle: show/hide solutions
+% ===============================
+\newif\ifsolutions
+\solutionsfalse   % <-- Student version (no solutions)
+%\solutionstrue     % <-- Instructor version (solutions visible)
+
+% ===============================
+% Styling for instructor notes/solutions
+% ===============================
+\definecolor{instrblue}{RGB}{0,70,160}
+
+% Robust solution environment:
+% - Captures body as \BODY (from environ)
+% - Prints only if \solutionstrue
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Solution. }\color{instrblue}\BODY
+    \par\medskip\color{black}%
+  \fi
+}
+
+% Optional inline instructor note (prints only in instructor mode)
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[Instructor note: }#1\emph{]}}\fi}
+
+% ===============================
+% Header/Footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Sequencing \& k-mers}
+\rhead{BINF301 -- Lecture 2}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version: Sequencing \& k-mers}
+  \rhead{Solutions Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Lecture 2: Sequencing \& k-mers}}\\[6pt]
+    {\Large \textbf{Student Handout \& In-Class Exercises}}\\[10pt]
+    \textbf{Course:} BINF301 --- Computational Biology \\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 19.01.2026
+\end{center}
+
+\vspace{0.5cm}
+
+% ----------------------------------------------------------
+\section*{1. Overview}
+This handout summarizes the central ideas from Lecture 2, including:
+\begin{itemize}
+    \item genome sequencing technologies,
+    \item FASTA \& FASTQ formats,
+    \item quality scores and read trimming,
+    \item definition and use of \emph{k}-mers,
+    \item genome size estimation using \emph{k}-mer distributions.
+\end{itemize}
+
+% ----------------------------------------------------------
+\section*{2. Sequencing Technologies}
+Below is a comparison of the four major sequencing platforms:
+
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth}{lccclX}
+\toprule
+\textbf{Technology} & \textbf{Read Length} & \textbf{Accuracy} & \textbf{Throughput} & \textbf{Notes} \\
+\midrule
+Sanger & 500–900 bp & Very high & Low & Chain termination;\\
+& & & & used for small fragments. \\
+Illumina & 100–300 bp & Very high & Very high & Short reads;\\
+& & & & quality decreases at 3' end. \\
+PacBio HiFi & 10–25 kb & Very high & Medium & Long reads;\\
+& & & & extremely accurate HiFi mode. \\
+Nanopore & 10 kb–1 Mb & Moderate & High & Electrical-signal based;\\
+& & & &ultra-long reads; portable devices. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\textbf{Discussion prompts:}
+\begin{itemize}
+    \item Which technology is best for assembly, variant calling, or metagenomics?
+    \item How do read length and accuracy interact?
+\end{itemize}
+
+% ----------------------------------------------------------
+\section*{3. FASTA \& FASTQ}
+\subsection*{FASTA}
+\begin{itemize}
+    \item Stores only sequences (DNA, RNA, protein).
+    \item Simple two-line format: header + sequence.
+\end{itemize}
+
+\subsection*{FASTQ}
+\begin{itemize}
+    \item Stores nucleotide sequences \emph{and} per-base quality scores.
+    \item Uses Phred encoding: \( Q = -10 \log_{10}(P_{\text{error}}) \).
+    \item ASCII + 33 encoding for quality symbols.
+\end{itemize}
+
+% ----------------------------------------------------------
+\section*{4. Quality Control \& Trimming}
+\begin{itemize}
+    \item Read quality often drops toward the 3' end of short reads.
+    \item Adapters may be present and must be trimmed.
+    \item Trimming improves downstream assembly and \emph{k}-mer profiling.
+\end{itemize}
+
+% ----------------------------------------------------------
+\section*{5. k-mers}
+A \emph{k}-mer is a substring of length \(k\) extracted from a sequence.  
+\begin{itemize}
+    \item Unique \emph{k}-mer count approximates genome size.
+    \item Sequencing errors introduce low-frequency unique \emph{k}-mers.
+    \item Repeats create high-frequency peaks.
+    \item Tools like \texttt{GenomeScope} model errors, repeats, heterozygosity.
+\end{itemize}
+
+% ----------------------------------------------------------
+\section*{6. Discussion Starters}
+\begin{itemize}
+    \item Differences among sequencing generations.
+    \item FASTA vs FASTQ usage.
+    \item How trimming affects \emph{k}-mer spectra.
+    \item Why repeats cause high-frequency \emph{k}-mers.
+    \item How the Poisson distribution relates to coverage.
+\end{itemize}
+
+\newpage
+
+% ==========================================================
+% IN-CLASS EXERCISES
+% ==========================================================
+\section*{In-Class Exercises}
+
+% ------------------------------
+\subsection*{Exercise 1 --- Compare Sequencing Technologies}
+Using the table in Section 2, decide which platform you would use for:
+\begin{enumerate}[(a)]
+    \item genome assembly,
+    \item variant calling,
+    \item metagenomics.
+\end{enumerate}
+Discuss trade-offs in read length, accuracy, speed, throughput, and biases.
+
+\begin{solution}
+\textbf{(a) Assembly:} \textbf{PacBio HiFi} or \textbf{Nanopore}. Long reads resolve repeats and SVs. HiFi pairs long length with very high accuracy; Nanopore provides ultra-long reads when needed (telomere-to-telomere).\\[4pt]
+\textbf{(b) Variant calling:} \textbf{Illumina} or \textbf{PacBio HiFi}. Illumina excels for SNPs/indels due to low error rates; HiFi adds long-range context and strong SV detection.\\[4pt]
+\textbf{(c) Metagenomics:} \textbf{Illumina} (deep, accurate profiling) or \textbf{Nanopore} (rapid, long reads; helpful for assembly in complex communities). 
+\end{solution}
+
+% ------------------------------
+\subsection*{Exercise 2 --- Quality Score Interpretation}
+Given this FASTQ quality string:
+\begin{verbatim}
+@@@DDDDFFFFFGHIJ
+\end{verbatim}
+\begin{itemize}
+    \item Convert several characters to Phred quality values.
+    \item Identify low-quality read regions.
+    \item Discuss how trimming would affect downstream \emph{k}-mer counting.
+\end{itemize}
+
+\begin{solution}
+\textbf{ASCII+33 mapping (examples):} @ (64) $\to Q=31$; D (68) $\to Q=35$; F (70) $\to Q=37$; G (71) $\to Q=38$; H (72) $\to Q=39$; I (73) $\to Q=40$; J (74) $\to Q=41$.\\
+\textbf{Interpretation:} All values are high (Q31--41), so no clear low-quality tail in this toy string.\\
+\textbf{Trimming rationale:} In real data, low-quality 3' tails create spurious unique \emph{k}-mers (singletons), distorting histograms and inflating genome-size estimates. Trimming reduces this noise.
+\end{solution}
+
+% ------------------------------
+\subsection*{Exercise 3 --- k-mer Counting Thought Experiment}
+Sequence:
+\begin{verbatim}
+ATGATGCT
+\end{verbatim}
+Tasks:
+\begin{itemize}
+    \item List all 4-mers.
+    \item Count their frequencies.
+    \item Predict how a sequencing error or repeat affects the histogram.
+\end{itemize}
+
+\begin{solution}
+\textbf{4-mers (sliding window):} ATGA, TGAT, GATG, ATGC, TGCT. Each occurs once.\\[4pt]
+\textbf{Effect of one sequencing error:} Typically creates novel singletons (low-frequency \emph{k}-mers), adding a left-tail to the histogram.\\[4pt]
+\textbf{Effect of a repeat:} Increases counts proportionally (e.g., doubling the region gives each 4-mer count 2), creating higher-frequency peaks or secondary peaks.
+\end{solution}
+
+% ------------------------------
+\subsection*{Exercise 4 --- Mini Case: Genome Size Estimation}
+Toy dataset:
+\begin{center}
+\begin{tabular}{l c}
+\texttt{ATG} & 20 \\
+\texttt{TGA} & 19 \\
+\texttt{GAT} & 22 \\
+\texttt{ATC} & 1 \\
+\texttt{TCA} & 1 \\
+\end{tabular}
+\end{center}
+
+Tasks:
+\begin{itemize}
+    \item Identify likely sequencing errors.
+    \item Estimate approximate coverage from the main peak.
+    \item Explain how GenomeScope models errors, repeats, heterozygosity.
+\end{itemize}
+
+\begin{solution}
+\textbf{Likely errors:} ATC and TCA (singletons).\\[4pt]
+\textbf{Coverage estimate:} Main cluster $\approx 20\times$.\\[4pt]
+\textbf{GenomeScope intuition:} Fits a mixture to the k-mer spectrum.\\
+Errors $\Rightarrow$ leftmost tail (low counts).\\
+Repeats $\Rightarrow$ peaks at multiples of coverage ($2C, 3C,\dots$).\\
+Heterozygosity $\Rightarrow$ sub-peak near $C/2$ (e.g., $\sim 10$ here).
+\end{solution}
+
+\end{document}

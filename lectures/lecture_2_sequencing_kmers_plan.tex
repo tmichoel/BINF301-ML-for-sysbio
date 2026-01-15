@@ -1,0 +1,233 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+
+% ===============================
+% Toggle solutions (instructor notes)
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version
+%\solutionstrue      % <-- Instructor version
+
+\definecolor{instrblue}{RGB}{0,70,160}
+
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Instructor note. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BINF301 — Discussion Plan}
+\rhead{90-Min Session}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version — Notes Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{90-Minute Discussion Session Plan}}\\[4pt]
+    {\Large \textbf{Lecture 2: Sequencing \& k-mers}}\\[10pt]
+    \textbf{Course:} BINF301 — Computational Biology\\
+    \textbf{Instructor:} [Enter Name] \\
+    \textbf{Date:} [Enter Date]
+\end{center}
+
+\vspace{0.5cm}
+
+% ==========================================================
+\section*{0-10 min — Warm-Up}
+
+\begin{itemize}
+    \item Icebreaker: Which sequencing technology (Sanger, Illumina, PacBio, Nanopore) are you most familiar with?
+    \item Starter prompt: What surprised you most about differences between sequencing generations?
+\end{itemize}
+
+\begin{solution}
+Goal: lower anxiety barriers, establish conversational readiness, surface prior knowledge, and encourage all students to speak once very early.
+\end{solution}
+
+% ==========================================================
+\section*{10-25 min — Think-Pair-Share}
+
+\textbf{Prompt:}  
+Based on the lecture slides, what do you think is the main limitation of each sequencing technology (1st, 2nd, 3rd generation)?
+
+\textbf{Follow-up:}  
+How do quality scores influence downstream analysis?
+
+\begin{solution}
+Students should identify:  
+• Sanger: low throughput.  
+• Illumina: short reads, drop in 3' quality.  
+• PacBio/Nanopore: higher error rates (raw), cost.  
+Quality scores → trimming → fewer spurious k-mers.
+\end{solution}
+
+% ==========================================================
+\section*{25-45 min — Structured Group Discussion}
+
+\textbf{Roles:}
+\begin{itemize}
+    \item \textbf{Summarizer:} Recap FASTA vs FASTQ formats and Phred quality scores.
+    \item \textbf{Questioner:} Bring one question about basecalling or sequencing error models.
+    \item \textbf{Connector:} Link k-mers to sequencing output and quality issues.
+\end{itemize}
+
+\textbf{Starter question:}  
+Why do sequencing errors inflate the number of unique k-mers?
+
+\begin{solution}
+Errors → new erroneous sequences → appear once → left-side tail of k-mer frequency plot → overestimates genome size.
+\end{solution}
+
+% ==========================================================
+\section*{\textit{Break (15 min)}}
+
+\medskip
+
+% ==========================================================
+\section*{45-65 min — Applied Exercises Block}
+
+Students work collaboratively on structured exercises, see handout.
+
+% % ------------------------------
+% \subsection*{Exercise 1 — Compare Sequencing Technologies}
+
+% Using the sequencing table, choose the best platform for:
+% \begin{enumerate}[(a)]
+%     \item genome assembly
+%     \item variant calling
+%     \item metagenomics
+% \end{enumerate}
+
+% \begin{solution}
+% (a) PacBio HiFi or Nanopore; (b) Illumina for SNPs, HiFi for SVs; (c) Illumina (deep metagenomics) or Nanopore (long-read species resolution).
+% \end{solution}
+
+% % ------------------------------
+% \subsection*{Exercise 2 — Quality Score Interpretation}
+
+% Given FASTQ quality string:
+% \begin{verbatim}
+% @@@DDDDFFFFFGHIJ
+% \end{verbatim}
+
+% Tasks:
+% \begin{itemize}
+%     \item Convert characters to Phred scores.
+%     \item Identify low-quality regions.
+%     \item Discuss trimming impact on k-mer spectra.
+% \end{itemize}
+
+% \begin{solution}
+% Mapping: @→Q31, D→Q35, F→Q37, etc. Values are high; no low-quality tail here. In real data, trimming prevents spurious unique k-mers.
+% \end{solution}
+
+% % ------------------------------
+% \subsection*{Exercise 3 — k-mer Counting Thought Experiment}
+
+% Sequence:
+% \begin{verbatim}
+% ATGATGCT
+% \end{verbatim}
+
+% Tasks:
+% \begin{itemize}
+%     \item List all 4-mers.
+%     \item Count frequencies.
+%     \item Predict effects of error or repeat.
+% \end{itemize}
+
+% \begin{solution}
+% 4-mers: ATGA, TGAT, GATG, ATGC, TGCT (all count=1).  
+% Errors → new unique singletons.  
+% Repeats → higher-frequency duplicates.
+% \end{solution}
+
+% % ------------------------------
+% \subsection*{Exercise 4 — Mini Case: Genome Size Estimation}
+
+% Toy k-mer dataset:
+% \begin{center}
+% \begin{tabular}{l c}
+% \texttt{ATG} & 20 \\
+% \texttt{TGA} & 19 \\
+% \texttt{GAT} & 22 \\
+% \texttt{ATC} & 1 \\
+% \texttt{TCA} & 1 \\
+% \end{tabular}
+% \end{center}
+
+% Tasks:
+% \begin{itemize}
+%     \item Identify likely sequencing errors.
+%     \item Estimate approximate coverage.
+%     \item Discuss how GenomeScope models errors, repeats, heterozygosity.
+% \end{itemize}
+
+% \begin{solution}
+% Singletons (ATC, TCA) = errors.  
+% Main peak ~20×.  
+% GenomeScope fits mixture model:  
+% errors → low-frequency tail;  
+% repeats → 2C, 3C peaks;  
+% heterozygosity → sub-peak at C/2.
+% \end{solution}
+
+% % ==========================================================
+% \section*{65-80 min — Open Forum \& Optional Deep Dive}
+
+% \begin{itemize}
+%     \item Students ask questions inspired by exercises.
+%     \item Optional: revisit Exercise 4 to connect Poisson model to coverage estimation.
+% \end{itemize}
+
+% \begin{solution}
+% Encourage students to compare empirical k-mer spectra to ideal Poisson predictions.
+% \end{solution}
+
+% ==========================================================
+\section*{80-90 min — Reflection \& Wrap-Up}
+
+\begin{itemize}
+    \item One takeaway from today?
+    \item One question to revisit next time?
+\end{itemize}
+
+\begin{solution}
+Useful to collect feedback for pacing, confusion points, and future topics.
+\end{solution}
+
+% ==========================================================
+\end{document}
