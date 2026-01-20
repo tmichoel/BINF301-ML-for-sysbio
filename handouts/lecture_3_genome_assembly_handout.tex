@@ -90,7 +90,7 @@
 % ----------------------------------------------------------
 \section*{1. Overview}
 
-This handout summarizes core ideas and adds inline diagrams:
+This handout summarizes core ideas:
 \begin{itemize}
     \item What genome assembly is and why it is difficult.
     \item Two graph-based strategies: Overlap-Layout-Consensus (OLC) and De Bruijn Graphs (DBG).
@@ -114,7 +114,7 @@ This handout summarizes core ideas and adds inline diagrams:
 % ----------------------------------------------------------
 \section*{3. Overlap-Layout-Consensus (OLC)}
 
-\noindent\textbf{Idea.} Reads are \emph{nodes}; overlaps are \emph{edges}. Reconstructing the genome corresponds (ideally) to a \textbf{Hamiltonian path} (visit each node/read once).
+\noindent\textbf{Idea.} Reads are \emph{nodes}; overlaps are \emph{edges}. Reconstructing the genome corresponds (ideally) to a \textbf{(directed) Hamiltonian path} (visit each node/read once).
 
 \begin{center}
 \begin{tikzpicture}[scale=1, every node/.append style={transform shape}]
@@ -142,7 +142,7 @@ This handout summarizes core ideas and adds inline diagrams:
 \end{tikzpicture}
 
 \vspace{2mm}
-\footnotesize OLC sketch: nodes are reads (R1--R5), edges show overlaps. Dashed edge indicates a \emph{transitive} overlap (can be removed).
+\footnotesize OLC sketch: nodes are reads (R1--R5), edges show overlaps. Dashed edge indicates a \emph{transitive} overlap (can be removed). Solid black edges show assembled contig. Blue edges show alternative branching path (due to repeat or errors) that cannot be resolved directly by Hamiltonian path finding. Alignment of R2 and R4 could be used to collapse nodes and resolve the path.
 \end{center}
 
 \textbf{Why transitive reduction?} Removing transitive edges simplifies the graph and reduces ambiguity.
