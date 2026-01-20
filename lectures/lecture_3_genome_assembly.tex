@@ -1,0 +1,136 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{enumerate}
+\usepackage{hyperref}
+
+% ===============================
+% Toggle for instructor notes
+% ===============================
+\newif\ifsolutions
+\solutionsfalse   % <-- Student version
+%\solutionstrue     % <-- Instructor version
+
+\definecolor{instrblue}{RGB}{0,70,160}
+
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Instructor note. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+% ===============================
+% Header / footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BINF301 — Discussion Plan}
+\rhead{Lecture 3: Genome Assembly (60 min)}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version — Notes Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{60-Minute Discussion Session Plan}}\\[4pt]
+    {\Large \textbf{Lecture 3: Genome Assembly}}\\[10pt]
+    \textbf{Course:} BINF301 — Computational Biology\\
+    \textbf{Instructor:} Tom Michoel\\
+    \textbf{Date:} 21/01/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+% ==========================================================
+\section*{0-8 min — Warm-Up}
+
+%\textbf{Purpose:} Reduce anxiety barriers and encourage early participation.
+
+\textbf{Warm-up prompts:}
+\begin{itemize}
+    \item ``Which part of genome assembly feels the most intuitive to you: OLC, De Bruijn graphs, or error correction?''
+    \item ``What slide image from the pre-read stood out as confusing or interesting?''
+\end{itemize}
+
+\begin{solution}
+Use slides 3-4 (overview and ``three laws of assembly'') to connect warm-up responses to main themes.
+\end{solution}
+
+% ==========================================================
+\section*{8-20 min — Guided Concept Walkthrough}
+
+\textbf{Purpose:} Establish a shared understanding before deeper work.
+
+\textbf{Walkthrough topics:}
+\begin{itemize}
+    \item What genome assembly is (Slide 3).
+    \item Two algorithms: Overlap-Layout-Consensus (Slides 5-12) vs.\ De Bruijn Graphs (Slides 13-25).
+    \item Why repeats cause problems (Slide 4).
+\end{itemize}
+
+\textbf{Guiding prompts:}
+\begin{itemize}
+    \item ``How would you describe the main difference between an OLC graph and a De Bruijn graph?''
+    \item ``Why does OLC look for a Hamiltonian path, while De Bruijn graphs use an Eulerian path?''
+    \item ``What happens when sequencing is not perfect?'' (Slide 18)
+\end{itemize}
+
+\begin{solution}
+Ensure students understand: OLC focuses on reads as nodes (Hamiltonian), DBG focuses on \emph{k}-mers as edges (Eulerian). Mention Hamiltonian path is NP-hard, Eulerian path is linear-time.
+\end{solution}
+
+% ==========================================================
+\section*{20-40 min — Mini Case / Exercises Block}
+
+Students work collaboratively on structured exercises, see handout.
+
+
+% ==========================================================
+\section*{40-55 min — Open Reflection \& Deep Dive}
+
+Prompts:
+\begin{itemize}
+    \item ``Which concept was hardest today: overlaps, repeat resolution, Eulerian vs.\ Hamiltonian paths?''
+    \item ``What causes tangles in De Bruijn graphs? Biological repeats? Sequencing errors?''
+    \item ``Why are error-correction methods (Slides 27-38) essential before assembly?''
+\end{itemize}
+
+\begin{solution}
+Encourage connections: repeat-induced branching, error-induced tips/bubbles, and how correction tools simplify the graph.
+\end{solution}
+
+% ==========================================================
+\section*{55-60 min — Wrap-Up}
+
+Prompts:
+\begin{itemize}
+    \item ``One key insight from today?''
+    \item ``Which algorithm (OLC vs DBG) feels more intuitive to you and why?''
+    \item ``What should we revisit next lecture?''
+\end{itemize}
+
+\begin{solution}
+Use answers to adjust pacing and revisit weak spots at the beginning of next session.
+\end{solution}
+
+% ==========================================================
+\end{document}
