@@ -1,0 +1,198 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+
+% ===============================
+% Toggle solutions (instructor notes)
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version
+%\solutionstrue      % <-- Instructor version
+
+\definecolor{instrblue}{RGB}{0,70,160}
+
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Instructor note. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BINF301 -- Discussion Plan}
+\rhead{90-Min Session}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version -- Notes Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{90-Minute Discussion Session Plan}}\\[4pt]
+    {\Large \textbf{Lecture 4: Long-Read Assembly}}\\[10pt]
+    \textbf{Course:} BINF301 -- Computational Biology\\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 26/01/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{0--10 min -- Warm-Up}
+
+\textbf{Prompt:}
+\begin{itemize}
+    \item ``Which long-read technology (PacBio CLR, PacBio HiFi, Nanopore) do you find most intriguing, and why?''
+    \item ``What is one challenge you associate with long-read sequencing?''
+\end{itemize}
+
+\begin{solution}
+Goal: Activate prior knowledge and normalize uncertainty around long-read technologies.  
+Encourage students to distinguish \emph{read length vs. accuracy}, and recall that early long-read technologies were noisy, while HiFi reads dramatically improved accuracy.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section*{10--25 min -- Think-Pair-Share}
+
+\textbf{Main prompt:}  
+Why are De Bruijn graphs difficult to use effectively for long-read assembly?
+
+\textbf{Follow-ups:}
+\begin{itemize}
+    \item ``What assumption in DBG construction breaks for long reads?''
+    \item ``Why is overlap-based assembly more appropriate?''
+    \item ``How do read count and error rate affect $k$-mer completeness?''
+\end{itemize}
+
+\begin{solution}
+Students should recall that DBG assembly requires high and relatively uniform $k$-mer coverage.  
+Long-read datasets have \emph{fewer reads} for the same coverage, and historically had \emph{higher error rates}, producing many low-frequency erroneous $k$-mers.  
+Therefore long-read assemblers rely on overlap graphs, not DBGs.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section*{25--45 min -- Structured Group Discussion}
+
+Students form groups of three with the following rotating roles:
+
+\subsection*{Roles}
+\begin{itemize}
+    \item \textbf{Summarizer:} Explain how PacBio HiFi differs from older PacBio CLR/Nanopore reads and why this affects assembly.
+    \item \textbf{Questioner:} Prepare one question about error correction strategies (hybrid, hierarchical, direct).
+    \item \textbf{Connector:} Link overlap detection techniques (minimizers, MHAP) to the computational difficulty of all-vs-all overlaps.
+\end{itemize}
+
+\subsection*{Starter Question}
+How do modern assemblers (Canu, Flye, HiCanu, HiFiAsm) differ in how they treat noise, repeats, and haplotypes?
+
+\begin{solution}
+Expected points:
+\begin{itemize}
+    \item \textbf{Canu}: hierarchical correction; MHAP for fast approximate overlaps.
+    \item \textbf{Flye}: repeat graph model; distinguishes bridged vs.\ unbridged repeats.
+    \item \textbf{HiCanu}: optimized for HiFi; homopolymer compression; pileup-based correction.
+    \item \textbf{HiFiAsm}: haplotype-aware assembly; multi-pass correction and string-graph phasing.
+\end{itemize}
+Encourage students to compare \emph{overlap graphs}, \emph{repeat graphs}, and \emph{string graphs}.
+\end{solution}
+
+% ------------------------------------------------------------------
+\section*{\textit{Break (15 min)}}
+
+\medskip
+
+% ------------------------------------------------------------------
+
+\section*{45--65 min -- Exercises}
+
+See handout.
+
+\subsection*{Exercise 1 -- MinHash Overlap Detection}
+Sketch how minimizers or MHAP signatures help detect approximate overlaps between long reads.
+
+\subsection*{Exercise 2 -- Bridged vs.\ Unbridged Repeats}
+Given a repeat diagram, identify which repeats are bridged by long reads and which require Flye’s repeat-graph method.
+
+\subsection*{Exercise 3 -- Haplotype Bubbles}
+Given a string-graph bubble, determine whether it represents heterozygosity or sequencing noise.
+
+\subsection*{Exercise 4 -- Hi-C Scaffolding Clues}
+Interpret a schematic Hi-C heatmap showing either a clean diagonal or a diagonal break.
+
+\begin{solution}
+  
+Instructor should prompt students to think about:
+\begin{itemize}
+    \item Evidence that a repeat is bridged (a single read spans both copies).
+    \item Which SNP-rich reads inform haplotype assignment.
+    \item How SALSA2 or YaHS break contigs at low Hi-C support boundaries.
+\end{itemize}
+Applied work reinforces understanding of algorithms and data interpretation.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section*{65--80 min -- Synthesis}
+
+\textbf{Discussion prompts:}
+\begin{itemize}
+    \item ``What makes long-read assembly fundamentally different from short-read assembly?''
+    \item ``Which problem does each major tool (Canu, Flye, HiCanu, HiFiAsm) solve particularly well?''
+    \item ``If you designed a new assembler, which component would you innovate--overlap detection, repeat resolution, or haplotype phasing?''
+\end{itemize}
+
+\begin{solution}
+Encourage precise terminology: ``overlap graph,'' ``repeat graph,'' ``string graph,'' ``homopolymer compression,'' ``haplotype bubble.''  
+This synthesis stage consolidates algorithmic, biological, and computational aspects.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section*{80--90 min -- Reflection \& Wrap-Up}
+
+\textbf{Closing prompts:}
+\begin{itemize}
+    \item ``What is one misconception you corrected today?''
+    \item ``Which assembly step (overlap detection, repeat handling, phasing, scaffolding) is still unclear?''
+    \item ``What tool or concept would you like a demonstration of in the next session?''
+\end{itemize}
+
+\begin{solution}
+Reflection helps identify common pain points (phasing, Hi-C interpretation, repeat resolution).  
+Use student feedback to calibrate future pacing and choose topics for deeper walkthroughs.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+
+\end{document}

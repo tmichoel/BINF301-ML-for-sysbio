@@ -1,0 +1,358 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing}
+
+% ===============================
+% Toggle: student vs instructor
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version (no solutions)
+%\solutionstrue       % <-- Instructor version (solutions visible)
+
+% ===============================
+% Styles (Style 1 — Clean Minimalist)
+% ===============================
+\definecolor{instrblue}{RGB}{0,70,160}
+\definecolor{edgeblue}{RGB}{30,90,180}
+
+% Diagram styles
+\tikzset{
+  read/.style={rectangle, rounded corners=2pt, draw=black!60, fill=black!5, inner sep=3pt, minimum width=18pt, minimum height=12pt, font=\footnotesize},
+  node/.style={circle, draw=black!60, fill=black!5, inner sep=1.8pt, minimum size=16pt, font=\footnotesize},
+  edge/.style={-Latex, very thin, draw=edgeblue},
+  altedge/.style={-Latex, very thin, draw=black!60, dashed},
+  pathhl/.style={-Latex, semithick, draw=black}, % highlight path (monochrome friendly)
+  err/.style={-Latex, thin, draw=black, dashed}, % shows erroneous or low-confidence edges
+  tip/.style={-Latex, thin, draw=black!60, densely dotted}
+}
+
+% ===============================
+% Robust solution environment
+% ===============================
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Solution. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / Footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Sequencing \& Assembly — Lecture 3}
+\rhead{BINF301}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version — Solutions Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Lecture 4: Long-Read Assembly}}\\[6pt]
+    {\Large \textbf{Student Handout \& In-Class Exercises}}\\[10pt]
+    \textbf{Course:} BINF301 — Computational Biology \\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 26/01/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+\section{Overview}
+
+This handout summarizes the key concepts from \textbf{Lecture 4: Long-read Assembly}. Topics covered include:
+
+\begin{itemize}
+    \item Why De Bruijn graphs are not ideal for long-read data
+    \item Overlap-based long-read assembly strategies
+    \item Overview of tools: \textbf{Canu, Flye, HiCanu, HiFiAsm}
+    \item Haplotype phasing with long reads
+    \item Scaffolding using Hi-C contact maps
+    \item Assembly polishing and contamination detection
+\end{itemize}
+
+\begin{solution}
+Lecture 4 emphasizes why DBG-based assembly depends on saturated $k$-mer coverage, which long-read datasets typically lack due to lower read count. Therefore, modern assemblers rely on overlap graphs.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section{Why Long Reads Break the De Bruijn Graph Assumption}
+
+De Bruijn graph assembly assumes most genomic $k$-mers appear multiple times in the read set. Long-read datasets (PacBio, Nanopore) have:
+
+\begin{itemize}
+    \item \textbf{Lower read count} for same coverage
+    \item \textbf{High noise} (for earlier long-read technologies)
+\end{itemize}
+
+Thus, $k$-mer coverage becomes non-uniform and DBG-based assembly becomes unreliable.
+
+\begin{solution}
+Long reads solve repeats via read length, so the assembly strategy should preserve long-range information, not break reads into small $k$-mers.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section{Noisy Long-read Data and Assembly Approaches}
+
+Early long reads had error rates of 10--20\%, making overlap detection difficult.
+
+Common strategies:
+
+\begin{itemize}
+    \item \textbf{Hybrid correction:} use accurate short reads to correct long reads
+    \item \textbf{Hierarchical correction:} repeated overlap--correct cycles (e.g., Canu)
+    \item \textbf{Direct overlapping:} apply approximate matching (e.g., minimizers, MinHash)
+\end{itemize}
+
+\begin{solution}
+Hybrid correction was popular during early Nanopore/PacBio development, but is less needed with modern HiFi reads.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section{Canu}
+
+Canu is a long-read assembler derived from the Celera assembler.
+
+It operates in three phases:
+
+\begin{enumerate}
+    \item \textbf{Correction} -- detect overlaps, estimate corrected length, output corrected reads
+    \item \textbf{Trimming} -- identify unsupported regions and remove them
+    \item \textbf{Assembly} -- build the final overlap graph and output contigs
+\end{enumerate}
+
+Canu uses the MHAP (MinHash Alignment Process) algorithm for fast overlap detection:
+
+\begin{itemize}
+    \item Decompose reads into $k$-mers
+    \item Hash $k$-mers and select \emph{min-mers}
+    \item Fraction of shared min-mers approximates sequence similarity
+\end{itemize}
+
+\begin{solution}
+MHAP dramatically reduces the cost of all-vs-all comparisons, which is the primary bottleneck in OLC assemblers.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section{Flye}
+
+Flye uses a \textbf{repeat graph} rather than a classical overlap graph.
+
+Key ideas:
+
+\begin{itemize}
+    \item Build \textbf{disjointigs}: arbitrary merges of overlapping fragments
+    \item Use disjointigs to form a draft assembly graph
+    \item Distinguish:
+    \begin{itemize}
+        \item \textbf{Bridged repeats} -- some read spans the repeat
+        \item \textbf{Unbridged repeats} -- resolved through subtle sequence differences
+    \end{itemize}
+    \item Output final contigs after graph simplification
+\end{itemize}
+
+\begin{solution}
+Flye’s repeat graphs are robust for genomes with complex repeat structures, especially microbial and eukaryotic genomes.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section{HiFi Reads and Assemblers (HiCanu, HiFiAsm)}
+
+\subsection{HiCanu}
+
+Optimized for high-accuracy PacBio HiFi reads.
+
+Key features:
+
+\begin{itemize}
+    \item Homopolymer compression before overlap detection
+    \item Overlap-based trimming
+    \item Error correction using read pileups
+\end{itemize}
+
+\begin{solution}
+HiCanu produces extremely clean contigs because HiFi reads resolve many error modes during overlap correction.
+\end{solution}
+
+\subsection{HiFiAsm}
+
+A haplotype-aware assembler that:
+
+\begin{itemize}
+    \item Performs all-vs-all overlaps
+    \item Identifies \textbf{informative SNP positions}
+    \item Groups reads into haplotypes using consistency checks
+    \item Builds a string graph where haplotypes appear as ``bubbles''
+\end{itemize}
+
+\begin{solution}
+HiFiAsm is the current state-of-the-art for diploid HiFi genome assembly due to its haplotype resolution.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section{Haplotype Phasing}
+
+Diploid and polyploid organisms have heterozygous positions that create bubbles in assembly graphs.
+
+Phasing strategies include:
+
+\begin{itemize}
+    \item Read-based phasing (HiFiAsm)
+    \item Trio-binning using parental data
+    \item Hi-C based chromosome-scale phasing
+\end{itemize}
+
+\begin{solution}
+Long reads often contain enough SNPs to directly assign them to haplotypes, making phasing far more accurate than short-read methods.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section{Scaffolding Using Hi-C}
+
+Hi-C provides chromosome-scale contact information:
+
+\begin{itemize}
+    \item Contigs with strong Hi-C link density likely belong to the same chromosome
+    \item Tools such as SALSA2 and YaHS construct chromosome-scale scaffolds
+    \item Hi-C maps also reveal misassemblies (disruptions in the diagonal contact pattern)
+\end{itemize}
+
+\begin{solution}
+A good Hi-C contact map shows a strong diagonal; off-diagonal blocks often indicate structural errors.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\section{Polishing and Decontamination}
+
+After assembly:
+
+\begin{itemize}
+    \item \textbf{Polishing:} tools such as \texttt{Pilon} improve base accuracy using mappings
+    \item \textbf{Decontamination:} BlobTools, NCBI FCS detect foreign sequences
+    \item \textbf{Organellar assembly:} tools such as MitoHiFi and OATK target mitochondrial/chloroplast genomes
+\end{itemize}
+
+\begin{solution}
+Decontamination is vital for metagenome-derived samples and field-collected specimens.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\newpage
+
+\section{In-Class Exercises}
+
+\subsection*{Exercise 1: MinHash Overlaps}
+
+A long read is decomposed into the following 6 $k$-mers:
+
+\[
+\{AATCG, ATCGT, TCGTA, CGTAC, GTACG, TACGA\}.
+\]
+
+The min-hash function selects the lexicographically smallest $k$-mer as the signature.
+
+\begin{enumerate}
+    \item Compute the min-mer for the read.
+    \item Determine whether two reads overlap if they share the same min-mer.
+\end{enumerate}
+
+\begin{solution}
+The smallest $k$-mer is \texttt{AATCG}. Two reads sharing this min-mer are likely to overlap, but additional min-mers or sketches are typically needed for robust detection.
+\end{solution}
+
+% ----
+
+\subsection*{Exercise 2: Repeat Graph Reasoning}
+
+You observe two repeat copies in a Flye graph: one bridged, one not.
+
+\begin{enumerate}
+    \item Explain how Flye resolves the bridged repeat.
+    \item Explain how Flye resolves the unbridged repeat.
+\end{enumerate}
+
+\begin{solution}
+Bridged repeats are resolved by direct read traversal. Unbridged repeats are resolved using small sequence differences and consistency between disjointigs.
+\end{solution}
+
+% ----
+
+\subsection*{Exercise 3: Hi-C Misassembly Detection}
+
+Given a Hi-C contact heatmap with a disrupted diagonal:
+
+\begin{enumerate}
+    \item Interpret the meaning of an abrupt diagonal break.
+    \item Suggest a repair strategy.
+\end{enumerate}
+
+\begin{solution}
+A diagonal break indicates a misjoin between contigs. Tools like SALSA2 or YaHS can break and reassemble the problematic junction based on Hi-C support.
+\end{solution}
+
+% ----
+
+\subsection*{Exercise 4: Haplotype Bubbles}
+
+You see a bubble in a HiFiAsm graph representing two possible paths.
+
+\begin{enumerate}
+    \item Identify what genomic feature this represents.
+    \item Describe a criterion to decide which path belongs to haplotype A vs B.
+\end{enumerate}
+
+\begin{solution}
+This represents heterozygosity. Reads supporting each variant (SNPs, small indels) determine the haplotype assignment.
+\end{solution}
+
+% ----
+
+\subsection*{Exercise 5: Homopolymer Compression}
+
+Explain why homopolymer compression improves overlap detection for HiFi reads.
+
+\begin{solution}
+Most HiFi read errors occur in homopolymer length estimation. Compressing runs (e.g., AAAA → A) removes this error source before alignment.
+\end{solution}
+
+% ------------------------------------------------------------------
+
+\end{document}
