@@ -1,0 +1,296 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing}
+
+% ===============================
+% Toggle: student vs instructor
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version (no solutions)
+%\solutionstrue       % <-- Instructor version (solutions visible)
+
+% ===============================
+% Styles (Style 1 — Clean Minimalist)
+% ===============================
+\definecolor{instrblue}{RGB}{0,70,160}
+\definecolor{edgeblue}{RGB}{30,90,180}
+
+% Diagram styles
+\tikzset{
+  read/.style={rectangle, rounded corners=2pt, draw=black!60, fill=black!5, inner sep=3pt, minimum width=18pt, minimum height=12pt, font=\footnotesize},
+  node/.style={circle, draw=black!60, fill=black!5, inner sep=1.8pt, minimum size=16pt, font=\footnotesize},
+  edge/.style={-Latex, very thin, draw=edgeblue},
+  altedge/.style={-Latex, very thin, draw=black!60, dashed},
+  pathhl/.style={-Latex, semithick, draw=black}, % highlight path (monochrome friendly)
+  err/.style={-Latex, thin, draw=black, dashed}, % shows erroneous or low-confidence edges
+  tip/.style={-Latex, thin, draw=black!60, densely dotted}
+}
+
+% ===============================
+% Robust solution environment
+% ===============================
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Solution. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / Footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Sequencing \& Assembly — Lecture 3}
+\rhead{BINF301}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version — Solutions Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Lecture 5: Repeats}}\\[6pt]
+    {\Large \textbf{Student Handout \& In-Class Exercises}}\\[10pt]
+    \textbf{Course:} BINF301 — Computational Biology \\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 28/01/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+\section{The C-value Paradox}
+\textbf{C-value:} the amount of DNA in a haploid genome (pg). Eukaryotic genome size does \emph{not} correlate with organismal ``complexity''; closely related species can have vastly different genome sizes. Much of the size variation is explained by non-coding and repetitive DNA. % Slides: BINF301_Lecture5_Repeats.pdf
+\begin{solution}
+Key messages to stress:
+(1) Genome size varies over orders of magnitude among eukaryotes.
+(2) Differences are largely driven by repeat/TE content rather than gene number.
+(3) Avoid equating genome size with organismal complexity.
+\end{solution}
+
+\section{Types of Repetitive DNA}
+Repeat classification (non-exhaustive):
+\begin{itemize}
+  \item \textbf{By location:} interspersed vs.\ tandem; segmental duplications.
+  \item \textbf{By structure:} simple/low-complexity vs.\ composite elements (e.g., LTR).
+  \item \textbf{By autonomy:} autonomous vs.\ non-autonomous (``hitch-hiking'').
+  \item \textbf{By replication mode:} copy-and-paste (retrotransposons) vs.\ cut-and-paste (DNA transposons).
+  \item \textbf{By activity:} active vs.\ inactivated relics.
+\end{itemize}
+\begin{solution}
+Helpful framing: \emph{Interspersed} repeats are dispersed copies (often TEs), while \emph{tandem} repeats are adjacent copies (e.g., satellites). Autonomy indicates whether the element encodes the machinery needed for its own mobilization.
+\end{solution}
+
+\section{Simple (Tandem) Repeats}
+\begin{itemize}
+  \item \textbf{Satellites:} short motifs (e.g., \texttt{TATA...}) repeated head-to-tail; common in centromeres.
+  \item \textbf{Telomeres:} vertebrate consensus \texttt{TTAGGG}.
+  \item \textbf{Mechanism:} often formed by \emph{slipped-strand mispairing} during replication.
+\end{itemize}
+\begin{solution}
+Emphasize the distinction between tandem repeats (periodic, adjacent) and interspersed elements (TEs). Simple repeats are important for chromosome structure (centromeres/telomeres), but can also complicate assembly.
+\end{solution}
+
+\section{Transposable Elements (TEs)}
+TEs are mobile DNA first described by McClintock. Two broad classes:
+\subsection{Retrotransposons (copy-and-paste)}
+\begin{itemize}
+  \item \textbf{LTR retrotransposons:} share features with retroviruses (but lack viral envelope/capsid).
+  \item \textbf{Non-LTR:} \textbf{LINEs} (autonomous; \(\sim\)17\% of human genome, mostly inactive); \textbf{SINEs} (non-autonomous; up to \(\sim\)15\%).
+  \item \textbf{Mechanism:} RNA intermediate, reverse transcription (e.g., TPRT for LINE-1).
+\end{itemize}
+\subsection{DNA Transposons (cut-and-paste)}
+\begin{itemize}
+  \item Typically have \textbf{TIRs} (terminal inverted repeats) and generate \textbf{TSDs} at insertion.
+  \item Families include Type II transposons, Helitrons; some encode their own transposase; Polintons (Type III) encode polymerase/integrase and have TIRs.
+\end{itemize}
+\begin{solution}
+Talking points:
+(1) \textbf{Autonomous vs.\ non-autonomous:} LINEs carry ORF1/ORF2; SINEs \emph{lack} these and parasitize LINE machinery.
+(2) \textbf{Mechanistic fingerprints:} TIRs/TSDs for DNA transposons; LTRs for LTR retrotransposons; target-primed reverse transcription for LINE-1.
+(3) \textbf{Activity:} In humans, most copies are ancient and inactive, but remnants dominate genome composition.
+\end{solution}
+
+\section{Repeats and Genome Evolution}
+\begin{itemize}
+  \item TE proliferation expands genomes; inactive copies accumulate.
+  \item Repeats can generate structural variation, gene duplication/deletion, new regulatory elements, and occasionally new genes.
+  \item \textbf{Horizontal Transposon Transfer (HTT):} transfer across species via vectors (e.g., parasites/viruses); detection remains challenging.
+\end{itemize}
+\begin{solution}
+Balance the narrative: although many TEs are neutral or deleterious at insertion, over long timescales they contribute to innovation (cis-regulatory rewiring, exon shuffling) and plasticity. HTT is rare in eukaryotes but increasingly documented.
+\end{solution}
+
+\section{Repeat Detection: Core Tools and Ideas}
+\subsection{TRF (Tandem Repeat Finder)}
+Sliding-window search for periodic \(k\)-mers; identifies candidate regions, checks periodic spacing/consistency, and reports tandem repeat units.
+\begin{solution}
+Students should know that TRF is specialized for tandem repeats (satellites, microsatellites) and not for interspersed TEs.
+\end{solution}
+
+\subsection{RECON}
+Alignment-based \emph{de novo} TE discovery:
+\begin{enumerate}
+  \item Compute pairwise alignments; define \emph{images} (aligned subsequences).
+  \item Cluster images via single-linkage (syntopy rules) to infer \emph{elements}.
+  \item Build inter-element graph; refine edges (primary/secondary) and detect triangles to avoid false family merges; connected components define \emph{families}.
+\end{enumerate}
+\begin{solution}
+Contrast with TRF: RECON is for interspersed repeats/TEs; handles partial copies/degeneration via graph refinement.
+\end{solution}
+
+\subsection{RepeatScout}
+Seed-and-extend on frequent \(k\)-mers:
+\begin{itemize}
+  \item Start from high-frequency \(k\)-mers; greedily extend to maximize a consensus scoring function (with penalties for dangling ends).
+  \item Iteratively extract consensus families and remove their instances from the \(k\)-mer table.
+\end{itemize}
+\begin{solution}
+RepeatScout tends to be faster than all-vs-all alignment (RECON) and is effective when families still share abundant \(k\)-mers.
+\end{solution}
+
+\subsection{RED (REpeat Detector)}
+Signal-processing + HMM approach:
+\begin{itemize}
+  \item Assign adjusted \(k\)-mer frequency scores per base; smooth, find local maxima; delineate candidate repeat vs.\ non-repeat regions.
+  \item Train an HMM on candidates, then scan genome to label repeats.
+\end{itemize}
+\begin{solution}
+Key selling points: very fast, self-learning, detects both tandem and interspersed repeats; but does not classify families by type.
+\end{solution}
+
+\subsection{RepeatModeler \& RepeatMasker}
+\begin{itemize}
+  \item \textbf{RepeatModeler}: orchestrates multiple \emph{de novo} tools to build a species-specific repeat library.
+  \item \textbf{RepeatMasker}: screens a genome with known/\emph{de novo} libraries to mask repeats (often very time-consuming).
+\end{itemize}
+\begin{solution}
+A typical pipeline: \emph{RepeatModeler} to build library \(\rightarrow\) \emph{RepeatMasker} to annotate/mask. Useful for downstream gene prediction and variant calling.
+\end{solution}
+
+\newpage
+% --------------------------------------------------------------------
+\section{Exercises}
+
+\subsection{Exercise 1 — C-Value Paradox Reasoning}
+\textbf{Prompt.} The lungfish genome is \(>\)100\(\times\) larger than the human genome. Explain why genome size can increase dramatically without increasing organismal complexity.
+
+\begin{solution}
+Large genomes typically reflect accumulation of repeats/TEs, polyploidy events, and reduced DNA removal mechanisms, not expanded protein-coding gene sets. Many TE insertions become inactive but persist, inflating genome size while contributing little to gene count or ``complexity.''
+\end{solution}
+
+\subsection{Exercise 2 — Classifying Repeat Types}
+\textbf{Prompt.} Classify each as \emph{tandem / interspersed / autonomous / non-autonomous}:
+\begin{enumerate}
+  \item Vertebrate telomere \texttt{TTAGGG}
+  \item SINE (e.g., Alu)
+  \item LINE-1
+  \item Centromeric satellites
+\end{enumerate}
+
+\begin{solution}
+1) Telomere TTAGGG: \emph{tandem} (simple repeat). \quad
+2) SINE/Alu: \emph{interspersed}, \emph{non-autonomous} (uses LINE machinery). \quad
+3) LINE-1: \emph{interspersed}, \emph{autonomous} (encodes ORF1/ORF2). \quad
+4) Centromeric satellites: \emph{tandem} repeats.
+\end{solution}
+
+\subsection{Exercise 3 — TE Replication Mechanisms}
+\textbf{Prompt.} Match TE type to mechanism:
+\begin{center}
+\begin{tabular}{ll}
+A.\ DNA transposons & 1.\ Copy-and-paste (RNA intermediate) \\
+B.\ LINEs & 2.\ Cut-and-paste (DNA intermediate) \\
+C.\ LTR retrotransposons & 3.\ Target-primed reverse transcription \\
+\end{tabular}
+\end{center}
+
+\begin{solution}
+A\(\rightarrow\)2 (DNA transposons cut-and-paste); \quad
+B\(\rightarrow\)3 (LINE-1 uses TPRT); \quad
+C\(\rightarrow\)1 (LTR retrotransposons copy-and-paste via RNA).
+\end{solution}
+
+\subsection{Exercise 4 — Genome Evolution by TEs}
+\textbf{Prompt.} Provide one beneficial and one harmful evolutionary consequence of TE activity.
+
+\begin{solution}
+\textbf{Beneficial:} Creation of novel regulatory elements (TE-derived enhancers/promoters), exon shuffling, or substrate for gene duplication. \\
+\textbf{Harmful:} Disruption of coding/regulatory regions upon insertion; ectopic recombination between repeats causing deletions/rearrangements.
+\end{solution}
+
+\subsection{Exercise 5 — Using TRF}
+\textbf{Prompt.} For sequence \texttt{ATGATGATGATGCCCGTA}:
+\begin{enumerate}
+  \item Identify the tandem repeat motif.
+  \item How many copies?
+\end{enumerate}
+
+\begin{solution}
+(a) Motif = \texttt{ATG}. \quad
+(b) There are 4 adjacent copies: \texttt{ATG ATG ATG ATG} followed by non-repetitive sequence.
+\end{solution}
+
+\subsection{Exercise 6 — RECON vs.\ RepeatScout}
+\textbf{Prompt.} Explain how RECON and RepeatScout differ in discovering repeat families.
+
+\begin{solution}
+\textbf{RECON:} all-vs-all alignments to cluster \emph{images} \(\rightarrow\) infer \emph{elements} \(\rightarrow\) inter-element graph refinement \(\rightarrow\) families; robust to partial/degenerate copies but computationally heavier. \\
+\textbf{RepeatScout:} frequent \(k\)-mer seeding with greedy consensus extension; faster and relies on abundance of short exact words; may struggle if repeats are too diverged to yield frequent \(k\)-mers.
+\end{solution}
+
+\subsection{Exercise 7 — TE Inactivation}
+\textbf{Prompt.} Give two reasons why most LINEs are inactive in humans.
+
+\begin{solution}
+(1) Accumulation of disabling mutations in ORF1/ORF2 or promoter regions over evolutionary time; \\
+(2) Host defense mechanisms (DNA methylation, small RNAs) suppress TE expression; \\
+(3) Truncation at insertion (common for LINE-1) yields defective copies.
+\end{solution}
+
+\subsection{Exercise 8 — RED in Practice (Conceptual)}
+\textbf{Prompt.} Why does RED adjust \(k\)-mer frequencies and then train an HMM?
+
+\begin{solution}
+Adjusted \(k\)-mer scores highlight sequence segments with unexpected repetitiveness beyond base composition; smoothing and local maxima detection define candidate ``repeat'' vs.\ ``non-repeat'' regions. The HMM then generalizes these patterns to label the whole genome efficiently and consistently.
+\end{solution}
+
+
+\end{document}
+% --------------------------------------------------------------------
+\section{Quick Checklist for Students}
+\begin{itemize}
+  \item Distinguish tandem vs.\ interspersed repeats and identify common examples.
+  \item Explain the key mechanisms of LTR, LINE, SINE, and DNA transposons.
+  \item Describe at least two ways TEs impact genome evolution.
+  \item Know when to use TRF vs.\ \emph{de novo} TE tools (RECON/RepeatScout/RED).
+  \item Understand why RepeatModeler+RepeatMasker are standard for genome-wide masking.
+\end{itemize}

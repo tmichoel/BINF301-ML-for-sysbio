@@ -1,0 +1,156 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{enumerate}
+\usepackage{hyperref}
+
+% ===============================
+% Toggle for instructor notes
+% ===============================
+\newif\ifsolutions
+\solutionsfalse   % <-- Student version
+%\solutionstrue     % <-- Instructor version
+
+\definecolor{instrblue}{RGB}{0,70,160}
+
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Instructor note. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+% ===============================
+% Header / footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BINF301 -- Discussion Plan}
+\rhead{Lecture 3: Genome Assembly (60 min)}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version -- Notes Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{60-Minute Discussion Session Plan}}\\[4pt]
+    {\Large \textbf{Lecture 5: Repeats}}\\[10pt]
+    \textbf{Course:} BINF301 -- Computational Biology\\
+    \textbf{Instructor:} Tom Michoel\\
+    \textbf{Date:} 28/01/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+% ==========================================================
+\section*{0-5 min -- Warm-Up}
+
+%\textbf{Purpose:} Reduce anxiety barriers and encourage early participation.
+
+
+\textbf{Warm-up prompt:}
+
+`Did any of the genome-size figures or TE diagrams stand out or raise questions?''
+
+
+\begin{solution}
+Goal: get students comfortable speaking early; activate recall from key ideas on Slides 3--6 and 10--12 (C-value variation, what counts as repetitive DNA). Encourage brief answers rather than deep explanations at this stage.
+\end{solution}
+
+% ----------------------------------------------
+\section*{5--20 min -- Guided Concept Walkthrough}
+
+\textbf{Purpose:} Establish shared conceptual grounding before deeper discussion.
+
+\textbf{Topics:}
+\begin{itemize}
+    \item The C-value paradox and genome-size variability (Slides 3--6).
+    \item Types of repetitive DNA: tandem vs.\ interspersed, autonomy, replication mode (Slides 10--12).
+    \item Transposable elements: LTR, LINE, SINE, DNA transposons (Slides 14--22).
+    \item Genome evolution impacts: structural variation, plasticity, HTT (Slides 25--28).
+    \item Why repeat detection is difficult (degeneration, partial copies, divergent families; Slides 32--39).
+\end{itemize}
+
+\textbf{Guiding prompts:}
+\begin{itemize}
+    \item ``Why can genome size vary so widely between similar organisms?''
+    \item ``How would you explain the difference between LINEs and SINEs to a beginner?''
+    \item ``What features help us identify whether a TE is autonomous?''
+    \item ``Why do degenerate repeats cause trouble for computational tools?''
+\end{itemize}
+
+\begin{solution}
+Keep the walkthrough brisk. Anchor students by pointing to major diagrams: e.g., C-value plots, TE life-cycle schematics, classification tables, and the TE propagation mechanisms on Slides 17--21. Clarify autonomy vs.\ non-autonomy and replication intermediates.
+\end{solution}
+
+% % ----------------------------------------------
+% \section*{20--40 min -- Mini Case / Exercises Block}
+
+% \textbf{Format:} Students work in pairs or small groups; instructor circulates.
+
+% \textbf{Activities:}
+% \begin{enumerate}
+%     \item \textbf{Repeat classification:} Given short descriptions or sequences, classify them as tandem/interspersed, autonomous/non-autonomous, or RNA vs.\ DNA intermediate (Slides 12--20).
+%     \item \textbf{Mechanism matching:} Match each TE with its propagation mechanism (TPRT, cut-and-paste, LTR retrotransposition; Slides 14--21).
+%     \item \textbf{Repeat detection reasoning:} Given simplified outputs from TRF, RECON, or RepeatScout, decide which tool best fits which repeat type and why (Slides 33--39, 46--53).
+%     \item \textbf{Evolution scenario:} Evaluate how TE activation in a stressed population might affect genome size or generate structural variants (Slides 25--28).
+% \end{enumerate}
+
+% \begin{solution}
+% Encourage students to refer to specific slide visuals during discussion. Emphasize mechanism recognition: LINE = TPRT; LTR = retroviral-like; DNA transposons = TIRs + cut/paste. For detection tools, TRF → tandem repeats; RECON/RepeatScout → TE families; RED → rapid genome-wide detection.
+% \end{solution}
+
+% ----------------------------------------------
+\section*{20--40 min -- Open Reflection \& Deep Dive}
+
+\textbf{Discussion prompts:}
+\begin{itemize}
+    \item ``Which classification dimension (mechanism, structure, autonomy) is hardest for you?''
+    \item ``Why does repeat degeneration complicate family classification?''
+    \item ``How do LINEs and SINEs co-evolve? Why do SINEs depend on LINE machinery?''
+    \item ``Which detection approach (alignment-based, \(k\)-mer–based, HMM-based) best handles highly degenerate repeats?''
+    \item ``How do repeats affect genome assembly, annotation, and error-prone regions?''
+\end{itemize}
+
+\begin{solution}
+Use this block to unify biological and computational angles. Encourage reasoning rather than fact recall. For example: degeneration → lower sequence identity → clustering ambiguity; TE co-evolution → shared machinery but different autonomy; HMMs (RED) handle weak signals better than strict \(k\)-mer frequency.
+\end{solution}
+
+% ----------------------------------------------
+\section*{40--55 min -- Assignment}
+
+Work on the Portfolio Assignment Genomics, task data retrieval.
+
+% ----------------------------------------------
+\section*{55--60 min -- Wrap-Up}
+
+\textbf{Closing prompt:}
+
+``What remains confusing about how repeat detection tools differentiate families?''
+
+
+\begin{solution}
+Collect a quick diagnostic of students' comprehension. These answers help target the next lecture (e.g., more depth on TE evolution, or practical lab work on RepeatMasker/RepeatModeler).
+\end{solution}
+
+% ----------------------------------------------
+
+\end{document}
