@@ -1,0 +1,351 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing}
+
+% ===============================
+% Toggle: student vs instructor
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version (no solutions)
+%\solutionstrue       % <-- Instructor version (solutions visible)
+
+% ===============================
+% Styles (Style 1 — Clean Minimalist)
+% ===============================
+\definecolor{instrblue}{RGB}{0,70,160}
+\definecolor{edgeblue}{RGB}{30,90,180}
+
+% Diagram styles
+\tikzset{
+  read/.style={rectangle, rounded corners=2pt, draw=black!60, fill=black!5, inner sep=3pt, minimum width=18pt, minimum height=12pt, font=\footnotesize},
+  node/.style={circle, draw=black!60, fill=black!5, inner sep=1.8pt, minimum size=16pt, font=\footnotesize},
+  edge/.style={-Latex, very thin, draw=edgeblue},
+  altedge/.style={-Latex, very thin, draw=black!60, dashed},
+  pathhl/.style={-Latex, semithick, draw=black}, % highlight path (monochrome friendly)
+  err/.style={-Latex, thin, draw=black, dashed}, % shows erroneous or low-confidence edges
+  tip/.style={-Latex, thin, draw=black!60, densely dotted}
+}
+
+% ===============================
+% Robust solution environment
+% ===============================
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Solution. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / Footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Sequencing \& Assembly — Lecture 3}
+\rhead{BINF301}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version — Solutions Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Lecture 6: Genome Annotation}}\\[6pt]
+    {\Large \textbf{Student Handout \& In-Class Exercises}}\\[10pt]
+    \textbf{Course:} BINF301 — Computational Biology \\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 2/2/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+% ---------------------------------------------------------
+\section{What is Genome Annotation? (Slides 2--3)}
+
+A genome is a long nucleotide sequence; annotation aims to identify:
+\begin{itemize}
+    \item \textbf{Structural elements}: gene locations, repeats, ncRNAs, tRNAs, rRNAs, regulatory regions.
+    \item \textbf{Functional elements}: functions assigned to predicted genes and RNAs.
+\end{itemize}
+
+
+\begin{solution}
+Emphasize: annotation has two parts—finding features and assigning meaning.  
+Make clear to students that much of a genome is \emph{noncoding} and must still be annotated (regulatory sites, ncRNAs, repeats).
+\end{solution}
+
+% ---------------------------------------------------------
+\section{Annotation Workflow (Slide 3)}
+
+A general annotation workflow includes:
+\begin{enumerate}
+    \item Repeat masking
+    \item Gene prediction (ab initio, extrinsic, or combined)
+    \item Prediction of additional functional elements (ncRNA, tRNA, rRNA)
+    \item Functional annotation (domains, homology)
+\end{enumerate}
+
+
+\begin{solution}
+Clarify that these steps occur in both prokaryotic and eukaryotic annotation, but with major differences in complexity.
+\end{solution}
+
+% ---------------------------------------------------------
+\section{Repeat Masking (Slides 5--8)}
+
+Many eukaryotic genomes contain \textbf{25--50\%} repeats. Masking repeats prevents false gene predictions and reduces the candidate search space.  
+
+
+\subsection{Soft vs. Hard Masking (Slide 7)}
+\textbf{Soft masking:} bases converted to lowercase.  
+\textbf{Hard masking:} repeat regions replaced with \texttt{N}.
+
+Tools:
+\begin{itemize}
+    \item RepeatModeler + RepeatMasker (de novo + masking; slow)
+    \item RED (fast, no classification)
+\end{itemize}
+
+
+\begin{solution}
+Make students aware that different gene-finders expect one masking type or the other.  
+Soft masking retains information and is preferred when splice-aware aligners are used.
+\end{solution}
+
+% ---------------------------------------------------------
+\section{Prokaryotic Genome Annotation (Slides 10--14)}
+
+Prokaryotic genomes are simpler due to:
+\begin{itemize}
+    \item No introns
+    \item High gene density
+\end{itemize}
+
+
+\subsection{Prokka Pipeline (Slide 11)}
+Includes: Prodigal (CDS), RNAmmer (rRNA), Aragorn (tRNA), SignalP (signal peptides), Infernal (ncRNAs).  
+
+
+\subsection{Prodigal (Slides 12--13)}
+Uses:
+\begin{itemize}
+    \item ORF discovery with GC-bias scoring
+    \item Dynamic programming to select best non-overlapping ORFs
+    \item Hexamer frequencies to refine predictions
+    \item RBS detection to refine start sites
+\end{itemize}
+
+
+\begin{solution}
+Focus on: prokaryotic gene finding is essentially a classification of ORFs using statistics; no splice-site modeling needed.
+\end{solution}
+
+% ---------------------------------------------------------
+\section{Noncoding RNA Detection (Slides 15--18)}
+
+Tools:
+\begin{itemize}
+    \item RNAmmer (rRNA; HMMs)
+    \item tRNAscan-SE (tRNA; covariance models)
+    \item Infernal (general ncRNAs; covariance models)
+\end{itemize}
+
+
+\begin{solution}
+Stress that RNA structure is essential—covariance models capture paired bases and secondary structure not available to simple HMMs.
+\end{solution}
+
+% ---------------------------------------------------------
+\section{Eukaryotic Gene Prediction (Slides 20--24)}
+
+Eukaryotic gene prediction is more complex due to introns, exon variation, UTRs, alternative splicing, and long intergenic regions.  
+
+
+\subsection{Ab Initio Prediction (Slides 21--24)}
+HMM-based models include states for:
+\begin{itemize}
+    \item Initial, internal, and terminal exons
+    \item Introns (with splice sites)
+    \item Intergenic regions
+    \item Single-exon genes
+\end{itemize}
+Tools: \textbf{GeneMark}, \textbf{Augustus}.  
+
+
+\begin{solution}
+Explain training: unsupervised (GeneMark) vs.\ supervised (Augustus).  
+Important: proper training greatly increases accuracy.
+\end{solution}
+
+% ---------------------------------------------------------
+\section{Extrinsic Evidence (Slides 25--27)}
+
+Sources:
+\begin{itemize}
+    \item RNA-seq (expression profiles, intron/exon boundaries)
+    \item Protein homology
+\end{itemize}
+
+Integrated pipelines:
+\begin{itemize}
+    \item BRAKER2 / BRAKER3
+    \item TSEBRA
+\end{itemize}
+
+
+\begin{solution}
+Correction: RNA-seq alone is insufficient for accurate annotation.  
+Require splice-aware alignment + integration with ab initio predictions.
+\end{solution}
+
+% ---------------------------------------------------------
+\section{Functional Annotation (Slides 32--39)}
+
+Approaches:
+\begin{itemize}
+    \item Domain-based: Pfam, CDD
+    \item Homology-based: Reciprocal Best Hit (RBH), BLAST
+    \item Combined systems: InterProScan, eggNOG mapper
+\end{itemize}
+
+
+\begin{solution}
+Caution: domain presence does not guarantee exact function; annotations are probabilistic.
+\end{solution}
+
+% ---------------------------------------------------------
+\section{Annotation Quality Assessment (Slides 41--52)}
+
+\subsection{BUSCO (Slides 41--43)}
+Uses lineage-specific universal single-copy orthologs to evaluate:
+\begin{itemize}
+    \item Completeness (single-copy, duplicated)
+    \item Missing genes
+\end{itemize}
+
+
+\subsection{OMArk (Slides 45--52)}
+Evaluates:
+\begin{itemize}
+    \item Proteome completeness
+    \item Phylogenetic consistency
+    \item Contamination
+\end{itemize}
+Uses OMA gene families and k-mer–based mapping (OMAmer).  
+
+
+\begin{solution}
+Distinguish roles: BUSCO tests “is most of the conserved gene set present?”, OMArk tests “is the annotation evolutionarily consistent?”.
+\end{solution}
+
+\newpage
+% ---------------------------------------------------------
+\section{Exercises}
+
+\subsection{Exercise 1: Why Mask Repeats? (Slides 5--8)}
+
+\textbf{Question:} Why must repeats be masked before annotation?
+
+\begin{solution}
+Repeats cause spurious ORFs and inflate false-positive gene calls; masking reduces errors and computation.
+\end{solution}
+
+% ---
+\subsection{Exercise 2: Soft vs Hard Masking (Slide 7)}
+
+\textbf{Sequence:} \texttt{ACGTCGGatatatatatCGATGA}
+
+\textbf{Question:} Which masking type is this? What would the other type look like?
+
+\begin{solution}
+Lowercase = soft-masked.  
+Hard-masked form: \texttt{ACGTCGGNNNNNNNNNNCGATGA}.
+\end{solution}
+
+% ---
+\subsection{Exercise 3: Prokaryotic Simplicity (Slides 10--11)}
+
+\textbf{Question:} List two reasons prokaryotic annotation is easier.
+
+\begin{solution}
+No introns; high gene density; straightforward ORFs.
+\end{solution}
+
+% ---
+\subsection{Exercise 4: Ab Initio vs Extrinsic (Slides 21--27)}
+
+\textbf{Question:} How do ab initio and extrinsic prediction differ?
+
+\begin{solution}
+Ab initio uses only genomic sequence/HMMs; extrinsic uses RNA-seq/protein evidence to guide boundaries.
+\end{solution}
+
+% ---
+\subsection{Exercise 5: Functional Annotation (Slides 32--39)}
+
+\textbf{Question:} Name two functional annotation strategies.
+
+\begin{solution}
+Domain detection (Pfam/CDD) and homology-based inference (BLAST/RBH).
+\end{solution}
+
+% ---
+\subsection{Exercise 6: BUSCO Interpretation (Slides 41--43)}
+
+\textbf{Question:} What does 70\% BUSCO completeness imply?
+
+\begin{solution}
+Many conserved genes missing or fragmented → incomplete assembly/annotation.
+\end{solution}
+
+% ---
+\subsection{Exercise 7: Tool Matching}
+
+Match tools to functions:
+
+a. RNAmmer \\
+b. tRNAscan-SE \\
+c. RepeatMasker \\
+d. InterProScan
+
+\textbf{Purposes:}  
+1. Protein domain detection  
+2. rRNA prediction  
+3. Repeat masking  
+4. tRNA prediction
+
+\begin{solution}
+a–2,\; b–4,\; c–3,\; d–1.
+\end{solution}
+
+% ---------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,236 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+
+% ===============================
+% Toggle solutions (instructor notes)
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version
+%\solutionstrue      % <-- Instructor version
+
+\definecolor{instrblue}{RGB}{0,70,160}
+
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Instructor note. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BINF301 -- Discussion Plan}
+\rhead{90-Min Session}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version -- Notes Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{90-Minute Discussion Session Plan}}\\[4pt]
+    {\Large \textbf{Lecture 6: Genome Annotation}}\\[10pt]
+    \textbf{Course:} BINF301 -- Computational Biology\\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 2/2/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{0--10 min — Warm-Up}
+
+\textbf{Prompt:}
+
+\begin{quote}
+    Which part of genome annotation seems most challenging: repeat masking, gene prediction, or functional annotation?
+\end{quote}
+
+
+
+\begin{solution}
+Goal: activate prior knowledge and reduce anxiety around annotation workflows.  
+Use this time to challenge the misconception that annotation is only about coding genes.  
+(Slides 2–3: definition of genome annotation)
+\end{solution}
+
+% ---------------------------------------------------------
+\section*{10--25 min — Think–Pair–Share}
+
+\textbf{Main Prompt:}
+\begin{quote}
+Why is repeat masking the first step in most genome annotation pipelines?
+\end{quote}
+
+\textbf{Follow-up Questions:}
+\begin{itemize}
+    \item ``What specific problems do unmasked repeats cause for ab initio gene predictors?''
+    \item ``How does softmasking vs.\ hardmasking influence downstream tools?''
+    \item ``Why can repeat detection be slow, and why might RED be used instead of RepeatMasker?''
+\end{itemize}
+
+\begin{solution}
+Expected points:  
+\begin{itemize}
+    \item Repeats create spurious ORFs, inflating false positives in gene prediction (Slides 5–8).  
+    \item Masking reduces search space and improves accuracy of HMM-based predictors.  
+    \item RepeatModeler + RepeatMasker are thorough but slow; RED is fast but not family-aware.  
+    \item Students should articulate differences between softmasking (“lowercase”) and hardmasking (“Ns”).  
+\end{itemize}
+\end{solution}
+
+% ---------------------------------------------------------
+\section*{25--45 min — Structured Group Discussion}
+
+Students form groups of three with rotating roles.
+
+\subsection*{Starter Question}
+\begin{quote}
+Why is eukaryotic gene prediction dramatically harder than prokaryotic annotation?
+\end{quote}
+
+\subsection*{Roles}
+\begin{itemize}
+    \item \textbf{Summarizer:} Explain differences between prokaryotic and eukaryotic gene structure (Slides 10–14 vs.\ 20–24).
+    \item \textbf{Questioner:} Raise a question about ab initio gene prediction (HMM states, GC content, training).  
+    \item \textbf{Connector:} Link RNA-seq/protein homology evidence to gene prediction quality (Slides 25–27).
+\end{itemize}
+
+
+
+\begin{solution}
+Expected discussion points:
+\begin{itemize}
+    \item Prokaryotes: no introns, high gene density → ORF detection is straightforward (Slides 12–14).  
+    \item Eukaryotes: introns, splice sites, long intergenic regions, alternative splicing → HMMs + external evidence needed (Slides 20–24).  
+    \item Students should compare Prokka (modular, prokaryotic) vs.\ BRAKER/Augustus (complex, model-based).  
+\end{itemize}
+\end{solution}
+
+\section*{\emph{Break (15 min)}}
+
+\medskip
+% ---------------------------------------------------------
+
+\section*{45--60 min — Deep Dive: Integrating Evidence Sources}
+
+\textbf{Discussion Prompts:}
+\begin{itemize}
+    \item ``When is ab initio prediction alone insufficient?''
+    \item ``How do BRAKER2 and BRAKER3 integrate intrinsic HMMs with extrinsic RNA-seq and protein hints?''
+    \item ``What are limitations of homology-based predictions in non-model organisms?''
+    \item ``How would you resolve conflicts between RNA-seq evidence and ab initio predictions?''
+\end{itemize}
+
+\begin{solution}
+Emphasize:
+\begin{itemize}
+    \item BRAKER pipelines unify HMM predictions with RNA-seq or homology hints (Slides 27–30).  
+    \item Annotation often requires weighing conflicting data.  
+    \item Students should appreciate the interdependence of evidence sources: HMMs give structure, RNA-seq gives boundaries, homology gives function.  
+\end{itemize}
+\end{solution}
+
+% ---------------------------------------------------------
+
+\section*{60--70 min — Deep Dive:  Annotation Quality Assessment}
+
+\textbf{Prompts:}
+\begin{itemize}
+    \item ``What exactly does BUSCO completeness mean?''
+    \item ``How does OMArk detect contamination and taxonomic inconsistency?''
+    \item ``Why might duplicated BUSCOs indicate fragmentation rather than real gene duplication?''
+\end{itemize}
+
+\begin{solution}
+Key notes to guide the discussion:
+\begin{itemize}
+    \item BUSCO evaluates presence/absence of conserved lineage-specific orthologs (Slides 41–43).  
+    \item OMArk evaluates phylogenetic consistency using OMA gene families and k-mer mapping (Slides 45–52).  
+    \item Multiple copies of BUSCO genes may indicate misannotation, fragmentation, or partial duplicates rather than true biological paralogs.  
+\end{itemize}
+\end{solution}
+
+
+% ---------------------------------------------------------
+\section*{70--90 min — Assignment}
+
+Students work on the Portfolio Assignment Genomics.
+
+% Exercises are conceptual, discussion-focused, no computation needed.
+
+% \subsection*{Exercise 1 — Effects of Missing Repeat Masking}
+% Provide a short sequence containing LINE/SINE-like repeats.  
+% Students identify where ab initio predictors might falsely detect ORFs.
+
+% \subsection*{Exercise 2 — HMM State Reasoning}
+% Show a simplified exon–intron structure diagram.  
+% Students list which HMM states must be traversed: initial exon, intron donor, intron acceptor, internal exon, terminal exon, intergenic.  
+% (Slides 21–22)
+
+% \subsection*{Exercise 3 — RNA-seq Evidence}
+% Provide a small RNA-seq splice-junction schematic.  
+% Students infer exon boundaries and explain why splice-aware alignment is needed.  
+% (Slide 25)
+
+% \subsection*{Exercise 4 — Function Annotation Reasoning}
+% Give examples of proteins with Pfam domain hits vs.\ BLAST hits.  
+% Students decide which annotation is more reliable and why.  
+% (Slides 32–39)
+
+% \begin{solution}
+% Instructor reminders:
+% \begin{itemize}
+%     \item Reinforce why periodicity (3n) modeling is essential for coding potential (Slide 22).  
+%     \item Emphasize RNA-seq’s limitations: low-expression genes and tissue specificity.  
+%     \item Clarify that domain-based and homology-based functional annotation are probabilistic.  
+% \end{itemize}
+% \end{solution}
+
+
+
+% % ---------------------------------------------------------
+% \section*{85--90 min — Reflection \& Wrap-Up}
+
+% \textbf{Closing prompts:}
+% \begin{itemize}
+%     \item ``What misconception about genome annotation was corrected today?''
+%     \item ``Which step—repeat masking, gene prediction, functional assignment, or quality assessment—still confuses you?''
+%     \item ``Which tool (RepeatMasker, Prokka, Augustus, BUSCO) would you like demonstrated next session?''
+% \end{itemize}
+
+% \begin{solution}
+% Use responses to calibrate next lectures.  
+% Students often request demos of Augustus training, RNA-seq hint generation, or BUSCO runs.
+% \end{solution}
+
+
+\end{document}
