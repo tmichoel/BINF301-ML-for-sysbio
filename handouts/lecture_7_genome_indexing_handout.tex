@@ -1,0 +1,312 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing}
+
+% ===============================
+% Toggle: student vs instructor
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version (no solutions)
+%\solutionstrue       % <-- Instructor version (solutions visible)
+
+% ===============================
+% Styles (Style 1 — Clean Minimalist)
+% ===============================
+\definecolor{instrblue}{RGB}{0,70,160}
+\definecolor{edgeblue}{RGB}{30,90,180}
+
+% Diagram styles
+\tikzset{
+  read/.style={rectangle, rounded corners=2pt, draw=black!60, fill=black!5, inner sep=3pt, minimum width=18pt, minimum height=12pt, font=\footnotesize},
+  node/.style={circle, draw=black!60, fill=black!5, inner sep=1.8pt, minimum size=16pt, font=\footnotesize},
+  edge/.style={-Latex, very thin, draw=edgeblue},
+  altedge/.style={-Latex, very thin, draw=black!60, dashed},
+  pathhl/.style={-Latex, semithick, draw=black}, % highlight path (monochrome friendly)
+  err/.style={-Latex, thin, draw=black, dashed}, % shows erroneous or low-confidence edges
+  tip/.style={-Latex, thin, draw=black!60, densely dotted}
+}
+
+% ===============================
+% Robust solution environment
+% ===============================
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Solution. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / Footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Sequencing \& Assembly — Lecture 3}
+\rhead{BINF301}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version — Solutions Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Lecture 7: Searching Genomes and Genome Indexing}}\\[6pt]
+    {\Large \textbf{Student Handout \& In-Class Exercises}}\\[10pt]
+    \textbf{Course:} BINF301 — Computational Biology \\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 4/2/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+% =========================================================
+\section{Text Search Basics (Slides 3--6)}
+
+Genome search is defined as:  
+\textbf{Given a pattern $P$ of length $n$ and a text $T$ of length $m$, find all occurrences of $P$ in $T$.}
+
+Examples:
+\begin{itemize}
+    \item grep-like text search
+    \item text editors (Ctrl+F)
+    \item mapping reads to a reference genome
+\end{itemize}
+
+\textbf{Naïve Approach (Slides 4--6)}: 
+Try every alignment of $P$ in $T$.
+
+\begin{itemize}
+    \item Worst case: $O(mn)$  
+    \item Best case: $O(m)$
+\end{itemize}
+
+\begin{solution}
+This simple algorithm does not scale to large genomes and motivates the need for smarter search and indexing.
+\end{solution}
+
+% =========================================================
+\section{Boyer--Moore Algorithm (Slides 8--15)}
+
+A fast exact matching algorithm using:
+\begin{itemize}
+    \item \textbf{Bad character rule:} After mismatch, shift pattern so mismatch aligns with rightmost matching character.
+    \item \textbf{Good suffix rule:} Reuse matched suffix to shift pattern optimally.
+\end{itemize}
+
+\begin{solution}
+Students should understand that Boyer–Moore reduces unnecessary comparisons by learning from mismatches and matches during alignment.
+\end{solution}
+
+% =========================================================
+\section{Genome Indexing (Slides 17--18)}
+
+Indexing preprocesses the text $T$ to support fast lookups for many patterns.  
+Essential for:
+\begin{itemize}
+    \item read mapping
+    \item repeated queries on a reference genome
+\end{itemize}
+
+% =========================================================
+\section{k-mer Tables (Slides 19--23)}
+
+A basic genome index storing each $k$-mer and the positions where it appears.
+
+Advantages:
+\begin{itemize}
+    \item fast lookup (especially via hashing)
+\end{itemize}
+
+Limitations:
+\begin{itemize}
+    \item best when pattern length equals $k$
+    \item not suitable for all substring lengths
+\end{itemize}
+
+\begin{solution}
+This is conceptually simple and forms the basis of many alignment-free or seed-based methods in read mapping.
+\end{solution}
+
+% =========================================================
+\section{Hash Tables (Slides 28--29)}
+
+Hash tables store key-value pairs with near-constant lookup time.
+
+Used for:
+\begin{itemize}
+    \item $k$-mer count tables
+    \item presence/absence queries
+\end{itemize}
+
+% =========================================================
+\section{Suffix Trees and Suffix Arrays (Slides 32--38)}
+
+\subsection{Suffix Trees}
+Compressed tries of all suffixes.  
+Fast but extremely memory-heavy (on the order of 15 bytes per base).
+
+\subsection{Suffix Arrays}
+A space-efficient alternative:
+\begin{itemize}
+    \item store sorted suffix positions
+    \item support fast binary search
+    \item require much less space
+\end{itemize}
+
+\begin{solution}
+Suffix arrays form the foundation of many modern genome index structures.
+\end{solution}
+
+% =========================================================
+\section{Burrows--Wheeler Transform (Slides 39--41)}
+
+A reversible transform that groups identical characters together, making the text more compressible.
+
+\section{FM-index (Slides 44--52)}
+
+FM-index = BWT + rank/select + partial suffix array sampling.
+
+Properties:
+\begin{itemize}
+    \item extremely low memory usage (about 0.5 bytes/character)
+    \item supports fast backward search
+\end{itemize}
+
+\begin{solution}
+LF-mapping is the key operation students must grasp: it reconstructs the ordering of characters during backward search.
+\end{solution}
+
+% =========================================================
+\section{Hands-On Exercises with Solutions}
+
+\subsection{Exercise 1 — Naïve Search Simulation (Slides 3--6)}
+
+Text: \texttt{ATGATCATGAC}  
+Pattern: \texttt{ATG}
+
+\textbf{Task:} List match positions.
+
+\begin{solution}
+Matches at:
+\begin{itemize}
+    \item positions 1--3
+    \item positions 7--9
+\end{itemize}
+(0-based: 0 and 6)
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 2 — Boyer--Moore Skip (Slides 9--12)}
+
+Pattern: \texttt{ATCGA}  
+Mismatch char: \texttt{T}
+
+\textbf{Task:} Compute skip distance using the bad character rule.
+
+\begin{solution}
+Rightmost \texttt{T} in pattern is at position 2 (1-based).  
+If mismatch occurs at position 4, skip = $4 - 2 = 2$.
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 3 — Build a 3-mer Table (Slides 19--21)}
+
+Text: \texttt{GATATAGA}
+
+\textbf{Task:} List all 3-mers and positions.
+
+\begin{solution}
+\begin{tabular}{ll}
+\texttt{GAT} & 1 \\
+\texttt{ATA} & 2, 4 \\
+\texttt{TAT} & 3 \\
+\texttt{TAG} & 5 \\
+\texttt{AGA} & 6 \\
+\end{tabular}
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 4 — Suffix Array Binary Search (Slides 36--38)}
+
+Suffixes of \texttt{GCTA\$} in sorted order:  
+\begin{tabular}{ll}
+0 & \texttt{\$} \\
+1 & \texttt{A\$} \\
+2 & \texttt{CTA\$} \\
+3 & \texttt{GCTA\$} \\
+4 & \texttt{TA\$} \\
+\end{tabular}
+
+\textbf{Task:} Does ``TA'' occur?
+
+\begin{solution}
+Binary search:
+\begin{itemize}
+    \item mid=2 → \texttt{CTA\$}: continue right
+    \item mid=3 → \texttt{GCTA\$}: continue right
+    \item index=4 → \texttt{TA\$}: match
+\end{itemize}
+Yes, ``TA'' occurs.
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 5 — BWT Construction (Slides 39--41)}
+
+Text: \texttt{GAT\$}
+
+\textbf{Task:} Build BWT.
+
+\begin{solution}
+Rotations: GAT\$, AT\$G, T\$GA, \$GAT  
+Sorted:
+\begin{tabular}{l}
+\$GAT \\
+AT\$G \\
+GAT\$ \\
+T\$GA \\
+\end{tabular}
+BWT = \texttt{T G \$ A}.
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 6 — FM-index Backward Step (Slides 45--48)}
+
+BWT L = \texttt{T G \$ A A}  
+Pattern = \texttt{GA}
+
+\textbf{Task:} Compute initial range for final character \texttt{A}.
+
+\begin{solution}
+Sorted F = \texttt{\$ A A G T}.  
+\texttt{A} occupies indices 2--3 (1-based), so initial range is [2,3].
+\end{solution}
+
+\end{document}
