@@ -1,0 +1,191 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{enumerate}
+\usepackage{hyperref}
+
+% ===============================
+% Toggle for instructor notes
+% ===============================
+\newif\ifsolutions
+\solutionsfalse   % <-- Student version
+%\solutionstrue     % <-- Instructor version
+
+\definecolor{instrblue}{RGB}{0,70,160}
+
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Instructor note. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+% ===============================
+% Header / footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BINF301 -- Discussion Plan}
+\rhead{Lecture 3: Genome Assembly (60 min)}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version -- Notes Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{60-Minute Discussion Session Plan}}\\[4pt]
+    {\Large \textbf{Lecture 7: Searching Genomes and Genome Indexing}}\\[10pt]
+    \textbf{Course:} BINF301 -- Computational Biology\\
+    \textbf{Instructor:} Tom Michoel\\
+    \textbf{Date:} 4/2/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+% ==========================================================
+\section*{0-5 min -- Warm-Up}
+
+%\textbf{Purpose:} Reduce anxiety barriers and encourage early participation.
+
+
+\textbf{Prompts:}
+\begin{itemize}
+    \item ``When you use Ctrl+F or grep, what do you think happens computationally?''
+    \item ``Why might naïve string matching fail for gigabase-scale genomes?''
+    \item ``Which concept from the pre-read seemed most confusing: Boyer--Moore, suffix arrays, or FM-index?''
+\end{itemize}
+
+\begin{solution}
+Goal: surface intuition and break the assumption that search is trivial.  
+Anchor discussion in Slides 3--6, which show costly worst-case $O(mn)$ naive search. 
+\end{solution}
+
+% ----------------------------------------------
+\section*{5--20 min -- Guided Concept Walkthrough}
+
+\textbf{Purpose:} build shared understanding before group work.
+
+\textbf{Topics to revisit:}
+\begin{itemize}
+    \item Why naïve pattern search is slow (Slides 4--6).
+    \item Boyer--Moore logic: bad-character + good-suffix skipping (Slides 9--12).
+    \item Why pattern preprocessing alone is insufficient for large-scale searching.
+    \item Why indexing the \emph{text} (genome) matters (Slides 17--18).
+\end{itemize}
+
+\textbf{Guiding Questions:}
+\begin{itemize}
+    \item ``How do Boyer--Moore's rules avoid redundant comparisons?''
+    \item ``Why is the pattern scanned from right to left in Boyer--Moore?''
+    \item ``Why is text indexing crucial for read mapping and multi-query workloads?''
+\end{itemize}
+
+\begin{solution}
+Stress the shift from ``searching faster'' (Boyer--Moore) to ``preprocessing for repeated queries'' (indexing).  
+Students should clearly connect the motivation for suffix arrays and FM-index to the impracticality of repeated naïve search. 
+\end{solution}
+
+% % ----------------------------------------------
+% \section*{20--40 min -- Mini Case / Exercises Block}
+
+% \textbf{Format:} Students work in pairs or small groups; instructor circulates.
+
+% \textbf{Activities:}
+% \begin{enumerate}
+%     \item \textbf{Repeat classification:} Given short descriptions or sequences, classify them as tandem/interspersed, autonomous/non-autonomous, or RNA vs.\ DNA intermediate (Slides 12--20).
+%     \item \textbf{Mechanism matching:} Match each TE with its propagation mechanism (TPRT, cut-and-paste, LTR retrotransposition; Slides 14--21).
+%     \item \textbf{Repeat detection reasoning:} Given simplified outputs from TRF, RECON, or RepeatScout, decide which tool best fits which repeat type and why (Slides 33--39, 46--53).
+%     \item \textbf{Evolution scenario:} Evaluate how TE activation in a stressed population might affect genome size or generate structural variants (Slides 25--28).
+% \end{enumerate}
+
+% \begin{solution}
+% Encourage students to refer to specific slide visuals during discussion. Emphasize mechanism recognition: LINE = TPRT; LTR = retroviral-like; DNA transposons = TIRs + cut/paste. For detection tools, TRF → tandem repeats; RECON/RepeatScout → TE families; RED → rapid genome-wide detection.
+% \end{solution}
+
+\section*{20--38 min — Structured Small-Group Discussion (Rotating Roles)}
+
+Students form groups of 3.  
+Roles rotate every 6--7 minutes.
+
+\subsection*{Roles}
+\begin{itemize}
+    \item \textbf{Summarizer:} explains how $k$-mer tables and hash tables provide fast fixed-length searches (Slides 19--23, 28--29).
+    \item \textbf{Questioner:} asks about tradeoffs in suffix trees, suffix arrays, and FM-index (Slides 32--52).
+    \item \textbf{Connector:} links indexing structures to real tools (mappers, aligners, search engines).
+\end{itemize}
+
+\subsection*{Starter Question}
+\begin{quote}
+Why do we need different indexing structures for fixed-length and variable-length pattern searches?
+\end{quote}
+
+\begin{solution}
+Expected points:
+\begin{itemize}
+    \item $k$-mer tables excel for fixed-length lookup but fail for variable-length queries (Slides 19--21).
+    \item Suffix trees support arbitrary-length prefix queries but require huge memory (Slides 33--35).
+    \item Suffix arrays provide efficient lexicographic search with smaller space (Slides 36--38).
+    \item FM-index enables compressed and fast backward search (Slides 44--52).
+\end{itemize}
+Encourage comparison of memory vs.\ time tradeoffs.
+\end{solution}
+
+
+% ======================================================
+\section*{40--50 min — Mini Applied Exercise Block}
+
+See handout.
+
+\begin{solution}
+Prompt reasoning, not computation.  
+Guide learners toward:
+\begin{itemize}
+    \item Understanding skip heuristics conceptually.
+    \item Seeing $k$-mers as fast fixed-length seeds.
+    \item Understanding how suffix arrays support prefix search.
+    \item Grasping that BWT is reversible and basis for FM-index.
+\end{itemize}
+\end{solution}
+
+
+% ----------------------------------------------
+\section*{50--60 min -- Synthesis Discussion}
+
+\textbf{Prompts:}
+\begin{itemize}
+    \item ``If you needed to index the human genome on a laptop, which structure would you choose and why?''
+    \item ``How does the FM-index achieve both small size and fast lookup?''
+    \item ``What characteristics of genomes make indexing harder than indexing typical English text?''
+\end{itemize}
+
+\begin{solution}
+Key memory comparisons from slides:
+\begin{itemize}
+    \item Suffix tree: $>$45 GB for human genome (Slide 35).
+    \item Suffix array: $\sim$12 GB (Slide 37).
+    \item FM-index: $\sim$1.5 GB (Slide 52).
+\end{itemize}
+Push students toward articulating why compression and rank/select operations achieve speed + small footprint.
+\end{solution}
+
+
+
+\end{document}
