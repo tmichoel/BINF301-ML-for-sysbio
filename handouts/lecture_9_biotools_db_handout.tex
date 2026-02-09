@@ -1,0 +1,364 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing}
+
+% ===============================
+% Toggle: student vs instructor
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version (no solutions)
+%\solutionstrue       % <-- Instructor version (solutions visible)
+
+% ===============================
+% Styles (Style 1 — Clean Minimalist)
+% ===============================
+\definecolor{instrblue}{RGB}{0,70,160}
+\definecolor{edgeblue}{RGB}{30,90,180}
+
+% Diagram styles
+\tikzset{
+  read/.style={rectangle, rounded corners=2pt, draw=black!60, fill=black!5, inner sep=3pt, minimum width=18pt, minimum height=12pt, font=\footnotesize},
+  node/.style={circle, draw=black!60, fill=black!5, inner sep=1.8pt, minimum size=16pt, font=\footnotesize},
+  edge/.style={-Latex, very thin, draw=edgeblue},
+  altedge/.style={-Latex, very thin, draw=black!60, dashed},
+  pathhl/.style={-Latex, semithick, draw=black}, % highlight path (monochrome friendly)
+  err/.style={-Latex, thin, draw=black, dashed}, % shows erroneous or low-confidence edges
+  tip/.style={-Latex, thin, draw=black!60, densely dotted}
+}
+
+% ===============================
+% Robust solution environment
+% ===============================
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Solution. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / Footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Sequencing \& Assembly — Lecture 3}
+\rhead{BINF301}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version — Solutions Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Lecture 9: Bioinformatics Tools \& Databases}}\\[6pt]
+    {\Large \textbf{Student Handout \& In-Class Exercises}}\\[10pt]
+    \textbf{Course:} BINF301 — Computational Biology \\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 11/2/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+% =========================================================
+\section{ELIXIR \& Core Data Resources (Slides 3--7)}
+
+ELIXIR is a Europe-wide infrastructure that coordinates and develops:
+\begin{itemize}
+    \item Life-science data resources,
+    \item computing platforms,
+    \item standardized metadata and interoperability tools,
+    \item training and community networks.
+\end{itemize}
+
+
+ELIXIR promotes the FAIR principles:
+\begin{itemize}
+    \item \textbf{Findable:} indexed, searchable, identifiable;
+    \item \textbf{Accessible:} open protocols and metadata access;
+    \item \textbf{Interoperable:} shared vocabularies, structured data;
+    \item \textbf{Reusable:} rich metadata, clear licensing, provenance.
+\end{itemize}
+
+
+\begin{solution}
+Make clear to students that ELIXIR is about \emph{both} data and tools, and that FAIR principles guide modern research data management. 
+\end{solution}
+
+% =========================================================
+\section{What is a Bioinformatic Tool? (Slides 9--12)}
+
+A bioinformatic tool is software that:
+\begin{itemize}
+    \item implements one or more computational algorithms,
+    \item accepts biological data as input,
+    \item produces processed/analyzed/annotated biological output,
+    \item may have various interfaces (CLI, GUI, web, API).
+\end{itemize}
+
+
+Metadata describing tools (format expectations, algorithms, dependencies) is essential for reproducibility.
+
+\begin{solution}
+Students often think ``tools = big software packages.'' Instead, stress that even a small script can be a tool if it implements a meaningful computational function.
+\end{solution}
+
+% =========================================================
+\section{Finding \& Using Tools (Slides 13--17)}
+
+Researchers typically discover tools through:
+\begin{itemize}
+    \item publications,
+    \item community recommendations,
+    \item conferences,
+    \item tool registries such as \textbf{bio.tools},
+    \item the Galaxy tools ecosystem.
+\end{itemize}
+
+
+\subsection{bio.tools Registry (Slides 14--18)}
+\begin{itemize}
+    \item ELIXIR-funded tool registry,
+    \item 29,227 entries (Feb.\ 2024),
+    \item uses unique identifiers and ontology-based tags.
+\end{itemize}
+
+
+\begin{solution}
+Highlight key teaching point: metadata-rich registries like bio.tools enable better discovery, evaluation, and reuse of computational tools.
+\end{solution}
+
+% =========================================================
+\section{Installing \& Running Tools (Slides 19--22)}
+
+Bioinformatics tools are typically installed via:
+\begin{itemize}
+    \item Linux/Unix native binaries,
+    \item macOS (sometimes compatible),
+    \item Windows via WSL,
+    \item Conda/Bioconda/Mamba for dependency management,
+    \item Docker or Singularity containers for full reproducibility,
+    \item GitHub repositories and manual compilation.
+\end{itemize}
+
+
+\begin{solution}
+Students should understand the tradeoffs:  
+Conda = easy dependency resolution;  
+Containers = fully reproducible environment;  
+Manual builds = flexible but error-prone.
+\end{solution}
+
+% =========================================================
+\section{Bioinformatic Workflows (Slides 24--28)}
+
+Large analyses combine multiple steps → workflows.
+
+\subsection{Workflow Languages (Slide 25)}
+\begin{itemize}
+    \item \textbf{CWL}: command-line focused.
+    \item \textbf{Snakemake}: Python-based; hybrid scripting + rules.
+    \item \textbf{Nextflow}: scalable, portable, used by NF-core.
+\end{itemize}
+
+
+\subsection{Workflow Databases (Slide 28)}
+\begin{itemize}
+    \item \textbf{WorkflowHub}: FAIR-compliant, domain-agnostic repository.
+    \item \textbf{NF-core}: curated Nextflow pipelines.
+\end{itemize}
+
+
+\begin{solution}
+Explain reproducibility: workflows encode both tool calls and metadata, enabling robust, shareable analyses.
+\end{solution}
+
+% =========================================================
+\section{Databases (Slides 31--45)}
+
+A true database is:
+\begin{itemize}
+    \item structured, machine-readable,
+    \item built on a database management system (e.g.\ SQL),
+    \item consistent and queryable.
+\end{itemize}
+
+
+\subsection{Data Deposition (Slide 33)}
+Many journals require deposition in:
+\begin{itemize}
+    \item \textbf{SRA} (NCBI),
+    \item \textbf{ENA} (Europe),
+    \item \textbf{DDBJ} (Japan),
+\end{itemize}
+which synchronize globally.
+
+
+\subsection{Widely Used Databases (Slides 38--45)}
+\begin{itemize}
+    \item \textbf{ENA, GenBank, SRA} — sequence archives
+    \item \textbf{UniProt} — protein knowledgebase
+    \item \textbf{Ensembl} — annotated genomes
+    \item \textbf{OrthoDB} — ortholog groups
+    \item \textbf{BRENDA} — enzyme function
+    \item \textbf{KEGG} — pathways
+    \item \textbf{PDB} — protein structures
+    \item \textbf{InterPro/PFAM} — protein domains
+\end{itemize}
+
+
+\begin{solution}
+Point out that each database solves different biological questions; knowing which one to query is a key skill in bioinformatics.
+\end{solution}
+
+% =========================================================
+\section{Programmatic Access (Slides 47--55)}
+
+Modern datasets support machine-readable interfaces:
+\begin{itemize}
+    \item \textbf{REST APIs} for structured HTTP output (JSON, XML),
+    \item \textbf{BioMart} for data mining,
+    \item \textbf{NCBI E-utils} for scripted access (ESearch, ESummary, EFetch),
+    \item \textbf{NCBI Datasets} for bulk genome/gene downloads.
+\end{itemize}
+
+
+\begin{solution}
+Instructor should clarify the role of REST: all parameters in URL, standardized output, ideal for scripting and automation.
+\end{solution}
+
+% =========================================================
+\section{Exercises (with Solutions)}
+
+\subsection{Exercise 1 — FAIR Principles}
+
+Match:
+\begin{itemize}
+    \item[a.] Dataset includes rich metadata + license.
+    \item[b.] Database provides JSON API.
+    \item[c.] Sequence has stable accession number.
+    \item[d.] Workflow uses controlled vocabularies.
+\end{itemize}
+
+with: Findable, Accessible, Interoperable, Reusable.
+
+\begin{solution}
+a→Reusable;  
+b→Accessible;  
+c→Findable;  
+d→Interoperable.  
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 2 — bio.tools Exploration}
+
+Pick a known tool and identify:
+\begin{itemize}
+    \item tool name,
+    \item bio.tools identifier,
+    \item input type,
+    \item output type.
+\end{itemize}
+
+\begin{solution}
+Example: \textbf{FastQC}.  
+Inputs: FASTQ files.  
+Outputs: HTML reports + per-base quality statistics.  
+bio.tools identifier varies (conceptual example).
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 3 — Tool Installation Methods}
+
+Choose best installation method:
+\begin{enumerate}
+    \item Tool with many dependencies all available in Conda.  
+    \item Tool requiring an old Linux library.  
+    \item Complex workflow with many collaborators.  
+    \item Simple script with no dependencies.
+\end{enumerate}
+
+Options: Conda, container, workflow language, manual install.
+
+\begin{solution}
+1→Conda;  
+2→Container (ensures environment consistency);  
+3→Nextflow/Snakemake workflow;  
+4→Manual install (lightweight).
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 4 — Database Choice}
+
+Match task → database:
+\begin{itemize}
+    \item Retrieve all human protein sequences.
+    \item Find 3D kinase structure.
+    \item Download metagenome reads.
+    \item Retrieve orthologs across insects.
+\end{itemize}
+
+\begin{solution}
+Human proteins → UniProt;  
+Kinase structure → PDB;  
+Metagenome reads → SRA/ENA;  
+Orthologs → OrthoDB.
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 5 — REST vs E-utils}
+
+Explain the difference.
+
+\begin{solution}
+REST: generic web API using structured URLs, returns JSON/XML, widely used across databases.  
+E-utils: NCBI-specific REST-like API with ESearch/EFetch operations for querying and retrieving NCBI data.
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 6 — Workflow Languages True/False}
+
+\begin{enumerate}
+    \item CWL focuses on command-line tools.  
+    \item Snakemake is Bash-based.  
+    \item Nextflow emphasizes scalability.  
+    \item NF-core workflows use Galaxy.
+\end{enumerate}
+
+\begin{solution}
+1: True.  
+2: False (Python-based).  
+3: True.  
+4: False (Nextflow-only).  
+\end{solution}
+
+% =========================================================
+
+\end{document}

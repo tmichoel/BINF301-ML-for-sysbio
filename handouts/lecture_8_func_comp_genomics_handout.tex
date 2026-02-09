@@ -1,0 +1,309 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===============================
+% Packages
+% ===============================
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{environ}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing}
+
+% ===============================
+% Toggle: student vs instructor
+% ===============================
+\newif\ifsolutions
+\solutionsfalse    % <-- Student version (no solutions)
+%\solutionstrue       % <-- Instructor version (solutions visible)
+
+% ===============================
+% Styles (Style 1 — Clean Minimalist)
+% ===============================
+\definecolor{instrblue}{RGB}{0,70,160}
+\definecolor{edgeblue}{RGB}{30,90,180}
+
+% Diagram styles
+\tikzset{
+  read/.style={rectangle, rounded corners=2pt, draw=black!60, fill=black!5, inner sep=3pt, minimum width=18pt, minimum height=12pt, font=\footnotesize},
+  node/.style={circle, draw=black!60, fill=black!5, inner sep=1.8pt, minimum size=16pt, font=\footnotesize},
+  edge/.style={-Latex, very thin, draw=edgeblue},
+  altedge/.style={-Latex, very thin, draw=black!60, dashed},
+  pathhl/.style={-Latex, semithick, draw=black}, % highlight path (monochrome friendly)
+  err/.style={-Latex, thin, draw=black, dashed}, % shows erroneous or low-confidence edges
+  tip/.style={-Latex, thin, draw=black!60, densely dotted}
+}
+
+% ===============================
+% Robust solution environment
+% ===============================
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par\medskip
+    \noindent\textbf{\color{instrblue}Solution. }\color{instrblue}\BODY
+    \par\medskip\color{black}
+  \fi
+}
+
+\newcommand{\instrnote}[1]{\ifsolutions{\color{instrblue}\emph{[#1]}}\fi}
+
+% ===============================
+% Header / Footer
+% ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Sequencing \& Assembly — Lecture 3}
+\rhead{BINF301}
+\rfoot{\thepage}
+\ifsolutions
+  \lhead{Instructor Version — Solutions Included}
+\fi
+
+% Section spacing
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+
+% ===============================
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Lecture 8: Functional and Comparative Genomics}}\\[6pt]
+    {\Large \textbf{Student Handout \& In-Class Exercises}}\\[10pt]
+    \textbf{Course:} BINF301 — Computational Biology \\
+    \textbf{Instructor:} Tom Michoel \\
+    \textbf{Date:} 9/2/2026\\
+    \textbf{Created with Copilot}
+\end{center}
+
+\vspace{0.5cm}
+
+
+% =========================================================
+\section{What is Genomic "Function"? (Slides 3--5)}
+
+There is no single agreed-upon definition of ``function'' in genomic sequences.
+Lecture 8 describes three complementary frameworks:
+
+\subsection{Genetic Approach}
+\begin{itemize}
+    \item Function inferred from \textbf{loss-of-function phenotypes} after mutation or interference.
+    \item Limited by redundancy and subtle or context-specific phenotypes.
+\end{itemize}
+
+
+\subsection{Evolutionary Approach}
+\begin{itemize}
+    \item \textbf{Comparative genomics}: conserved sequences often under purifying selection.
+    \item Works well for protein-coding regions; regulatory regions evolve rapidly.
+\end{itemize}
+
+
+\subsection{Biochemical Approach (ENCODE)}
+\begin{itemize}
+    \item Biochemical assays (ChIP-seq, DNase-seq, ATAC-seq, etc.) identify active or bound regions.
+    \item Biochemical signal does not always imply causal function.
+\end{itemize}
+
+
+\begin{solution}
+Important teaching point: students should recognize that ``function'' varies by experimental approach—each approach captures a different biological concept (phenotype, constraint, biochemical activity).
+\end{solution}
+
+% =========================================================
+\section{The ENCODE Project (Slides 7--12)}
+
+ENCODE (Encyclopedia of DNA Elements) aims to catalog:
+\begin{itemize}
+    \item Coding genes
+    \item Non-coding RNAs
+    \item Regulatory elements
+    \item Epigenetic marks and chromatin features
+\end{itemize}
+Data are available via the ENCODE portal and the UCSC Genome Browser.
+
+
+\begin{solution}
+ENCODE provides multi-assay functional data (RNA-seq, ChIP-seq, ATAC-seq, etc.). Students should understand differences in the biological interpretations of these data types.
+\end{solution}
+
+% =========================================================
+\section{Functional Genomics Methods (Slides 14--22)}
+
+\subsection{ChIP-seq (Slide 15)}
+Chromatin Immunoprecipitation + sequencing detects \textbf{DNA-protein interactions}.  
+
+
+\subsection{ATAC-seq (Slide 16)}
+Assesses \textbf{chromatin accessibility} using transposase accessibility.  
+
+
+\subsection{DNase-seq (Slide 17)}
+Detects DNase I hypersensitive sites → open chromatin.  
+
+
+\subsection{FAIRE-seq (Slide 18)}
+Enriches nucleosome-depleted, regulatory regions.  
+
+
+\subsection{RNA-seq (Slide 19)}
+Measures transcription, gene expression, isoforms, and non-coding RNAs.  
+
+
+\subsection{Ribo-seq (Slide 20)}
+Profiles ribosome-protected RNA fragments → \textbf{translation activity}.  
+
+
+\subsection{DNA Methylation Assays (Slide 21)}
+Bisulfite conversion distinguishes methylated vs.\ unmethylated cytosines.  
+
+
+\subsection{Functional Assays (Slide 22)}
+CRISPR knockouts, RNAi, overexpression → link genomic regions to phenotypes.  
+
+
+\begin{solution}
+Highlight differences between assays:
+\begin{itemize}
+    \item Accessibility (ATAC/FAIRE/DNase) vs binding (ChIP) vs transcription (RNA-seq) vs translation (Ribo-seq).
+    \item Students often conflate RNA-seq with ``functional'' evidence; clarify it measures expression, not biological effect.
+\end{itemize}
+\end{solution}
+
+% =========================================================
+\section{Comparative Genomics (Slides 24--41)}
+
+\subsection{Whole-Genome Alignment (Slides 25--28)}
+\begin{itemize}
+    \item \textbf{Mauve}: multi-genome alignment with rearrangement awareness.
+    \item \textbf{MUMmer}: fast pairwise alignment using maximal unique matches.
+\end{itemize}
+
+
+\subsection{Long-Read Genome Alignment (Slides 31--32)}
+\textbf{Minimap2} uses a seed–chain–align procedure with minimizers for fast large-scale alignment.  
+
+
+\subsection{Variant Detection (Slides 33--34)}
+Read-to-reference alignment identifies SNPs and indels (e.g.\ GATK).  
+
+
+\subsection{Orthology and Gene Comparisons (Slides 36--41)}
+\begin{itemize}
+    \item Reciprocal Best Hit (RBH) to detect orthologs.
+    \item \textbf{Orthofinder}: finds orthogroups, builds gene trees, infers species trees, identifies duplications/losses.
+\end{itemize}
+
+
+\begin{solution}
+Comparative genomics links molecular biology to evolution:
+\begin{itemize}
+    \item Conservation → functionality
+    \item Breakpoints → structural evolution
+    \item Orthogroups → shared ancestry vs lineage-specific changes
+\end{itemize}
+\end{solution}
+
+% =========================================================
+\section{Exercises (with Solutions)}
+
+\subsection{Exercise 1 — Three Definitions of Function}
+Give one advantage and one limitation for each approach: genetic, evolutionary, biochemical.
+
+\begin{solution}
+\textbf{Genetic:}  
+Advantage: strong causal inference.  
+Limitation: redundancy hides phenotypes; low throughput.
+
+\textbf{Evolutionary:}  
+Advantage: identifies constrained regions genome-wide.  
+Limitation: fails for rapidly evolving regulatory regions.
+
+\textbf{Biochemical:}  
+Advantage: scalable; maps many element types.  
+Limitation: biochemical signal may reflect correlation, not causation.
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 2 — Matching Assays to Functions}
+Match:
+\begin{enumerate}
+    \item ChIP-seq  
+    \item ATAC-seq  
+    \item RNA-seq  
+    \item Ribo-seq  
+    \item Bisulfite sequencing  
+\end{enumerate}
+to:
+\begin{itemize}
+    \item[a.] Open chromatin  
+    \item[b.] Transcription levels  
+    \item[c.] DNA-protein binding  
+    \item[d.] Translation activity  
+    \item[e.] Cytosine methylation  
+\end{itemize}
+
+\begin{solution}
+1→c,\; 2→a,\; 3→b,\; 4→d,\; 5→e.
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 3 — ENCODE Data Interpretation}
+Choose one assay (e.g.\ ChIP-seq, ATAC-seq, RNA-seq).  
+State:
+\begin{itemize}
+    \item What biological question it answers
+    \item What type of data output it produces
+\end{itemize}
+
+\begin{solution}
+Examples:  
+\textbf{ATAC-seq:} reveals open chromatin; output = peaks representing accessible regions.  
+\textbf{ChIP-seq:} detects protein-DNA binding; output = enrichment peaks.  
+\textbf{RNA-seq:} measures expression; output = read counts / transcripts.  
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 4 — Comparative Genomics Tools}
+For each tool, specify its best use case.
+
+\begin{solution}
+\textbf{Mauve:} multiple small genomes, rearrangement-aware alignment.  
+\textbf{MUMmer:} pairwise genome alignment, very fast.  
+\textbf{Minimap2:} long-read mapping, assembly-to-assembly alignment.  
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 5 — Orthology Reasoning}
+A1's best hit is B1, and B1's best hit is A1.  
+A2's best hit is B2, but B2's best hit is A1.
+
+\begin{solution}
+A1--B1: reciprocal best hit → likely orthologs.  
+A2--B2: not reciprocal → suggests paralogy or gene family expansion; B2 may be more similar to duplicated A1.
+\end{solution}
+
+% ---------------------------------------------------------
+\subsection{Exercise 6 — Variant Detection}
+Reads at position: A, A, A, G, A, A.
+
+Is this a SNP?
+
+\begin{solution}
+Yes: one read shows a G while reference = A.  
+Confidence low: only 1/6 supports the alternative allele; could be sequencing error.  
+True SNP calls typically require higher allele frequency and quality metrics.
+\end{solution}
+
+% =========================================================
+
+\end{document}
