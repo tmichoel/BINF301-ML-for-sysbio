@@ -84,7 +84,6 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
-  pdf: default
 execute: 
   freeze: auto
 
