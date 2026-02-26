@@ -130,7 +130,7 @@ Lasso regression: regularization by shrinkage and subset selection
 
 The lasso regression coefficients minimize a penalized residual sum of squares: 
 $$\tag{4}
-    \beta^{\text{lasso}}=  = \text{argmin}_\beta \left\{ \sum_{i=1}^N \Bigl(y_i - \beta_0 - \sum_{j=1}^p x_{ij}\beta_j\Bigr)^2 + \textcolor{red}{\lambda\sum_{j=1}^p|\beta_j|}  \right\}$$
+    \beta^{\text{lasso}}=  \text{argmin}_\beta \left\{ \sum_{i=1}^N \Bigl(y_i - \beta_0 - \sum_{j=1}^p x_{ij}\beta_j\Bigr)^2 + \textcolor{red}{\lambda\sum_{j=1}^p|\beta_j|}  \right\}$$
 
 - Lasso regression has no closed form solution, the solutions are non-linear in the $y_i$,
 - If $\lambda$ is large enough, some coefficients will be exactly zero.
@@ -175,7 +175,7 @@ Elastic net regression combines ridge and lasso regularization.
 - The ridge penalty tends to shrink the coefficients of correlated variables towards each other.
 - The elastic net penalty is a compromise, and has the form
     $$\begin{aligned}
-          \lambda\sum_{j=1}^p \Bigl(\alpha|\beta_j|+\tfrac12(1-\alpha)\beta_j^2\Bigr).
+          \textcolor{red}{\lambda\sum_{j=1}^p \Bigl(\alpha|\beta_j|+\tfrac12(1-\alpha)\beta_j^2\Bigr)}.
         \end{aligned}$$ 
   The second term encourages highly correlated features to be averaged, while the first term encourages a sparse solution in the coefficients of these averaged features.
 

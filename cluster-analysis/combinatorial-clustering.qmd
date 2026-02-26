@@ -82,7 +82,7 @@ Sometimes some attributes exhibit more grouping tendency than others, which may 
 
 #### Combinatorial clustering
 
-Combinatorial clustering algorithms assign each object to a cluster without regard to a probability model describing the data. Understanding combinatorial clustering is a necessary basis for understanding probabilistic methods.
+Combinatorial clustering algorithms assign each object to a cluster without regard to a probability model describing the data. Understanding combinatorial clustering is a necessary basis for understanding more advanced methods.
 
 In combinatorial clustering, a prespecified number of clusters $K<N$ is postulated ($N$ the   number of objects). An assignment of objects $i\in\{1,\dots,N\}$ to clusters $k\in\{1,\dots,K\}$ is charcterized by a many-to-one mapping or encoder $k=C(i)$.
 
@@ -90,7 +90,12 @@ $C$ is obtained by minimizing the "within cluster" point scatter $W(C)$, which c
 
 We can also define the "between cluster" point scatter $B(C)$, which characterizes the extent to which objects assigned to different clusters tend to be far apart. How is $B(C)$ defined? 
 
+::: {.callout-warning}
+## Exercise
+
 Does it matter whether we find an optimal clustering by minimizing $W(C)$ or by maximizing $B(C)$? *Hint:* compute $W(C)+B(C)$.
+:::
+
 
 
 #### K-means clustering
@@ -102,9 +107,14 @@ $$
 and an iterative greedy descent algorithm to minimize $W(C)$.
 
 
-Using the Euclidean distance expression, find an expression for $W(C)$ in terms of the number of objects assigned to cluster $k$ and the mean vector associated to cluster $k$.
+::: {.callout-warning}
+## Exercise
 
-Show that $W(C)$ is minimized if within each cluster, the average dissimilarity of the objects from the cluster mean, as defined by the points in that cluster, is minimized.
+Using the Euclidean distance expression, find an expression for $W(C)$ in terms of the number of objects assigned to cluster $k$ and the mean vector associated to cluster $k$. Show that $W(C)$ is minimized if within each cluster, the average dissimilarity of the objects from the cluster mean, as defined by the points in that cluster, is minimized.
+:::
+
+
+
 
 Note that for any set of objects $S$,
 $$

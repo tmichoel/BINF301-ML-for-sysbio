@@ -14,7 +14,6 @@ website:
     contents: 
       - href: index.qmd
         text: Home
-      - julia-intro.qmd
       - section: "Cluster analysis"
         contents:
           - href: cluster-analysis/cancer-subtypes.qmd
@@ -78,6 +77,8 @@ website:
           - href: neural-networks/neural-networks.qmd
             text: Theory
       - section: "Appendix"
+        contents:
+          - julia-intro.qmd   
 format:
   html:
     theme: cosmo

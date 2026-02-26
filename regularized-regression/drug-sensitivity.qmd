@@ -52,6 +52,3 @@ What are pharmacological profiles, how is drug sensitivity measured?
 What is predictive modelling, how were robust models derived, what is shown in Figure 2?
 
 How were hyperparameters optimized? Does the procedure follow current best practice in machine learning with regards to splitting data into training, validation, and test sets?
-
-
-### Test of time

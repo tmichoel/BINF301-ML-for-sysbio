@@ -29,6 +29,4 @@ Zheng J, et al. [*Phenome-wide Mendelian randomization mapping the influence of 
 ### Questions for discussion
 
 
-### Test of time
-
 

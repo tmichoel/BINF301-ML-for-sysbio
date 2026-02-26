@@ -28,7 +28,6 @@ Baek M, et al. [*Accurate prediction of protein structures and interactions usin
 
 ### Questions for discussion
 
-### Test of time
 
 
 

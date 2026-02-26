@@ -45,4 +45,3 @@ We cover the following parts:
 - Figure 2
 - What is a q-value?
 
-### Test of time
